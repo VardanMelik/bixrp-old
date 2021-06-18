@@ -256,7 +256,7 @@ public:
 
         CurrentLedgerState(
             LedgerIndex li,
-            XRPAmount fee,
+            BIXRPAmount fee,
             std::uint32_t accSeqNext,
             std::uint32_t accSeqAvail)
             : validatedLedger{li}
@@ -267,7 +267,7 @@ public:
         }
 
         LedgerIndex validatedLedger;
-        XRPAmount minFeeRequired;
+        BIXRPAmount minFeeRequired;
         std::uint32_t accountSeqNext;
         std::uint32_t accountSeqAvail;
     };
@@ -292,7 +292,7 @@ public:
     void
     setCurrentLedgerState(
         LedgerIndex validatedLedger,
-        XRPAmount fee,
+        BIXRPAmount fee,
         std::uint32_t accountSeq,
         std::uint32_t availableSeq)
     {

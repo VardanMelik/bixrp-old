@@ -73,9 +73,9 @@ flow(
     Issue const srcIssue = [&] {
         if (sendMax)
             return sendMax->issue();
-        if (!isXRP(deliver.issue().currency))
+        if (!isBIXRP(deliver.issue().currency))
             return Issue(deliver.issue().currency, src);
-        return xrpIssue();
+        return bixrpIssue();
     }();
 
     Issue const dstIssue = deliver.issue();
@@ -122,24 +122,24 @@ flow(
         }
     }
 
-    const bool srcIsXRP = isXRP(srcIssue.currency);
-    const bool dstIsXRP = isXRP(dstIssue.currency);
+    const bool srcIsBIXRP = isBIXRP(srcIssue.currency);
+    const bool dstIsBIXRP = isBIXRP(dstIssue.currency);
 
     auto const asDeliver = toAmountSpec(deliver);
 
-    // The src account may send either xrp or iou. The dst account may receive
-    // either xrp or iou. Since XRP and IOU amounts are represented by different
+    // The src account may send either bixrp or iou. The dst account may receive
+    // either bixrp or iou. Since BIXRP and IOU amounts are represented by different
     // types, use templates to tell `flow` about the amount types.
-    if (srcIsXRP && dstIsXRP)
+    if (srcIsBIXRP && dstIsBIXRP)
     {
         return finishFlow(
             sb,
             srcIssue,
             dstIssue,
-            flow<XRPAmount, XRPAmount>(
+            flow<BIXRPAmount, BIXRPAmount>(
                 sb,
                 strands,
-                asDeliver.xrp,
+                asDeliver.bixrp,
                 partialPayment,
                 offerCrossing,
                 limitQuality,
@@ -148,13 +148,13 @@ flow(
                 flowDebugInfo));
     }
 
-    if (srcIsXRP && !dstIsXRP)
+    if (srcIsBIXRP && !dstIsBIXRP)
     {
         return finishFlow(
             sb,
             srcIssue,
             dstIssue,
-            flow<XRPAmount, IOUAmount>(
+            flow<BIXRPAmount, IOUAmount>(
                 sb,
                 strands,
                 asDeliver.iou,
@@ -166,16 +166,16 @@ flow(
                 flowDebugInfo));
     }
 
-    if (!srcIsXRP && dstIsXRP)
+    if (!srcIsBIXRP && dstIsBIXRP)
     {
         return finishFlow(
             sb,
             srcIssue,
             dstIssue,
-            flow<IOUAmount, XRPAmount>(
+            flow<IOUAmount, BIXRPAmount>(
                 sb,
                 strands,
-                asDeliver.xrp,
+                asDeliver.bixrp,
                 partialPayment,
                 offerCrossing,
                 limitQuality,
@@ -184,7 +184,7 @@ flow(
                 flowDebugInfo));
     }
 
-    assert(!srcIsXRP && !dstIsXRP);
+    assert(!srcIsBIXRP && !dstIsBIXRP);
     return finishFlow(
         sb,
         srcIssue,

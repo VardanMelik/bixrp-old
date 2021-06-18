@@ -34,7 +34,7 @@ struct Fees;
 /** Manages the current fee schedule.
 
     The "base" fee is the cost to send a reference transaction under no load,
-    expressed in millionths of one XRP.
+    expressed in millionths of one BIXRP.
 
     The "load" fee is how much the local server currently charges to send a
     reference transaction. This fee fluctuates based on the load of the
@@ -156,7 +156,7 @@ private:
 //------------------------------------------------------------------------------
 
 // Scale using load as well as base rate
-XRPAmount
+BIXRPAmount
 scaleFeeLoad(
     FeeUnit64 fee,
     LoadFeeTrack const& feeTrack,

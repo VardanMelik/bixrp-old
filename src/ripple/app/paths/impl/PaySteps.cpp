@@ -19,7 +19,7 @@
 
 #include <ripple/app/paths/impl/Steps.h>
 #include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/XRPAmount.h>
+#include <ripple/basics/BIXRPAmount.h>
 #include <ripple/basics/contract.h>
 #include <ripple/json/json_writer.h>
 #include <ripple/ledger/ReadView.h>
@@ -57,17 +57,17 @@ checkNear(IOUAmount const& expected, IOUAmount const& actual)
 };
 
 bool
-checkNear(XRPAmount const& expected, XRPAmount const& actual)
+checkNear(BIXRPAmount const& expected, BIXRPAmount const& actual)
 {
     return expected == actual;
 };
 
 static bool
-isXRPAccount(STPathElement const& pe)
+isBIXRPAccount(STPathElement const& pe)
 {
     if (pe.getNodeType() != STPathElement::typeAccount)
         return false;
-    return isXRP(pe.getAccountID());
+    return isBIXRP(pe.getAccountID());
 };
 
 static std::pair<TER, std::unique_ptr<Step>>
@@ -81,13 +81,13 @@ toStep(
 
     if (ctx.isFirst && e1->isAccount() &&
         (e1->getNodeType() & STPathElement::typeCurrency) &&
-        isXRP(e1->getCurrency()))
+        isBIXRP(e1->getCurrency()))
     {
-        return make_XRPEndpointStep(ctx, e1->getAccountID());
+        return make_BIXRPEndpointStep(ctx, e1->getAccountID());
     }
 
-    if (ctx.isLast && isXRPAccount(*e1) && e2->isAccount())
-        return make_XRPEndpointStep(ctx, e2->getAccountID());
+    if (ctx.isLast && isBIXRPAccount(*e1) && e2->isAccount())
+        return make_BIXRPEndpointStep(ctx, e2->getAccountID());
 
     if (e1->isAccount() && e2->isAccount())
     {
@@ -114,18 +114,18 @@ toStep(
         ? e2->getIssuerID()
         : curIssue.account;
 
-    if (isXRP(curIssue.currency) && isXRP(outCurrency))
+    if (isBIXRP(curIssue.currency) && isBIXRP(outCurrency))
     {
-        JLOG(j.info()) << "Found xrp/xrp offer payment step";
+        JLOG(j.info()) << "Found bixrp/bixrp offer payment step";
         return {temBAD_PATH, std::unique_ptr<Step>{}};
     }
 
     assert(e2->isOffer());
 
-    if (isXRP(outCurrency))
+    if (isBIXRP(outCurrency))
         return make_BookStepIX(ctx, curIssue);
 
-    if (isXRP(curIssue.currency))
+    if (isBIXRP(curIssue.currency))
         return make_BookStepXI(ctx, {outCurrency, outIssuer});
 
     return make_BookStepII(ctx, curIssue, {outCurrency, outIssuer});
@@ -144,7 +144,7 @@ toStrand(
     bool offerCrossing,
     beast::Journal j)
 {
-    if (isXRP(src) || isXRP(dst) || !isConsistent(deliver) ||
+    if (isBIXRP(src) || isBIXRP(dst) || !isConsistent(deliver) ||
         (sendMaxIssue && !isConsistent(*sendMaxIssue)))
         return {temBAD_PATH, Strand{}};
 
@@ -167,14 +167,14 @@ toStrand(
         if (hasAccount && (hasIssuer || hasCurrency))
             return {temBAD_PATH, Strand{}};
 
-        if (hasIssuer && isXRP(pe.getIssuerID()))
+        if (hasIssuer && isBIXRP(pe.getIssuerID()))
             return {temBAD_PATH, Strand{}};
 
-        if (hasAccount && isXRP(pe.getAccountID()))
+        if (hasAccount && isBIXRP(pe.getAccountID()))
             return {temBAD_PATH, Strand{}};
 
         if (hasCurrency && hasIssuer &&
-            isXRP(pe.getCurrency()) != isXRP(pe.getIssuerID()))
+            isBIXRP(pe.getCurrency()) != isBIXRP(pe.getIssuerID()))
             return {temBAD_PATH, Strand{}};
 
         if (hasIssuer && (pe.getIssuerID() == noAccount()))
@@ -187,8 +187,8 @@ toStrand(
     Issue curIssue = [&] {
         auto const& currency =
             sendMaxIssue ? sendMaxIssue->currency : deliver.currency;
-        if (isXRP(currency))
-            return xrpIssue();
+        if (isBIXRP(currency))
+            return bixrpIssue();
         return Issue{currency, src};
     }();
 
@@ -302,13 +302,13 @@ toStrand(
         if (cur->hasCurrency())
         {
             curIssue.currency = cur->getCurrency();
-            if (isXRP(curIssue.currency))
-                curIssue.account = xrpAccount();
+            if (isBIXRP(curIssue.currency))
+                curIssue.account = bixrpAccount();
         }
 
         if (cur->isAccount() && next->isAccount())
         {
-            if (!isXRP(curIssue.currency) &&
+            if (!isBIXRP(curIssue.currency) &&
                 curIssue.account != cur->getAccountID() &&
                 curIssue.account != next->getAccountID())
             {
@@ -324,8 +324,8 @@ toStrand(
                 impliedPE.emplace(
                     STPathElement::typeAccount,
                     curIssue.account,
-                    xrpCurrency(),
-                    xrpAccount());
+                    bixrpCurrency(),
+                    bixrpAccount());
                 cur = &*impliedPE;
             }
         }
@@ -345,15 +345,15 @@ toStrand(
                 impliedPE.emplace(
                     STPathElement::typeAccount,
                     curIssue.account,
-                    xrpCurrency(),
-                    xrpAccount());
+                    bixrpCurrency(),
+                    bixrpAccount());
                 cur = &*impliedPE;
             }
         }
         else if (cur->isOffer() && next->isAccount())
         {
             if (curIssue.account != next->getAccountID() &&
-                !isXRP(next->getAccountID()))
+                !isBIXRP(next->getAccountID()))
             {
                 if (isXRP(curIssue))
                 {
@@ -361,9 +361,9 @@ toStrand(
                         return {temBAD_PATH, Strand{}};
                     else
                     {
-                        // Last step. insert xrp endpoint step
+                        // Last step. insert bixrp endpoint step
                         auto msr =
-                            make_XRPEndpointStep(ctx(), next->getAccountID());
+                            make_BIXRPEndpointStep(ctx(), next->getAccountID());
                         if (msr.first != tesSUCCESS)
                             return {msr.first, Strand{}};
                         result.push_back(std::move(msr.second));
@@ -412,15 +412,15 @@ toStrand(
                 return std::make_pair(r->in.account, r->out.account);
             Throw<FlowException>(
                 tefEXCEPTION, "Step should be either a direct or book step");
-            return std::make_pair(xrpAccount(), xrpAccount());
+            return std::make_pair(bixrpAccount(), bixrpAccount());
         };
 
         auto curAcc = src;
         auto curIss = [&] {
             auto& currency =
                 sendMaxIssue ? sendMaxIssue->currency : deliver.currency;
-            if (isXRP(currency))
-                return xrpIssue();
+            if (isBIXRP(currency))
+                return bixrpIssue();
             return Issue{currency, src};
         }();
 
@@ -608,22 +608,22 @@ StrandContext::StrandContext(
 
 template <class InAmt, class OutAmt>
 bool
-isDirectXrpToXrp(Strand const& strand)
+isDirectBIXrpToBIXrp(Strand const& strand)
 {
     return false;
 }
 
 template <>
 bool
-isDirectXrpToXrp<XRPAmount, XRPAmount>(Strand const& strand)
+isDirectBIXrpToBIXrp<BIXRPAmount, BIXRPAmount>(Strand const& strand)
 {
     return (strand.size() == 2);
 }
 
 template bool
-isDirectXrpToXrp<XRPAmount, IOUAmount>(Strand const& strand);
+isDirectXrpToXrp<BIXRPAmount, IOUAmount>(Strand const& strand);
 template bool
-isDirectXrpToXrp<IOUAmount, XRPAmount>(Strand const& strand);
+isDirectXrpToXrp<IOUAmount, BIXRPAmount>(Strand const& strand);
 template bool
 isDirectXrpToXrp<IOUAmount, IOUAmount>(Strand const& strand);
 

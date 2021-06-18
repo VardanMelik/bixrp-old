@@ -188,7 +188,7 @@ Ledger::Ledger(
     , rules_{config.features}
 {
     info_.seq = 1;
-    info_.drops = INITIAL_XRP;
+    info_.drops = INITIAL_BIXRP;
     info_.closeTimeResolution = ledgerGenesisTimeResolution;
 
     static auto const id = calcAccountID(

@@ -84,7 +84,7 @@ OrderBookDB::update(std::shared_ptr<ReadView const> const& ledger)
     hash_set<uint256> seen;
     OrderBookDB::IssueToOrderBook destMap;
     OrderBookDB::IssueToOrderBook sourceMap;
-    hash_set<Issue> XRPBooks;
+    hash_set<Issue> BIXRPBooks;
 
     JLOG(j_.debug()) << "OrderBookDB::update>";
 
@@ -126,8 +126,8 @@ OrderBookDB::update(std::shared_ptr<ReadView const> const& ledger)
                     auto orderBook = std::make_shared<OrderBook>(index, book);
                     sourceMap[book.in].push_back(orderBook);
                     destMap[book.out].push_back(orderBook);
-                    if (isXRP(book.out))
-                        XRPBooks.insert(book.in);
+                    if (isBIXRP(book.out))
+                        BIXRPBooks.insert(book.in);
                     ++books;
                 }
             }
@@ -145,7 +145,7 @@ OrderBookDB::update(std::shared_ptr<ReadView const> const& ledger)
     {
         std::lock_guard sl(mLock);
 
-        mXRPBooks.swap(XRPBooks);
+        mBIXRPBooks.swap(BIXRPBooks);
         mSourceMap.swap(sourceMap);
         mDestMap.swap(destMap);
     }
@@ -155,16 +155,16 @@ OrderBookDB::update(std::shared_ptr<ReadView const> const& ledger)
 void
 OrderBookDB::addOrderBook(Book const& book)
 {
-    bool toXRP = isXRP(book.out);
+    bool toBIXRP = isBIXRP(book.out);
     std::lock_guard sl(mLock);
 
-    if (toXRP)
+    if (toBIXRP)
     {
-        // We don't want to search through all the to-XRP or from-XRP order
+        // We don't want to search through all the to-BIXRP or from-BIXRP order
         // books!
         for (auto ob : mSourceMap[book.in])
         {
-            if (isXRP(ob->getCurrencyOut()))  // also to XRP
+            if (isBIXRP(ob->getCurrencyOut()))  // also to BIXRP
                 return;
         }
     }
@@ -184,8 +184,8 @@ OrderBookDB::addOrderBook(Book const& book)
 
     mSourceMap[book.in].push_back(orderBook);
     mDestMap[book.out].push_back(orderBook);
-    if (toXRP)
-        mXRPBooks.insert(book.in);
+    if (toBIXRP)
+        mBIXRPBooks.insert(book.in);
 }
 
 // return list of all orderbooks that want this issuerID and currencyID
@@ -206,10 +206,10 @@ OrderBookDB::getBookSize(Issue const& issue)
 }
 
 bool
-OrderBookDB::isBookToXRP(Issue const& issue)
+OrderBookDB::isBookToBIXRP(Issue const& issue)
 {
     std::lock_guard sl(mLock);
-    return mXRPBooks.count(issue) > 0;
+    return mBIXRPBooks.count(issue) > 0;
 }
 
 BookListeners::pointer

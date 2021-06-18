@@ -58,7 +58,7 @@ getEndpoint(std::string const& peer)
 
 template <class Request, class Response>
 GRPCServerImpl::CallData<Request, Response>::CallData(
-    org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService& service,
+    org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService& service,
     grpc::ServerCompletionQueue& cq,
     Application& app,
     BindListener<Request, Response> bindListener,
@@ -599,10 +599,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestGetFee,
             doFeeGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::GetFee,
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::GetFee,
             RPC::NEEDS_CURRENT_LEDGER,
             Resource::feeReferenceRPC,
             secureGatewayIPs_));
@@ -616,10 +616,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestGetAccountInfo,
             doAccountInfoGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::GetAccountInfo,
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::GetAccountInfo,
             RPC::NO_CONDITION,
             Resource::feeReferenceRPC,
             secureGatewayIPs_));
@@ -633,10 +633,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestGetTransaction,
             doTxGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::GetTransaction,
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::GetTransaction,
             RPC::NEEDS_NETWORK_CONNECTION,
             Resource::feeReferenceRPC,
             secureGatewayIPs_));
@@ -650,10 +650,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestSubmitTransaction,
             doSubmitGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::SubmitTransaction,
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::SubmitTransaction,
             RPC::NEEDS_CURRENT_LEDGER,
             Resource::feeMediumBurdenRPC,
             secureGatewayIPs_));
@@ -668,10 +668,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestGetAccountTransactionHistory,
             doAccountTxGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::
                 GetAccountTransactionHistory,
             RPC::NO_CONDITION,
             Resource::feeMediumBurdenRPC,
@@ -687,10 +687,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestGetLedger,
             doLedgerGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::GetLedger,
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::GetLedger,
             RPC::NO_CONDITION,
             Resource::feeMediumBurdenRPC,
             secureGatewayIPs_));
@@ -704,10 +704,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestGetLedgerData,
             doLedgerDataGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::GetLedgerData,
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::GetLedgerData,
             RPC::NO_CONDITION,
             Resource::feeMediumBurdenRPC,
             secureGatewayIPs_));
@@ -721,10 +721,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestGetLedgerDiff,
             doLedgerDiffGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::GetLedgerDiff,
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::GetLedgerDiff,
             RPC::NO_CONDITION,
             Resource::feeMediumBurdenRPC,
             secureGatewayIPs_));
@@ -738,10 +738,10 @@ GRPCServerImpl::setupListeners()
             service_,
             *cq_,
             app_,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::AsyncService::
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::AsyncService::
                 RequestGetLedgerEntry,
             doLedgerEntryGrpc,
-            &org::xrpl::rpc::v1::XRPLedgerAPIService::Stub::GetLedgerEntry,
+            &org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub::GetLedgerEntry,
             RPC::NO_CONDITION,
             Resource::feeMediumBurdenRPC,
             secureGatewayIPs_));

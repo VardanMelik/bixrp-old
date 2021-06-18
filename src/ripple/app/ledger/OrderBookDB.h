@@ -54,7 +54,7 @@ public:
     getBookSize(Issue const&);
 
     bool
-    isBookToXRP(Issue const&);
+    isBookToBIXRP(Issue const&);
 
     BookListeners::pointer
     getBookListeners(Book const&);
@@ -82,8 +82,8 @@ private:
     // by co/io
     IssueToOrderBook mDestMap;
 
-    // does an order book to XRP exist
-    hash_set<Issue> mXRPBooks;
+    // does an order book to BIXRP exist
+    hash_set<Issue> mBIXRPBooks;
 
     std::recursive_mutex mLock;
 

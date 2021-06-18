@@ -29,13 +29,13 @@ hash_set<Currency>
 accountDestCurrencies(
     AccountID const& account,
     std::shared_ptr<RippleLineCache> const& cache,
-    bool includeXRP);
+    bool includeBIXRP);
 
 hash_set<Currency>
 accountSourceCurrencies(
     AccountID const& account,
     std::shared_ptr<RippleLineCache> const& lrLedger,
-    bool includeXRP);
+    bool includeBIXRP);
 
 }  // namespace ripple
 

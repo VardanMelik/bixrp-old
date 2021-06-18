@@ -28,7 +28,7 @@ inline STAmount
 largestAmount(STAmount const& amt)
 {
     if (amt.native())
-        return INITIAL_XRP;
+        return INITIAL_BIXRP;
 
     return STAmount(amt.issue(), STAmount::cMaxValue, STAmount::cMaxOffset);
 }

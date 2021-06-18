@@ -216,10 +216,10 @@ PathRequest::isValid(std::shared_ptr<RippleLineCache> const& crCache)
     }
     else
     {
-        bool const disallowXRP(sleDest->getFlags() & lsfDisallowXRP);
+        bool const disallowBIXRP(sleDest->getFlags() & lsfDisallowBIXRP);
 
         auto usDestCurrID =
-            accountDestCurrencies(*raDstAccount, crCache, !disallowXRP);
+            accountDestCurrencies(*raDstAccount, crCache, !disallowBIXRP);
 
         for (auto const& currency : usDestCurrID)
             jvDestCur.append(to_string(currency));
@@ -507,7 +507,7 @@ PathRequest::findPaths(
                 if (sourceCurrencies.size() >= RPC::Tuning::max_auto_src_cur)
                     return false;
                 sourceCurrencies.insert(
-                    {c, c.isZero() ? xrpAccount() : *raSrcAccount});
+                    {c, c.isZero() ? bixrpAccount() : *raSrcAccount});
             }
         }
     }
@@ -534,9 +534,9 @@ PathRequest::findPaths(
             max_paths_, fullLiquidityPath, mContext[issue], issue.account);
         mContext[issue] = ps;
 
-        auto& sourceAccount = !isXRP(issue.account)
+        auto& sourceAccount = !isBIXRP(issue.account)
             ? issue.account
-            : isXRP(issue.currency) ? xrpAccount() : *raSrcAccount;
+            : isBIXRP(issue.currency) ? bixrpAccount() : *raSrcAccount;
         STAmount saMaxAmount = saSendMax.value_or(
             STAmount({issue.currency, sourceAccount}, 1u, 0, true));
 

@@ -284,7 +284,7 @@ public:
         // Calculate amount that goes to the taker and the amount charged the
         // offer owner
         auto rate = [&](AccountID const& id) {
-            if (isXRP(id) || id == this->strandDst_)
+            if (isBIXRP(id) || id == this->strandDst_)
                 return parityRate;
             return transferRate(v, id);
         };
@@ -560,7 +560,7 @@ BookStep<TIn, TOut, TDerived>::forEachOffer(
     // Calculate amount that goes to the taker and the amount charged the offer
     // owner
     auto rate = [this, &sb](AccountID const& id) -> std::uint32_t {
-        if (isXRP(id) || id == this->strandDst_)
+        if (isBIXRP(id) || id == this->strandDst_)
             return QUALITY_ONE;
         return transferRate(sb, id).value;
     };
@@ -596,8 +596,8 @@ BookStep<TIn, TOut, TDerived>::forEachOffer(
             continue;
 
         // Make sure offer owner has authorization to own IOUs from issuer.
-        // An account can always own XRP or their own IOUs.
-        if (flowCross && (!isXRP(offer.issueIn().currency)) &&
+        // An account can always own BIXRP or their own IOUs.
+        if (flowCross && (!isBIXRP(offer.issueIn().currency)) &&
             (offer.owner() != offer.issueIn().account))
         {
             auto const& issuerID = offer.issueIn().account;
@@ -1078,7 +1078,7 @@ BookStep<TIn, TOut, TDerived>::check(StrandContext const& ctx) const
     }
 
     auto issuerExists = [](ReadView const& view, Issue const& iss) -> bool {
-        return isXRP(iss.account) || view.read(keylet::account(iss.account));
+        return isBIXRP(iss.account) || view.read(keylet::account(iss.account));
     };
 
     if (!issuerExists(ctx.view, book_.in) || !issuerExists(ctx.view, book_.out))
@@ -1123,24 +1123,24 @@ equalHelper(Step const& step, ripple::Book const& book)
 bool
 bookStepEqual(Step const& step, ripple::Book const& book)
 {
-    bool const inXRP = isXRP(book.in.currency);
-    bool const outXRP = isXRP(book.out.currency);
-    if (inXRP && outXRP)
+    bool const inBIXRP = isBIXRP(book.in.currency);
+    bool const outBIXRP = isBIXRP(book.out.currency);
+    if (inBIXRP && outBIXRP)
         return equalHelper<
-            XRPAmount,
-            XRPAmount,
-            BookPaymentStep<XRPAmount, XRPAmount>>(step, book);
-    if (inXRP && !outXRP)
+            BIXRPAmount,
+            BIXRPAmount,
+            BookPaymentStep<BIXRPAmount, BIXRPAmount>>(step, book);
+    if (inBIXRP && !outBIXRP)
         return equalHelper<
-            XRPAmount,
+            BIXRPAmount,
             IOUAmount,
-            BookPaymentStep<XRPAmount, IOUAmount>>(step, book);
-    if (!inXRP && outXRP)
+            BookPaymentStep<BIXRPAmount, IOUAmount>>(step, book);
+    if (!inBIXRP && outBIXRP)
         return equalHelper<
             IOUAmount,
-            XRPAmount,
-            BookPaymentStep<IOUAmount, XRPAmount>>(step, book);
-    if (!inXRP && !outXRP)
+            BIXRPAmount,
+            BookPaymentStep<IOUAmount, BIXRPAmount>>(step, book);
+    if (!inBIXRP && !outBIXRP)
         return equalHelper<
             IOUAmount,
             IOUAmount,
@@ -1186,13 +1186,13 @@ make_BookStepII(StrandContext const& ctx, Issue const& in, Issue const& out)
 std::pair<TER, std::unique_ptr<Step>>
 make_BookStepIX(StrandContext const& ctx, Issue const& in)
 {
-    return make_BookStepHelper<IOUAmount, XRPAmount>(ctx, in, xrpIssue());
+    return make_BookStepHelper<IOUAmount, BIXRPAmount>(ctx, in, bixrpIssue());
 }
 
 std::pair<TER, std::unique_ptr<Step>>
 make_BookStepXI(StrandContext const& ctx, Issue const& out)
 {
-    return make_BookStepHelper<XRPAmount, IOUAmount>(ctx, xrpIssue(), out);
+    return make_BookStepHelper<BIXRPAmount, IOUAmount>(ctx, bixrpIssue(), out);
 }
 
 }  // namespace ripple

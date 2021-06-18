@@ -25,13 +25,13 @@ hash_set<Currency>
 accountSourceCurrencies(
     AccountID const& account,
     std::shared_ptr<RippleLineCache> const& lrCache,
-    bool includeXRP)
+    bool includeBIXRP)
 {
     hash_set<Currency> currencies;
 
     // YYY Only bother if they are above reserve
-    if (includeXRP)
-        currencies.insert(xrpCurrency());
+    if (includeBIXRP)
+        currencies.insert(bixrpCurrency());
 
     // List of ripple lines.
     auto& rippleLines = lrCache->getRippleLines(account);
@@ -64,12 +64,12 @@ hash_set<Currency>
 accountDestCurrencies(
     AccountID const& account,
     std::shared_ptr<RippleLineCache> const& lrCache,
-    bool includeXRP)
+    bool includeBIXRP)
 {
     hash_set<Currency> currencies;
 
-    if (includeXRP)
-        currencies.insert(xrpCurrency());
+    if (includeBIXRP)
+        currencies.insert(bixrpCurrency());
     // Even if account doesn't exist
 
     // List of ripple lines.

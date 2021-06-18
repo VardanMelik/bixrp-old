@@ -233,7 +233,7 @@ struct FlowDebugInfo
                                        std::vector<EitherAmount> const& amts,
                                        char delim = ';') {
                 auto get_val = [](EitherAmount const& a) -> std::string {
-                    return ripple::to_string(a.xrp);
+                    return ripple::to_string(a.bixrp);
                 };
                 write_list(amts, get_val, delim);
             };
@@ -269,16 +269,16 @@ struct FlowDebugInfo
                     ostr << ']';
                 };
             auto writeNestedXrpAmtList =
-                [&ostr, &writeXrpAmtList](
+                [&ostr, &writeBIXrpAmtList](
                     std::vector<std::vector<EitherAmount>> const& amts) {
                     ostr << '[';
                     if (!amts.empty())
                     {
-                        writeXrpAmtList(amts[0], '|');
+                        writeBIXrpAmtList(amts[0], '|');
                         for (size_t i = 1, e = amts.size(); i < e; ++i)
                         {
                             ostr << ';';
-                            writeXrpAmtList(amts[i], '|');
+                            writeBIXrpAmtList(amts[i], '|');
                         }
                     }
                     ostr << ']';
@@ -286,12 +286,12 @@ struct FlowDebugInfo
 
             ostr << ", in_pass: ";
             if (passInfo.nativeIn)
-                writeXrpAmtList(passInfo.in);
+                writeBIXrpAmtList(passInfo.in);
             else
                 writeIouAmtList(passInfo.in);
             ostr << ", out_pass: ";
             if (passInfo.nativeOut)
-                writeXrpAmtList(passInfo.out);
+                writeBIXrpAmtList(passInfo.out);
             else
                 writeIouAmtList(passInfo.out);
             ostr << ", num_active: ";
@@ -301,12 +301,12 @@ struct FlowDebugInfo
             {
                 ostr << ", l_src_in: ";
                 if (passInfo.nativeIn)
-                    writeNestedXrpAmtList(passInfo.liquiditySrcIn);
+                    writeNestedBIXrpAmtList(passInfo.liquiditySrcIn);
                 else
                     writeNestedIouAmtList(passInfo.liquiditySrcIn);
                 ostr << ", l_src_out: ";
                 if (passInfo.nativeOut)
-                    writeNestedXrpAmtList(passInfo.liquiditySrcOut);
+                    writeNestedBIXrpAmtList(passInfo.liquiditySrcOut);
                 else
                     writeNestedIouAmtList(passInfo.liquiditySrcOut);
             }
@@ -348,12 +348,12 @@ writeDiffs(std::ostringstream& ostr, Iter begin, Iter end)
 
 using BalanceDiffs = std::pair<
     std::map<std::tuple<AccountID, AccountID, Currency>, STAmount>,
-    XRPAmount>;
+    BIXRPAmount>;
 
 inline BalanceDiffs
 balanceDiffs(PaymentSandbox const& sb, ReadView const& rv)
 {
-    return {sb.balanceChanges(rv), sb.xrpDestroyed()};
+    return {sb.balanceChanges(rv), sb.bixrpDestroyed()};
 }
 
 inline std::string
@@ -362,9 +362,9 @@ balanceDiffsToString(boost::optional<BalanceDiffs> const& bd)
     if (!bd)
         return std::string{};
     auto const& diffs = bd->first;
-    auto const& xrpDestroyed = bd->second;
+    auto const& bixrpDestroyed = bd->second;
     std::ostringstream ostr;
-    ostr << ", xrpDestroyed: " << to_string(xrpDestroyed);
+    ostr << ", bixrpDestroyed: " << to_string(bixrpDestroyed);
     ostr << ", balanceDiffs: ";
     writeDiffs(ostr, diffs.begin(), diffs.end());
     return ostr.str();

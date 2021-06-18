@@ -32,7 +32,7 @@ namespace detail {
 class VotableValue
 {
 private:
-    using value_type = XRPAmount;
+    using value_type = BIXRPAmount;
     value_type const mCurrent;  // The current setting
     value_type const mTarget;   // The setting we want
     std::map<value_type, int> mVoteMap;
@@ -168,12 +168,12 @@ FeeVoteImpl::doVoting(
         {
             if (val->isFieldPresent(sfBaseFee))
             {
-                using xrptype = XRPAmount::value_type;
+                using bixrptype = BIXRPAmount::value_type;
                 auto const vote = val->getFieldU64(sfBaseFee);
-                if (vote <= std::numeric_limits<xrptype>::max() &&
-                    isLegalAmount(XRPAmount{unsafe_cast<xrptype>(vote)}))
+                if (vote <= std::numeric_limits<bixrptype>::max() &&
+                    isLegalAmount(BIXRPAmount{unsafe_cast<bixrptype>(vote)}))
                     baseFeeVote.addVote(
-                        XRPAmount{unsafe_cast<XRPAmount::value_type>(vote)});
+                        BIXRPAmount{unsafe_cast<BIXRPAmount::value_type>(vote)});
                 else
                     // Invalid amounts will be treated as if they're
                     // not provided. Don't throw because this value is
@@ -188,7 +188,7 @@ FeeVoteImpl::doVoting(
             if (val->isFieldPresent(sfReserveBase))
             {
                 baseReserveVote.addVote(
-                    XRPAmount{val->getFieldU32(sfReserveBase)});
+                    BIXRPAmount{val->getFieldU32(sfReserveBase)});
             }
             else
             {
@@ -198,7 +198,7 @@ FeeVoteImpl::doVoting(
             if (val->isFieldPresent(sfReserveIncrement))
             {
                 incReserveVote.addVote(
-                    XRPAmount{val->getFieldU32(sfReserveIncrement)});
+                    BIXRPAmount{val->getFieldU32(sfReserveIncrement)});
             }
             else
             {
@@ -262,7 +262,7 @@ setup_FeeVote(Section const& section)
     {
         std::uint64_t temp;
         if (set(temp, "reference_fee", section) &&
-            temp <= std::numeric_limits<XRPAmount::value_type>::max())
+            temp <= std::numeric_limits<BIXRPAmount::value_type>::max())
             setup.reference_fee = temp;
     }
     {
