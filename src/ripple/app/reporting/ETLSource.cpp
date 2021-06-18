@@ -65,7 +65,7 @@ ETLSource::ETLSource(
 {
     try
     {
-        stub_ = org::xrpl::rpc::v1::XRPLedgerAPIService::NewStub(
+        stub_ = org::xrpl::rpc::v1::BIXRPLedgerAPIService::NewStub(
             grpc::CreateChannel(
                 beast::IP::Endpoint(
                     boost::asio::ip::make_address(ip_), std::stoi(grpcPort_))
@@ -433,7 +433,7 @@ public:
     enum class CallStatus { MORE, DONE, ERRORED };
     CallStatus
     process(
-        std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub>& stub,
+        std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>& stub,
         grpc::CompletionQueue& cq,
         ThreadSafeQueue<std::shared_ptr<SLE>>& queue,
         bool abort = false)
@@ -495,7 +495,7 @@ public:
 
     void
     call(
-        std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub>& stub,
+        std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>& stub,
         grpc::CompletionQueue& cq)
     {
         context_ = std::make_unique<grpc::ClientContext>();
@@ -695,7 +695,7 @@ ETLLoadBalancer::fetchLedger(uint32_t ledgerSequence, bool getObjects)
         return {};
 }
 
-std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub>
+std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>
 ETLLoadBalancer::getP2pForwardingStub() const
 {
     if (sources_.size() == 0)
@@ -742,14 +742,14 @@ ETLLoadBalancer::forwardToP2p(RPC::JsonContext& context) const
     return res;
 }
 
-std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub>
+std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>
 ETLSource::getP2pForwardingStub() const
 {
     if (!connected_)
         return nullptr;
     try
     {
-        return org::xrpl::rpc::v1::XRPLedgerAPIService::NewStub(
+        return org::xrpl::rpc::v1::BIXRPLedgerAPIService::NewStub(
             grpc::CreateChannel(
                 beast::IP::Endpoint(
                     boost::asio::ip::make_address(ip_), std::stoi(grpcPort_))

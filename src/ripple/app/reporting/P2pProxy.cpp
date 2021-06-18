@@ -31,7 +31,7 @@ forwardToP2p(RPC::JsonContext& context)
         context);
 }
 
-std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub>
+std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>
 getP2pForwardingStub(RPC::Context& context)
 {
     return context.app.getReportingETL()

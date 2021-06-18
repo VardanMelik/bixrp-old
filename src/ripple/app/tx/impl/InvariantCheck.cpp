@@ -39,7 +39,7 @@ bool
 TransactionFeeCheck::finalize(
     STTx const& tx,
     TER const,
-    XRPAmount const fee,
+    BIXRPAmount const fee,
     ReadView const&,
     beast::Journal const& j)
 {
@@ -52,8 +52,8 @@ TransactionFeeCheck::finalize(
     }
 
     // We should never charge a fee that's greater than or equal to the
-    // entire XRP supply.
-    if (fee >= INITIAL_XRP)
+    // entire BIXRP supply.
+    if (fee >= INITIAL_BIXRP)
     {
         JLOG(j.fatal()) << "Invariant failed: fee paid exceeds system limit: "
                         << fee.drops();
@@ -62,7 +62,7 @@ TransactionFeeCheck::finalize(
 
     // We should never charge more for a transaction than the transaction
     // authorizes. It's possible to charge less in some circumstances.
-    if (fee > tx.getFieldAmount(sfFee).xrp())
+    if (fee > tx.getFieldAmount(sfFee).bixrp())
     {
         JLOG(j.fatal()) << "Invariant failed: fee paid is " << fee.drops()
                         << " exceeds fee specified in transaction.";
@@ -75,14 +75,14 @@ TransactionFeeCheck::finalize(
 //------------------------------------------------------------------------------
 
 void
-XRPNotCreated::visitEntry(
+BIXRPNotCreated::visitEntry(
     bool isDelete,
     std::shared_ptr<SLE const> const& before,
     std::shared_ptr<SLE const> const& after)
 {
     /* We go through all modified ledger entries, looking only at account roots,
      * escrow payments, and payment channels. We remove from the total any
-     * previous XRP values and add to the total any new XRP values. The net
+     * previous BIXRP values and add to the total any new BIXRP values. The net
      * balance of a payment channel is computed from two fields (amount and
      * balance) and deletions are ignored for paychan and escrow because the
      * amount fields have not been adjusted for those in the case of deletion.
@@ -92,14 +92,14 @@ XRPNotCreated::visitEntry(
         switch (before->getType())
         {
             case ltACCOUNT_ROOT:
-                drops_ -= (*before)[sfBalance].xrp().drops();
+                drops_ -= (*before)[sfBalance].bixrp().drops();
                 break;
             case ltPAYCHAN:
                 drops_ -=
-                    ((*before)[sfAmount] - (*before)[sfBalance]).xrp().drops();
+                    ((*before)[sfAmount] - (*before)[sfBalance]).bixrp().drops();
                 break;
             case ltESCROW:
-                drops_ -= (*before)[sfAmount].xrp().drops();
+                drops_ -= (*before)[sfAmount].bixrp().drops();
                 break;
             default:
                 break;
@@ -111,17 +111,17 @@ XRPNotCreated::visitEntry(
         switch (after->getType())
         {
             case ltACCOUNT_ROOT:
-                drops_ += (*after)[sfBalance].xrp().drops();
+                drops_ += (*after)[sfBalance].bixrp().drops();
                 break;
             case ltPAYCHAN:
                 if (!isDelete)
                     drops_ += ((*after)[sfAmount] - (*after)[sfBalance])
-                                  .xrp()
+                                  .bixrp()
                                   .drops();
                 break;
             case ltESCROW:
                 if (!isDelete)
-                    drops_ += (*after)[sfAmount].xrp().drops();
+                    drops_ += (*after)[sfAmount].bixrp().drops();
                 break;
             default:
                 break;
@@ -130,18 +130,18 @@ XRPNotCreated::visitEntry(
 }
 
 bool
-XRPNotCreated::finalize(
+BIXRPNotCreated::finalize(
     STTx const&,
     TER const,
-    XRPAmount const fee,
+    BIXRPAmount const fee,
     ReadView const&,
     beast::Journal const& j)
 {
     // The net change should never be positive, as this would mean that the
-    // transaction created XRP out of thin air. That's not possible.
+    // transaction created BIXRP out of thin air. That's not possible.
     if (drops_ > 0)
     {
-        JLOG(j.fatal()) << "Invariant failed: XRP net change was positive: "
+        JLOG(j.fatal()) << "Invariant failed: BIXRP net change was positive: "
                         << drops_;
         return false;
     }
@@ -149,7 +149,7 @@ XRPNotCreated::finalize(
     // The negative of the net change should be equal to actual fee charged.
     if (-drops_ != fee.drops())
     {
-        JLOG(j.fatal()) << "Invariant failed: XRP net change of " << drops_
+        JLOG(j.fatal()) << "Invariant failed: BIXRP net change of " << drops_
                         << " doesn't match fee " << fee.drops();
         return false;
     }
@@ -160,7 +160,7 @@ XRPNotCreated::finalize(
 //------------------------------------------------------------------------------
 
 void
-XRPBalanceChecks::visitEntry(
+BIXRPBalanceChecks::visitEntry(
     bool,
     std::shared_ptr<SLE const> const& before,
     std::shared_ptr<SLE const> const& after)
@@ -169,15 +169,15 @@ XRPBalanceChecks::visitEntry(
         if (!balance.native())
             return true;
 
-        auto const drops = balance.xrp();
+        auto const drops = balance.bixrp();
 
         // Can't have more than the number of drops instantiated
         // in the genesis ledger.
-        if (drops > INITIAL_XRP)
+        if (drops > INITIAL_BIXRP)
             return true;
 
         // Can't have a negative balance (0 is OK)
-        if (drops < XRPAmount{0})
+        if (drops < BIXRPAmount{0})
             return true;
 
         return false;
@@ -191,16 +191,16 @@ XRPBalanceChecks::visitEntry(
 }
 
 bool
-XRPBalanceChecks::finalize(
+BIXRPBalanceChecks::finalize(
     STTx const&,
     TER const,
-    XRPAmount const,
+    BIXRPAmount const,
     ReadView const&,
     beast::Journal const& j)
 {
     if (bad_)
     {
-        JLOG(j.fatal()) << "Invariant failed: incorrect account XRP balance";
+        JLOG(j.fatal()) << "Invariant failed: incorrect account BIXRP balance";
         return false;
     }
 
@@ -223,7 +223,7 @@ NoBadOffers::visitEntry(
         if (gets < beast::zero)
             return true;
 
-        // Can't have an XRP to XRP offer:
+        // Can't have an BIXRP to BIXRP offer:
         return pays.native() && gets.native();
     };
 
@@ -238,7 +238,7 @@ bool
 NoBadOffers::finalize(
     STTx const&,
     TER const,
-    XRPAmount const,
+    BIXRPAmount const,
     ReadView const&,
     beast::Journal const& j)
 {
@@ -263,10 +263,10 @@ NoZeroEscrow::visitEntry(
         if (!amount.native())
             return true;
 
-        if (amount.xrp() <= XRPAmount{0})
+        if (amount.bixrp() <= BIXRPAmount{0})
             return true;
 
-        if (amount.xrp() >= INITIAL_XRP)
+        if (amount.bixrp() >= INITIAL_BIXRP)
             return true;
 
         return false;
@@ -283,7 +283,7 @@ bool
 NoZeroEscrow::finalize(
     STTx const&,
     TER const,
-    XRPAmount const,
+    BIXRPAmount const,
     ReadView const&,
     beast::Journal const& j)
 {
@@ -312,7 +312,7 @@ bool
 AccountRootsNotDeleted::finalize(
     STTx const& tx,
     TER const result,
-    XRPAmount const,
+    BIXRPAmount const,
     ReadView const&,
     beast::Journal const& j)
 {
@@ -378,7 +378,7 @@ bool
 LedgerEntryTypesMatch::finalize(
     STTx const&,
     TER const,
-    XRPAmount const,
+    BIXRPAmount const,
     ReadView const&,
     beast::Journal const& j)
 {
@@ -401,7 +401,7 @@ LedgerEntryTypesMatch::finalize(
 //------------------------------------------------------------------------------
 
 void
-NoXRPTrustLines::visitEntry(
+NoBIXRPTrustLines::visitEntry(
     bool,
     std::shared_ptr<SLE const> const&,
     std::shared_ptr<SLE const> const& after)
@@ -411,24 +411,24 @@ NoXRPTrustLines::visitEntry(
         // checking the issue directly here instead of
         // relying on .native() just in case native somehow
         // were systematically incorrect
-        xrpTrustLine_ =
-            after->getFieldAmount(sfLowLimit).issue() == xrpIssue() ||
-            after->getFieldAmount(sfHighLimit).issue() == xrpIssue();
+        bixrpTrustLine_ =
+            after->getFieldAmount(sfLowLimit).issue() == bixrpIssue() ||
+            after->getFieldAmount(sfHighLimit).issue() == bixrpIssue();
     }
 }
 
 bool
-NoXRPTrustLines::finalize(
+NoBIXRPTrustLines::finalize(
     STTx const&,
     TER const,
-    XRPAmount const,
+    BIXRPAmount const,
     ReadView const&,
     beast::Journal const& j)
 {
-    if (!xrpTrustLine_)
+    if (!bixrpTrustLine_)
         return true;
 
-    JLOG(j.fatal()) << "Invariant failed: an XRP trust line was created";
+    JLOG(j.fatal()) << "Invariant failed: an BIXRP trust line was created";
     return false;
 }
 
@@ -451,7 +451,7 @@ bool
 ValidNewAccountRoot::finalize(
     STTx const& tx,
     TER const result,
-    XRPAmount const,
+    BIXRPAmount const,
     ReadView const& view,
     beast::Journal const& j)
 {

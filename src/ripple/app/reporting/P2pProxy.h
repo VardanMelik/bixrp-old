@@ -109,7 +109,7 @@ shouldForwardToP2p(RPC::GRPCContext<Request>& context, RPC::Condition condition)
 /// Get stub used to forward gRPC requests to a p2p node
 /// @param context context of the request
 /// @return stub to forward requests
-std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub>
+std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>
 getP2pForwardingStub(RPC::Context& context);
 
 }  // namespace ripple

@@ -295,7 +295,7 @@ TxConsequences::TxConsequences(NotTEC pfresult)
 TxConsequences::TxConsequences(STTx const& tx)
     : isBlocker_(false)
     , fee_(
-          tx[sfFee].native() && !tx[sfFee].negative() ? tx[sfFee].xrp()
+          tx[sfFee].native() && !tx[sfFee].negative() ? tx[sfFee].bixrp()
                                                       : beast::zero)
     , potentialSpend_(beast::zero)
     , seqProx_(tx.getSeqProxy())
@@ -309,7 +309,7 @@ TxConsequences::TxConsequences(STTx const& tx, Category category)
     isBlocker_ = (category == blocker);
 }
 
-TxConsequences::TxConsequences(STTx const& tx, XRPAmount potentialSpend)
+TxConsequences::TxConsequences(STTx const& tx, BIXRPAmount potentialSpend)
     : TxConsequences(tx)
 {
     potentialSpend_ = potentialSpend;
@@ -486,7 +486,7 @@ calculateBaseFee(ReadView const& view, STTx const& tx)
     return invoke_calculateBaseFee(view, tx);
 }
 
-XRPAmount
+BIXRPAmount
 calculateDefaultBaseFee(ReadView const& view, STTx const& tx)
 {
     return view.fees().toDrops(Transactor::calculateBaseFee(view, tx));

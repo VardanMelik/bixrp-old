@@ -36,9 +36,9 @@
 
 Core Pathfinding Engine
 
-The pathfinding request is identified by category, XRP to XRP, XRP to
-non-XRP, non-XRP to XRP, same currency non-XRP to non-XRP, cross-currency
-non-XRP to non-XRP.  For each category, there is a table of paths that the
+The pathfinding request is identified by category, BIXRP to BIXRP, BIXRP to
+non-BIXRP, non-BIXRP to BIXRP, same currency non-BIXRP to non-BIXRP, cross-currency
+non-BIXRP to non-BIXRP.  For each category, there is a table of paths that the
 pathfinder searches for.  Complete paths are collected.
 
 Each complete path is then rated and sorted. Paths with no or trivial

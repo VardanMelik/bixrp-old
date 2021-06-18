@@ -93,7 +93,7 @@ after(NetClock::time_point now, std::uint32_t mark)
 TxConsequences
 EscrowCreate::makeTxConsequences(PreflightContext const& ctx)
 {
-    return TxConsequences{ctx.tx, ctx.tx[sfAmount].xrp()};
+    return TxConsequences{ctx.tx, ctx.tx[sfAmount].bixrp()};
 }
 
 NotTEC
@@ -106,7 +106,7 @@ EscrowCreate::preflight(PreflightContext const& ctx)
     if (!isTesSuccess(ret))
         return ret;
 
-    if (!isXRP(ctx.tx[sfAmount]))
+    if (!isBIXRP(ctx.tx[sfAmount]))
         return temBAD_AMOUNT;
 
     if (ctx.tx[sfAmount] <= beast::zero)
@@ -201,14 +201,14 @@ EscrowCreate::doApply()
 
     // Check reserve and funds availability
     {
-        auto const balance = STAmount((*sle)[sfBalance]).xrp();
+        auto const balance = STAmount((*sle)[sfBalance]).bixrp();
         auto const reserve =
             ctx_.view().fees().accountReserve((*sle)[sfOwnerCount] + 1);
 
         if (balance < reserve)
             return tecINSUFFICIENT_RESERVE;
 
-        if (balance < reserve + STAmount(ctx_.tx[sfAmount]).xrp())
+        if (balance < reserve + STAmount(ctx_.tx[sfAmount]).bixrp())
             return tecUNFUNDED;
     }
 
@@ -222,10 +222,10 @@ EscrowCreate::doApply()
             !ctx_.tx[~sfDestinationTag])
             return tecDST_TAG_NEEDED;
 
-        // Obeying the lsfDissalowXRP flag was a bug.  Piggyback on
+        // Obeying the lsfDissalowBIXRP flag was a bug.  Piggyback on
         // featureDepositAuth to remove the bug.
         if (!ctx_.view().rules().enabled(featureDepositAuth) &&
-            ((*sled)[sfFlags] & lsfDisallowXRP))
+            ((*sled)[sfFlags] & lsfDisallowBIXRP))
             return tecNO_TARGET;
     }
 

@@ -40,7 +40,7 @@ isTecClaimHardFail(TER ter, ApplyFlags flags)
 
 /** Class describing the consequences to the account
     of applying a transaction if the transaction consumes
-    the maximum XRP allowed.
+    the maximum BIXRP allowed.
 */
 class TxConsequences
 {
@@ -60,9 +60,9 @@ private:
     /// transactions
     bool isBlocker_;
     /// Transaction fee
-    XRPAmount fee_;
+    BIXRPAmount fee_;
     /// Does NOT include the fee.
-    XRPAmount potentialSpend_;
+    BIXRPAmount potentialSpend_;
     /// SeqProxy of transaction.
     SeqProxy seqProx_;
     /// Number of sequences consumed.
@@ -79,8 +79,8 @@ public:
     /// Constructor for a blocker.
     TxConsequences(STTx const& tx, Category category);
 
-    /// Constructor for an STTx that may consume more XRP than the fee.
-    TxConsequences(STTx const& tx, XRPAmount potentialSpend);
+    /// Constructor for an STTx that may consume more BIXRP than the fee.
+    TxConsequences(STTx const& tx, BIXRPAmount potentialSpend);
 
     /// Constructor for an STTx that consumes more than the usual sequences.
     TxConsequences(STTx const& tx, std::uint32_t sequencesConsumed);
@@ -97,14 +97,14 @@ public:
     operator=(TxConsequences&&) = default;
 
     /// Fee
-    XRPAmount
+    BIXRPAmount
     fee() const
     {
         return fee_;
     }
 
     /// Potential Spend
-    XRPAmount const&
+    BIXRPAmount const&
     potentialSpend() const
     {
         return potentialSpend_;
@@ -312,9 +312,9 @@ calculateBaseFee(ReadView const& view, STTx const& tx);
     @param view The current open ledger.
     @param tx The transaction so the correct multisigner count is used.
 
-    @return The base fee in XRPAmount.
+    @return The base fee in BIXRPAmount.
 */
-XRPAmount
+BIXRPAmount
 calculateDefaultBaseFee(ReadView const& view, STTx const& tx);
 
 /** Apply a prechecked transaction to an OpenView.

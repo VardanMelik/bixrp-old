@@ -92,7 +92,7 @@ template <std::size_t... Is>
 TER
 ApplyContext::checkInvariantsHelper(
     TER const result,
-    XRPAmount const fee,
+    BIXRPAmount const fee,
     std::index_sequence<Is...>)
 {
     try
@@ -144,7 +144,7 @@ ApplyContext::checkInvariantsHelper(
 }
 
 TER
-ApplyContext::checkInvariants(TER const result, XRPAmount const fee)
+ApplyContext::checkInvariants(TER const result, BIXRPAmount const fee)
 {
     assert(isTesSuccess(result) || isTecClaim(result));
 

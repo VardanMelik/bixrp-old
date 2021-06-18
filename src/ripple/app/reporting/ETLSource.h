@@ -56,7 +56,7 @@ class ETLSource
     // a reference to the applications io_service
     boost::asio::io_context& ioc_;
 
-    std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub> stub_;
+    std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub> stub_;
 
     std::unique_ptr<boost::beast::websocket::stream<boost::beast::tcp_stream>>
         ws_;
@@ -296,7 +296,7 @@ public:
 
     /// Get grpc stub to forward requests to p2p node
     /// @return stub to send requests to ETL source
-    std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub>
+    std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>
     getP2pForwardingStub() const;
 
     /// Forward a JSON RPC request to a p2p node
@@ -406,7 +406,7 @@ public:
 
     /// Randomly select a p2p node to forward a gRPC request to
     /// @return gRPC stub to forward requests to p2p node
-    std::unique_ptr<org::xrpl::rpc::v1::XRPLedgerAPIService::Stub>
+    std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>
     getP2pForwardingStub() const;
 
     /// Forward a JSON RPC request to a randomly selected p2p node

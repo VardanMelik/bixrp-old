@@ -96,9 +96,9 @@ public:
               std::shared_ptr<SLE const> const& after)> const& func);
 
     void
-    destroyXRP(XRPAmount const& fee)
+    destroyBIXRP(BIXRPAmount const& fee)
     {
-        view_->rawDestroyXRP(fee);
+        view_->rawDestroyBIXRP(fee);
     }
 
     /** Applies all invariant checkers one by one.
@@ -108,7 +108,7 @@ public:
         @return the result code that should be returned for this transaction.
      */
     TER
-    checkInvariants(TER const result, XRPAmount const fee);
+    checkInvariants(TER const result, BIXRPAmount const fee);
 
 private:
     TER
@@ -118,7 +118,7 @@ private:
     TER
     checkInvariantsHelper(
         TER const result,
-        XRPAmount const fee,
+        BIXRPAmount const fee,
         std::index_sequence<Is...>);
 
     OpenView& base_;

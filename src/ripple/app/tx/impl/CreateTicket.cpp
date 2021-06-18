@@ -93,7 +93,7 @@ CreateTicket::doApply()
     // reserve to pay fees.
     std::uint32_t const ticketCount = ctx_.tx[sfTicketCount];
     {
-        XRPAmount const reserve = view().fees().accountReserve(
+        BIXRPAmount const reserve = view().fees().accountReserve(
             sleAccountRoot->getFieldU32(sfOwnerCount) + ticketCount);
 
         if (mPriorBalance < reserve)

@@ -177,12 +177,12 @@ CashCheck::preclaim(PreclaimContext const& ctx)
                 fhZERO_IF_FROZEN,
                 ctx.j)};
 
-            // Note that src will have one reserve's worth of additional XRP
+            // Note that src will have one reserve's worth of additional BIXRP
             // once the check is cashed, since the check's reserve will no
-            // longer be required.  So, if we're dealing in XRP, we add one
+            // longer be required.  So, if we're dealing in BIXRP, we add one
             // reserve's worth to the available funds.
             if (value.native())
-                availableFunds += XRPAmount{ctx.view.fees().increment};
+                availableFunds += BIXRPAmount{ctx.view.fees().increment};
 
             if (value > availableFunds)
             {
@@ -290,10 +290,10 @@ CashCheck::doApply()
     {
         STAmount const sendMax{sleCheck->getFieldAmount(sfSendMax)};
 
-        // Flow() doesn't do XRP to XRP transfers.
+        // Flow() doesn't do BIXRP to BIXRP transfers.
         if (sendMax.native())
         {
-            // Here we need to calculate the amount of XRP sleSrc can send.
+            // Here we need to calculate the amount of BIXRP sleSrc can send.
             // The amount they have available is their balance minus their
             // reserve.
             //
@@ -301,31 +301,31 @@ CashCheck::doApply()
             // from src's directory, we allow them to send that additional
             // incremental reserve amount in the transfer.  Hence the -1
             // argument.
-            STAmount const srcLiquid{xrpLiquid(psb, srcId, -1, viewJ)};
+            STAmount const srcLiquid{bixrpLiquid(psb, srcId, -1, viewJ)};
 
             // Now, how much do they need in order to be successful?
-            STAmount const xrpDeliver{
+            STAmount const bixrpDeliver{
                 optDeliverMin
                     ? std::max(*optDeliverMin, std::min(sendMax, srcLiquid))
                     : ctx_.tx.getFieldAmount(sfAmount)};
 
-            if (srcLiquid < xrpDeliver)
+            if (srcLiquid < bixrpDeliver)
             {
                 // Vote no. However the transaction might succeed if applied
                 // in a different order.
-                JLOG(j_.trace()) << "Cash Check: Insufficient XRP: "
+                JLOG(j_.trace()) << "Cash Check: Insufficient BIXRP: "
                                  << srcLiquid.getFullText() << " < "
-                                 << xrpDeliver.getFullText();
+                                 << bixrpDeliver.getFullText();
                 return tecUNFUNDED_PAYMENT;
             }
 
             if (optDeliverMin && doFix1623)
                 // Set the DeliveredAmount metadata.
-                ctx_.deliver(xrpDeliver);
+                ctx_.deliver(bixrpDeliver);
 
-            // The source account has enough XRP so make the ledger change.
+            // The source account has enough BIXRP so make the ledger change.
             if (TER const ter{
-                    transferXRP(psb, srcId, account_, xrpDeliver, viewJ)};
+                    transferBIXRP(psb, srcId, account_, bixrpDeliver, viewJ)};
                 ter != tesSUCCESS)
             {
                 // The transfer failed.  Return the error code.
