@@ -116,7 +116,7 @@ flow(
 
     boost::container::flat_set<uint256> ofrsToRm;
 
-    if (isDirectXrpToXrp<TInAmt, TOutAmt>(strand))
+    if (isDirectBIXrpToXrp<TInAmt, TOutAmt>(strand))
     {
         return Result{strand, std::move(ofrsToRm)};
     }
@@ -189,7 +189,7 @@ flow(
                     if (strand[i]->isZero(r.second))
                     {
                         // A tiny input amount can cause this step to output
-                        // zero. I.e. 10^-80 IOU into an IOU -> XRP offer.
+                        // zero. I.e. 10^-80 IOU into an IOU -> BIXRP offer.
                         JLOG(j.trace()) << "Limiting step found dry";
                         return Result{strand, std::move(ofrsToRm)};
                     }
@@ -223,7 +223,7 @@ flow(
                 if (strand[i]->isZero(r.second))
                 {
                     // A tiny input amount can cause this step to output zero.
-                    // I.e. 10^-80 IOU into an IOU -> XRP offer.
+                    // I.e. 10^-80 IOU into an IOU -> BIXRP offer.
                     JLOG(j.trace()) << "Non-limiting step found dry";
                     return Result{strand, std::move(ofrsToRm)};
                 }

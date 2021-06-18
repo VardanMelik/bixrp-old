@@ -56,9 +56,9 @@ issues(DebtDirection dir)
    There are five concrete step classes:
      DirectStepI is an IOU step between accounts
      BookStepII is an IOU/IOU offer book
-     BookStepIX is an IOU/XRP offer book
-     BookStepXI is an XRP/IOU offer book
-     XRPEndpointStep is the source or destination account for XRP
+     BookStepIX is an IOU/BIXRP offer book
+     BookStepXI is an BIXRP/IOU offer book
+     BIXRPEndpointStep is the source or destination account for BIXRP
 
    Amounts may be transformed through a step in either the forward or the
    reverse direction. In the forward direction, the function `fwd` is used to
@@ -488,7 +488,7 @@ public:
 bool
 checkNear(IOUAmount const& expected, IOUAmount const& actual);
 bool
-checkNear(XRPAmount const& expected, XRPAmount const& actual);
+checkNear(BIXRPAmount const& expected, BIXRPAmount const& actual);
 /// @endcond
 
 /**

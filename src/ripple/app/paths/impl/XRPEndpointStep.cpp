@@ -36,8 +36,8 @@
 namespace ripple {
 
 template <class TDerived>
-class XRPEndpointStep
-    : public StepImp<XRPAmount, XRPAmount, XRPEndpointStep<TDerived>>
+class BIXRPEndpointStep
+    : public StepImp<BIXRPAmount, BIXRPAmount, BIXRPEndpointStep<TDerived>>
 {
 private:
     AccountID acc_;
@@ -47,7 +47,7 @@ private:
     // Since this step will always be an endpoint in a strand
     // (either the first or last step) the same cache is used
     // for cachedIn and cachedOut and only one will ever be used
-    boost::optional<XRPAmount> cache_;
+    boost::optional<BIXRPAmount> cache_;
 
     boost::optional<EitherAmount>
     cached() const
@@ -58,7 +58,7 @@ private:
     }
 
 public:
-    XRPEndpointStep(StrandContext const& ctx, AccountID const& acc)
+    BIXRPEndpointStep(StrandContext const& ctx, AccountID const& acc)
         : acc_(acc), isLast_(ctx.isLast), j_(ctx.j)
     {
     }
@@ -73,8 +73,8 @@ public:
     directStepAccts() const override
     {
         if (isLast_)
-            return std::make_pair(xrpAccount(), acc_);
-        return std::make_pair(acc_, xrpAccount());
+            return std::make_pair(bixrpAccount(), acc_);
+        return std::make_pair(acc_, bixrpAccount());
     }
 
     boost::optional<EitherAmount>
@@ -99,19 +99,19 @@ public:
     qualityUpperBound(ReadView const& v, DebtDirection prevStepDir)
         const override;
 
-    std::pair<XRPAmount, XRPAmount>
+    std::pair<BIXRPAmount, BIXRPAmount>
     revImp(
         PaymentSandbox& sb,
         ApplyView& afView,
         boost::container::flat_set<uint256>& ofrsToRm,
-        XRPAmount const& out);
+        BIXRPAmount const& out);
 
-    std::pair<XRPAmount, XRPAmount>
+    std::pair<BIXRPAmount, BIXRPAmount>
     fwdImp(
         PaymentSandbox& sb,
         ApplyView& afView,
         boost::container::flat_set<uint256>& ofrsToRm,
-        XRPAmount const& in);
+        BIXRPAmount const& in);
 
     std::pair<bool, EitherAmount>
     validFwd(PaymentSandbox& sb, ApplyView& afView, EitherAmount const& in)
@@ -122,8 +122,8 @@ public:
     check(StrandContext const& ctx) const;
 
 protected:
-    XRPAmount
-    xrpLiquidImpl(ReadView& sb, std::int32_t reserveReduction) const
+    BIXRPAmount
+    bixrpLiquidImpl(ReadView& sb, std::int32_t reserveReduction) const
     {
         return ripple::xrpLiquid(sb, acc_, reserveReduction, j_);
     }
@@ -140,10 +140,10 @@ protected:
 private:
     template <class P>
     friend bool
-    operator==(XRPEndpointStep<P> const& lhs, XRPEndpointStep<P> const& rhs);
+    operator==(BIXRPEndpointStep<P> const& lhs, BIXRPEndpointStep<P> const& rhs);
 
     friend bool
-    operator!=(XRPEndpointStep const& lhs, XRPEndpointStep const& rhs)
+    operator!=(BIXRPEndpointStep const& lhs, BIXRPEndpointStep const& rhs)
     {
         return !(lhs == rhs);
     }
@@ -151,7 +151,7 @@ private:
     bool
     equal(Step const& rhs) const override
     {
-        if (auto ds = dynamic_cast<XRPEndpointStep const*>(&rhs))
+        if (auto ds = dynamic_cast<BIXRPEndpointStep const*>(&rhs))
         {
             return *this == *ds;
         }
@@ -167,34 +167,34 @@ private:
 // The rules for handling funds in these two cases are almost, but not
 // quite, the same.
 
-// Payment XRPEndpointStep class (not offer crossing).
-class XRPEndpointPaymentStep : public XRPEndpointStep<XRPEndpointPaymentStep>
+// Payment BIXRPEndpointStep class (not offer crossing).
+class BIXRPEndpointPaymentStep : public BIXRPEndpointStep<BIXRPEndpointPaymentStep>
 {
 public:
-    using XRPEndpointStep<XRPEndpointPaymentStep>::XRPEndpointStep;
+    using BIXRPEndpointStep<BIXRPEndpointPaymentStep>::BIXRPEndpointStep;
 
-    XRPAmount
-    xrpLiquid(ReadView& sb) const
+    BIXRPAmount
+    bixrpLiquid(ReadView& sb) const
     {
-        return xrpLiquidImpl(sb, 0);
+        return bixrpLiquidImpl(sb, 0);
         ;
     }
 
     std::string
     logString() const override
     {
-        return logStringImpl("XRPEndpointPaymentStep");
+        return logStringImpl("BIXRPEndpointPaymentStep");
     }
 };
 
-// Offer crossing XRPEndpointStep class (not a payment).
-class XRPEndpointOfferCrossingStep
-    : public XRPEndpointStep<XRPEndpointOfferCrossingStep>
+// Offer crossing BIXRPEndpointStep class (not a payment).
+class BIXRPEndpointOfferCrossingStep
+    : public BIXRPEndpointStep<BIXRPEndpointOfferCrossingStep>
 {
 private:
     // For historical reasons, offer crossing is allowed to dig further
-    // into the XRP reserve than an ordinary payment.  (I believe it's
-    // because the trust line was created after the XRP was removed.)
+    // into the BIXRP reserve than an ordinary payment.  (I believe it's
+    // because the trust line was created after the BIXRP was removed.)
     // Return how much the reserve should be reduced.
     //
     // Note that reduced reserve only happens if the trust line does not
