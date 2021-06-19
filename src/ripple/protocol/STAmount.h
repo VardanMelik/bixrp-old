@@ -51,7 +51,7 @@ private:
     Issue mIssue;
     mantissa_type mValue;
     exponent_type mOffset;
-    bool mIsNative;  // A shorthand for isXRP(mIssue).
+    bool mIsNative;  // A shorthand for isBIXRP(mIssue).
     bool mIsNegative;
 
 public:
@@ -142,7 +142,7 @@ public:
 
     // Legacy support for new-style amounts
     STAmount(IOUAmount const& amount, Issue const& issue);
-    STAmount(XRPAmount const& amount);
+    STAmount(BIXRPAmount const& amount);
 
     STBase*
     copy(std::size_t n, void* buf) const override
@@ -257,7 +257,7 @@ public:
     }
 
     STAmount&
-    operator=(XRPAmount const& amount)
+    operator=(BIXRPAmount const& amount)
     {
         *this = STAmount(amount);
         return *this;
@@ -343,8 +343,8 @@ public:
         return (mValue == 0) && mIsNative;
     }
 
-    XRPAmount
-    xrp() const;
+    BIXRPAmount
+    bixrp() const;
     IOUAmount
     iou() const;
 };
@@ -368,7 +368,7 @@ amountFromJson(SField const& name, Json::Value const& v);
 bool
 amountFromJsonNoThrow(STAmount& result, Json::Value const& jvSource);
 
-// IOUAmount and XRPAmount define toSTAmount, defining this
+// IOUAmount and BIXRPAmount define toSTAmount, defining this
 // trivial conversion here makes writing generic code easier
 inline STAmount const&
 toSTAmount(STAmount const& a)
@@ -467,9 +467,9 @@ getRate(STAmount const& offerOut, STAmount const& offerIn);
 //------------------------------------------------------------------------------
 
 inline bool
-isXRP(STAmount const& amount)
+isBIXRP(STAmount const& amount)
 {
-    return isXRP(amount.issue().currency);
+    return isBIXRP(amount.issue().currency);
 }
 
 // Since `canonicalize` does not have access to a ledger, this is needed to put

@@ -209,9 +209,9 @@ PaymentSandbox::balanceHook(
     auto adjustedAmt = std::min({amount, lastBal - delta, minBal});
     adjustedAmt.setIssuer(amount.getIssuer());
 
-    if (isXRP(issuer) && adjustedAmt < beast::zero)
-        // A calculated negative XRP balance is not an error case. Consider a
-        // payment snippet that credits a large XRP amount and then debits the
+    if (isBIXRP(issuer) && adjustedAmt < beast::zero)
+        // A calculated negative BIXRP balance is not an error case. Consider a
+        // payment snippet that credits a large BIXRP amount and then debits the
         // same amount. The credit can't be used but we subtract the debit and
         // calculate a negative value. It's not an error case.
         adjustedAmt.clear();
@@ -272,8 +272,8 @@ PaymentSandbox::balanceChanges(ReadView const& view) const
     using key_t = std::tuple<AccountID, AccountID, Currency>;
     // Map of delta trust lines. As a special case, when both ends of the trust
     // line are the same currency, then it's delta currency for that issuer. To
-    // get the change in XRP balance, Account == root, issuer == root, currency
-    // == XRP
+    // get the change in BIXRP balance, Account == root, issuer == root, currency
+    // == BIXRP
     std::map<key_t, STAmount> result;
 
     // populate a dictionary with low/high/currency/delta. This can be
@@ -298,7 +298,7 @@ PaymentSandbox::balanceChanges(ReadView const& view) const
             switch (bt)
             {
                 case ltACCOUNT_ROOT:
-                    lowID = xrpAccount();
+                    lowID = bixrpAccount();
                     highID = (*before)[sfAccount];
                     oldBalance = (*before)[sfBalance];
                     newBalance = oldBalance.zeroed();
@@ -323,7 +323,7 @@ PaymentSandbox::balanceChanges(ReadView const& view) const
             switch (at)
             {
                 case ltACCOUNT_ROOT:
-                    lowID = xrpAccount();
+                    lowID = bixrpAccount();
                     highID = (*after)[sfAccount];
                     newBalance = (*after)[sfBalance];
                     oldBalance = newBalance.zeroed();
@@ -349,7 +349,7 @@ PaymentSandbox::balanceChanges(ReadView const& view) const
             switch (at)
             {
                 case ltACCOUNT_ROOT:
-                    lowID = xrpAccount();
+                    lowID = bixrpAccount();
                     highID = (*after)[sfAccount];
                     oldBalance = (*before)[sfBalance];
                     newBalance = (*after)[sfBalance];
@@ -388,8 +388,8 @@ PaymentSandbox::balanceChanges(ReadView const& view) const
     return result;
 }
 
-XRPAmount
-PaymentSandbox::xrpDestroyed() const
+BIXRPAmount
+PaymentSandbox::bixrpDestroyed() const
 {
     return items_.dropsDestroyed();
 }

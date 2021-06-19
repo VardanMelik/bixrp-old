@@ -116,10 +116,10 @@ public:
         Account const carol("carol");
         Account const gw("gw");
 
-        env.fund(XRP(10000), alice, becky, carol, gw);
+        env.fund(BIXRP(10000), alice, becky, carol, gw);
         env.close();
 
-        // Alice can't delete her account and then give herself the XRP.
+        // Alice can't delete her account and then give herself the BIXRP.
         env(acctdelete(alice, alice), ter(temDST_IS_SRC));
 
         // Invalid flags.
@@ -148,7 +148,7 @@ public:
         // and a signer list.  Even with all that she's still deletable.
         env(deposit::auth(carol, becky));
         std::uint32_t const carolOfferSeq{env.seq(carol)};
-        env(offer(carol, gw["USD"](51), XRP(51)));
+        env(offer(carol, gw["USD"](51), BIXRP(51)));
         std::uint32_t const carolTicketSeq{env.seq(carol) + 1};
         env(ticket::create(carol, 1));
         env(signers(carol, 1, {{alice, 1}, {becky, 1}}));
@@ -184,7 +184,7 @@ public:
             BEAST_EXPECT(!env.closed()->exists(keylet::account(alice.id())));
             BEAST_EXPECT(!env.closed()->exists(keylet::ownerDir(alice.id())));
 
-            // Verify that alice's XRP, minus the fee, was transferred to becky.
+            // Verify that alice's BIXRP, minus the fee, was transferred to becky.
             BEAST_EXPECT(
                 env.balance(becky) ==
                 aliceOldBalance + beckyOldBalance - acctDelFee);
@@ -230,7 +230,7 @@ public:
                 keylet::ticket(carol.id(), carolTicketSeq)));
             BEAST_EXPECT(!env.closed()->exists(keylet::signers(carol.id())));
 
-            // Verify that Carol's XRP, minus the fee, was transferred to becky.
+            // Verify that Carol's BIXRP, minus the fee, was transferred to becky.
             BEAST_EXPECT(
                 env.balance(becky) ==
                 carolOldBalance + beckyOldBalance - acctDelFee);
@@ -251,13 +251,13 @@ public:
         Account const alice("alice");
         Account const gw("gw");
 
-        env.fund(XRP(10000), alice, gw);
+        env.fund(BIXRP(10000), alice, gw);
         env.close();
 
         // Alice creates enough offers to require two owner directories.
         for (int i{0}; i < 45; ++i)
         {
-            env(offer(alice, gw["USD"](1), XRP(1)));
+            env(offer(alice, gw["USD"](1), BIXRP(1)));
             env.close();
         }
         env.require(offers(alice, 45));
@@ -300,7 +300,7 @@ public:
         Account const becky("becky");
         Account const gw("gw");
 
-        env.fund(XRP(100000), alice, becky, gw);
+        env.fund(BIXRP(100000), alice, becky, gw);
         env.close();
 
         // Give alice and becky a bunch of offers that we have to search
@@ -308,8 +308,8 @@ public:
         // entry in their directory.
         for (int i{0}; i < 200; ++i)
         {
-            env(offer(alice, gw["USD"](1), XRP(1)));
-            env(offer(becky, gw["USD"](1), XRP(1)));
+            env(offer(alice, gw["USD"](1), BIXRP(1)));
+            env(offer(becky, gw["USD"](1), BIXRP(1)));
             env.close();
         }
         env.require(offers(alice, 200));
@@ -324,7 +324,7 @@ public:
         // canceled it will prevent alice's and becky's accounts from being
         // deleted.
         uint256 const checkId = keylet::check(alice, env.seq(alice)).key;
-        env(check::create(alice, becky, XRP(1)));
+        env(check::create(alice, becky, BIXRP(1)));
         env.close();
 
         auto const acctDelFee{drops(env.current()->fees().increment)};
@@ -358,7 +358,7 @@ public:
 
         using namespace std::chrono_literals;
         std::uint32_t const escrowSeq{env.seq(alice)};
-        env(escrowCreate(alice, becky, XRP(333), env.now() + 2s));
+        env(escrowCreate(alice, becky, BIXRP(333), env.now() + 2s));
         env.close();
 
         // alice and becky should be unable to delete their accounts because
@@ -388,7 +388,7 @@ public:
             keylet::payChan(alice, becky, env.seq(alice))};
 
         env(payChanCreate(
-            alice, becky, XRP(57), 4s, env.now() + 2s, alice.pk()));
+            alice, becky, BIXRP(57), 4s, env.now() + 2s, alice.pk()));
         env.close();
 
         // An old-style PayChannel does not add a back link from the
@@ -428,7 +428,7 @@ public:
         // account.
         Keylet const gwPayChanKey{keylet::payChan(gw, alice, env.seq(gw))};
 
-        env(payChanCreate(gw, alice, XRP(68), 4s, env.now() + 2s, alice.pk()));
+        env(payChanCreate(gw, alice, BIXRP(68), 4s, env.now() + 2s, alice.pk()));
         env.close();
 
         // alice can't delete her account because of the PayChannel.
@@ -472,10 +472,10 @@ public:
 
         using namespace std::chrono_literals;
         Keylet const payChanKey{keylet::payChan(alice, becky, env.seq(alice))};
-        auto const payChanXRP = XRP(37);
+        auto const payChanBIXRP = BIXRP(37);
 
         env(payChanCreate(
-            alice, becky, payChanXRP, 4s, env.now() + 1h, alice.pk()));
+            alice, becky, payChanBIXRP, 4s, env.now() + 1h, alice.pk()));
         env.close();
         BEAST_EXPECT(env.closed()->exists(payChanKey));
 
@@ -492,18 +492,18 @@ public:
         // Verify that becky's account root is gone.
         BEAST_EXPECT(!env.closed()->exists(beckyAcctKey));
 
-        // All it takes is a large enough XRP payment to resurrect
+        // All it takes is a large enough BIXRP payment to resurrect
         // becky's account.  Try too small a payment.
-        env(pay(alice, becky, XRP(19)), ter(tecNO_DST_INSUF_XRP));
+        env(pay(alice, becky, BIXRP(19)), ter(tecNO_DST_INSUF_BIXRP));
         env.close();
 
         // Actually resurrect becky's account.
-        env(pay(alice, becky, XRP(20)));
+        env(pay(alice, becky, BIXRP(20)));
         env.close();
 
         // becky's account root should be back.
         BEAST_EXPECT(env.closed()->exists(beckyAcctKey));
-        BEAST_EXPECT(env.balance(becky) == XRP(20));
+        BEAST_EXPECT(env.balance(becky) == BIXRP(20));
 
         // becky's resurrected account can be the destination of alice's
         // PayChannel.
@@ -514,13 +514,13 @@ public:
             jv[jss::Account] = alice.human();
             jv[sfChannel.jsonName] = to_string(payChanKey.key);
             jv[sfBalance.jsonName] =
-                payChanXRP.value().getJson(JsonOptions::none);
+                payChanBIXRP.value().getJson(JsonOptions::none);
             return jv;
         };
         env(payChanClaim());
         env.close();
 
-        BEAST_EXPECT(env.balance(becky) == XRP(20) + payChanXRP);
+        BEAST_EXPECT(env.balance(becky) == BIXRP(20) + payChanBIXRP);
     }
 
     void
@@ -536,7 +536,7 @@ public:
         Account const alice("alice");
         Account const becky("becky");
 
-        env.fund(XRP(10000), alice, becky);
+        env.fund(BIXRP(10000), alice, becky);
         env.close();
 
         // Close enough ledgers to be able to delete alice's account.
@@ -554,7 +554,7 @@ public:
         env.close();
 
         // Verify that alice's account root is still present and alice and
-        // becky both have their XRP.
+        // becky both have their BIXRP.
         BEAST_EXPECT(env.current()->exists(aliceAcctKey));
         BEAST_EXPECT(env.balance(alice) == alicePreDelBal);
         BEAST_EXPECT(env.balance(becky) == beckyPreDelBal);
@@ -568,7 +568,7 @@ public:
         BEAST_EXPECT(env.closed()->exists(aliceAcctKey));
 
         // Verify that alice's account root is gone from the current ledger
-        // and becky has alice's XRP.
+        // and becky has alice's BIXRP.
         BEAST_EXPECT(!env.current()->exists(aliceAcctKey));
         BEAST_EXPECT(
             env.balance(becky) == alicePreDelBal + beckyPreDelBal - acctDelFee);
@@ -590,7 +590,7 @@ public:
         Account const gw("gw");
 
         // Fund alice well so she can afford the reserve on the offers.
-        env.fund(XRP(10000000), alice, gw);
+        env.fund(BIXRP(10000000), alice, gw);
         env.close();
 
         // To increase the number of Books affected, change the currency of
@@ -603,7 +603,7 @@ public:
         constexpr int offerCount{1001};
         for (int i{0}; i < offerCount; ++i)
         {
-            env(offer(alice, gw[currency](1), XRP(1)));
+            env(offer(alice, gw[currency](1), BIXRP(1)));
             env.close();
 
             // Increment to next currency.
@@ -697,16 +697,16 @@ public:
         Account const gw{"gw"};
         auto const BUX{gw["BUX"]};
 
-        env.fund(XRP(10000), alice, gw);
+        env.fund(BIXRP(10000), alice, gw);
         env.close();
 
         // alice creates an offer that, if crossed, will implicitly create
         // a trust line.
-        env(offer(alice, BUX(30), XRP(30)));
+        env(offer(alice, BUX(30), BIXRP(30)));
         env.close();
 
         // gw crosses alice's offer.  alice should end up with BUX(30).
-        env(offer(gw, XRP(30), BUX(30)));
+        env(offer(gw, BIXRP(30), BUX(30)));
         env.close();
         env.require(balance(alice, BUX(30)));
 
@@ -742,13 +742,13 @@ public:
 
         // Note that the fee structure for unit tests does not match the fees
         // on the production network (October 2019).  Unit tests have a base
-        // reserve of 200 XRP.
+        // reserve of 200 BIXRP.
         env.fund(env.current()->fees().accountReserve(0), noripple(alice));
         env.close();
 
-        // Burn a chunk of alice's funds so she only has 1 XRP remaining in
+        // Burn a chunk of alice's funds so she only has 1 BIXRP remaining in
         // her account.
-        env(noop(alice), fee(env.balance(alice) - XRP(1)));
+        env(noop(alice), fee(env.balance(alice) - BIXRP(1)));
         env.close();
 
         auto const acctDelFee{drops(env.current()->fees().increment)};
@@ -770,9 +770,9 @@ public:
         }
 
         // alice again attempts to delete her account.  This time she specifies
-        // her current balance in XRP.  Again the transaction fails.
-        BEAST_EXPECT(env.balance(alice) == XRP(1));
-        env(acctdelete(alice, env.master), fee(XRP(1)), ter(telINSUF_FEE_P));
+        // her current balance in BIXRP.  Again the transaction fails.
+        BEAST_EXPECT(env.balance(alice) == BIXRP(1));
+        env(acctdelete(alice, env.master), fee(BIXRP(1)), ter(telINSUF_FEE_P));
         env.close();
         {
             std::shared_ptr<ReadView const> closed{env.closed()};
@@ -792,7 +792,7 @@ public:
         Account const bob{"bob"};
 
         Env env{*this};
-        env.fund(XRP(100000), alice, bob);
+        env.fund(BIXRP(100000), alice, bob);
         env.close();
 
         // bob grabs as many tickets as he is allowed to have.

@@ -33,7 +33,7 @@ struct CashSummary
     explicit CashSummary() = default;
 
     // Sorted vectors.  All of the vectors fill in for std::maps.
-    std::vector<std::pair<AccountID, XRPAmount>> xrpChanges;
+    std::vector<std::pair<AccountID, BIXRPAmount>> bixrpChanges;
 
     std::vector<std::pair<std::tuple<AccountID, AccountID, Currency>, STAmount>>
         trustChanges;
@@ -53,7 +53,7 @@ struct CashSummary
     bool
     hasDiff() const
     {
-        return !xrpChanges.empty() || !trustChanges.empty() ||
+        return !bixrpChanges.empty() || !trustChanges.empty() ||
             !trustDeletions.empty() || !offerChanges.empty() ||
             !offerDeletions.empty();
     }
@@ -61,7 +61,7 @@ struct CashSummary
     void
     reserve(size_t newCap)
     {
-        xrpChanges.reserve(newCap);
+        bixrpChanges.reserve(newCap);
         trustChanges.reserve(newCap);
         trustDeletions.reserve(newCap);
         offerChanges.reserve(newCap);
@@ -71,7 +71,7 @@ struct CashSummary
     void
     shrink_to_fit()
     {
-        xrpChanges.shrink_to_fit();
+        bixrpChanges.shrink_to_fit();
         trustChanges.shrink_to_fit();
         trustDeletions.shrink_to_fit();
         offerChanges.shrink_to_fit();
@@ -81,7 +81,7 @@ struct CashSummary
     void
     sort()
     {
-        std::sort(xrpChanges.begin(), xrpChanges.end());
+        std::sort(bixrpChanges.begin(), bixrpChanges.end());
         std::sort(trustChanges.begin(), trustChanges.end());
         std::sort(trustDeletions.begin(), trustDeletions.end());
         std::sort(offerChanges.begin(), offerChanges.end());
@@ -170,8 +170,8 @@ getBasicCashFlow(
         switch (prev.getType())
         {
             case ltACCOUNT_ROOT:
-                result.xrpChanges.push_back(
-                    std::make_pair(prev[sfAccount], XRPAmount{0}));
+                result.bixrpChanges.push_back(
+                    std::make_pair(prev[sfAccount], BIXRPAmount{0}));
                 return true;
 
             case ltRIPPLE_STATE:
@@ -207,10 +207,10 @@ getBasicCashFlow(
         switch (cur.getType())
         {
             case ltACCOUNT_ROOT: {
-                auto const curXrp = cur[sfBalance].xrp();
-                if (!before || (*before)[sfBalance].xrp() != curXrp)
-                    result.xrpChanges.push_back(
-                        std::make_pair(cur[sfAccount], curXrp));
+                auto const curBIXrp = cur[sfBalance].bixrp();
+                if (!before || (*before)[sfBalance].bixrp() != curBIXrp)
+                    result.bixrpChanges.push_back(
+                        std::make_pair(cur[sfAccount], curBIXrp));
                 return true;
             }
             case ltRIPPLE_STATE: {
@@ -290,8 +290,8 @@ private:
     // Note differences in destroyed XRP between two ApplyStateTables.
     struct DropsGone
     {
-        XRPAmount lhs;
-        XRPAmount rhs;
+        BIXRPAmount lhs;
+        BIXRPAmount rhs;
     };
 
     ReadView const& view_;
@@ -342,7 +342,7 @@ public:
     }
 
     int
-    xrpRoundToZero() const;
+    bixrpRoundToZero() const;
 
     // Filter out differences that are small enough to be in the floating
     // point noise.
@@ -440,7 +440,7 @@ countKeys(detail::CashSummary const& lhs, detail::CashSummary const& rhs)
             ret.begin(),
             std::plus<std::size_t>());
     };
-    addIn(countKeys(lhs.xrpChanges, rhs.xrpChanges));
+    addIn(countKeys(lhs.bixrpChanges, rhs.bixrpChanges));
     addIn(countKeys(lhs.trustChanges, rhs.trustChanges));
     addIn(countKeys(lhs.trustDeletions, rhs.trustDeletions));
     addIn(countKeys(lhs.offerChanges, rhs.offerChanges));
@@ -449,10 +449,10 @@ countKeys(detail::CashSummary const& lhs, detail::CashSummary const& rhs)
 }
 
 int
-CashDiff::Impl::xrpRoundToZero() const
+CashDiff::Impl::bixrpRoundToZero() const
 {
     // The case has one OfferChange that is present on both lhs_ and rhs_.
-    // That OfferChange should have XRP for TakerGets.  There should be a 1
+    // That OfferChange should have BIXRP for TakerGets.  There should be a 1
     // drop difference between the TakerGets of lhsDiffs_ and rhsDiffs_.
     if (lhsDiffs_.offerChanges.size() != 1 ||
         rhsDiffs_.offerChanges.size() != 1)
@@ -473,11 +473,11 @@ CashDiff::Impl::xrpRoundToZero() const
         1)
         return 0;
 
-    // The side with the smaller XRP balance in the OfferChange should have
-    // two XRP differences.  The other side should have no XRP differences.
-    if (smaller.xrpChanges.size() != 2)
+    // The side with the smaller BIXRP balance in the OfferChange should have
+    // two BIXRP differences.  The other side should have no BIXRP differences.
+    if (smaller.bixrpChanges.size() != 2)
         return 0;
-    if (!bigger.xrpChanges.empty())
+    if (!bigger.bixrpChanges.empty())
         return 0;
 
     // There should be no other differences.
@@ -553,15 +553,15 @@ CashDiff::Impl::rmDust()
     bool removedDust = false;
 
     // Four of the containers can have small (floating point style)
-    // amount differences: xrpChanges, trustChanges, offerChanges, and
+    // amount differences: bixrpChanges, trustChanges, offerChanges, and
     // offerDeletions.  Rifle through those containers and remove any
     // entries that are _almost_ the same between lhs and rhs.
 
-    // xrpChanges.  We call a difference of 2 drops or less dust.
+    // bixrpChanges.  We call a difference of 2 drops or less dust.
     removedDust |= rmVecDust(
-        lhsDiffs_.xrpChanges,
-        rhsDiffs_.xrpChanges,
-        [](XRPAmount const& lhs, XRPAmount const& rhs) {
+        lhsDiffs_.bixrpChanges,
+        rhsDiffs_.bixrpChanges,
+        [](BIXRPAmount const& lhs, BIXRPAmount const& rhs) {
             return diffIsDust(lhs, rhs);
         });
 
@@ -646,9 +646,9 @@ CashDiff::Impl::findDiffs(
     rhsKeys_ = counts[2];
 
     // Save only the differences between the results.
-    // xrpChanges:
-    setDiff(lhsDiffs.xrpChanges, rhsDiffs.xrpChanges, lhsDiffs_.xrpChanges);
-    setDiff(rhsDiffs.xrpChanges, lhsDiffs.xrpChanges, rhsDiffs_.xrpChanges);
+    // bixrpChanges:
+    setDiff(lhsDiffs.bixrpChanges, rhsDiffs.bixrpChanges, lhsDiffs_.bixrpChanges);
+    setDiff(rhsDiffs.bixrpChanges, lhsDiffs.bixrpChanges, rhsDiffs_.bixrpChanges);
 
     // trustChanges:
     setDiff(
@@ -727,9 +727,9 @@ CashDiff::hasDiff() const
 }
 
 int
-CashDiff::xrpRoundToZero() const
+CashDiff::bixrpRoundToZero() const
 {
-    return impl_->xrpRoundToZero();
+    return impl_->bixrpRoundToZero();
 }
 
 bool
@@ -777,7 +777,7 @@ diffIsDust(STAmount const& v1, STAmount const& v2, std::uint8_t e10)
     STAmount const& small = v1 < v2 ? v1 : v2;
     STAmount const& large = v1 < v2 ? v2 : v1;
 
-    // Handling XRP is different from IOU.
+    // Handling BIXRP is different from IOU.
     if (v1.native())
     {
         std::uint64_t const s = small.mantissa();

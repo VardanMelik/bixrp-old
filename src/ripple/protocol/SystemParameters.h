@@ -40,25 +40,25 @@ systemName()
 /** Configure the native currency. */
 
 /** Number of drops in the genesis account. */
-constexpr XRPAmount INITIAL_XRP{100'000'000'000 * DROPS_PER_XRP};
+constexpr BIXRPAmount INITIAL_BIXRP{100'000'000'000 * DROPS_PER_BIXRP};
 
-/** Returns true if the amount does not exceed the initial XRP in existence. */
+/** Returns true if the amount does not exceed the initial BIXRP in existence. */
 inline bool
-isLegalAmount(XRPAmount const& amount)
+isLegalAmount(BIXRPAmount const& amount)
 {
-    return amount <= INITIAL_XRP;
+    return amount <= INITIAL_BIXRP;
 }
 
 /* The currency code for the native currency. */
 static inline std::string const&
 systemCurrencyCode()
 {
-    static std::string const code = "XRP";
+    static std::string const code = "BIXRP";
     return code;
 }
 
-/** The XRP ledger network's earliest allowed sequence */
-static std::uint32_t constexpr XRP_LEDGER_EARLIEST_SEQ{32570};
+/** The BIXRP ledger network's earliest allowed sequence */
+static std::uint32_t constexpr BIXRP_LEDGER_EARLIEST_SEQ{32570};
 
 /** The minimum amount of support an amendment should have.
 

@@ -124,7 +124,7 @@ STTx::getMentionedAccounts() const
         else if (auto samt = dynamic_cast<STAmount const*>(&it))
         {
             auto const& issuer = samt->getIssuer();
-            if (!isXRP(issuer))
+            if (!isBIXRP(issuer))
                 list.insert(issuer);
         }
     }

@@ -121,7 +121,7 @@ to_currency(std::string const& code)
 }
 
 Currency const&
-xrpCurrency()
+bixrpCurrency()
 {
     static Currency const currency(beast::zero);
     return currency;

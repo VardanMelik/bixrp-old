@@ -36,13 +36,13 @@ message GetFeeResponse
 // Next field: 5
 message Fee
 {
-    XRPDropsAmount base_fee = 1;
+    BIXRPDropsAmount base_fee = 1;
 
-    XRPDropsAmount median_fee = 2;
+    BIXRPDropsAmount median_fee = 2;
 
-    XRPDropsAmount minimum_fee = 3;
+    BIXRPDropsAmount minimum_fee = 3;
 
-    XRPDropsAmount open_ledger_fee = 4;
+    BIXRPDropsAmount open_ledger_fee = 4;
 }
 
 // Next field: 5

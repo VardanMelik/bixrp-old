@@ -118,7 +118,7 @@ public:
     rawReplace(std::shared_ptr<SLE> const& sle) override;
 
     void
-    rawDestroyXRP(XRPAmount const& feeDrops) override;
+    rawDestroyBIXRP(BIXRPAmount const& feeDrops) override;
 
     friend CashDiff
     cashFlowDiff(

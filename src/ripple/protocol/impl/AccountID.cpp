@@ -87,7 +87,7 @@ calcAccountID(PublicKey const& pk)
 }
 
 AccountID const&
-xrpAccount()
+bixrpAccount()
 {
     static AccountID const account(beast::zero);
     return account;

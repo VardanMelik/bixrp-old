@@ -248,9 +248,9 @@ OpenView::rawReplace(std::shared_ptr<SLE> const& sle)
 }
 
 void
-OpenView::rawDestroyXRP(XRPAmount const& fee)
+OpenView::rawDestroyBIXRP(BIXRPAmount const& fee)
 {
-    items_.destroyXRP(fee);
+    items_.destroyBIXRP(fee);
     // VFALCO Deduct from info_.totalDrops ?
     //        What about child views?
 }

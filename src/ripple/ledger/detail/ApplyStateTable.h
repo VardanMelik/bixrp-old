@@ -49,7 +49,7 @@ private:
     using items_t = std::map<key_type, std::pair<Action, std::shared_ptr<SLE>>>;
 
     items_t items_;
-    XRPAmount dropsDestroyed_{0};
+    BIXRPAmount dropsDestroyed_{0};
 
 public:
     ApplyStateTable() = default;
@@ -115,10 +115,10 @@ public:
     replace(ReadView const& base, std::shared_ptr<SLE> const& sle);
 
     void
-    destroyXRP(XRPAmount const& fee);
+    destroyBIXRP(BIXRPAmount const& fee);
 
     // For debugging
-    XRPAmount const&
+    BIXRPAmount const&
     dropsDestroyed() const
     {
         return dropsDestroyed_;

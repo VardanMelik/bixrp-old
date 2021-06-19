@@ -95,12 +95,12 @@ STAmount::STAmount(SerialIter& sit, SField const& name) : STBase(name)
     Issue issue;
     issue.currency = sit.get160();
 
-    if (isXRP(issue.currency))
+    if (isBIXRP(issue.currency))
         Throw<std::runtime_error>("invalid native currency");
 
     issue.account = sit.get160();
 
-    if (isXRP(issue.account))
+    if (isBIXRP(issue.account))
         Throw<std::runtime_error>("invalid native account");
 
     // 10 bits for the offset, sign and "not native" flag
@@ -275,7 +275,7 @@ STAmount::STAmount(IOUAmount const& amount, Issue const& issue)
     canonicalize();
 }
 
-STAmount::STAmount(XRPAmount const& amount)
+STAmount::STAmount(BIXRPAmount const& amount)
     : mOffset(0), mIsNative(true), mIsNegative(amount < beast::zero)
 {
     if (mIsNegative)
@@ -297,19 +297,19 @@ STAmount::construct(SerialIter& sit, SField const& name)
 // Conversion
 //
 //------------------------------------------------------------------------------
-XRPAmount
-STAmount::xrp() const
+BIXRPAmount
+STAmount::bixrp() const
 {
     if (!mIsNative)
         Throw<std::logic_error>(
-            "Cannot return non-native STAmount as XRPAmount");
+            "Cannot return non-native STAmount as BIXRPAmount");
 
-    auto drops = static_cast<XRPAmount::value_type>(mValue);
+    auto drops = static_cast<BIXRPAmount::value_type>(mValue);
 
     if (mIsNegative)
         drops = -drops;
 
-    return XRPAmount{drops};
+    return BIXRPAmount{drops};
 }
 
 IOUAmount
@@ -426,7 +426,7 @@ void
 STAmount::setIssue(Issue const& issue)
 {
     mIssue = issue;
-    mIsNative = isXRP(*this);
+    mIsNative = isBIXRP(*this);
 }
 
 // Convert an offer into an index amount so they sort by rate.
@@ -497,7 +497,7 @@ STAmount::getFullText() const
     {
         ret += "/";
 
-        if (isXRP(*this))
+        if (isBIXRP(*this))
             ret += "0";
         else if (mIssue.account == noAccount())
             ret += "1";
@@ -644,14 +644,14 @@ STAmount::isEquivalent(const STBase& t) const
 // Representation range is 10^80 - 10^(-80).
 //
 // On the wire:
-// - high bit is 0 for XRP, 1 for issued currency
+// - high bit is 0 for BIXRP, 1 for issued currency
 // - next bit is 1 for positive, 0 for negative (except 0 issued currency, which
 //      is a special case of 0x8000000000000000
 // - for issued currencies, the next 8 bits are (mOffset+97).
 //   The +97 is so that this value is always positive.
 // - The remaining bits are significant digits (mantissa)
 //   That's 54 bits for issued currency and 62 bits for native
-//   (but XRP only needs 57 bits for the max value of 10^17 drops)
+//   (but BIXRP only needs 57 bits for the max value of 10^17 drops)
 //
 // mValue is zero if the amount is zero, otherwise it's within the range
 //    10^15 to (10^16 - 1) inclusive.
@@ -659,7 +659,7 @@ STAmount::isEquivalent(const STBase& t) const
 void
 STAmount::canonicalize()
 {
-    if (isXRP(*this))
+    if (isBIXRP(*this))
     {
         // native currency amounts should always have an offset of zero
         mIsNative = true;
@@ -811,8 +811,8 @@ amountFromString(Issue const& issue, std::string const& amount)
     bool negative = (match[1].matched && (match[1] == "-"));
 
     // Can't specify XRP using fractional representation
-    if (isXRP(issue) && match[3].matched)
-        Throw<std::runtime_error>("XRP must be specified in integral drops.");
+    if (isBIXRP(issue) && match[3].matched)
+        Throw<std::runtime_error>("BIXRP must be specified in integral drops.");
 
     std::uint64_t mantissa;
     int exponent;
@@ -857,7 +857,7 @@ amountFromJson(SField const& name, Json::Value const& v)
     if (v.isNull())
     {
         Throw<std::runtime_error>(
-            "XRP may not be specified with a null Json value");
+            "BIXRP may not be specified with a null Json value");
     }
     else if (v.isObject())
     {
@@ -899,19 +899,19 @@ amountFromJson(SField const& name, Json::Value const& v)
     if (native)
     {
         if (v.isObjectOrNull())
-            Throw<std::runtime_error>("XRP may not be specified as an object");
-        issue = xrpIssue();
+            Throw<std::runtime_error>("BIXRP may not be specified as an object");
+        issue = bixrpIssue();
     }
     else
     {
-        // non-XRP
+        // non-BIXRP
         if (!to_currency(issue.currency, currency.asString()))
             Throw<std::runtime_error>("invalid currency");
 
         if (!issuer.isString() || !to_issuer(issue.account, issuer.asString()))
             Throw<std::runtime_error>("invalid issuer");
 
-        if (isXRP(issue.currency))
+        if (isBIXRP(issue.currency))
             Throw<std::runtime_error>("invalid issuer");
     }
 
@@ -1130,7 +1130,7 @@ multiply(STAmount const& v1, STAmount const& v2, Issue const& issue)
     if (v1 == beast::zero || v2 == beast::zero)
         return STAmount(issue);
 
-    if (v1.native() && v2.native() && isXRP(issue))
+    if (v1.native() && v2.native() && isBIXRP(issue))
     {
         std::uint64_t const minV =
             getSNValue(v1) < getSNValue(v2) ? getSNValue(v1) : getSNValue(v2);
@@ -1225,9 +1225,9 @@ mulRound(
     if (v1 == beast::zero || v2 == beast::zero)
         return {issue};
 
-    bool const xrp = isXRP(issue);
+    bool const xrp = isBIXRP(issue);
 
-    if (v1.native() && v2.native() && xrp)
+    if (v1.native() && v2.native() && bixrp)
     {
         std::uint64_t minV =
             (getSNValue(v1) < getSNValue(v2)) ? getSNValue(v1) : getSNValue(v2);
@@ -1279,12 +1279,12 @@ mulRound(
 
     int offset = offset1 + offset2 + 14;
     if (resultNegative != roundUp)
-        canonicalizeRound(xrp, amount, offset);
+        canonicalizeRound(bixrp, amount, offset);
     STAmount result(issue, amount, offset, resultNegative);
 
     if (roundUp && !resultNegative && !result)
     {
-        if (xrp)
+        if (bixrp)
         {
             // return the smallest value above zero
             amount = 1;
@@ -1351,12 +1351,12 @@ divRound(
     int offset = numOffset - denOffset - 17;
 
     if (resultNegative != roundUp)
-        canonicalizeRound(isXRP(issue), amount, offset);
+        canonicalizeRound(isBIXRP(issue), amount, offset);
 
     STAmount result(issue, amount, offset, resultNegative);
     if (roundUp && !resultNegative && !result)
     {
-        if (isXRP(issue))
+        if (isBIXRP(issue))
         {
             // return the smallest value above zero
             amount = 1;

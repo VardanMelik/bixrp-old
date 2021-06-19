@@ -293,7 +293,7 @@ private:
     std::vector<std::thread> readThreads_;
     bool readShut_{false};
 
-    // The default is 32570 to match the XRP ledger network's earliest
+    // The default is 32570 to match the BIXRP ledger network's earliest
     // allowed sequence. Alternate networks may set this value.
     std::uint32_t const earliestLedgerSeq_;
 

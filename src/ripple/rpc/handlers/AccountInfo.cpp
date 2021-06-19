@@ -134,7 +134,7 @@ doAccountInfo(RPC::JsonContext& context)
                 boost::optional<std::uint32_t> lowestTicket;
                 boost::optional<std::uint32_t> highestTicket;
                 bool anyAuthChanged = false;
-                XRPAmount totalSpend(0);
+                BIXRPAmount totalSpend(0);
 
                 // We expect txs to be returned sorted by SeqProxy.  Verify
                 // that with a couple of asserts.

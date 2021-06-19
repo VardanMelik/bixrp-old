@@ -59,7 +59,7 @@ addRaw(LedgerInfo const& info, Serializer& s, bool includeHash)
 bool
 isGlobalFrozen(ReadView const& view, AccountID const& issuer)
 {
-    if (isXRP(issuer))
+    if (isBIXRP(issuer))
         return false;
     if (auto const sle = view.read(keylet::account(issuer)))
         return sle->isFlag(lsfGlobalFreeze);
@@ -75,7 +75,7 @@ isFrozen(
     Currency const& currency,
     AccountID const& issuer)
 {
-    if (isXRP(currency))
+    if (isBIXRP(currency))
         return false;
     auto sle = view.read(keylet::account(issuer));
     if (sle && sle->isFlag(lsfGlobalFreeze))
@@ -101,9 +101,9 @@ accountHolds(
     beast::Journal j)
 {
     STAmount amount;
-    if (isXRP(currency))
+    if (isBIXRP(currency))
     {
-        return {xrpLiquid(view, account, 0, j)};
+        return {bixrpLiquid(view, account, 0, j)};
     }
 
     // IOU: Return balance on trust line modulo freeze
@@ -214,8 +214,8 @@ confineOwnerCount(
     return adjusted;
 }
 
-XRPAmount
-xrpLiquid(
+BIXRPAmount
+bixrpLiquid(
     ReadView const& view,
     AccountID const& id,
     std::int32_t ownerCountAdj,
@@ -233,7 +233,7 @@ xrpLiquid(
 
     auto const fullBalance = sle->getFieldAmount(sfBalance);
 
-    auto const balance = view.balanceHook(id, xrpAccount(), fullBalance);
+    auto const balance = view.balanceHook(id, bixrpAccount(), fullBalance);
 
     STAmount amount = balance - reserve;
     if (balance < reserve)
@@ -247,7 +247,7 @@ xrpLiquid(
                     << " reserve=" << reserve << " ownerCount=" << ownerCount
                     << " ownerCountAdj=" << ownerCountAdj;
 
-    return amount.xrp();
+    return amount.bixrp();
 }
 
 void
@@ -957,8 +957,8 @@ rippleCredit(
     bool const bSenderHigh = uSenderID > uReceiverID;
     auto const index = keylet::line(uSenderID, uReceiverID, currency);
 
-    assert(!isXRP(uSenderID) && uSenderID != noAccount());
-    assert(!isXRP(uReceiverID) && uReceiverID != noAccount());
+    assert(!isBIXRP(uSenderID) && uSenderID != noAccount());
+    assert(!isBIXRP(uReceiverID) && uReceiverID != noAccount());
 
     // If the line exists, modify it accordingly.
     if (auto const sleRippleState = view.peek(index))
@@ -1091,7 +1091,7 @@ rippleSend(
 {
     auto const issuer = saAmount.getIssuer();
 
-    assert(!isXRP(uSenderID) && !isXRP(uReceiverID));
+    assert(!isBIXRP(uSenderID) && !isBIXRP(uReceiverID));
     assert(uSenderID != uReceiverID);
 
     if (uSenderID == issuer || uReceiverID == issuer || issuer == noAccount())
@@ -1151,7 +1151,7 @@ accountSend(
         return rippleSend(view, uSenderID, uReceiverID, saAmount, saActual, j);
     }
 
-    /* XRP send which does not check reserve and can do pure adjustment.
+    /* BIXRP send which does not check reserve and can do pure adjustment.
      * Note that sender or receiver may be null and this not a mistake; this
      * setup is used during pathfinding and it is carefully controlled to
      * ensure that transfers are balanced.
@@ -1193,9 +1193,9 @@ accountSend(
         else
         {
             auto const sndBal = sender->getFieldAmount(sfBalance);
-            view.creditHook(uSenderID, xrpAccount(), saAmount, sndBal);
+            view.creditHook(uSenderID, bixrpAccount(), saAmount, sndBal);
 
-            // Decrement XRP balance.
+            // Decrement BIXRP balance.
             sender->setFieldAmount(sfBalance, sndBal - saAmount);
             view.update(sender);
         }
@@ -1203,10 +1203,10 @@ accountSend(
 
     if (tesSUCCESS == terResult && receiver)
     {
-        // Increment XRP balance.
+        // Increment BIXRP balance.
         auto const rcvBal = receiver->getFieldAmount(sfBalance);
         receiver->setFieldAmount(sfBalance, rcvBal + saAmount);
-        view.creditHook(xrpAccount(), uReceiverID, saAmount, -rcvBal);
+        view.creditHook(bixrpAccount(), uReceiverID, saAmount, -rcvBal);
 
         view.update(receiver);
     }
@@ -1291,7 +1291,7 @@ issueIOU(
     Issue const& issue,
     beast::Journal j)
 {
-    assert(!isXRP(account) && !isXRP(issue.account));
+    assert(!isBIXRP(account) && !isBIXRP(issue.account));
 
     // Consistency check
     assert(issue == amount.issue());
@@ -1387,7 +1387,7 @@ redeemIOU(
     Issue const& issue,
     beast::Journal j)
 {
-    assert(!isXRP(account) && !isXRP(issue.account));
+    assert(!isBIXRP(account) && !isBIXRP(issue.account));
 
     // Consistency check
     assert(issue == amount.issue());
@@ -1450,7 +1450,7 @@ redeemIOU(
 }
 
 TER
-transferXRP(
+transferBIXRP(
     ApplyView& view,
     AccountID const& from,
     AccountID const& to,
@@ -1467,7 +1467,7 @@ transferXRP(
     if (!sender || !receiver)
         return tefINTERNAL;
 
-    JLOG(j.trace()) << "transferXRP: " << to_string(from) << " -> "
+    JLOG(j.trace()) << "transferBIXRP: " << to_string(from) << " -> "
                     << to_string(to) << ") : " << amount.getFullText();
 
     if (sender->getFieldAmount(sfBalance) < amount)
@@ -1479,7 +1479,7 @@ transferXRP(
                            : TER{tecFAILED_PROCESSING};
     }
 
-    // Decrement XRP balance.
+    // Decrement BIXRP balance.
     sender->setFieldAmount(
         sfBalance, sender->getFieldAmount(sfBalance) - amount);
     view.update(sender);

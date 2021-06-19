@@ -157,7 +157,7 @@ private:
 void
 RawStateTable::apply(RawView& to) const
 {
-    to.rawDestroyXRP(dropsDestroyed_);
+    to.rawDestroyBIXRP(dropsDestroyed_);
     for (auto const& elem : items_)
     {
         auto const& item = elem.second;
@@ -320,7 +320,7 @@ RawStateTable::read(ReadView const& base, Keylet const& k) const
 }
 
 void
-RawStateTable::destroyXRP(XRPAmount const& fee)
+RawStateTable::destroyBIXRP(BIXRPAmount const& fee)
 {
     dropsDestroyed_ += fee;
 }

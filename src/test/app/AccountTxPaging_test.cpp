@@ -71,7 +71,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
         Account A2{"A2"};
         Account A3{"A3"};
 
-        env.fund(XRP(10000), A1, A2, A3);
+        env.fund(BIXRP(10000), A1, A2, A3);
         env.close();
 
         env.trust(A3["USD"](1000), A1);
@@ -83,9 +83,9 @@ class AccountTxPaging_test : public beast::unit_test::suite
         {
             env(pay(A2, A1, A2["USD"](2)));
             env(pay(A3, A1, A3["USD"](2)));
-            env(offer(A1, XRP(11), A1["USD"](1)));
-            env(offer(A2, XRP(10), A2["USD"](1)));
-            env(offer(A3, XRP(9), A3["USD"](1)));
+            env(offer(A1, BIXRP(11), A1["USD"](1)));
+            env(offer(A2, BIXRP(10), A2["USD"](1)));
+            env(offer(A3, BIXRP(9), A3["USD"](1)));
             env.close();
         }
 
@@ -432,7 +432,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
         Env env(*this, std::move(config));
 
         Account A1{"A1"};
-        env.fund(XRP(10000), A1);
+        env.fund(BIXRP(10000), A1);
         env.close();
 
         // Ledger 3 has the two txs associated with funding the account
@@ -566,7 +566,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
 
         txns.emplace_back(env.tx());
         // Payment
-        env(pay(alice, gw, XRP(100)), stag(42), dtag(24), last_ledger_seq(20));
+        env(pay(alice, gw, BIXRP(100)), stag(42), dtag(24), last_ledger_seq(20));
 
         txns.emplace_back(env.tx());
         // Regular key set
@@ -579,7 +579,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
 
         txns.emplace_back(env.tx());
         std::uint32_t const offerSeq{env.seq(alice)};
-        env(offer(alice, USD(50), XRP(150)), sig(alie));
+        env(offer(alice, USD(50), BIXRP(150)), sig(alie));
 
         txns.emplace_back(env.tx());
         env.close();
@@ -617,7 +617,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
 
             NetClock::time_point const nextTime{env.now() + 2s};
 
-            Json::Value escrowWithFinish{escrow(alice, alice, XRP(500))};
+            Json::Value escrowWithFinish{escrow(alice, alice, BIXRP(500))};
             escrowWithFinish[sfFinishAfter.jsonName] =
                 nextTime.time_since_epoch().count();
 
@@ -625,7 +625,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
             env(escrowWithFinish, sig(alie));
 
             txns.emplace_back(env.tx());
-            Json::Value escrowWithCancel{escrow(alice, alice, XRP(500))};
+            Json::Value escrowWithCancel{escrow(alice, alice, BIXRP(500))};
             escrowWithCancel[sfFinishAfter.jsonName] =
                 nextTime.time_since_epoch().count();
             escrowWithCancel[sfCancelAfter.jsonName] =
@@ -670,7 +670,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
             payChanCreate[jss::Account] = alice.human();
             payChanCreate[jss::Destination] = gw.human();
             payChanCreate[jss::Amount] =
-                XRP(500).value().getJson(JsonOptions::none);
+                BIXRP(500).value().getJson(JsonOptions::none);
             payChanCreate[sfSettleDelay.jsonName] =
                 NetClock::duration{100s}.count();
             payChanCreate[sfPublicKey.jsonName] = strHex(alice.pk().slice());
@@ -688,7 +688,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                 payChanFund[jss::Account] = alice.human();
                 payChanFund[sfChannel.jsonName] = payChanIndex;
                 payChanFund[jss::Amount] =
-                    XRP(200).value().getJson(JsonOptions::none);
+                    BIXRP(200).value().getJson(JsonOptions::none);
                 env(payChanFund, sig(alie));
                 env.close();
 
@@ -711,11 +711,11 @@ class AccountTxPaging_test : public beast::unit_test::suite
         // Check
         {
             auto const aliceCheckId = keylet::check(alice, env.seq(alice)).key;
-            env(check::create(alice, gw, XRP(300)), sig(alie));
+            env(check::create(alice, gw, BIXRP(300)), sig(alie));
 
             auto txn = env.tx();
             auto const gwCheckId = keylet::check(gw, env.seq(gw)).key;
-            env(check::create(gw, alice, XRP(200)));
+            env(check::create(gw, alice, BIXRP(200)));
             env.close();
 
             // need to switch the order of the previous 2 txns, since they are
@@ -723,7 +723,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
             // order
             txns.emplace_back(env.tx());
             txns.emplace_back(txn);
-            env(check::cash(alice, gwCheckId, XRP(200)), sig(alie));
+            env(check::cash(alice, gwCheckId, BIXRP(200)), sig(alie));
 
             txns.emplace_back(env.tx());
             env(check::cancel(alice, aliceCheckId), sig(alie));
@@ -825,12 +825,12 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      BEAST_EXPECT(res.check_cash()
                                       .amount()
                                       .value()
-                                      .has_xrp_amount()) &&
+                                      .has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.check_cash()
                                 .amount()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == txnJson["Amount"].asUInt());
              }},
             {17,
@@ -853,7 +853,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                             res.check_create()
                                 .send_max()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == txnJson["SendMax"].asUInt());
              }},
             {5,
@@ -876,7 +876,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                             res.check_create()
                                 .send_max()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() ==
 
                             txnJson["SendMax"].asUInt());
@@ -916,7 +916,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                             res.payment_channel_fund()
                                 .amount()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == txnJson["Amount"].asUInt());
              }},
             {15,
@@ -934,7 +934,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                             res.payment_channel_create()
                                 .amount()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == txnJson["Amount"].asUInt()) &&
                      BEAST_EXPECT(
                             res.payment_channel_create()
@@ -997,7 +997,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                             res.escrow_create()
                                 .amount()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == txnJson["Amount"].asUInt()) &&
                      BEAST_EXPECT(
                             res.escrow_create()
@@ -1026,7 +1026,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                             res.escrow_create()
                                 .amount()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == txnJson["Amount"].asUInt()) &&
                      BEAST_EXPECT(
                             res.escrow_create()
@@ -1120,12 +1120,12 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      BEAST_EXPECT(res.offer_create()
                                       .taker_gets()
                                       .value()
-                                      .has_xrp_amount()) &&
+                                      .has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.offer_create()
                                 .taker_gets()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == txnJson["TakerGets"].asUInt()) &&
                      BEAST_EXPECT(res.offer_create()
                                       .taker_pays()
@@ -1206,12 +1206,12 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      txns[txns.size() - 19]->getJson(JsonOptions::none);
                  return BEAST_EXPECT(res.has_payment()) &&
                      BEAST_EXPECT(
-                            res.payment().amount().value().has_xrp_amount()) &&
+                            res.payment().amount().value().has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.payment()
                                 .amount()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == txnJson["Amount"].asUInt()) &&
                      BEAST_EXPECT(
                             res.payment().destination().value().address() ==
@@ -1254,12 +1254,12 @@ class AccountTxPaging_test : public beast::unit_test::suite
              [&alice, this](auto res) {
                  return BEAST_EXPECT(res.has_payment()) &&
                      BEAST_EXPECT(
-                            res.payment().amount().value().has_xrp_amount()) &&
+                            res.payment().amount().value().has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.payment()
                                 .amount()
                                 .value()
-                                .xrp_amount()
+                                .bixrp_amount()
                                 .drops() == 1000000000010) &&
                      BEAST_EXPECT(
                             res.payment().destination().value().address() ==
@@ -1917,7 +1917,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
         Account A2{"A2"};
         Account A3{"A3"};
 
-        env.fund(XRP(10000), A1, A2, A3);
+        env.fund(BIXRP(10000), A1, A2, A3);
         env.close();
 
         env.trust(A3["USD"](1000), A1);
@@ -1929,9 +1929,9 @@ class AccountTxPaging_test : public beast::unit_test::suite
         {
             env(pay(A2, A1, A2["USD"](2)));
             env(pay(A3, A1, A3["USD"](2)));
-            env(offer(A1, XRP(11), A1["USD"](1)));
-            env(offer(A2, XRP(10), A2["USD"](1)));
-            env(offer(A3, XRP(9), A3["USD"](1)));
+            env(offer(A1, BIXRP(11), A1["USD"](1)));
+            env(offer(A2, BIXRP(10), A2["USD"](1)));
+            env(offer(A3, BIXRP(9), A3["USD"](1)));
             env.close();
         }
 

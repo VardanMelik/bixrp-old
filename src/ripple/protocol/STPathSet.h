@@ -97,10 +97,10 @@ public:
         if (!is_offer_)
             mType |= typeAccount;
 
-        if (forceCurrency || !isXRP(currency))
+        if (forceCurrency || !isBIXRP(currency))
             mType |= typeCurrency;
 
-        if (!isXRP(issuer))
+        if (!isBIXRP(issuer))
             mType |= typeIssuer;
 
         hash_value_ = get_hash(*this);
@@ -115,7 +115,7 @@ public:
         , mAccountID(account)
         , mCurrencyID(currency)
         , mIssuerID(issuer)
-        , is_offer_(isXRP(mAccountID))
+        , is_offer_(isBIXRP(mAccountID))
     {
         hash_value_ = get_hash(*this);
     }

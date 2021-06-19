@@ -65,7 +65,7 @@ hash_append(Hasher& h, Issue const& r)
 
 /** Ordered comparison.
     The assets are ordered first by currency and then by account,
-    if the currency is not XRP.
+    if the currency is not BIXRP.
 */
 int
 compare(Issue const& lhs, Issue const& rhs);
@@ -92,11 +92,11 @@ operator<=(Issue const& lhs, Issue const& rhs);
 
 //------------------------------------------------------------------------------
 
-/** Returns an asset specifier that represents XRP. */
+/** Returns an asset specifier that represents BIXRP. */
 inline Issue const&
-xrpIssue()
+bixrpIssue()
 {
-    static Issue issue{xrpCurrency(), xrpAccount()};
+    static Issue issue{bixrpCurrency(), bixrpAccount()};
     return issue;
 }
 

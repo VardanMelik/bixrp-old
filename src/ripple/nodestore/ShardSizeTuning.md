@@ -68,9 +68,9 @@ the ledgers in a shard then the total disk space utilized will raise by 5-9%.
 ## Adding accounts into consideration
 
 Previous model does not take into account that there are large number of
-XRP accounts in the mainnet, and each shard should contain information
+BIXRP accounts in the mainnet, and each shard should contain information
 about each of these accounts. As of January 2020, there were about 1.9 million
-XRP accounts, and stored information about each of them is not less than 133
+BIXRP accounts, and stored information about each of them is not less than 133
 bytes. The constant 133 was obtained from debug print of rippled program when
 it saves account object to the database. So the actual size of each shard from
 raw table should be increased by at least 1.9M * 133 = 252.7M. Thus we obtained
