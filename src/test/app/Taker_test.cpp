@@ -140,9 +140,9 @@ private:
     }
 
     Issue const&
-    xrp() const
+    bixrp() const
     {
-        static Issue const issue(xrpCurrency(), xrpAccount());
+        static Issue const issue(bixrpCurrency(), bixrpAccount());
         return issue;
     }
 
@@ -210,10 +210,10 @@ private:
 
         CrossType cross_type;
 
-        if (isXRP(issue_out))
-            cross_type = CrossType::IouToXrp;
-        else if (isXRP(issue_in))
-            cross_type = CrossType::XrpToIou;
+        if (isBIXRP(issue_out))
+            cross_type = CrossType::IouToBIXrp;
+        else if (isBIXRP(issue_in))
+            cross_type = CrossType::BIXrpToIou;
         else
             cross_type = CrossType::IouToIou;
 
@@ -249,7 +249,7 @@ private:
     Quality
     get_quality(std::string in, std::string out)
     {
-        return Quality(parse_amounts(in, xrp(), out, xrp()));
+        return Quality(parse_amounts(in, bixrp(), out, bixrp()));
     }
 
 public:
@@ -267,16 +267,16 @@ public:
     // NIKB TODO: Augment TestTaker so currencies and rates can be specified
     //            once without need for repetition.
     void
-    test_xrp_to_iou()
+    test_bixrp_to_iou()
     {
-        testcase("XRP Quantization: input");
+        testcase("BIXRP Quantization: input");
 
         Quality q1 = get_quality("1", "1");
 
         //                             TAKER                    OWNER
         //                     QUAL    OFFER     FUNDS  QUAL    OFFER     FUNDS
         //                     EXPECTED
-        //                                        XRP                      USD
+        //                                        BIXRP                      USD
         attempt(
             Sell,
             "N:N",
@@ -287,7 +287,7 @@ public:
             {"2", "2"},
             "2",
             {"2", "2"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Sell,
@@ -299,7 +299,7 @@ public:
             {"2", "2"},
             "1.8",
             {"1", "1.8"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -311,7 +311,7 @@ public:
             {"2", "2"},
             "2",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -323,7 +323,7 @@ public:
             {"2", "2"},
             "1.8",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -335,7 +335,7 @@ public:
             {"2", "2"},
             "0.8",
             {"0", "0.8"},
-            xrp(),
+            bixrp(),
             usd());
 
         attempt(
@@ -348,7 +348,7 @@ public:
             {"2", "2"},
             "2",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Sell,
@@ -360,7 +360,7 @@ public:
             {"2", "2"},
             "1.8",
             {"1", "1.8"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -372,7 +372,7 @@ public:
             {"2", "2"},
             "2",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -384,7 +384,7 @@ public:
             {"2", "2"},
             "1.8",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -396,7 +396,7 @@ public:
             {"2", "2"},
             "0.8",
             {"0", "0.8"},
-            xrp(),
+            bixrp(),
             usd());
 
         attempt(
@@ -409,7 +409,7 @@ public:
             {"2", "2"},
             "2",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Sell,
@@ -421,7 +421,7 @@ public:
             {"2", "2"},
             "1.8",
             {"1", "1.8"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -433,7 +433,7 @@ public:
             {"3", "3"},
             "3",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -445,7 +445,7 @@ public:
             {"3", "3"},
             "2.4",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -457,7 +457,7 @@ public:
             {"3", "3"},
             "0.8",
             {"0", "0.8"},
-            xrp(),
+            bixrp(),
             usd());
 
         attempt(
@@ -470,7 +470,7 @@ public:
             {"2", "2"},
             "2",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Sell,
@@ -482,7 +482,7 @@ public:
             {"3", "3"},
             "1.8",
             {"1", "1.8"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -494,7 +494,7 @@ public:
             {"3", "3"},
             "3",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -506,7 +506,7 @@ public:
             {"3", "3"},
             "1.8",
             {"1", "1.8"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -518,7 +518,7 @@ public:
             {"3", "3"},
             "1.8",
             {"1", "1.8"},
-            xrp(),
+            bixrp(),
             usd());
 
         attempt(
@@ -531,7 +531,7 @@ public:
             {"3", "3"},
             "3",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Sell,
@@ -543,7 +543,7 @@ public:
             {"3", "3"},
             "1.8",
             {"1", "1.8"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -555,7 +555,7 @@ public:
             {"3", "3"},
             "3",
             {"1", "1"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -567,7 +567,7 @@ public:
             {"3", "3"},
             "1.8",
             {"1", "1.8"},
-            xrp(),
+            bixrp(),
             usd());
         attempt(
             Buy,
@@ -579,21 +579,21 @@ public:
             {"3", "3"},
             "0.8",
             {"0", "0.8"},
-            xrp(),
+            bixrp(),
             usd());
     }
 
     void
-    test_iou_to_xrp()
+    test_iou_to_bixrp()
     {
-        testcase("XRP Quantization: output");
+        testcase("BIXRP Quantization: output");
 
         Quality q1 = get_quality("1", "1");
 
         //                             TAKER                     OWNER
         //                     QUAL    OFFER     FUNDS   QUAL    OFFER     FUNDS
         //                     EXPECTED
-        //                                        USD                       XRP
+        //                                        USD                       BIXRP
         attempt(
             Sell,
             "N:N",
@@ -605,7 +605,7 @@ public:
             "3",
             {"3", "3"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Sell,
             "N:B",
@@ -617,7 +617,7 @@ public:
             "2",
             {"2", "2"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "N:T",
@@ -629,7 +629,7 @@ public:
             "5",
             {"2.5", "2"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "N:BT",
@@ -641,7 +641,7 @@ public:
             "4",
             {"1.5", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "N:TB",
@@ -653,7 +653,7 @@ public:
             "1",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
 
         attempt(
             Sell,
@@ -666,7 +666,7 @@ public:
             "2",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Sell,
             "T:B",
@@ -678,7 +678,7 @@ public:
             "1",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "T:T",
@@ -690,7 +690,7 @@ public:
             "2",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "T:BT",
@@ -702,7 +702,7 @@ public:
             "2",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "T:TB",
@@ -714,7 +714,7 @@ public:
             "1",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
 
         attempt(
             Sell,
@@ -727,7 +727,7 @@ public:
             "2",
             {"1.5", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Sell,
             "A:B",
@@ -739,7 +739,7 @@ public:
             "2",
             {"1.8", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "A:T",
@@ -751,7 +751,7 @@ public:
             "3",
             {"1.2", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "A:BT",
@@ -763,7 +763,7 @@ public:
             "3",
             {"1.5", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "A:TB",
@@ -775,7 +775,7 @@ public:
             "1",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
 
         attempt(
             Sell,
@@ -788,7 +788,7 @@ public:
             "2",
             {"1.5", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Sell,
             "TA:B",
@@ -800,7 +800,7 @@ public:
             "1",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "TA:T",
@@ -812,7 +812,7 @@ public:
             "3",
             {"1.5", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "TA:BT",
@@ -824,7 +824,7 @@ public:
             "3",
             {"1.8", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "TA:TB",
@@ -836,7 +836,7 @@ public:
             "1",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
 
         attempt(
             Sell,
@@ -849,7 +849,7 @@ public:
             "4",
             {"2", "2"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Sell,
             "AT:B",
@@ -861,7 +861,7 @@ public:
             "1",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "AT:T",
@@ -873,7 +873,7 @@ public:
             "3",
             {"2", "2"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "AT:BT",
@@ -885,7 +885,7 @@ public:
             "3",
             {"2", "2"},
             usd(),
-            xrp());
+            bixrp());
         attempt(
             Buy,
             "AT:TB",
@@ -897,7 +897,7 @@ public:
             "1",
             {"1", "1"},
             usd(),
-            xrp());
+            bixrp());
     }
 
     void
@@ -1003,8 +1003,8 @@ public:
     void
     run() override
     {
-        test_xrp_to_iou();
-        test_iou_to_xrp();
+        test_bixrp_to_iou();
+        test_iou_to_bixrp();
         test_iou_to_iou();
     }
 };

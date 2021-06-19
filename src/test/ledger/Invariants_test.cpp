@@ -42,7 +42,7 @@ class Invariants_test : public beast::unit_test::suite
     doInvariantCheck(
         std::vector<std::string> const& expect_logs,
         Precheck const& precheck,
-        XRPAmount fee = XRPAmount{},
+        BIXRPAmount fee = BIXRPAmount{},
         STTx tx = STTx{ttACCOUNT_SET, [](STObject&) {}},
         std::initializer_list<TER> ters = {
             tecINVARIANT_FAILED,
@@ -53,7 +53,7 @@ class Invariants_test : public beast::unit_test::suite
 
         Account A1{"A1"};
         Account A2{"A2"};
-        env.fund(XRP(1000), A1, A2);
+        env.fund(BIXRP(1000), A1, A2);
         env.close();
 
         OpenView ov{*env.current()};
@@ -95,14 +95,14 @@ class Invariants_test : public beast::unit_test::suite
     }
 
     void
-    testXRPNotCreated()
+    testBIXRPNotCreated()
     {
         using namespace test::jtx;
-        testcase << "XRP created";
+        testcase << "BIXRP created";
         doInvariantCheck(
-            {{"XRP net change was positive: 500"}},
+            {{"BIXRP net change was positive: 500"}},
             [](Account const& A1, Account const&, ApplyContext& ac) {
-                // put a single account in the view and "manufacture" some XRP
+                // put a single account in the view and "manufacture" some BIXRP
                 auto const sle = ac.view().peek(keylet::account(A1.id()));
                 if (!sle)
                     return false;
@@ -141,7 +141,7 @@ class Invariants_test : public beast::unit_test::suite
             [](Account const&, Account const&, ApplyContext& ac) {
                 return true;
             },
-            XRPAmount{},
+            BIXRPAmount{},
             STTx{ttACCOUNT_DELETE, [](STObject& tx) {}},
             {tecINVARIANT_FAILED, tecINVARIANT_FAILED});
 
@@ -158,7 +158,7 @@ class Invariants_test : public beast::unit_test::suite
                 ac.view().erase(sleA2);
                 return true;
             },
-            XRPAmount{},
+            BIXRPAmount{},
             STTx{ttACCOUNT_DELETE, [](STObject& tx) {}});
     }
 
@@ -169,7 +169,7 @@ class Invariants_test : public beast::unit_test::suite
         testcase << "ledger entry types don't match";
         doInvariantCheck(
             {{"ledger entry type mismatch"},
-             {"XRP net change of -1000000000 doesn't match fee 0"}},
+             {"BIXRP net change of -1000000000 doesn't match fee 0"}},
             [](Account const& A1, Account const&, ApplyContext& ac) {
                 // replace an entry in the table with an SLE of a different type
                 auto const sle = ac.view().peek(keylet::account(A1.id()));
@@ -203,29 +203,29 @@ class Invariants_test : public beast::unit_test::suite
     }
 
     void
-    testNoXRPTrustLine()
+    testNoBIXRPTrustLine()
     {
         using namespace test::jtx;
-        testcase << "trust lines with XRP not allowed";
+        testcase << "trust lines with BIXRP not allowed";
         doInvariantCheck(
-            {{"an XRP trust line was created"}},
+            {{"an BIXRP trust line was created"}},
             [](Account const& A1, Account const& A2, ApplyContext& ac) {
-                // create simple trust SLE with xrp currency
+                // create simple trust SLE with bixrp currency
                 auto const sleNew = std::make_shared<SLE>(
-                    keylet::line(A1, A2, xrpIssue().currency));
+                    keylet::line(A1, A2, bixrpIssue().currency));
                 ac.view().insert(sleNew);
                 return true;
             });
     }
 
     void
-    testXRPBalanceCheck()
+    testBIXRPBalanceCheck()
     {
         using namespace test::jtx;
-        testcase << "XRP balance checks";
+        testcase << "BIXRP balance checks";
 
         doInvariantCheck(
-            {{"Cannot return non-native STAmount as XRPAmount"}},
+            {{"Cannot return non-native STAmount as BIXRPAmount"}},
             [](Account const& A1, Account const& A2, ApplyContext& ac) {
                 // non-native balance
                 auto const sle = ac.view().peek(keylet::account(A1.id()));
@@ -238,8 +238,8 @@ class Invariants_test : public beast::unit_test::suite
             });
 
         doInvariantCheck(
-            {{"incorrect account XRP balance"},
-             {"XRP net change was positive: 99999999000000001"}},
+            {{"incorrect account BIXRP balance"},
+             {"BIXRP net change was positive: 99999999000000001"}},
             [this](Account const& A1, Account const&, ApplyContext& ac) {
                 // balance exceeds genesis amount
                 auto const sle = ac.view().peek(keylet::account(A1.id()));
@@ -247,7 +247,7 @@ class Invariants_test : public beast::unit_test::suite
                     return false;
                 // Use `drops(1)` to bypass a call to STAmount::canonicalize
                 // with an invalid value
-                sle->setFieldAmount(sfBalance, INITIAL_XRP + drops(1));
+                sle->setFieldAmount(sfBalance, INITIAL_BIXRP + drops(1));
                 BEAST_EXPECT(!sle->getFieldAmount(sfBalance).negative());
                 ac.view().update(sle);
                 return true;
@@ -255,7 +255,7 @@ class Invariants_test : public beast::unit_test::suite
 
         doInvariantCheck(
             {{"incorrect account XRP balance"},
-             {"XRP net change of -1000000001 doesn't match fee 0"}},
+             {"BIXRP net change of -1000000001 doesn't match fee 0"}},
             [this](Account const& A1, Account const&, ApplyContext& ac) {
                 // balance is negative
                 auto const sle = ac.view().peek(keylet::account(A1.id()));
@@ -277,24 +277,24 @@ class Invariants_test : public beast::unit_test::suite
 
         doInvariantCheck(
             {{"fee paid was negative: -1"},
-             {"XRP net change of 0 doesn't match fee -1"}},
+             {"BIXRP net change of 0 doesn't match fee -1"}},
             [](Account const&, Account const&, ApplyContext&) { return true; },
-            XRPAmount{-1});
+            BIXRPAmount{-1});
 
         doInvariantCheck(
-            {{"fee paid exceeds system limit: "s + to_string(INITIAL_XRP)},
-             {"XRP net change of 0 doesn't match fee "s +
+            {{"fee paid exceeds system limit: "s + to_string(INITIAL_BIXRP)},
+             {"BIXRP net change of 0 doesn't match fee "s +
               to_string(INITIAL_XRP)}},
             [](Account const&, Account const&, ApplyContext&) { return true; },
-            XRPAmount{INITIAL_XRP});
+            BIXRPAmount{INITIAL_BIXRP});
 
         doInvariantCheck(
             {{"fee paid is 20 exceeds fee specified in transaction."},
-             {"XRP net change of 0 doesn't match fee 20"}},
+             {"BIXRP net change of 0 doesn't match fee 20"}},
             [](Account const&, Account const&, ApplyContext&) { return true; },
-            XRPAmount{20},
+            BIXRPAmount{20},
             STTx{ttACCOUNT_SET, [](STObject& tx) {
-                     tx.setFieldAmount(sfFee, XRPAmount{10});
+                     tx.setFieldAmount(sfFee, BIXRPAmount{10});
                  }});
     }
 
@@ -315,7 +315,7 @@ class Invariants_test : public beast::unit_test::suite
                     keylet::offer(A1.id(), (*sle)[sfSequence]));
                 sleNew->setAccountID(sfAccount, A1.id());
                 sleNew->setFieldU32(sfSequence, (*sle)[sfSequence]);
-                sleNew->setFieldAmount(sfTakerPays, XRP(-1));
+                sleNew->setFieldAmount(sfTakerPays, BIXRP(-1));
                 ac.view().insert(sleNew);
                 return true;
             });
@@ -332,7 +332,7 @@ class Invariants_test : public beast::unit_test::suite
                 sleNew->setAccountID(sfAccount, A1.id());
                 sleNew->setFieldU32(sfSequence, (*sle)[sfSequence]);
                 sleNew->setFieldAmount(sfTakerPays, A1["USD"](10));
-                sleNew->setFieldAmount(sfTakerGets, XRP(-1));
+                sleNew->setFieldAmount(sfTakerGets, BIXRP(-1));
                 ac.view().insert(sleNew);
                 return true;
             });
@@ -340,7 +340,7 @@ class Invariants_test : public beast::unit_test::suite
         doInvariantCheck(
             {{"offer with a bad amount"}},
             [](Account const& A1, Account const&, ApplyContext& ac) {
-                // offer XRP to XRP
+                // offer BIXRP to BIXRP
                 auto const sle = ac.view().peek(keylet::account(A1.id()));
                 if (!sle)
                     return false;
@@ -348,8 +348,8 @@ class Invariants_test : public beast::unit_test::suite
                     keylet::offer(A1.id(), (*sle)[sfSequence]));
                 sleNew->setAccountID(sfAccount, A1.id());
                 sleNew->setFieldU32(sfSequence, (*sle)[sfSequence]);
-                sleNew->setFieldAmount(sfTakerPays, XRP(10));
-                sleNew->setFieldAmount(sfTakerGets, XRP(11));
+                sleNew->setFieldAmount(sfTakerPays, BIXRP(10));
+                sleNew->setFieldAmount(sfTakerGets, BIXRP(11));
                 ac.view().insert(sleNew);
                 return true;
             });
@@ -362,7 +362,7 @@ class Invariants_test : public beast::unit_test::suite
         testcase << "no zero escrow";
 
         doInvariantCheck(
-            {{"Cannot return non-native STAmount as XRPAmount"}},
+            {{"Cannot return non-native STAmount as BIXRPAmount"}},
             [](Account const& A1, Account const& A2, ApplyContext& ac) {
                 // escrow with nonnative amount
                 auto const sle = ac.view().peek(keylet::account(A1.id()));
@@ -377,7 +377,7 @@ class Invariants_test : public beast::unit_test::suite
             });
 
         doInvariantCheck(
-            {{"XRP net change of -1000000 doesn't match fee 0"},
+            {{"BIXRP net change of -1000000 doesn't match fee 0"},
              {"escrow specifies invalid amount"}},
             [](Account const& A1, Account const&, ApplyContext& ac) {
                 // escrow with negative amount
@@ -386,13 +386,13 @@ class Invariants_test : public beast::unit_test::suite
                     return false;
                 auto sleNew = std::make_shared<SLE>(
                     keylet::escrow(A1, (*sle)[sfSequence] + 2));
-                sleNew->setFieldAmount(sfAmount, XRP(-1));
+                sleNew->setFieldAmount(sfAmount, BIXRP(-1));
                 ac.view().insert(sleNew);
                 return true;
             });
 
         doInvariantCheck(
-            {{"XRP net change was positive: 100000000000000001"},
+            {{"BIXRP net change was positive: 100000000000000001"},
              {"escrow specifies invalid amount"}},
             [](Account const& A1, Account const&, ApplyContext& ac) {
                 // escrow with too-large amount
@@ -403,7 +403,7 @@ class Invariants_test : public beast::unit_test::suite
                     keylet::escrow(A1, (*sle)[sfSequence] + 2));
                 // Use `drops(1)` to bypass a call to STAmount::canonicalize
                 // with an invalid value
-                sleNew->setFieldAmount(sfAmount, INITIAL_XRP + drops(1));
+                sleNew->setFieldAmount(sfAmount, INITIAL_BIXRP + drops(1));
                 ac.view().insert(sleNew);
                 return true;
             });
@@ -457,7 +457,7 @@ class Invariants_test : public beast::unit_test::suite
                 ac.view().insert(sleNew);
                 return true;
             },
-            XRPAmount{},
+            BIXRPAmount{},
             STTx{ttPAYMENT, [](STObject& tx) {}});
     }
 
@@ -465,11 +465,11 @@ public:
     void
     run() override
     {
-        testXRPNotCreated();
+        testBIXRPNotCreated();
         testAccountRootsNotRemoved();
         testTypesMatch();
-        testNoXRPTrustLine();
-        testXRPBalanceCheck();
+        testNoBIXRPTrustLine();
+        testBIXRPBalanceCheck();
         testTransactionFeeCheck();
         testNoBadOffers();
         testNoZeroEscrow();

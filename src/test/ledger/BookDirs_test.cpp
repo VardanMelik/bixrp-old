@@ -31,10 +31,10 @@ struct BookDirs_test : public beast::unit_test::suite
         Env env(*this, features);
         auto gw = Account("gw");
         auto USD = gw["USD"];
-        env.fund(XRP(1000000), "alice", "bob", "gw");
+        env.fund(BIXRP(1000000), "alice", "bob", "gw");
 
         {
-            Book book(xrpIssue(), USD.issue());
+            Book book(bixrpIssue(), USD.issue());
             {
                 auto d = BookDirs(*env.current(), book);
                 BEAST_EXPECT(std::begin(d) == std::end(d));
@@ -47,17 +47,17 @@ struct BookDirs_test : public beast::unit_test::suite
         }
 
         {
-            env(offer("alice", Account("alice")["USD"](50), XRP(10)));
+            env(offer("alice", Account("alice")["USD"](50), BIXRP(10)));
             auto d = BookDirs(
                 *env.current(),
-                Book(Account("alice")["USD"].issue(), xrpIssue()));
+                Book(Account("alice")["USD"].issue(), bixrpIssue()));
             BEAST_EXPECT(std::distance(d.begin(), d.end()) == 1);
         }
 
         {
-            env(offer("alice", gw["CNY"](50), XRP(10)));
+            env(offer("alice", gw["CNY"](50), BIXRP(10)));
             auto d =
-                BookDirs(*env.current(), Book(gw["CNY"].issue(), xrpIssue()));
+                BookDirs(*env.current(), Book(gw["CNY"].issue(), bixrpIssue()));
             BEAST_EXPECT(std::distance(d.begin(), d.end()) == 1);
         }
 
@@ -75,15 +75,15 @@ struct BookDirs_test : public beast::unit_test::suite
             auto AUD = gw["AUD"];
             for (auto i = 1, j = 3; i <= 3; ++i, --j)
                 for (auto k = 0; k < 80; ++k)
-                    env(offer("alice", AUD(i), XRP(j)));
+                    env(offer("alice", AUD(i), BIXRP(j)));
 
-            auto d = BookDirs(*env.current(), Book(AUD.issue(), xrpIssue()));
+            auto d = BookDirs(*env.current(), Book(AUD.issue(), bixrpIssue()));
             BEAST_EXPECT(std::distance(d.begin(), d.end()) == 240);
             auto i = 1, j = 3, k = 0;
             for (auto const& e : d)
             {
                 BEAST_EXPECT(e->getFieldAmount(sfTakerPays) == AUD(i));
-                BEAST_EXPECT(e->getFieldAmount(sfTakerGets) == XRP(j));
+                BEAST_EXPECT(e->getFieldAmount(sfTakerGets) == BIXRP(j));
                 if (++k % 80 == 0)
                 {
                     ++i;

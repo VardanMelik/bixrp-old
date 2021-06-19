@@ -156,10 +156,10 @@ class TxQ1_test : public beast::unit_test::suite
         env.close(env.now() + 5s, 10000ms);
         checkMetrics(env, 0, flagMaxQueue, 0, expectedPerLedger, 256);
         auto const fees = env.current()->fees();
-        BEAST_EXPECT(fees.base == XRPAmount{base});
+        BEAST_EXPECT(fees.base == BIXRPAmount{base});
         BEAST_EXPECT(fees.units == FeeUnit64{units});
-        BEAST_EXPECT(fees.reserve == XRPAmount{reserve});
-        BEAST_EXPECT(fees.increment == XRPAmount{increment});
+        BEAST_EXPECT(fees.reserve == BIXRPAmount{reserve});
+        BEAST_EXPECT(fees.increment == BIXRPAmount{increment});
 
         return flagMaxQueue;
     }
@@ -191,7 +191,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Create several accounts while the fee is cheap so they all apply.
-        env.fund(XRP(50000), noripple(alice, bob, charlie, daria));
+        env.fund(BIXRP(50000), noripple(alice, bob, charlie, daria));
         checkMetrics(env, 0, boost::none, 4, 3, 256);
 
         // Alice - price starts exploding: held
@@ -213,7 +213,7 @@ public:
         //////////////////////////////////////////////////////////////
 
         // Make some more accounts. We'll need them later to abuse the queue.
-        env.fund(XRP(50000), noripple(elmo, fred, gwen, hank));
+        env.fund(BIXRP(50000), noripple(elmo, fred, gwen, hank));
         checkMetrics(env, 0, 10, 6, 5, 256);
 
         // Now get a bunch of transactions held.
@@ -337,14 +337,14 @@ public:
         env(noop(bob));
         env(noop(charlie));
         env(noop(daria));
-        env(pay(alice, iris, XRP(1000)), queued);
+        env(pay(alice, iris, BIXRP(1000)), queued);
         env(noop(iris), seq(1), fee(20), ter(terNO_ACCOUNT));
         checkMetrics(env, 1, 10, 6, 5, 256);
 
         env.close();
         checkMetrics(env, 0, 12, 1, 6, 256);
 
-        env.require(balance(iris, XRP(1000)));
+        env.require(balance(iris, BIXRP(1000)));
         BEAST_EXPECT(env.seq(iris) == 11);
 
         //////////////////////////////////////////////////////////////
@@ -393,7 +393,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Fund alice and then fill the ledger.
-        env.fund(XRP(50000), noripple(alice));
+        env.fund(BIXRP(50000), noripple(alice));
         env(noop(alice));
         env(noop(alice));
         env(noop(alice));
@@ -648,20 +648,20 @@ public:
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
         // Create accounts
-        env.fund(XRP(50000), noripple(alice, gw));
+        env.fund(BIXRP(50000), noripple(alice, gw));
         checkMetrics(env, 0, boost::none, 2, 2, 256);
         env.close();
         checkMetrics(env, 0, 4, 0, 2, 256);
 
         // Alice creates an unfunded offer while the ledger is not full
-        env(offer(alice, XRP(1000), USD(1000)), ter(tecUNFUNDED_OFFER));
+        env(offer(alice, BIXRP(1000), USD(1000)), ter(tecUNFUNDED_OFFER));
         checkMetrics(env, 0, 4, 1, 2, 256);
 
         fillQueue(env, alice);
         checkMetrics(env, 0, 4, 3, 2, 256);
 
         // Alice creates an unfunded offer that goes in the queue
-        env(offer(alice, XRP(1000), USD(1000)), ter(terQUEUED));
+        env(offer(alice, BIXRP(1000), USD(1000)), ter(terQUEUED));
         checkMetrics(env, 1, 4, 3, 2, 256);
 
         // The offer comes out of the queue
@@ -689,7 +689,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
         // Create several accounts while the fee is cheap so they all apply.
-        env.fund(XRP(50000), noripple(alice, bob, charlie));
+        env.fund(BIXRP(50000), noripple(alice, bob, charlie));
         checkMetrics(env, 0, boost::none, 3, 2, 256);
 
         // Future transaction for Alice - fails
@@ -747,11 +747,11 @@ public:
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
         // Fund across several ledgers so the TxQ metrics stay restricted.
-        env.fund(XRP(1000), noripple(alice, bob));
+        env.fund(BIXRP(1000), noripple(alice, bob));
         env.close(env.now() + 5s, 10000ms);
-        env.fund(XRP(1000), noripple(charlie, daria));
+        env.fund(BIXRP(1000), noripple(charlie, daria));
         env.close(env.now() + 5s, 10000ms);
-        env.fund(XRP(1000), noripple(edgar, felicia));
+        env.fund(BIXRP(1000), noripple(edgar, felicia));
         env.close(env.now() + 5s, 10000ms);
 
         checkMetrics(env, 0, boost::none, 0, 2, 256);
@@ -855,9 +855,9 @@ public:
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
         // Fund across several ledgers so the TxQ metrics stay restricted.
-        env.fund(XRP(1000), noripple(alice, bob));
+        env.fund(BIXRP(1000), noripple(alice, bob));
         env.close(env.now() + 5s, 10000ms);
-        env.fund(XRP(1000), noripple(carol));
+        env.fund(BIXRP(1000), noripple(carol));
         env.close(env.now() + 5s, 10000ms);
 
         // Fill the ledger
@@ -945,17 +945,17 @@ public:
         auto alice = Account("alice");
         auto bob = Account("bob");
 
-        env.fund(XRP(1000), noripple(alice));
+        env.fund(BIXRP(1000), noripple(alice));
 
         // These types of checks are tested elsewhere, but
         // this verifies that TxQ handles the failures as
         // expected.
 
         // Fail in preflight
-        env(pay(alice, bob, XRP(-1000)), ter(temBAD_AMOUNT));
+        env(pay(alice, bob, BIXRP(-1000)), ter(temBAD_AMOUNT));
 
         // Fail in preclaim
-        env(noop(alice), fee(XRP(100000)), ter(terINSUF_FEE_B));
+        env(noop(alice), fee(BIXRP(100000)), ter(terINSUF_FEE_B));
     }
 
     void
@@ -973,7 +973,7 @@ public:
 
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
-        env.fund(XRP(1000), noripple(alice, bob));
+        env.fund(BIXRP(1000), noripple(alice, bob));
 
         checkMetrics(env, 0, boost::none, 2, 2, 256);
 
@@ -1037,7 +1037,7 @@ public:
 
         // Create several accounts while the fee is cheap so they all apply.
         env.fund(drops(2000), noripple(alice));
-        env.fund(XRP(500000), noripple(bob, charlie, daria));
+        env.fund(BIXRP(500000), noripple(bob, charlie, daria));
         checkMetrics(env, 0, initQueueMax, 4, 3, 256);
 
         // Alice - price starts exploding: held
@@ -1106,7 +1106,7 @@ public:
         {
             auto& txQ = env.app().getTxQ();
             auto aliceStat = txQ.getAccountTxs(alice.id(), *env.current());
-            constexpr XRPAmount fee{20};
+            constexpr BIXRPAmount fee{20};
             auto const& baseFee = env.current()->fees().base;
             auto seq = env.seq(alice);
             BEAST_EXPECT(aliceStat.size() == 7);
@@ -1188,7 +1188,7 @@ public:
         // more than the minimum reserve in flight before the
         // last queued transaction
         aliceFee =
-            env.le(alice)->getFieldAmount(sfBalance).xrp().drops() - (59);
+            env.le(alice)->getFieldAmount(sfBalance).bixrp().drops() - (59);
         env(noop(alice),
             seq(aliceSeq),
             fee(aliceFee),
@@ -1225,7 +1225,7 @@ public:
         checkMetrics(env, 0, 12, 0, 6, 256);
 
         // Alice is broke
-        env.require(balance(alice, XRP(0)));
+        env.require(balance(alice, BIXRP(0)));
         env(noop(alice), ter(terINSUF_FEE_B));
 
         // Bob tries to queue up more than the single
@@ -1248,7 +1248,7 @@ public:
         // with enough fee to bankrupt bob and make the
         // later transactions unable to pay their fees
         std::int64_t bobFee =
-            env.le(bob)->getFieldAmount(sfBalance).xrp().drops() - (9 * 10 - 1);
+            env.le(bob)->getFieldAmount(sfBalance).bixrp().drops() - (9 * 10 - 1);
         env(noop(bob),
             seq(bobSeq + 5),
             fee(bobFee),
@@ -1262,7 +1262,7 @@ public:
         // The attempt fails because the sum of bob's fees now exceeds the
         // (artificially lowered to 200 drops) account reserve.
         bobFee =
-            env.le(bob)->getFieldAmount(sfBalance).xrp().drops() - (9 * 10);
+            env.le(bob)->getFieldAmount(sfBalance).bixrp().drops() - (9 * 10);
         env(noop(bob),
             seq(bobSeq + 5),
             fee(bobFee),
@@ -1303,13 +1303,13 @@ public:
         checkMetrics(env, 0, boost::none, 0, 4, 256);
 
         // Create several accounts while the fee is cheap so they all apply.
-        env.fund(XRP(50000), noripple(alice, bob, charlie, daria));
+        env.fund(BIXRP(50000), noripple(alice, bob, charlie, daria));
         checkMetrics(env, 0, boost::none, 4, 4, 256);
 
         env.close();
         checkMetrics(env, 0, 8, 0, 4, 256);
 
-        env.fund(XRP(50000), noripple(elmo, fred, gwen, hank));
+        env.fund(BIXRP(50000), noripple(elmo, fred, gwen, hank));
         checkMetrics(env, 0, 8, 4, 4, 256);
 
         env.close();
@@ -1431,7 +1431,7 @@ public:
 
         checkMetrics(env, 0, boost::none, 0, 1, 256);
 
-        env.fund(XRP(50000), noripple(alice));
+        env.fund(BIXRP(50000), noripple(alice));
         checkMetrics(env, 0, boost::none, 1, 1, 256);
 
         env(fset(alice, asfAccountTxnID));
@@ -1475,7 +1475,7 @@ public:
 
             checkMetrics(env, 0, boost::none, 0, 2, 256);
 
-            env.fund(XRP(50000), noripple(alice));
+            env.fund(BIXRP(50000), noripple(alice));
             checkMetrics(env, 0, boost::none, 1, 2, 256);
 
             for (int i = 0; i < 10; ++i)
@@ -1578,7 +1578,7 @@ public:
         checkMetrics(env, 0, initQueueMax, 0, 3, 256);
 
         env.fund(drops(5000), noripple(alice));
-        env.fund(XRP(50000), noripple(bob));
+        env.fund(BIXRP(50000), noripple(bob));
         checkMetrics(env, 0, initQueueMax, 2, 3, 256);
         auto USD = bob["USD"];
 
@@ -1635,7 +1635,7 @@ public:
             stuck in the queue. Eventually it will either
             expire, get forced off the end by more valuable
             transactions, get replaced by Alice, or Alice
-            will get more XRP, and it'll process.
+            will get more BIXRP, and it'll process.
         */
 
         for (int i = 0; i < 9; ++i)
@@ -1669,7 +1669,7 @@ public:
 
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
-        env.fund(XRP(50000), noripple(alice, bob));
+        env.fund(BIXRP(50000), noripple(alice, bob));
         env.memoize(charlie);
         checkMetrics(env, 0, boost::none, 2, 3, 256);
         {
@@ -1799,7 +1799,7 @@ public:
 
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
-        env.fund(XRP(50000), noripple(alice, bob));
+        env.fund(BIXRP(50000), noripple(alice, bob));
         env.memoize(charlie);
 
         checkMetrics(env, 0, boost::none, 2, 3, 256);
@@ -1972,22 +1972,22 @@ public:
 
         checkMetrics(env, 0, initQueueMax, 0, limit, 256);
 
-        env.fund(XRP(50000), noripple(alice, charlie), gw);
+        env.fund(BIXRP(50000), noripple(alice, charlie), gw);
         checkMetrics(env, 0, initQueueMax, limit + 1, limit, 256);
 
         auto USD = gw["USD"];
         auto BUX = gw["BUX"];
 
         //////////////////////////////////////////
-        // Offer with high XRP out and low fee doesn't block
+        // Offer with high BIXRP out and low fee doesn't block
         auto aliceSeq = env.seq(alice);
         auto aliceBal = env.balance(alice);
 
-        env.require(balance(alice, XRP(50000)), owners(alice, 0));
+        env.require(balance(alice, BIXRP(50000)), owners(alice, 0));
 
         // If this offer crosses, all of alice's
-        // XRP will be taken (except the reserve).
-        env(offer(alice, BUX(5000), XRP(50000)), queued);
+        // BIXRP will be taken (except the reserve).
+        env(offer(alice, BUX(5000), BIXRP(50000)), queued);
         checkMetrics(env, 1, initQueueMax, limit + 1, limit, 256);
 
         // But because the reserve is protected, another
@@ -2000,14 +2000,14 @@ public:
         checkMetrics(env, 0, limit * 2, 2, limit, 256);
 
         // But once we close the ledger, we find alice
-        // has plenty of XRP, because the offer didn't
+        // has plenty of BIXRP, because the offer didn't
         // cross (of course).
         env.require(balance(alice, aliceBal - drops(20)), owners(alice, 1));
         // cancel the offer
         env(offer_cancel(alice, aliceSeq));
 
         //////////////////////////////////////////
-        // Offer with high XRP out and high total fee blocks later txs
+        // Offer with high BIXRP out and high total fee blocks later txs
         fillQueue(env, alice);
         checkMetrics(env, 0, limit * 2, limit + 1, limit, 256);
         aliceSeq = env.seq(alice);
@@ -2016,7 +2016,7 @@ public:
         env.require(owners(alice, 0));
 
         // Alice creates an offer with a fee of half the reserve
-        env(offer(alice, BUX(5000), XRP(50000)), fee(drops(100)), queued);
+        env(offer(alice, BUX(5000), BIXRP(50000)), fee(drops(100)), queued);
         checkMetrics(env, 1, limit * 2, limit + 1, limit, 256);
 
         // Alice creates another offer with a fee
@@ -2037,14 +2037,14 @@ public:
         checkMetrics(env, 0, limit * 2, 3, limit, 256);
 
         // But once we close the ledger, we find alice
-        // has plenty of XRP, because the offer didn't
+        // has plenty of BIXRP, because the offer didn't
         // cross (of course).
         env.require(balance(alice, aliceBal - drops(250)), owners(alice, 1));
         // cancel the offer
         env(offer_cancel(alice, aliceSeq));
 
         //////////////////////////////////////////
-        // Offer with high XRP out and super high fee blocks later txs
+        // Offer with high BIXRP out and super high fee blocks later txs
         fillQueue(env, alice);
         checkMetrics(env, 0, limit * 2, limit + 1, limit, 256);
         aliceSeq = env.seq(alice);
@@ -2054,7 +2054,7 @@ public:
 
         // Alice creates an offer with a fee larger than the reserve
         // This one can queue because it's the first in the queue for alice
-        env(offer(alice, BUX(5000), XRP(50000)), fee(drops(300)), queued);
+        env(offer(alice, BUX(5000), BIXRP(50000)), fee(drops(300)), queued);
         checkMetrics(env, 1, limit * 2, limit + 1, limit, 256);
 
         // So even a noop will look like alice
@@ -2070,22 +2070,22 @@ public:
         checkMetrics(env, 0, limit * 2, 2, limit, 256);
 
         // But once we close the ledger, we find alice
-        // has plenty of XRP, because the offer didn't
+        // has plenty of BIXRP, because the offer didn't
         // cross (of course).
         env.require(balance(alice, aliceBal - drops(351)), owners(alice, 1));
         // cancel the offer
         env(offer_cancel(alice, aliceSeq));
 
         //////////////////////////////////////////
-        // Offer with low XRP out allows later txs
+        // Offer with low BIXRP out allows later txs
         fillQueue(env, alice);
         checkMetrics(env, 0, limit * 2, limit + 1, limit, 256);
         aliceSeq = env.seq(alice);
         aliceBal = env.balance(alice);
 
         // If this offer crosses, just a bit
-        // of alice's XRP will be taken.
-        env(offer(alice, BUX(50), XRP(500)), queued);
+        // of alice's BIXRP will be taken.
+        env(offer(alice, BUX(50), BIXRP(500)), queued);
 
         // And later transactions are just fine
         env(noop(alice), seq(aliceSeq + 1), queued);
@@ -2096,14 +2096,14 @@ public:
         checkMetrics(env, 0, limit * 2, 2, limit, 256);
 
         // But once we close the ledger, we find alice
-        // has plenty of XRP, because the offer didn't
+        // has plenty of BIXRP, because the offer didn't
         // cross (of course).
         env.require(balance(alice, aliceBal - drops(20)), owners(alice, 1));
         // cancel the offer
         env(offer_cancel(alice, aliceSeq));
 
         //////////////////////////////////////////
-        // Large XRP payment doesn't block later txs
+        // Large BIXRP payment doesn't block later txs
         fillQueue(env, alice);
         checkMetrics(env, 0, limit * 2, limit + 1, limit, 256);
 
@@ -2113,7 +2113,7 @@ public:
         // If this payment succeeds, alice will
         // send her entire balance to charlie
         // (minus the reserve).
-        env(pay(alice, charlie, XRP(50000)), queued);
+        env(pay(alice, charlie, BIXRP(50000)), queued);
 
         // But because the reserve is protected, another
         // transaction will be allowed to queue
@@ -2130,7 +2130,7 @@ public:
         env.require(balance(alice, aliceBal - drops(20)), owners(alice, 0));
 
         //////////////////////////////////////////
-        // Small XRP payment allows later txs
+        // Small BIXRP payment allows later txs
         fillQueue(env, alice);
         checkMetrics(env, 0, limit * 2, limit + 1, limit, 256);
 
@@ -2139,7 +2139,7 @@ public:
 
         // If this payment succeeds, alice will
         // send just a bit of balance to charlie
-        env(pay(alice, charlie, XRP(500)), queued);
+        env(pay(alice, charlie, BIXRP(500)), queued);
 
         // And later transactions are just fine
         env(noop(alice), seq(aliceSeq + 1), queued);
@@ -2151,7 +2151,7 @@ public:
 
         // The payment succeeds
         env.require(
-            balance(alice, aliceBal - XRP(500) - drops(20)), owners(alice, 0));
+            balance(alice, aliceBal - BIXRP(500) - drops(20)), owners(alice, 0));
 
         //////////////////////////////////////////
         // Large IOU payment allows later txs
@@ -2181,7 +2181,7 @@ public:
         env(pay(alice, charlie, amount), queued);
 
         // But that's fine, because it doesn't affect
-        // alice's XRP balance (other than the fee, of course).
+        // alice's BIXRP balance (other than the fee, of course).
         env(noop(alice), seq(aliceSeq + 1), queued);
         checkMetrics(env, 2, limit * 2, limit + 1, limit, 256);
 
@@ -2190,7 +2190,7 @@ public:
         checkMetrics(env, 0, limit * 2, 2, limit, 256);
 
         // So once we close the ledger, alice has her
-        // XRP balance, but her USD balance went to charlie.
+        // BIXRP balance, but her USD balance went to charlie.
         env.require(
             balance(alice, aliceBal - drops(20)),
             balance(alice, USD(0)),
@@ -2199,9 +2199,9 @@ public:
             owners(charlie, 1));
 
         //////////////////////////////////////////
-        // Large XRP to IOU payment doesn't block later txs.
+        // Large BIXRP to IOU payment doesn't block later txs.
 
-        env(offer(gw, XRP(500000), USD(50000)));
+        env(offer(gw, BIXRP(500000), USD(50000)));
         // Close so we don't have to deal
         // with tx ordering in consensus.
         env.close();
@@ -2215,10 +2215,10 @@ public:
 
         // If this payment succeeds, and uses the
         // entire sendMax, alice will send her
-        // entire XRP balance to charlie in the
+        // entire BIXRP balance to charlie in the
         // form of USD.
-        BEAST_EXPECT(XRP(60000) > aliceBal);
-        env(pay(alice, charlie, USD(1000)), sendmax(XRP(60000)), queued);
+        BEAST_EXPECT(BIXRP(60000) > aliceBal);
+        env(pay(alice, charlie, USD(1000)), sendmax(BIXRP(60000)), queued);
 
         // But because the reserve is protected, another
         // transaction will be allowed to queue
@@ -2230,16 +2230,16 @@ public:
         checkMetrics(env, 0, limit * 2, 2, limit, 256);
 
         // So once we close the ledger, alice sent a payment
-        // to charlie using only a portion of her XRP balance
+        // to charlie using only a portion of her BIXRP balance
         env.require(
-            balance(alice, aliceBal - XRP(10000) - drops(20)),
+            balance(alice, aliceBal - BIXRP(10000) - drops(20)),
             balance(alice, USD(0)),
             balance(charlie, charlieUSD + USD(1000)),
             owners(alice, 1),
             owners(charlie, 1));
 
         //////////////////////////////////////////
-        // Small XRP to IOU payment allows later txs.
+        // Small BIXRP to IOU payment allows later txs.
 
         fillQueue(env, charlie);
         checkMetrics(env, 0, limit * 2, limit + 1, limit, 256);
@@ -2250,10 +2250,10 @@ public:
 
         // If this payment succeeds, and uses the
         // entire sendMax, alice will only send
-        // a portion of her XRP balance to charlie
+        // a portion of her BIXRP balance to charlie
         // in the form of USD.
-        BEAST_EXPECT(aliceBal > XRP(6001));
-        env(pay(alice, charlie, USD(500)), sendmax(XRP(6000)), queued);
+        BEAST_EXPECT(aliceBal > BIXRP(6001));
+        env(pay(alice, charlie, USD(500)), sendmax(BIXRP(6000)), queued);
 
         // And later transactions are just fine
         env(noop(alice), seq(aliceSeq + 1), queued);
@@ -2264,9 +2264,9 @@ public:
         checkMetrics(env, 0, limit * 2, 2, limit, 256);
 
         // So once we close the ledger, alice sent a payment
-        // to charlie using only a portion of her XRP balance
+        // to charlie using only a portion of her BIXRP balance
         env.require(
-            balance(alice, aliceBal - XRP(5000) - drops(20)),
+            balance(alice, aliceBal - BIXRP(5000) - drops(20)),
             balance(alice, USD(0)),
             balance(charlie, charlieUSD + USD(500)),
             owners(alice, 1),
@@ -2323,7 +2323,7 @@ public:
             BEAST_EXPECT(pf.ter == tesSUCCESS);
             BEAST_EXPECT(!pf.consequences.isBlocker());
             BEAST_EXPECT(pf.consequences.fee() == drops(10));
-            BEAST_EXPECT(pf.consequences.potentialSpend() == XRP(0));
+            BEAST_EXPECT(pf.consequences.potentialSpend() == BIXRP(0));
         }
 
         {
@@ -2340,7 +2340,7 @@ public:
             BEAST_EXPECT(pf.ter == tesSUCCESS);
             BEAST_EXPECT(!pf.consequences.isBlocker());
             BEAST_EXPECT(pf.consequences.fee() == drops(10));
-            BEAST_EXPECT(pf.consequences.potentialSpend() == XRP(0));
+            BEAST_EXPECT(pf.consequences.potentialSpend() == BIXRP(0));
         }
 
         {
@@ -2354,7 +2354,7 @@ public:
             BEAST_EXPECT(pf.ter == tesSUCCESS);
             BEAST_EXPECT(!pf.consequences.isBlocker());
             BEAST_EXPECT(pf.consequences.fee() == drops(10));
-            BEAST_EXPECT(pf.consequences.potentialSpend() == XRP(0));
+            BEAST_EXPECT(pf.consequences.potentialSpend() == BIXRP(0));
         }
     }
 
@@ -2385,7 +2385,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Fund accounts while the fee is cheap so they all apply.
-        env.fund(XRP(50000), noripple(alice, bob, charlie));
+        env.fund(BIXRP(50000), noripple(alice, bob, charlie));
         checkMetrics(env, 0, boost::none, 3, 3, 256);
 
         // Alice - no fee change yet
@@ -2555,7 +2555,7 @@ public:
         auto const alice = Account("alice");
         auto const bob = Account("bob");
 
-        env.fund(XRP(500000), noripple(alice, bob));
+        env.fund(BIXRP(500000), noripple(alice, bob));
         checkMetrics(env, 0, boost::none, 2, 1, 256);
 
         auto const aliceSeq = env.seq(alice);
@@ -2649,7 +2649,7 @@ public:
         auto const alice = Account("alice");
         auto const bob = Account("bob");
 
-        env.fund(XRP(500000), noripple(alice, bob));
+        env.fund(BIXRP(500000), noripple(alice, bob));
         checkMetrics(env, 0, boost::none, 2, 1, 256);
 
         auto const aliceSeq = env.seq(alice);
@@ -2798,7 +2798,7 @@ public:
 
         auto const alice = Account("alice");
         auto const bob = Account("bob");
-        env.fund(XRP(100000), alice, bob);
+        env.fund(BIXRP(100000), alice, bob);
 
         fillQueue(env, alice);
         checkMetrics(env, 0, boost::none, 7, 6, 256);
@@ -2927,7 +2927,7 @@ public:
         Env_ss envs(env);
 
         Account const alice{"alice"};
-        env.fund(XRP(1000000), alice);
+        env.fund(BIXRP(1000000), alice);
         env.close();
 
         auto const withQueue =
@@ -3206,7 +3206,7 @@ public:
         Env_ss envs(env);
 
         Account const alice{"alice"};
-        env.fund(XRP(1000000), alice);
+        env.fund(BIXRP(1000000), alice);
         env.close();
 
         {
@@ -3478,7 +3478,7 @@ public:
             i{"i"};
 
         // Fund the first few accounts at non escalated fee
-        env.fund(XRP(50000), noripple(a, b, c, d));
+        env.fund(BIXRP(50000), noripple(a, b, c, d));
         checkMetrics(env, 0, boost::none, 4, 3, 256);
 
         // First transaction establishes the messaging
@@ -3532,7 +3532,7 @@ public:
         checkMetrics(env, 0, 8, 0, 4, 256);
 
         // Fund then next few accounts at non escalated fee
-        env.fund(XRP(50000), noripple(e, f, g, h, i));
+        env.fund(BIXRP(50000), noripple(e, f, g, h, i));
 
         // Extra transactions with low fee are queued
         auto queued = ter(terQUEUED);
@@ -3613,7 +3613,7 @@ public:
         auto bob = Account("bob");
 
         checkMetrics(env, 0, boost::none, 0, 3, 256);
-        env.fund(XRP(50000000), alice, bob);
+        env.fund(BIXRP(50000000), alice, bob);
 
         fillQueue(env, alice);
 
@@ -3799,7 +3799,7 @@ public:
             fillQueue(env, bob);
             checkMetrics(env, 3, 34, 18, 17, 256);
 
-            env(noop(alice), fee(XRP(1)), seq(aliceSeq++), ter(terQUEUED));
+            env(noop(alice), fee(BIXRP(1)), seq(aliceSeq++), ter(terQUEUED));
             checkMetrics(env, 4, 34, 18, 17, 256);
 
             // With normal load, those txs get into the ledger
@@ -3827,7 +3827,7 @@ public:
             auto alice = Account("alice");
 
             checkMetrics(env, 0, boost::none, 0, 3, 256);
-            env.fund(XRP(50000000), alice);
+            env.fund(BIXRP(50000000), alice);
 
             fillQueue(env, alice);
             checkMetrics(env, 0, boost::none, 4, 3, 256);
@@ -3913,7 +3913,7 @@ public:
             auto alice = Account("alice");
 
             checkMetrics(env, 0, boost::none, 0, 3, 256);
-            env.fund(XRP(50000000), alice);
+            env.fund(BIXRP(50000000), alice);
 
             fillQueue(env, alice);
             checkMetrics(env, 0, boost::none, 4, 3, 256);
@@ -3973,7 +3973,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Create account
-        env.fund(XRP(50000), noripple(alice));
+        env.fund(BIXRP(50000), noripple(alice));
         checkMetrics(env, 0, boost::none, 1, 3, 256);
 
         fillQueue(env, alice);
@@ -4040,7 +4040,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Create account
-        env.fund(XRP(50000), noripple(alice));
+        env.fund(BIXRP(50000), noripple(alice));
         checkMetrics(env, 0, boost::none, 1, 3, 256);
 
         // Create tickets
@@ -4103,7 +4103,7 @@ public:
         // Fee averaging does not make sense with tickets.  Every ticketed
         // transaction is equally capable of going into the ledger independent
         // of all other ticket- or sequence-based transactions.
-        env(noop(alice), ticket::use(tktSeq0 + 3), fee(XRP(1)));
+        env(noop(alice), ticket::use(tktSeq0 + 3), fee(BIXRP(1)));
         checkMetrics(env, 2, boost::none, 8, 3, 256);
 
         // Now close the ledger. One of the queued transactions
@@ -4140,17 +4140,17 @@ public:
 
         Env env(*this, std::move(cfg));
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
-        env.fund(XRP(10000), bob);
+        env.fund(BIXRP(10000), bob);
         env.close();
-        env.fund(XRP(10000), carol);
+        env.fund(BIXRP(10000), carol);
         env.close();
-        env.fund(XRP(10000), daria);
+        env.fund(BIXRP(10000), daria);
         env.close();
-        env.fund(XRP(10000), ellie);
+        env.fund(BIXRP(10000), ellie);
         env.close();
-        env.fund(XRP(10000), fiona);
+        env.fund(BIXRP(10000), fiona);
         env.close();
         checkMetrics(env, 0, 10, 0, 2, 256);
 
@@ -4333,7 +4333,7 @@ public:
 
         // The noripple is to reduce the number of transactions required to
         // fund the accounts.  There is no rippling in this test.
-        env.fund(XRP(10000), noripple(alice, bob, carol, daria, ellie, fiona));
+        env.fund(BIXRP(10000), noripple(alice, bob, carol, daria, ellie, fiona));
         env.close();
 
         // Get bob some tickets.
@@ -4538,7 +4538,7 @@ public:
 
         // The noripple is to reduce the number of transactions required to
         // fund the accounts.  There is no rippling in this test.
-        env.fund(XRP(100000), noripple(alice));
+        env.fund(BIXRP(100000), noripple(alice));
         env.close();
 
         {
@@ -4547,15 +4547,15 @@ public:
 
             // Alice creates a couple offers
             auto const aliceSeq = env.seq(alice);
-            env(offer(alice, USD(1000), XRP(1000)), ter(terQUEUED));
+            env(offer(alice, USD(1000), BIXRP(1000)), ter(terQUEUED));
 
-            env(offer(alice, USD(1000), XRP(1001)),
+            env(offer(alice, USD(1000), BIXRP(1001)),
                 seq(aliceSeq + 1),
                 ter(terQUEUED));
 
             // Alice creates transactions that cancel the first set of
             // offers, one through another offer, and one cancel
-            env(offer(alice, USD(1000), XRP(1002)),
+            env(offer(alice, USD(1000), BIXRP(1002)),
                 seq(aliceSeq + 2),
                 json(jss::OfferSequence, aliceSeq),
                 ter(terQUEUED));
@@ -4582,11 +4582,11 @@ public:
             // Alice creates a couple offers using tickets, consuming the
             // tickets in reverse order
             auto const aliceSeq = env.seq(alice);
-            env(offer(alice, USD(1000), XRP(1000)),
+            env(offer(alice, USD(1000), BIXRP(1000)),
                 ticket::use(aliceTkt + 4),
                 ter(terQUEUED));
 
-            env(offer(alice, USD(1000), XRP(1001)),
+            env(offer(alice, USD(1000), BIXRP(1001)),
                 ticket::use(aliceTkt + 3),
                 ter(terQUEUED));
 
@@ -4596,7 +4596,7 @@ public:
             // These transactions succeed because Ticket ordering is arbitrary
             // and it's up to the user to ensure they don't step on their own
             // feet.
-            env(offer(alice, USD(1000), XRP(1002)),
+            env(offer(alice, USD(1000), BIXRP(1002)),
                 ticket::use(aliceTkt + 2),
                 json(jss::OfferSequence, aliceTkt + 4),
                 ter(terQUEUED));
@@ -4606,14 +4606,14 @@ public:
                 ter(terQUEUED));
 
             // Create a couple more offers using sequences
-            env(offer(alice, USD(1000), XRP(1000)), ter(terQUEUED));
+            env(offer(alice, USD(1000), BIXRP(1000)), ter(terQUEUED));
 
-            env(offer(alice, USD(1000), XRP(1001)),
+            env(offer(alice, USD(1000), BIXRP(1001)),
                 seq(aliceSeq + 1),
                 ter(terQUEUED));
 
             // And try to cancel those using tickets
-            env(offer(alice, USD(1000), XRP(1002)),
+            env(offer(alice, USD(1000), BIXRP(1002)),
                 ticket::use(aliceTkt + 5),
                 json(jss::OfferSequence, aliceSeq),
                 ter(terQUEUED));

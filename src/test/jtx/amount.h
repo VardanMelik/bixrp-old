@@ -38,8 +38,8 @@ namespace jtx {
 
 /*
 
-The decision was made to accept amounts of drops and XRP
-using an int type, since the range of XRP is 100 billion
+The decision was made to accept amounts of drops and BIXRP
+using an int type, since the range of BIXRP is 100 billion
 and having both signed and unsigned overloads creates
 tricky code leading to overload resolution ambiguities.
 
@@ -64,11 +64,11 @@ struct None
 // This value is also defined in SystemParameters.h. It's
 // duplicated here to catch any possible future errors that
 // could change that value (however unlikely).
-constexpr XRPAmount dropsPerXRP{1'000'000};
+constexpr BIXRPAmount dropsPerBIXRP{1'000'000};
 
-/** Represents an XRP or IOU quantity
+/** Represents an BIXRP or IOU quantity
     This customizes the string conversion and supports
-    XRP conversions from integer and floating point.
+    BIXRP conversions from integer and floating point.
 */
 struct PrettyAmount
 {
@@ -110,7 +110,7 @@ public:
     }
 
     /** drops */
-    PrettyAmount(XRPAmount v) : amount_(v)
+    PrettyAmount(BIXRPAmount v) : amount_(v)
     {
     }
 
@@ -165,22 +165,22 @@ struct BookSpec
 
 //------------------------------------------------------------------------------
 
-struct XRP_t
+struct BIXRP_t
 {
     /** Implicit conversion to Issue.
 
-        This allows passing XRP where
+        This allows passing BIXRP where
         an Issue is expected.
     */
     operator Issue() const
     {
-        return xrpIssue();
+        return bixrpIssue();
     }
 
-    /** Returns an amount of XRP as PrettyAmount,
+    /** Returns an amount of BIXRP as PrettyAmount,
         which is trivially convertable to STAmount
 
-        @param v The number of XRP (not drops)
+        @param v The number of BIXRP (not drops)
     */
     /** @{ */
     template <class T, class = std::enable_if_t<std::is_integral_v<T>>>
@@ -189,13 +189,13 @@ struct XRP_t
     {
         using TOut = std::
             conditional_t<std::is_signed_v<T>, std::int64_t, std::uint64_t>;
-        return {TOut{v} * dropsPerXRP};
+        return {TOut{v} * dropsPerBIXRP};
     }
 
     PrettyAmount
     operator()(double v) const
     {
-        auto const c = dropsPerXRP.drops();
+        auto const c = dropsPerBIXRP.drops();
         if (v >= 0)
         {
             auto const d = std::uint64_t(std::round(v * c));
@@ -210,28 +210,28 @@ struct XRP_t
     }
     /** @} */
 
-    /** Returns None-of-XRP */
+    /** Returns None-of-BIXRP */
     None operator()(none_t) const
     {
-        return {xrpIssue()};
+        return {bixrpIssue()};
     }
 
     friend BookSpec
-    operator~(XRP_t const&)
+    operator~(BIXRP_t const&)
     {
-        return BookSpec(xrpAccount(), xrpCurrency());
+        return BookSpec(bixrpAccount(), bixrpCurrency());
     }
 };
 
-/** Converts to XRP Issue or STAmount.
+/** Converts to BIXRP Issue or STAmount.
 
     Examples:
-        XRP         Converts to the XRP Issue
-        XRP(10)     Returns STAmount of 10 XRP
+        BIXRP         Converts to the BIXRP Issue
+        BIXRP(10)     Returns STAmount of 10 BIXRP
 */
-extern XRP_t const XRP;
+extern BIXRP_t const BIXRP;
 
-/** Returns an XRP PrettyAmount, which is trivially convertible to STAmount.
+/** Returns an BIXRP PrettyAmount, which is trivially convertible to STAmount.
 
     Example:
         drops(10)   Returns PrettyAmount of 10 drops
@@ -243,13 +243,13 @@ drops(Integer i)
     return {i};
 }
 
-/** Returns an XRP PrettyAmount, which is trivially convertible to STAmount.
+/** Returns an BIXRP PrettyAmount, which is trivially convertible to STAmount.
 
 Example:
 drops(view->fee().basefee)   Returns PrettyAmount of 10 drops
 */
 inline PrettyAmount
-drops(XRPAmount i)
+drops(BIXRPAmount i)
 {
     return {i};
 }

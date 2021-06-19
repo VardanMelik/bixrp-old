@@ -34,7 +34,7 @@ public:
         using namespace jtx;
         for (std::size_t i = 1; i <= n; ++i)
         {
-            env(offer("alice", XRP(i), iou(1)));
+            env(offer("alice", BIXRP(i), iou(1)));
             env.close();
         }
     }
@@ -48,7 +48,7 @@ public:
         env.disable_sigs();
         auto const gw = Account("gateway");
         auto const USD = gw["USD"];
-        env.fund(XRP(billion), gw, "alice");
+        env.fund(BIXRP(billion), gw, "alice");
         env.trust(USD(billion), "alice");
         env(pay(gw, "alice", USD(billion)));
         createOffers(env, USD, n);
@@ -89,7 +89,7 @@ public:
         using namespace jtx;
         for (std::size_t i = 1; i <= n; ++i)
         {
-            env(offer("alice", XRP(1), iou(1)));
+            env(offer("alice", BIXRP(1), iou(1)));
             env.close();
         }
     }
@@ -104,12 +104,12 @@ public:
         env.disable_sigs();
         auto const gw = Account("gateway");
         auto const USD = gw["USD"];
-        env.fund(XRP(billion), gw, "alice");
+        env.fund(BIXRP(billion), gw, "alice");
         env.trust(USD(billion), "alice");
         env(pay(gw, "alice", USD(billion)));
         createOffers(env, USD, n);
         env(pay("alice", gw, USD(billion)));
-        env(offer("alice", USD(1), XRP(1)));
+        env(offer("alice", USD(1), BIXRP(1)));
     }
 
     void
@@ -153,7 +153,7 @@ public:
         using namespace jtx;
         for (std::size_t i = 1; i <= n; ++i)
         {
-            env(offer("alice", XRP(i), iou(1)));
+            env(offer("alice", BIXRP(i), iou(1)));
             env.close();
         }
     }
@@ -167,12 +167,12 @@ public:
         env.disable_sigs();
         auto const gw = Account("gateway");
         auto const USD = gw["USD"];
-        env.fund(XRP(billion), gw, "alice");
+        env.fund(BIXRP(billion), gw, "alice");
         env.trust(USD(billion), "alice");
         env(pay(gw, "alice", USD(billion)));
         createOffers(env, USD, n);
         env(pay("alice", gw, USD(billion)));
-        env(offer("alice", USD(1), XRP(1)), ter(std::ignore));
+        env(offer("alice", USD(1), BIXRP(1)), ter(std::ignore));
         return env.ter() == tecOVERSIZE;
     }
 

@@ -66,7 +66,7 @@ class PaymentSandbox_test : public beast::unit_test::suite
         Account const snd("snd");
         Account const rcv("rcv");
 
-        env.fund(XRP(10000), snd, rcv, gw1, gw2);
+        env.fund(BIXRP(10000), snd, rcv, gw1, gw2);
 
         auto const USD_gw1 = gw1["USD"];
         auto const USD_gw2 = gw2["USD"];
@@ -103,7 +103,7 @@ class PaymentSandbox_test : public beast::unit_test::suite
         Account const gw2("gw2");
         Account const alice("alice");
 
-        env.fund(XRP(10000), alice, gw1, gw2);
+        env.fund(BIXRP(10000), alice, gw1, gw2);
 
         auto j = env.app().journal("View");
 
@@ -338,14 +338,14 @@ class PaymentSandbox_test : public beast::unit_test::suite
         testcase("Reserve");
         using namespace jtx;
 
-        auto accountFundsXRP = [](ReadView const& view,
+        auto accountFundsBIXRP = [](ReadView const& view,
                                   AccountID const& id,
-                                  beast::Journal j) -> XRPAmount {
-            return toAmount<XRPAmount>(accountHolds(
-                view, id, xrpCurrency(), xrpAccount(), fhZERO_IF_FROZEN, j));
+                                  beast::Journal j) -> BIXRPAmount {
+            return toAmount<BIXRPAmount>(accountHolds(
+                view, id, bixrpCurrency(), bixrpAccount(), fhZERO_IF_FROZEN, j));
         };
 
-        auto reserve = [](jtx::Env& env, std::uint32_t count) -> XRPAmount {
+        auto reserve = [](jtx::Env& env, std::uint32_t count) -> BIXRPAmount {
             return env.current()->fees().accountReserve(count);
         };
 
@@ -364,16 +364,16 @@ class PaymentSandbox_test : public beast::unit_test::suite
 
             {
                 auto r =
-                    accountSend(sb, xrpAccount(), alice, XRP(100), env.journal);
+                    accountSend(sb, bixrpAccount(), alice, BIXRP(100), env.journal);
                 BEAST_EXPECT(r == tesSUCCESS);
             }
             {
                 auto r =
-                    accountSend(sb, alice, xrpAccount(), XRP(100), env.journal);
+                    accountSend(sb, alice, bixrpAccount(), BIXRP(100), env.journal);
                 BEAST_EXPECT(r == tesSUCCESS);
             }
             BEAST_EXPECT(
-                accountFundsXRP(sb, alice, env.journal) == beast::zero);
+                accountFundsBIXRP(sb, alice, env.journal) == beast::zero);
         }
     }
 
