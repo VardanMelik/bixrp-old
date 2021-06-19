@@ -74,7 +74,7 @@ public:
         using namespace jtx;
         Env env(*this);
         Account const alice{"alice"};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
 
         auto const withoutSigners =
             std::string("{ ") + "\"account\": \"" + alice.human() + "\"}";
@@ -195,7 +195,7 @@ public:
         using namespace jtx;
         Env env(*this);
         Account const alice{"alice"};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
 
         auto const withoutSigners = std::string("{ ") +
             "\"jsonrpc\": \"2.0\", "
@@ -434,7 +434,7 @@ public:
                 client.reply.account_data()
                     .balance()
                     .value()
-                    .xrp_amount()
+                    .bixrp_amount()
                     .drops() == 1000 * 1000 * 1000);
             BEAST_EXPECT(
                 client.reply.account_data().account().value().address() ==

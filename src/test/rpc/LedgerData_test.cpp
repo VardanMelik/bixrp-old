@@ -48,7 +48,7 @@ public:
         Env env{*this, asAdmin ? envconfig() : envconfig(no_admin)};
         Account const gw{"gateway"};
         auto const USD = gw["USD"];
-        env.fund(XRP(100000), gw);
+        env.fund(BIXRP(100000), gw);
 
         int const max_limit = 256;  // would be 2048 for binary requests, no
                                     // need to test that here
@@ -56,7 +56,7 @@ public:
         for (auto i = 0; i < max_limit + 10; i++)
         {
             Account const bob{std::string("bob") + std::to_string(i)};
-            env.fund(XRP(1000), bob);
+            env.fund(BIXRP(1000), bob);
         }
         env.close();
 
@@ -98,14 +98,14 @@ public:
         Env env{*this, envconfig(no_admin)};
         Account const gw{"gateway"};
         auto const USD = gw["USD"];
-        env.fund(XRP(100000), gw);
+        env.fund(BIXRP(100000), gw);
 
         int const num_accounts = 10;
 
         for (auto i = 0; i < num_accounts; i++)
         {
             Account const bob{std::string("bob") + std::to_string(i)};
-            env.fund(XRP(1000), bob);
+            env.fund(BIXRP(1000), bob);
         }
         env.close();
 
@@ -134,7 +134,7 @@ public:
         auto const USD = gw["USD"];
         Account const bob{"bob"};
 
-        env.fund(XRP(10000), gw, bob);
+        env.fund(BIXRP(10000), gw, bob);
         env.trust(USD(1000), bob);
 
         {
@@ -203,14 +203,14 @@ public:
         Env env{*this, envconfig(no_admin)};
         Account const gw{"gateway"};
         auto const USD = gw["USD"];
-        env.fund(XRP(100000), gw);
+        env.fund(BIXRP(100000), gw);
 
         int const num_accounts = 20;
 
         for (auto i = 0; i < num_accounts; i++)
         {
             Account const bob{std::string("bob") + std::to_string(i)};
-            env.fund(XRP(1000), bob);
+            env.fund(BIXRP(1000), bob);
         }
         env.close();
 
@@ -250,7 +250,7 @@ public:
     {
         using namespace test::jtx;
         Env env{*this};
-        env.fund(XRP(100000), "alice");
+        env.fund(BIXRP(100000), "alice");
         env.close();
 
         // Ledger header should be present in the first query
@@ -312,16 +312,16 @@ public:
 
         Account const gw{"gateway"};
         auto const USD = gw["USD"];
-        env.fund(XRP(100000), gw);
+        env.fund(BIXRP(100000), gw);
 
         int const num_accounts = 10;
 
         for (auto i = 0; i < num_accounts; i++)
         {
             Account const bob{std::string("bob") + std::to_string(i)};
-            env.fund(XRP(1000), bob);
+            env.fund(BIXRP(1000), bob);
         }
-        env(offer(Account{"bob0"}, USD(100), XRP(100)));
+        env(offer(Account{"bob0"}, USD(100), BIXRP(100)));
         env.trust(Account{"bob2"}["USD"](100), Account{"bob3"});
 
         auto majorities = getMajorityAmendments(*env.closed());
@@ -342,7 +342,7 @@ public:
             jv[jss::Flags] = tfUniversal;
             jv[jss::Account] = Account{"bob5"}.human();
             jv[jss::Destination] = Account{"bob6"}.human();
-            jv[jss::Amount] = XRP(50).value().getJson(JsonOptions::none);
+            jv[jss::Amount] = BIXRP(50).value().getJson(JsonOptions::none);
             jv[sfFinishAfter.fieldName] = NetClock::time_point{env.now() + 10s}
                                               .time_since_epoch()
                                               .count();
@@ -355,7 +355,7 @@ public:
             jv[jss::Flags] = tfUniversal;
             jv[jss::Account] = Account{"bob6"}.human();
             jv[jss::Destination] = Account{"bob7"}.human();
-            jv[jss::Amount] = XRP(100).value().getJson(JsonOptions::none);
+            jv[jss::Amount] = BIXRP(100).value().getJson(JsonOptions::none);
             jv[jss::SettleDelay] = NetClock::duration{10s}.count();
             jv[sfPublicKey.fieldName] = strHex(Account{"bob6"}.pk().slice());
             jv[sfCancelAfter.fieldName] = NetClock::time_point{env.now() + 300s}
@@ -364,7 +364,7 @@ public:
             env(jv);
         }
 
-        env(check::create("bob6", "bob7", XRP(100)));
+        env(check::create("bob6", "bob7", BIXRP(100)));
 
         // bob9 DepositPreauths bob4 and bob8.
         env(deposit::auth(Account{"bob9"}, Account{"bob4"}));

@@ -188,7 +188,7 @@ private:
             //   "TxnSignature",      "TransactionSignature"
             //
             // gRPC adds typing information for Fee, which accounts for
-            //   "Fee",               "XRPDropsAmount"
+            //   "Fee",               "BIXRPDropsAmount"
             //
             // There's one misspelling which accounts for
             //   "TakerGetsCurrency", "TakerGetsCurreny"
@@ -201,7 +201,7 @@ private:
             //
             static const std::map<std::string, std::string> sFieldToGRPC{
                 {"AccountTxnID",      "AccountTransactionID"},
-                {"Fee",               "XRPDropsAmount"},
+                {"Fee",               "BIXRPDropsAmount"},
                 {"PreviousTxnID",     "PreviousTransactionID"},
                 {"PreviousTxnLgrSeq", "PreviousTransactionLedgerSequence"},
                 {"Signature",         "PaymentChannelSignature"},
@@ -625,7 +625,7 @@ private:
                 {sfAuthorize.fieldCode,         "AccountAddress"},
                 {sfBalance.fieldCode,           "CurrencyAmount"},
                 {sfDestination.fieldCode,       "AccountAddress"},
-                {sfFee.fieldCode,               "XRPDropsAmount"},
+                {sfFee.fieldCode,               "BIXRPDropsAmount"},
                 {sfHighLimit.fieldCode,         "CurrencyAmount"},
                 {sfLowLimit.fieldCode,          "CurrencyAmount"},
                 {sfOwner.fieldCode,             "AccountAddress"},

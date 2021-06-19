@@ -25,7 +25,7 @@ namespace test {
 
 // Helper function that returns the reserve on an account based on
 // the passed in number of owners.
-static XRPAmount
+static BIXRPAmount
 reserve(jtx::Env& env, std::uint32_t count)
 {
     return env.current()->fees().accountReserve(count);
@@ -51,7 +51,7 @@ struct DepositAuth_test : public beast::unit_test::suite
         {
             // featureDepositAuth is disabled.
             Env env(*this, supported_amendments() - featureDepositAuth);
-            env.fund(XRP(10000), alice);
+            env.fund(BIXRP(10000), alice);
 
             // Note that, to support old behavior, invalid flags are ignored.
             env(fset(alice, asfDepositAuth));
@@ -65,7 +65,7 @@ struct DepositAuth_test : public beast::unit_test::suite
         {
             // featureDepositAuth is enabled.
             Env env(*this);
-            env.fund(XRP(10000), alice);
+            env.fund(BIXRP(10000), alice);
 
             env(fset(alice, asfDepositAuth));
             env.close();
@@ -80,7 +80,7 @@ struct DepositAuth_test : public beast::unit_test::suite
     void
     testPayIOU()
     {
-        // Exercise IOU payments and non-direct XRP payments to an account
+        // Exercise IOU payments and non-direct BIXRP payments to an account
         // that has the lsfDepositAuth flag set.
         testcase("Pay IOU");
 
@@ -93,12 +93,12 @@ struct DepositAuth_test : public beast::unit_test::suite
 
         Env env(*this);
 
-        env.fund(XRP(10000), alice, bob, carol, gw);
+        env.fund(BIXRP(10000), alice, bob, carol, gw);
         env.trust(USD(1000), alice, bob);
         env.close();
 
         env(pay(gw, alice, USD(150)));
-        env(offer(carol, USD(100), XRP(100)));
+        env(offer(carol, USD(100), BIXRP(100)));
         env.close();
 
         // Make sure bob's trust line is all set up so he can receive USD.
@@ -114,51 +114,51 @@ struct DepositAuth_test : public beast::unit_test::suite
             env.require(flags(bob, asfDepositAuth));
 
             // Capture bob's balances before hand to confirm they don't change.
-            PrettyAmount const bobXrpBalance{env.balance(bob, XRP)};
+            PrettyAmount const bobBIXrpBalance{env.balance(bob, BIXRP)};
             PrettyAmount const bobUsdBalance{env.balance(bob, USD)};
 
             env(pay(alice, bob, USD(50)), ter(tecNO_PERMISSION));
             env.close();
 
-            // Note that even though alice is paying bob in XRP, the payment
+            // Note that even though alice is paying bob in BIXRP, the payment
             // is still not allowed since the payment passes through an offer.
             env(pay(alice, bob, drops(1)),
                 sendmax(USD(1)),
                 ter(tecNO_PERMISSION));
             env.close();
 
-            BEAST_EXPECT(bobXrpBalance == env.balance(bob, XRP));
+            BEAST_EXPECT(bobBIXrpBalance == env.balance(bob, BIXRP));
             BEAST_EXPECT(bobUsdBalance == env.balance(bob, USD));
         };
 
-        //  Test when bob has an XRP balance > base reserve.
+        //  Test when bob has an BIXRP balance > base reserve.
         failedIouPayments();
 
-        // Set bob's XRP balance == base reserve.  Also demonstrate that
+        // Set bob's BIXRP balance == base reserve.  Also demonstrate that
         // bob can make payments while his lsfDepositAuth flag is set.
         env(pay(bob, alice, USD(25)));
         env.close();
 
         {
-            STAmount const bobPaysXRP{env.balance(bob, XRP) - reserve(env, 1)};
-            XRPAmount const bobPaysFee{reserve(env, 1) - reserve(env, 0)};
-            env(pay(bob, alice, bobPaysXRP), fee(bobPaysFee));
+            STAmount const bobPaysBIXRP{env.balance(bob, BIXRP) - reserve(env, 1)};
+            BIXRPAmount const bobPaysFee{reserve(env, 1) - reserve(env, 0)};
+            env(pay(bob, alice, bobPaysBIXRP), fee(bobPaysFee));
             env.close();
         }
 
-        // Test when bob's XRP balance == base reserve.
-        BEAST_EXPECT(env.balance(bob, XRP) == reserve(env, 0));
+        // Test when bob's BIXRP balance == base reserve.
+        BEAST_EXPECT(env.balance(bob, BIXRP) == reserve(env, 0));
         BEAST_EXPECT(env.balance(bob, USD) == USD(25));
         failedIouPayments();
 
-        // Test when bob has an XRP balance == 0.
+        // Test when bob has an BIBIXRP balance == 0.
         env(noop(bob), fee(reserve(env, 0)));
         env.close();
 
-        BEAST_EXPECT(env.balance(bob, XRP) == XRP(0));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == BIXRP(0));
         failedIouPayments();
 
-        // Give bob enough XRP for the fee to clear the lsfDepositAuth flag.
+        // Give bob enough BIXRP for the fee to clear the lsfDepositAuth flag.
         env(pay(alice, bob, drops(env.current()->fees().base)));
 
         // bob clears the lsfDepositAuth and the next payment succeeds.
@@ -173,11 +173,11 @@ struct DepositAuth_test : public beast::unit_test::suite
     }
 
     void
-    testPayXRP()
+    testPayBIXRP()
     {
-        // Exercise direct XRP payments to an account that has the
+        // Exercise direct BIXRP payments to an account that has the
         // lsfDepositAuth flag set.
-        testcase("Pay XRP");
+        testcase("Pay BIXRP");
 
         using namespace jtx;
         Account const alice{"alice"};
@@ -185,41 +185,41 @@ struct DepositAuth_test : public beast::unit_test::suite
 
         Env env(*this);
 
-        env.fund(XRP(10000), alice, bob);
+        env.fund(BIXRP(10000), alice, bob);
 
         // bob sets the lsfDepositAuth flag.
         env(fset(bob, asfDepositAuth), fee(drops(10)));
         env.close();
-        BEAST_EXPECT(env.balance(bob, XRP) == XRP(10000) - drops(10));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == BIXRP(10000) - drops(10));
 
-        // bob has more XRP than the base reserve.  Any XRP payment should fail.
+        // bob has more BIXRP than the base reserve.  Any XRP payment should fail.
         env(pay(alice, bob, drops(1)), ter(tecNO_PERMISSION));
         env.close();
-        BEAST_EXPECT(env.balance(bob, XRP) == XRP(10000) - drops(10));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == BIXRP(10000) - drops(10));
 
-        // Change bob's XRP balance to exactly the base reserve.
+        // Change bob's BIXRP balance to exactly the base reserve.
         {
-            STAmount const bobPaysXRP{env.balance(bob, XRP) - reserve(env, 1)};
-            XRPAmount const bobPaysFee{reserve(env, 1) - reserve(env, 0)};
-            env(pay(bob, alice, bobPaysXRP), fee(bobPaysFee));
+            STAmount const bobPaysBIXRP{env.balance(bob, BIXRP) - reserve(env, 1)};
+            BIXRPAmount const bobPaysFee{reserve(env, 1) - reserve(env, 0)};
+            env(pay(bob, alice, bobPaysBIXRP), fee(bobPaysFee));
             env.close();
         }
 
-        // bob has exactly the base reserve.  A small enough direct XRP
+        // bob has exactly the base reserve.  A small enough direct BIXRP
         // payment should succeed.
-        BEAST_EXPECT(env.balance(bob, XRP) == reserve(env, 0));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == reserve(env, 0));
         env(pay(alice, bob, drops(1)));
         env.close();
 
         // bob has exactly the base reserve + 1.  No payment should succeed.
-        BEAST_EXPECT(env.balance(bob, XRP) == reserve(env, 0) + drops(1));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == reserve(env, 0) + drops(1));
         env(pay(alice, bob, drops(1)), ter(tecNO_PERMISSION));
         env.close();
 
-        // Take bob down to a balance of 0 XRP.
+        // Take bob down to a balance of 0 BIXRP.
         env(noop(bob), fee(reserve(env, 0) + drops(1)));
         env.close();
-        BEAST_EXPECT(env.balance(bob, XRP) == drops(0));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == drops(0));
 
         // We should not be able to pay bob more than the base reserve.
         env(pay(alice, bob, reserve(env, 0) + drops(1)), ter(tecNO_PERMISSION));
@@ -228,24 +228,24 @@ struct DepositAuth_test : public beast::unit_test::suite
         // However a payment of exactly the base reserve should succeed.
         env(pay(alice, bob, reserve(env, 0) + drops(0)));
         env.close();
-        BEAST_EXPECT(env.balance(bob, XRP) == reserve(env, 0));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == reserve(env, 0));
 
         // We should be able to pay bob the base reserve one more time.
         env(pay(alice, bob, reserve(env, 0) + drops(0)));
         env.close();
         BEAST_EXPECT(
-            env.balance(bob, XRP) == (reserve(env, 0) + reserve(env, 0)));
+            env.balance(bob, BIXRP) == (reserve(env, 0) + reserve(env, 0)));
 
         // bob's above the threshold again.  Any payment should fail.
         env(pay(alice, bob, drops(1)), ter(tecNO_PERMISSION));
         env.close();
         BEAST_EXPECT(
-            env.balance(bob, XRP) == (reserve(env, 0) + reserve(env, 0)));
+            env.balance(bob, BIXRP) == (reserve(env, 0) + reserve(env, 0)));
 
-        // Take bob back down to a zero XRP balance.
-        env(noop(bob), fee(env.balance(bob, XRP)));
+        // Take bob back down to a zero BIXRP balance.
+        env(noop(bob), fee(env.balance(bob, BIXRP)));
         env.close();
-        BEAST_EXPECT(env.balance(bob, XRP) == drops(0));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == drops(0));
 
         // bob should not be able to clear lsfDepositAuth.
         env(fclear(bob, asfDepositAuth), ter(terINSUF_FEE_B));
@@ -254,7 +254,7 @@ struct DepositAuth_test : public beast::unit_test::suite
         // We should be able to pay bob 1 drop now.
         env(pay(alice, bob, drops(1)));
         env.close();
-        BEAST_EXPECT(env.balance(bob, XRP) == drops(1));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == drops(1));
 
         // Pay bob enough so he can afford the fee to clear lsfDepositAuth.
         env(pay(alice, bob, drops(9)));
@@ -263,14 +263,14 @@ struct DepositAuth_test : public beast::unit_test::suite
         // Interestingly, at this point the terINSUF_FEE_B retry grabs the
         // request to clear lsfDepositAuth.  So the balance should be zero
         // and lsfDepositAuth should be cleared.
-        BEAST_EXPECT(env.balance(bob, XRP) == drops(0));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == drops(0));
         env.require(nflags(bob, asfDepositAuth));
 
         // Since bob no longer has lsfDepositAuth set we should be able to
         // pay him more than the base reserve.
         env(pay(alice, bob, reserve(env, 0) + drops(1)));
         env.close();
-        BEAST_EXPECT(env.balance(bob, XRP) == reserve(env, 0) + drops(1));
+        BEAST_EXPECT(env.balance(bob, BIXRP) == reserve(env, 0) + drops(1));
     }
 
     void
@@ -298,7 +298,7 @@ struct DepositAuth_test : public beast::unit_test::suite
 
             Env env(*this, features);
 
-            env.fund(XRP(10000), gw1, alice, bob);
+            env.fund(BIXRP(10000), gw1, alice, bob);
             env(trust(gw1, alice["USD"](10), noRipplePrev ? tfSetNoRipple : 0));
             env(trust(gw1, bob["USD"](10), noRippleNext ? tfSetNoRipple : 0));
             env.trust(USD1(10), alice, bob);
@@ -321,7 +321,7 @@ struct DepositAuth_test : public beast::unit_test::suite
 
             Env env(*this, features);
 
-            env.fund(XRP(10000), gw1, gw2, alice);
+            env.fund(BIXRP(10000), gw1, gw2, alice);
             env(trust(alice, USD1(10), noRipplePrev ? tfSetNoRipple : 0));
             env(trust(alice, USD2(10), noRippleNext ? tfSetNoRipple : 0));
             env(pay(gw2, alice, USD2(10)));
@@ -376,7 +376,7 @@ struct DepositAuth_test : public beast::unit_test::suite
     {
         testEnable();
         testPayIOU();
-        testPayXRP();
+        testPayBIXRP();
         testNoRipple();
     }
 };
@@ -394,7 +394,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
         {
             // featureDepositPreauth is disabled.
             Env env(*this, supported_amendments() - featureDepositPreauth);
-            env.fund(XRP(10000), alice, becky);
+            env.fund(BIXRP(10000), alice, becky);
             env.close();
 
             // Should not be able to add a DepositPreauth to alice.
@@ -416,7 +416,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             //  o That entry should cost one reserve.
             //  o The reserve should be returned when the entry is removed.
             Env env(*this);
-            env.fund(XRP(10000), alice, becky);
+            env.fund(BIXRP(10000), alice, becky);
             env.close();
 
             // Add a DepositPreauth to alice.
@@ -435,7 +435,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             // Verify that an account can be preauthorized and unauthorized
             // using tickets.
             Env env(*this);
-            env.fund(XRP(10000), alice, becky);
+            env.fund(BIXRP(10000), alice, becky);
             env.close();
 
             env(ticket::create(alice, 2));
@@ -485,7 +485,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
         // Add DepositPreauth to an unfunded account.
         env(deposit::auth(alice, becky), seq(1), ter(terNO_ACCOUNT));
 
-        env.fund(XRP(10000), alice, becky);
+        env.fund(BIXRP(10000), alice, becky);
         env.close();
 
         // Bad fee.
@@ -513,7 +513,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
         {
             // Alice authorizes a zero account.
             Json::Value tx{deposit::auth(alice, becky)};
-            tx[sfAuthorize.jsonName] = to_string(xrpAccount());
+            tx[sfAuthorize.jsonName] = to_string(bixrpAccount());
             env(tx, ter(temINVALID_ACCOUNT_ID));
             env.close();
         }
@@ -549,7 +549,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
         env.require(owners(carol, 0));
         env.require(owners(becky, 0));
 
-        // carol gets enough XRP to (barely) meet the reserve.
+        // carol gets enough BIXRP to (barely) meet the reserve.
         env(pay(alice, carol, drops(11)));
         env.close();
         env(deposit::auth(carol, becky));
@@ -601,7 +601,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             // account with the DepositAuth flag set could not make a payment
             // to itself.  That bug was fixed in the DepositPreauth amendment.
             Env env(*this, features);
-            env.fund(XRP(5000), alice, becky, gw);
+            env.fund(BIXRP(5000), alice, becky, gw);
             env.close();
 
             env.trust(USD(1000), alice);
@@ -611,13 +611,13 @@ struct DepositPreauth_test : public beast::unit_test::suite
             env(pay(gw, alice, USD(500)));
             env.close();
 
-            env(offer(alice, XRP(100), USD(100), tfPassive),
+            env(offer(alice, BIXRP(100), USD(100), tfPassive),
                 require(offers(alice, 1)));
             env.close();
 
             // becky pays herself USD (10) by consuming part of alice's offer.
             // Make sure the payment works if PaymentAuth is not involved.
-            env(pay(becky, becky, USD(10)), path(~USD), sendmax(XRP(10)));
+            env(pay(becky, becky, USD(10)), path(~USD), sendmax(BIXRP(10)));
             env.close();
 
             // becky decides to require authorization for deposits.
@@ -631,7 +631,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
 
             env(pay(becky, becky, USD(10)),
                 path(~USD),
-                sendmax(XRP(10)),
+                sendmax(BIXRP(10)),
                 ter(expect));
             env.close();
         }
@@ -643,7 +643,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             Account const carol{"carol"};
 
             Env env(*this, features);
-            env.fund(XRP(5000), alice, becky, carol, gw);
+            env.fund(BIXRP(5000), alice, becky, carol, gw);
             env.close();
 
             env.trust(USD(1000), alice);
@@ -654,8 +654,8 @@ struct DepositPreauth_test : public beast::unit_test::suite
             env(pay(gw, alice, USD(1000)));
             env.close();
 
-            // Make XRP and IOU payments from alice to becky.  Should be fine.
-            env(pay(alice, becky, XRP(100)));
+            // Make BIXRP and IOU payments from alice to becky.  Should be fine.
+            env(pay(alice, becky, BIXRP(100)));
             env(pay(alice, becky, USD(100)));
             env.close();
 
@@ -664,7 +664,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             env.close();
 
             // alice can no longer pay becky.
-            env(pay(alice, becky, XRP(100)), ter(tecNO_PERMISSION));
+            env(pay(alice, becky, BIXRP(100)), ter(tecNO_PERMISSION));
             env(pay(alice, becky, USD(100)), ter(tecNO_PERMISSION));
             env.close();
 
@@ -674,7 +674,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             env.close();
 
             // alice still can't pay becky.
-            env(pay(alice, becky, XRP(100)), ter(tecNO_PERMISSION));
+            env(pay(alice, becky, BIXRP(100)), ter(tecNO_PERMISSION));
             env(pay(alice, becky, USD(100)), ter(tecNO_PERMISSION));
             env.close();
 
@@ -693,7 +693,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
 
             // Even though alice is authorized to pay becky, becky is not
             // authorized to pay alice.
-            env(pay(becky, alice, XRP(100)), ter(tecNO_PERMISSION));
+            env(pay(becky, alice, BIXRP(100)), ter(tecNO_PERMISSION));
             env(pay(becky, alice, USD(100)), ter(tecNO_PERMISSION));
             env.close();
 
@@ -709,7 +709,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             env(deposit::unauth(becky, alice));
             env.close();
 
-            env(pay(alice, becky, XRP(100)), ter(tecNO_PERMISSION));
+            env(pay(alice, becky, BIXRP(100)), ter(tecNO_PERMISSION));
             env(pay(alice, becky, USD(100)), ter(tecNO_PERMISSION));
             env.close();
 
@@ -718,7 +718,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             env(fclear(becky, asfDepositAuth));
             env.close();
 
-            env(pay(alice, becky, XRP(100)));
+            env(pay(alice, becky, BIXRP(100)));
             env(pay(alice, becky, USD(100)));
             env.close();
         }

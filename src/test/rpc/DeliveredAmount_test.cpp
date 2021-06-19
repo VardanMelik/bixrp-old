@@ -194,7 +194,7 @@ class DeliveredAmount_test : public beast::unit_test::suite
         for (bool const afterSwitchTime : {true, false})
         {
             Env env{*this};
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             if (afterSwitchTime)
                 env.close(NetClock::time_point{446000000s});
@@ -208,7 +208,7 @@ class DeliveredAmount_test : public beast::unit_test::suite
                 // normal payments
                 env(pay(gw, alice, USD(50)));
                 checkDeliveredAmount.adjCountersSuccess();
-                env(pay(gw, alice, XRP(50)));
+                env(pay(gw, alice, BIXRP(50)));
                 checkDeliveredAmount.adjCountersSuccess();
 
                 // partial payment
@@ -283,7 +283,7 @@ class DeliveredAmount_test : public beast::unit_test::suite
         for (bool const afterSwitchTime : {true, false})
         {
             Env env{*this};
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             if (afterSwitchTime)
                 env.close(NetClock::time_point{446000000s});
@@ -294,7 +294,7 @@ class DeliveredAmount_test : public beast::unit_test::suite
             // normal payments
             env(pay(gw, alice, USD(50)));
             checkDeliveredAmount.adjCountersSuccess();
-            env(pay(gw, alice, XRP(50)));
+            env(pay(gw, alice, BIXRP(50)));
             checkDeliveredAmount.adjCountersSuccess();
 
             // partial payment

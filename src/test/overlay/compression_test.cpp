@@ -200,7 +200,7 @@ public:
         int fund = 10000;
         auto const alice = Account("alice");
         auto const bob = Account("bob");
-        env.fund(XRP(fund), "alice", "bob");
+        env.fund(BIXRP(fund), "alice", "bob");
         env.trust(bob["USD"](fund), alice);
         env.close();
 
@@ -273,7 +273,7 @@ public:
             info.txHash = ripple::sha512Half(i + 1);
             info.accountHash = ripple::sha512Half(i + 2);
             info.parentHash = parentHash;
-            info.drops = XRPAmount(10);
+            info.drops = BIXRPAmount(10);
             info.closeTimeResolution = tk->now().time_since_epoch();
             info.closeTime = tk->now();
             parentHash = ledgerHash(info);

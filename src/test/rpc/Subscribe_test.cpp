@@ -186,7 +186,7 @@ public:
         }
 
         {
-            env.fund(XRP(10000), "alice");
+            env.fund(BIXRP(10000), "alice");
             env.close();
 
             // Check stream update for payment transaction
@@ -203,7 +203,7 @@ public:
                     Account("alice").human();
             }));
 
-            env.fund(XRP(10000), "bob");
+            env.fund(BIXRP(10000), "bob");
             env.close();
 
             // Check stream update for payment transaction
@@ -253,7 +253,7 @@ public:
 
         {
             // Transaction that does not affect stream
-            env.fund(XRP(10000), "carol");
+            env.fund(BIXRP(10000), "carol");
             env.close();
             BEAST_EXPECT(!wsc->getMsg(10ms));
 

@@ -119,7 +119,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         auto const USD = gw["USD"];
         Account const bob{"bob"};
 
-        env.fund(XRP(10000), gw, bob);
+        env.fund(BIXRP(10000), gw, bob);
         env.close();
         env.trust(USD(1000), bob);
         env.close();
@@ -208,7 +208,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         using namespace test::jtx;
         Env env{*this};
         Account const alice{"alice"};
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         Json::Value jvParams;
@@ -286,7 +286,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         using namespace test::jtx;
         Env env{*this};
         Account const alice{"alice"};
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         std::string const ledgerHash{to_string(env.closed()->info().hash)};
@@ -375,12 +375,12 @@ class LedgerRPC_test : public beast::unit_test::suite
         using namespace test::jtx;
         Env env{*this};
         Account const alice{"alice"};
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         auto const checkId = keylet::check(env.master, env.seq(env.master));
 
-        env(check::create(env.master, alice, XRP(100)));
+        env(check::create(env.master, alice, BIXRP(100)));
         env.close();
 
         std::string const ledgerHash{to_string(env.closed()->info().hash)};
@@ -426,7 +426,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         Account const alice{"alice"};
         Account const becky{"becky"};
 
-        env.fund(XRP(10000), alice, becky);
+        env.fund(BIXRP(10000), alice, becky);
         env.close();
 
         env(deposit::auth(alice, becky));
@@ -555,7 +555,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         Account const alice{"alice"};
         Account const gw{"gateway"};
         auto const USD = gw["USD"];
-        env.fund(XRP(10000), alice, gw);
+        env.fund(BIXRP(10000), alice, gw);
         env.close();
 
         env.trust(USD(1000), alice);
@@ -692,7 +692,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         using namespace test::jtx;
         Env env{*this};
         Account const alice{"alice"};
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         // Lambda to create an escrow.
@@ -712,7 +712,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         };
 
         using namespace std::chrono_literals;
-        env(escrowCreate(alice, alice, XRP(333), env.now() + 2s));
+        env(escrowCreate(alice, alice, BIXRP(333), env.now() + 2s));
         env.close();
 
         std::string const ledgerHash{to_string(env.closed()->info().hash)};
@@ -726,7 +726,7 @@ class LedgerRPC_test : public beast::unit_test::suite
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             BEAST_EXPECT(
-                jrr[jss::node][jss::Amount] == XRP(333).value().getText());
+                jrr[jss::node][jss::Amount] == BIXRP(333).value().getText());
             escrowIndex = jrr[jss::index].asString();
         }
         {
@@ -737,7 +737,7 @@ class LedgerRPC_test : public beast::unit_test::suite
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             BEAST_EXPECT(
-                jrr[jss::node][jss::Amount] == XRP(333).value().getText());
+                jrr[jss::node][jss::Amount] == BIXRP(333).value().getText());
         }
         {
             // Malformed owner entry.
@@ -795,10 +795,10 @@ class LedgerRPC_test : public beast::unit_test::suite
         Account const alice{"alice"};
         Account const gw{"gateway"};
         auto const USD = gw["USD"];
-        env.fund(XRP(10000), alice, gw);
+        env.fund(BIXRP(10000), alice, gw);
         env.close();
 
-        env(offer(alice, USD(321), XRP(322)));
+        env(offer(alice, USD(321), BIXRP(322)));
         env.close();
 
         std::string const ledgerHash{to_string(env.closed()->info().hash)};
@@ -878,7 +878,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         Env env{*this};
         Account const alice{"alice"};
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         // Lambda to create a PayChan.
@@ -897,7 +897,7 @@ class LedgerRPC_test : public beast::unit_test::suite
             return jv;
         };
 
-        env(payChanCreate(alice, env.master, XRP(57), 18s, alice.pk()));
+        env(payChanCreate(alice, env.master, BIXRP(57), 18s, alice.pk()));
         env.close();
 
         std::string const ledgerHash{to_string(env.closed()->info().hash)};
@@ -935,7 +935,7 @@ class LedgerRPC_test : public beast::unit_test::suite
         Account const alice{"alice"};
         Account const gw{"gateway"};
         auto const USD = gw["USD"];
-        env.fund(XRP(10000), alice, gw);
+        env.fund(BIXRP(10000), alice, gw);
         env.close();
 
         env.trust(USD(999), alice);
@@ -1248,16 +1248,16 @@ class LedgerRPC_test : public beast::unit_test::suite
         using namespace test::jtx;
         Env env{*this, FeatureBitset{}};  // hashes requested below assume
                                           // no amendments
-        env.fund(XRP(10000), "alice");
+        env.fund(BIXRP(10000), "alice");
         env.close();
         log << env.closed()->info().hash;
-        env.fund(XRP(10000), "bob");
+        env.fund(BIXRP(10000), "bob");
         env.close();
         log << env.closed()->info().hash;
-        env.fund(XRP(10000), "jim");
+        env.fund(BIXRP(10000), "jim");
         env.close();
         log << env.closed()->info().hash;
-        env.fund(XRP(10000), "jill");
+        env.fund(BIXRP(10000), "jill");
 
         {
             // access via the legacy ledger field, keyword index values
@@ -1478,11 +1478,11 @@ class LedgerRPC_test : public beast::unit_test::suite
         Account const bob{"bob"};
         Account const charlie{"charlie"};
         Account const daria{"daria"};
-        env.fund(XRP(10000), alice);
-        env.fund(XRP(10000), bob);
+        env.fund(BIXRP(10000), alice);
+        env.fund(BIXRP(10000), bob);
         env.close();
-        env.fund(XRP(10000), charlie);
-        env.fund(XRP(10000), daria);
+        env.fund(BIXRP(10000), charlie);
+        env.fund(BIXRP(10000), daria);
         env.close();
 
         auto jrr = env.rpc("json", "ledger", to_string(jv))[jss::result];
@@ -1501,10 +1501,10 @@ class LedgerRPC_test : public beast::unit_test::suite
         // Put some txs in the queue
         // Alice
         auto aliceSeq = env.seq(alice);
-        env(pay(alice, "george", XRP(1000)),
+        env(pay(alice, "george", BIXRP(1000)),
             json(R"({"LastLedgerSequence":7})"),
             ter(terQUEUED));
-        env(offer(alice, XRP(50000), alice["USD"](5000)),
+        env(offer(alice, BIXRP(50000), alice["USD"](5000)),
             seq(aliceSeq + 1),
             ter(terQUEUED));
         env(noop(alice), seq(aliceSeq + 2), ter(terQUEUED));

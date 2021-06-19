@@ -42,7 +42,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
         Env env{*this};
 
         auto const alice = Account{"alice"};
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         {  // missing account field
@@ -144,7 +144,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
         auto const gw = Account{"gw"};
         auto const alice = Account{"alice"};
 
-        env.fund(XRP(10000), gw, alice);
+        env.fund(BIXRP(10000), gw, alice);
         if ((user && problems) || (!user && !problems))
         {
             env(fset(alice, asfDefaultRipple));
@@ -257,7 +257,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
         Env env{*this, admin ? envconfig() : envconfig(no_admin)};
 
         auto const alice = Account{"alice"};
-        env.fund(XRP(100000), alice);
+        env.fund(BIXRP(100000), alice);
         env(fset(alice, asfDefaultRipple));
         env.close();
 
@@ -293,7 +293,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
             auto const gw = Account{"gw" + std::to_string(i)};
             env.memoize(gw);
             auto const baseFee = env.current()->fees().base;
-            env(pay(env.master, gw, XRP(1000)),
+            env(pay(env.master, gw, BIXRP(1000)),
                 seq(autofill),
                 fee(toDrops(
                         txq.getMetrics(*env.current()).openLedgerFeeLevel,

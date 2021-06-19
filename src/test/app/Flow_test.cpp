@@ -50,11 +50,11 @@ getNoRippleFlag(
 }
 
 jtx::PrettyAmount
-xrpMinusFee(jtx::Env const& env, std::int64_t xrpAmount)
+bixrpMinusFee(jtx::Env const& env, std::int64_t bixrpAmount)
 {
     using namespace jtx;
     auto feeDrops = env.current()->fees().base;
-    return drops(dropsPerXRP * xrpAmount - feeDrops);
+    return drops(dropsPerBIXRP * bixrpAmount - feeDrops);
 };
 
 struct Flow_test : public beast::unit_test::suite
@@ -80,26 +80,26 @@ struct Flow_test : public beast::unit_test::suite
             // Pay USD, trivial path
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.trust(USD(1000), alice, bob);
             env(pay(gw, alice, USD(100)));
             env(pay(alice, bob, USD(10)), paths(USD));
             env.require(balance(bob, USD(10)));
         }
         {
-            // XRP transfer
+            // BIXRP transfer
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob);
-            env(pay(alice, bob, XRP(100)));
-            env.require(balance(bob, XRP(10000 + 100)));
-            env.require(balance(alice, xrpMinusFee(env, 10000 - 100)));
+            env.fund(BIXRP(10000), alice, bob);
+            env(pay(alice, bob, BIXRP(100)));
+            env.require(balance(bob, BIXRP(10000 + 100)));
+            env.require(balance(alice, bixrpMinusFee(env, 10000 - 100)));
         }
         {
             // Partial payments
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.trust(USD(1000), alice, bob);
             env(pay(gw, alice, USD(100)));
             env(pay(alice, bob, USD(110)), paths(USD), ter(tecPATH_PARTIAL));
@@ -113,7 +113,7 @@ struct Flow_test : public beast::unit_test::suite
             // Pay by rippling through accounts, use path finder
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, dan);
+            env.fund(BIXRP(10000), alice, bob, carol, dan);
             env.trust(USDA(10), bob);
             env.trust(USDB(10), carol);
             env.trust(USDC(10), dan);
@@ -128,7 +128,7 @@ struct Flow_test : public beast::unit_test::suite
             // and charge a transfer fee
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, dan);
+            env.fund(BIXRP(10000), alice, bob, carol, dan);
             env.trust(USDA(10), bob);
             env.trust(USDB(10), alice, carol);
             env.trust(USDC(10), dan);
@@ -148,7 +148,7 @@ struct Flow_test : public beast::unit_test::suite
             // Test that the transfer fee is not charged when alice issues
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, dan);
+            env.fund(BIXRP(10000), alice, bob, carol, dan);
             env.trust(USDA(10), bob);
             env.trust(USDB(10), alice, carol);
             env.trust(USDC(10), dan);
@@ -166,7 +166,7 @@ struct Flow_test : public beast::unit_test::suite
             // Paths: A->B->D->E ; A->C->D->E
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, dan, erin);
+            env.fund(BIXRP(10000), alice, bob, carol, dan, erin);
             env.trust(USDA(10), bob, carol);
             env.trust(USDB(10), dan);
             env.trust(USDC(10), alice, dan);
@@ -189,7 +189,7 @@ struct Flow_test : public beast::unit_test::suite
             // Limit quality
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol);
+            env.fund(BIXRP(10000), alice, bob, carol);
             env.trust(USDA(10), bob);
             env.trust(USDB(10), carol);
 
@@ -226,7 +226,7 @@ struct Flow_test : public beast::unit_test::suite
             for (auto bobAliceQOut : {80, 100, 120})
             {
                 Env env(*this, features);
-                env.fund(XRP(10000), alice, bob, carol, dan);
+                env.fund(BIXRP(10000), alice, bob, carol, dan);
                 env(trust(bob, USDD(100)), qualityInPercent(bobDanQIn));
                 env(trust(bob, USDA(100)), qualityOutPercent(bobAliceQOut));
                 env(trust(carol, USDA(100)));
@@ -251,7 +251,7 @@ struct Flow_test : public beast::unit_test::suite
         for (auto carolAliceQIn : {80, 100, 120})
         {
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, carol);
+            env.fund(BIXRP(10000), alice, bob, carol);
             env(trust(bob, USDA(10)));
             env(trust(carol, USDA(10)), qualityInPercent(carolAliceQIn));
 
@@ -267,7 +267,7 @@ struct Flow_test : public beast::unit_test::suite
         for (auto bobAliceQOut : {80, 100, 120})
         {
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, carol);
+            env.fund(BIXRP(10000), alice, bob, carol);
             env(trust(bob, USDA(10)), qualityOutPercent(bobAliceQOut));
             env(trust(carol, USDA(10)));
 
@@ -298,7 +298,7 @@ struct Flow_test : public beast::unit_test::suite
             // simple IOU/IOU offer
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             env.trust(BTC(1000), alice, bob, carol);
 
@@ -316,73 +316,73 @@ struct Flow_test : public beast::unit_test::suite
             BEAST_EXPECT(!isOffer(env, bob, BTC(50), USD(50)));
         }
         {
-            // simple IOU/XRP XRP/IOU offer
+            // simple IOU/BIXRP XRP/IOU offer
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             env.trust(BTC(1000), alice, bob, carol);
 
             env(pay(gw, alice, BTC(50)));
             env(pay(gw, bob, USD(50)));
 
-            env(offer(bob, BTC(50), XRP(50)));
-            env(offer(bob, XRP(50), USD(50)));
+            env(offer(bob, BTC(50), BIXRP(50)));
+            env(offer(bob, BIXRP(50), USD(50)));
 
-            env(pay(alice, carol, USD(50)), path(~XRP, ~USD), sendmax(BTC(50)));
+            env(pay(alice, carol, USD(50)), path(~BIXRP, ~USD), sendmax(BTC(50)));
 
             env.require(balance(alice, BTC(0)));
             env.require(balance(bob, BTC(50)));
             env.require(balance(bob, USD(0)));
             env.require(balance(carol, USD(50)));
-            BEAST_EXPECT(!isOffer(env, bob, XRP(50), USD(50)));
-            BEAST_EXPECT(!isOffer(env, bob, BTC(50), XRP(50)));
+            BEAST_EXPECT(!isOffer(env, bob, BIXRP(50), USD(50)));
+            BEAST_EXPECT(!isOffer(env, bob, BTC(50), BIXRP(50)));
         }
         {
-            // simple XRP -> USD through offer and sendmax
+            // simple BIXRP -> USD through offer and sendmax
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             env.trust(BTC(1000), alice, bob, carol);
 
             env(pay(gw, bob, USD(50)));
 
-            env(offer(bob, XRP(50), USD(50)));
+            env(offer(bob, BIXRP(50), USD(50)));
 
-            env(pay(alice, carol, USD(50)), path(~USD), sendmax(XRP(50)));
+            env(pay(alice, carol, USD(50)), path(~USD), sendmax(BIXRP(50)));
 
-            env.require(balance(alice, xrpMinusFee(env, 10000 - 50)));
-            env.require(balance(bob, xrpMinusFee(env, 10000 + 50)));
+            env.require(balance(alice, bixrpMinusFee(env, 10000 - 50)));
+            env.require(balance(bob, bixrpMinusFee(env, 10000 + 50)));
             env.require(balance(bob, USD(0)));
             env.require(balance(carol, USD(50)));
-            BEAST_EXPECT(!isOffer(env, bob, XRP(50), USD(50)));
+            BEAST_EXPECT(!isOffer(env, bob, BIXRP(50), USD(50)));
         }
         {
-            // simple USD -> XRP through offer and sendmax
+            // simple USD -> BIXRP through offer and sendmax
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             env.trust(BTC(1000), alice, bob, carol);
 
             env(pay(gw, alice, USD(50)));
 
-            env(offer(bob, USD(50), XRP(50)));
+            env(offer(bob, USD(50), BIXRP(50)));
 
-            env(pay(alice, carol, XRP(50)), path(~XRP), sendmax(USD(50)));
+            env(pay(alice, carol, BIXRP(50)), path(~BIXRP), sendmax(USD(50)));
 
             env.require(balance(alice, USD(0)));
-            env.require(balance(bob, xrpMinusFee(env, 10000 - 50)));
+            env.require(balance(bob, bixrpMinusFee(env, 10000 - 50)));
             env.require(balance(bob, USD(50)));
-            env.require(balance(carol, XRP(10000 + 50)));
-            BEAST_EXPECT(!isOffer(env, bob, USD(50), XRP(50)));
+            env.require(balance(carol, BIXRP(10000 + 50)));
+            BEAST_EXPECT(!isOffer(env, bob, USD(50), BIXRP(50)));
         }
         {
             // test unfunded offers are removed when payment succeeds
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             env.trust(BTC(1000), alice, bob, carol);
             env.trust(EUR(1000), alice, bob, carol);
@@ -429,7 +429,7 @@ struct Flow_test : public beast::unit_test::suite
             // that removes unfunded offers when the payment succeeds.
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             env.trust(BTC(1000), alice, bob, carol);
             env.trust(EUR(1000), alice, bob, carol);
@@ -459,7 +459,7 @@ struct Flow_test : public beast::unit_test::suite
                 auto IPE = [](Issue const& iss) {
                     return STPathElement(
                         STPathElement::typeCurrency | STPathElement::typeIssuer,
-                        xrpAccount(),
+                        bixrpAccount(),
                         iss.currency,
                         iss.account);
                 };
@@ -516,7 +516,7 @@ struct Flow_test : public beast::unit_test::suite
             // expected.
 
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(1000), alice, bob, carol);
             env.trust(EUR(1000), alice, bob, carol);
 
@@ -527,7 +527,7 @@ struct Flow_test : public beast::unit_test::suite
             env(offer(bob, drops(1), EUR(1000)), txflags(tfPassive));
 
             env(pay(alice, carol, EUR(1)),
-                path(~XRP, ~EUR),
+                path(~BIXRP, ~EUR),
                 sendmax(USD(0.4)),
                 txflags(tfNoRippleDirect | tfPartialPayment));
 
@@ -557,7 +557,7 @@ struct Flow_test : public beast::unit_test::suite
             // transfer rate
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env(rate(gw, 1.25));
             env.trust(USD(1000), alice, bob, carol);
             env(pay(gw, alice, USD(50)));
@@ -569,7 +569,7 @@ struct Flow_test : public beast::unit_test::suite
             // transfer rate is not charged when issuer is src or dst
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env(rate(gw, 1.25));
             env.trust(USD(1000), alice, bob, carol);
             env(pay(gw, alice, USD(50)));
@@ -581,16 +581,16 @@ struct Flow_test : public beast::unit_test::suite
             // transfer fee on an offer
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env(rate(gw, 1.25));
             env.trust(USD(1000), alice, bob, carol);
             env(pay(gw, bob, USD(65)));
 
-            env(offer(bob, XRP(50), USD(50)));
+            env(offer(bob, BIXRP(50), USD(50)));
 
-            env(pay(alice, carol, USD(50)), path(~USD), sendmax(XRP(50)));
+            env(pay(alice, carol, USD(50)), path(~USD), sendmax(BIXRP(50)));
             env.require(
-                balance(alice, xrpMinusFee(env, 10000 - 50)),
+                balance(alice, bixrpMinusFee(env, 10000 - 50)),
                 balance(bob, USD(2.5)),  // owner pays transfer fee
                 balance(carol, USD(50)));
         }
@@ -599,19 +599,19 @@ struct Flow_test : public beast::unit_test::suite
             // Transfer fee two consecutive offers
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env(rate(gw, 1.25));
             env.trust(USD(1000), alice, bob, carol);
             env.trust(EUR(1000), alice, bob, carol);
             env(pay(gw, bob, USD(50)));
             env(pay(gw, bob, EUR(50)));
 
-            env(offer(bob, XRP(50), USD(50)));
+            env(offer(bob, BIXRP(50), USD(50)));
             env(offer(bob, USD(50), EUR(50)));
 
-            env(pay(alice, carol, EUR(40)), path(~USD, ~EUR), sendmax(XRP(40)));
+            env(pay(alice, carol, EUR(40)), path(~USD, ~EUR), sendmax(BIXRP(40)));
             env.require(
-                balance(alice, xrpMinusFee(env, 10000 - 40)),
+                balance(alice, bixrpMinusFee(env, 10000 - 40)),
                 balance(bob, USD(40)),
                 balance(bob, EUR(0)),
                 balance(carol, EUR(40)));
@@ -624,7 +624,7 @@ struct Flow_test : public beast::unit_test::suite
             auto const USDA = alice["USD"];
             auto const USDB = bob["USD"];
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env(rate(gw, 1.25));
             env.trust(USD(1000), alice, bob, carol);
             env.trust(USDA(1000), bob);
@@ -646,7 +646,7 @@ struct Flow_test : public beast::unit_test::suite
             auto const USDB = bob["USD"];
             Account const dan("dan");
 
-            env.fund(XRP(10000), alice, bob, carol, dan, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, dan, gw);
             env(rate(gw, 1.25));
             env.trust(USD(1000), alice, bob, carol, dan);
             env.trust(EUR(1000), carol, dan);
@@ -673,13 +673,13 @@ struct Flow_test : public beast::unit_test::suite
             // Offer where the owner is also the issuer, owner pays fee
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env(rate(gw, 1.25));
             env.trust(USD(1000), alice, bob);
-            env(offer(gw, XRP(100), USD(100)));
-            env(pay(alice, bob, USD(100)), sendmax(XRP(100)));
+            env(offer(gw, BIXRP(100), USD(100)));
+            env(pay(alice, bob, USD(100)), sendmax(BIXRP(100)));
             env.require(
-                balance(alice, xrpMinusFee(env, 10000 - 100)),
+                balance(alice, bixrpMinusFee(env, 10000 - 100)),
                 balance(bob, USD(100)));
         }
         if (!features[featureOwnerPaysFee])
@@ -687,13 +687,13 @@ struct Flow_test : public beast::unit_test::suite
             // Offer where the owner is also the issuer, sender pays fee
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env(rate(gw, 1.25));
             env.trust(USD(1000), alice, bob);
-            env(offer(gw, XRP(125), USD(125)));
-            env(pay(alice, bob, USD(100)), sendmax(XRP(200)));
+            env(offer(gw, BIXRP(125), USD(125)));
+            env(pay(alice, bob, USD(100)), sendmax(BIXRP(200)));
             env.require(
-                balance(alice, xrpMinusFee(env, 10000 - 125)),
+                balance(alice, bixrpMinusFee(env, 10000 - 125)),
                 balance(bob, USD(100)));
         }
     }
@@ -714,7 +714,7 @@ struct Flow_test : public beast::unit_test::suite
 
         Env env(*this, features);
 
-        env.fund(XRP(10000), alice, carol, gw);
+        env.fund(BIXRP(10000), alice, carol, gw);
         env.fund(reserve(env, 5), bob);
         env.trust(USD(1000), alice, bob, carol);
         env.trust(EUR(1000), alice, bob, carol);
@@ -722,18 +722,18 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(gw, alice, EUR(50)));
         env(pay(gw, bob, USD(50)));
 
-        // Bob has _just_ slightly less than 50 xrp available
+        // Bob has _just_ slightly less than 50 bixrp available
         // If his owner count changes, he will have more liquidity.
         // This is one error case to test (when Flow is used).
-        // Computing the incoming xrp to the XRP/USD offer will require two
-        // recursive calls to the EUR/XRP offer. The second call will return
+        // Computing the incoming bixrp to the BIXRP/USD offer will require two
+        // recursive calls to the EUR/BIXRP offer. The second call will return
         // tecPATH_DRY, but the entire path should not be marked as dry. This
         // is the second error case to test (when flowV1 is used).
-        env(offer(bob, EUR(50), XRP(50)));
-        env(offer(bob, XRP(50), USD(50)));
+        env(offer(bob, EUR(50), BIXRP(50)));
+        env(offer(bob, BIXRP(50), USD(50)));
 
         env(pay(alice, carol, USD(1000000)),
-            path(~XRP, ~USD),
+            path(~BIXRP, ~USD),
             sendmax(EUR(500)),
             txflags(tfNoRippleDirect | tfPartialPayment));
 
@@ -760,16 +760,16 @@ struct Flow_test : public beast::unit_test::suite
         {
             Env env(*this);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
 
             env.trust(USD(100), alice, bob, carol);
             env(pay(gw, bob, USD(100)));
-            env(offer(bob, XRP(50), USD(50)));
-            env(offer(bob, XRP(100), USD(50)));
+            env(offer(bob, BIXRP(50), USD(50)));
+            env(offer(bob, BIXRP(100), USD(50)));
 
             env(pay(alice, carol, USD(100)),
                 path(~USD),
-                sendmax(XRP(100)),
+                sendmax(BIXRP(100)),
                 txflags(tfNoRippleDirect | tfPartialPayment | tfLimitQuality));
 
             env.require(balance(carol, USD(50)));
@@ -778,7 +778,7 @@ struct Flow_test : public beast::unit_test::suite
 
     // Helper function that returns the reserve on an account based on
     // the passed in number of owners.
-    static XRPAmount
+    static BIXRPAmount
     reserve(jtx::Env& env, std::uint32_t count)
     {
         return env.current()->fees().accountReserve(count);
@@ -819,7 +819,7 @@ struct Flow_test : public beast::unit_test::suite
 
         Env env(*this, features);
 
-        env.fund(XRP(1000000), gw1, gw2);
+        env.fund(BIXRP(1000000), gw1, gw2);
         env.close();
 
         // The fee that's charged for transactions.
@@ -890,7 +890,7 @@ struct Flow_test : public beast::unit_test::suite
 
         Env env(*this, features);
 
-        env.fund(XRP(1000000), gw1, gw2);
+        env.fund(BIXRP(1000000), gw1, gw2);
         env.close();
 
         // The fee that's charged for transactions.
@@ -943,14 +943,14 @@ struct Flow_test : public beast::unit_test::suite
         }
     }
     void
-    testSelfFundedXRPEndpoint(bool consumeOffer, FeatureBitset features)
+    testSelfFundedBIXRPEndpoint(bool consumeOffer, FeatureBitset features)
     {
         // Test that the deferred credit table is not bypassed for
-        // XRPEndpointSteps. If the account in the first step is sending XRP and
-        // that account also owns an offer that receives XRP, it should not be
-        // possible for that step to use the XRP received in the offer as part
+        // BIXRPEndpointSteps. If the account in the first step is sending BIXRP and
+        // that account also owns an offer that receives BIXRP, it should not be
+        // possible for that step to use the BIXRP received in the offer as part
         // of the payment.
-        testcase("Self funded XRPEndpoint");
+        testcase("Self funded BIXRPEndpoint");
 
         using namespace jtx;
 
@@ -960,17 +960,17 @@ struct Flow_test : public beast::unit_test::suite
         auto const gw = Account("gw");
         auto const USD = gw["USD"];
 
-        env.fund(XRP(10000), alice, gw);
+        env.fund(BIXRP(10000), alice, gw);
         env(trust(alice, USD(20)));
         env(pay(gw, alice, USD(10)));
-        env(offer(alice, XRP(50000), USD(10)));
+        env(offer(alice, BIXRP(50000), USD(10)));
 
         // Consuming the offer changes the owner count, which could also cause
         // liquidity to decrease in the forward pass
         auto const toSend = consumeOffer ? USD(10) : USD(9);
         env(pay(alice, alice, toSend),
             path(~USD),
-            sendmax(XRP(20000)),
+            sendmax(BIXRP(20000)),
             txflags(tfPartialPayment | tfNoRippleDirect));
     }
 
@@ -989,7 +989,7 @@ struct Flow_test : public beast::unit_test::suite
             auto const gw = Account("gw");
             auto const USD = gw["USD"];
 
-            env.fund(XRP(100000), alice, bob, gw);
+            env.fund(BIXRP(100000), alice, bob, gw);
             env(trust(bob, USD(20)));
 
             STAmount tinyAmt1{
@@ -1013,7 +1013,7 @@ struct Flow_test : public beast::unit_test::suite
                 sendmax(drops(9000000000)),
                 txflags(tfNoRippleDirect));
 
-            BEAST_EXPECT(!isOffer(env, gw, XRP(0), USD(0)));
+            BEAST_EXPECT(!isOffer(env, gw, BIXRP(0), USD(0)));
         }
         {
             // Test forward
@@ -1024,7 +1024,7 @@ struct Flow_test : public beast::unit_test::suite
             auto const gw = Account("gw");
             auto const USD = gw["USD"];
 
-            env.fund(XRP(100000), alice, bob, gw);
+            env.fund(BIXRP(100000), alice, bob, gw);
             env(trust(alice, USD(20)));
 
             STAmount tinyAmt1{
@@ -1046,11 +1046,11 @@ struct Flow_test : public beast::unit_test::suite
 
             env(offer(gw, tinyAmt3, drops(9000000000)));
             env(pay(alice, bob, drops(9000000000)),
-                path(~XRP),
+                path(~BIXRP),
                 sendmax(USD(1)),
                 txflags(tfNoRippleDirect));
 
-            BEAST_EXPECT(!isOffer(env, gw, USD(0), XRP(0)));
+            BEAST_EXPECT(!isOffer(env, gw, USD(0), BIXRP(0)));
         }
     }
 
@@ -1068,7 +1068,7 @@ struct Flow_test : public beast::unit_test::suite
         auto const USD = gw["USD"];
         auto const usdC = USD.currency;
 
-        env.fund(XRP(10000), alice, bob, gw);
+        env.fund(BIXRP(10000), alice, bob, gw);
         env.close();
         env(trust(alice, USD(100)));
         env.close();
@@ -1087,31 +1087,31 @@ struct Flow_test : public beast::unit_test::suite
             // 5.0...
             STAmount{
                 USD.issue(), std::uint64_t(5000000000000000ull), -15, false},
-            XRP(1000)));
+            BIXRP(1000)));
 
         env(offer(
             gw,
             // .555...
             STAmount{
                 USD.issue(), std::uint64_t(5555555555555555ull), -16, false},
-            XRP(10)));
+            BIXRP(10)));
 
         env(offer(
             gw,
             // 4.44....
             STAmount{
                 USD.issue(), std::uint64_t(4444444444444444ull), -15, false},
-            XRP(.1)));
+            BIXRP(.1)));
 
         env(offer(
             alice,
             // 17
             STAmount{
                 USD.issue(), std::uint64_t(1700000000000000ull), -14, false},
-            XRP(.001)));
+            BIXRP(.001)));
 
-        env(pay(alice, bob, XRP(10000)),
-            path(~XRP),
+        env(pay(alice, bob, BIXRP(10000)),
+            path(~BIXRP),
             sendmax(USD(100)),
             txflags(tfPartialPayment | tfNoRippleDirect));
     }
@@ -1128,7 +1128,7 @@ struct Flow_test : public beast::unit_test::suite
         auto const carol = Account("carol");
         auto const gw = Account("gw");
 
-        env.fund(XRP(100000000), alice, noripple(bob), carol, gw);
+        env.fund(BIXRP(100000000), alice, noripple(bob), carol, gw);
         env.trust(gw["USD"](10000), alice, carol);
         env(trust(bob, gw["USD"](10000), tfSetNoRipple));
         env.trust(gw["USD"](10000), bob);
@@ -1139,11 +1139,11 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(gw, alice, gw["USD"](1000)));
         env.close();
 
-        env(offer(alice, bob["USD"](1000), XRP(1)));
+        env(offer(alice, bob["USD"](1000), BIXRP(1)));
         env.close();
 
-        env(pay(alice, alice, XRP(1)),
-            path(gw, bob, ~XRP),
+        env(pay(alice, alice, BIXRP(1)),
+            path(gw, bob, ~BIXRP),
             sendmax(gw["USD"](1000)),
             txflags(tfNoRippleDirect),
             ter(tecPATH_DRY));
@@ -1152,12 +1152,12 @@ struct Flow_test : public beast::unit_test::suite
         env.trust(bob["USD"](10000), alice);
         env(pay(bob, alice, bob["USD"](1000)));
 
-        env(offer(alice, XRP(1000), bob["USD"](1000)));
+        env(offer(alice, BIXRP(1000), bob["USD"](1000)));
         env.close();
 
         env(pay(carol, carol, gw["USD"](1000)),
             path(~bob["USD"], gw),
-            sendmax(XRP(100000)),
+            sendmax(BIXRP(100000)),
             txflags(tfNoRippleDirect),
             ter(tecPATH_DRY));
         env.close();
@@ -1173,7 +1173,7 @@ struct Flow_test : public beast::unit_test::suite
         using namespace jtx;
         Env env(*this);
 
-        // pay alice -> xrp -> USD/bob -> bob -> gw -> alice
+        // pay alice -> bixrp -> USD/bob -> bob -> gw -> alice
         // set no ripple on bob's side of the bob/gw trust line
         // carol has the bob/USD and makes an offer, bob has USD/gw
 
@@ -1183,7 +1183,7 @@ struct Flow_test : public beast::unit_test::suite
         auto const gw = Account("gw");
         auto const USD = gw["USD"];
 
-        env.fund(XRP(100000000), alice, bob, carol, gw);
+        env.fund(BIXRP(100000000), alice, bob, carol, gw);
         env.close();
         env.trust(USD(10000), alice, carol);
         env(trust(bob, USD(10000), tfSetNoRipple));
@@ -1195,12 +1195,12 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(gw, bob, USD(1000)));
         env.close();
 
-        env(offer(carol, XRP(1), bob["USD"](1000)));
+        env(offer(carol, BIXRP(1), bob["USD"](1000)));
         env.close();
 
         env(pay(alice, alice, USD(1000)),
             path(~bob["USD"], bob, gw),
-            sendmax(XRP(1)),
+            sendmax(BIXRP(1)),
             txflags(tfNoRippleDirect),
             ter(tecPATH_DRY));
         env.close();
@@ -1210,7 +1210,7 @@ struct Flow_test : public beast::unit_test::suite
     testSelfPayLowQualityOffer(FeatureBitset features)
     {
         // The new payment code used to assert if an offer was made for more
-        // XRP than the offering account held.  This unit test reproduces
+        // BIXRP than the offering account held.  This unit test reproduces
         // that failing case.
         testcase("Self crossing low quality offer");
 
@@ -1253,7 +1253,7 @@ struct Flow_test : public beast::unit_test::suite
 
         Env env(*this, features);
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
 
         env(pay(alice, alice, alice["USD"](100)),
             path(~alice["USD"]),
@@ -1261,9 +1261,9 @@ struct Flow_test : public beast::unit_test::suite
     }
 
     void
-    testXRPPathLoop()
+    testBIXRPPathLoop()
     {
-        testcase("Circular XRP");
+        testcase("Circular BIXRP");
 
         using namespace jtx;
         auto const alice = Account("alice");
@@ -1280,46 +1280,46 @@ struct Flow_test : public beast::unit_test::suite
                 return supported_amendments() - FeatureBitset{fix1781};
             }();
             {
-                // Payment path starting with XRP
+                // Payment path starting with BIXRP
                 Env env(*this, feats);
-                env.fund(XRP(10000), alice, bob, gw);
+                env.fund(BIXRP(10000), alice, bob, gw);
                 env.trust(USD(1000), alice, bob);
                 env.trust(EUR(1000), alice, bob);
                 env(pay(gw, alice, USD(100)));
                 env(pay(gw, alice, EUR(100)));
                 env.close();
 
-                env(offer(alice, XRP(100), USD(100)), txflags(tfPassive));
-                env(offer(alice, USD(100), XRP(100)), txflags(tfPassive));
-                env(offer(alice, XRP(100), EUR(100)), txflags(tfPassive));
+                env(offer(alice, BIXRP(100), USD(100)), txflags(tfPassive));
+                env(offer(alice, USD(100), BIXRP(100)), txflags(tfPassive));
+                env(offer(alice, BIXRP(100), EUR(100)), txflags(tfPassive));
                 env.close();
 
                 TER const expectedTer =
                     withFix ? TER{temBAD_PATH_LOOP} : TER{tesSUCCESS};
                 env(pay(alice, bob, EUR(1)),
-                    path(~USD, ~XRP, ~EUR),
-                    sendmax(XRP(1)),
+                    path(~USD, ~BIXRP, ~EUR),
+                    sendmax(BIXRP(1)),
                     txflags(tfNoRippleDirect),
                     ter(expectedTer));
             }
             pass();
         }
         {
-            // Payment path ending with XRP
+            // Payment path ending with BIXRP
             Env env(*this);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.trust(USD(1000), alice, bob);
             env.trust(EUR(1000), alice, bob);
             env(pay(gw, alice, USD(100)));
             env(pay(gw, alice, EUR(100)));
             env.close();
 
-            env(offer(alice, XRP(100), USD(100)), txflags(tfPassive));
-            env(offer(alice, EUR(100), XRP(100)), txflags(tfPassive));
+            env(offer(alice, BIXRP(100), USD(100)), txflags(tfPassive));
+            env(offer(alice, EUR(100), BIXRP(100)), txflags(tfPassive));
             env.close();
-            // EUR -> //XRP -> //USD ->XRP
-            env(pay(alice, bob, XRP(1)),
-                path(~XRP, ~USD, ~XRP),
+            // EUR -> //BIXRP -> //USD ->BIXRP
+            env(pay(alice, bob, BIXRP(1)),
+                path(~BIXRP, ~USD, ~BIXRP),
                 sendmax(EUR(1)),
                 txflags(tfNoRippleDirect),
                 ter(temBAD_PATH_LOOP));
@@ -1329,7 +1329,7 @@ struct Flow_test : public beast::unit_test::suite
             // endpoint
             auto const JPY = gw["JPY"];
             Env env(*this);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.close();
             env.trust(USD(1000), alice, bob);
             env.trust(EUR(1000), alice, bob);
@@ -1340,14 +1340,14 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(gw, alice, JPY(100)));
             env.close();
 
-            env(offer(alice, USD(100), XRP(100)), txflags(tfPassive));
-            env(offer(alice, XRP(100), EUR(100)), txflags(tfPassive));
-            env(offer(alice, EUR(100), XRP(100)), txflags(tfPassive));
-            env(offer(alice, XRP(100), JPY(100)), txflags(tfPassive));
+            env(offer(alice, USD(100), BIXRP(100)), txflags(tfPassive));
+            env(offer(alice, BIXRP(100), EUR(100)), txflags(tfPassive));
+            env(offer(alice, EUR(100), BIXRP(100)), txflags(tfPassive));
+            env(offer(alice, BIXRP(100), JPY(100)), txflags(tfPassive));
             env.close();
 
             env(pay(alice, bob, JPY(1)),
-                path(~XRP, ~EUR, ~XRP, ~JPY),
+                path(~BIXRP, ~EUR, ~BIXRP, ~JPY),
                 sendmax(USD(1)),
                 txflags(tfNoRippleDirect),
                 ter(temBAD_PATH_LOOP));
@@ -1365,17 +1365,17 @@ struct Flow_test : public beast::unit_test::suite
 
         Env env(*this, features);
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
 
         // alice creates a ticket for the payment.
         std::uint32_t const ticketSeq{env.seq(alice) + 1};
         env(ticket::create(alice, 1));
 
         // Make a payment using the ticket.
-        env(pay(alice, bob, XRP(1000)), ticket::use(ticketSeq));
+        env(pay(alice, bob, BIXRP(1000)), ticket::use(ticketSeq));
         env.close();
-        env.require(balance(bob, XRP(1000)));
-        env.require(balance(alice, XRP(9000) - drops(20)));
+        env.require(balance(bob, BIXRP(1000)));
+        env.require(balance(alice, BIXRP(9000) - drops(20)));
     }
 
     void
@@ -1393,8 +1393,8 @@ struct Flow_test : public beast::unit_test::suite
         testTransferRate(features | ownerPaysFee);
         testSelfPayment1(features);
         testSelfPayment2(features);
-        testSelfFundedXRPEndpoint(false, features);
-        testSelfFundedXRPEndpoint(true, features);
+        testSelfFundedBIXRPEndpoint(false, features);
+        testSelfFundedBIXRPEndpoint(true, features);
         testUnfundedOffer(features);
         testReexecuteDirectStep(features);
         testSelfPayLowQualityOffer(features);
@@ -1405,7 +1405,7 @@ struct Flow_test : public beast::unit_test::suite
     run() override
     {
         testLimitQuality();
-        testXRPPathLoop();
+        testBIXRPPathLoop();
         testRIPD1443();
         testRIPD1449();
 

@@ -66,7 +66,7 @@ public:
                 lines[jss::result][jss::error_message] ==
                 RPC::make_error(rpcACT_NOT_FOUND)[jss::error_message]);
         }
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
         LedgerInfo const ledger3Info = env.closed()->info();
         BEAST_EXPECT(ledger3Info.seq == 3);
@@ -105,7 +105,7 @@ public:
         }
         // Create trust lines to share with alice.
         Account const gw1{"gw1"};
-        env.fund(XRP(10000), gw1);
+        env.fund(BIXRP(10000), gw1);
         std::vector<IOU> gw1Currencies;
 
         for (char c = 0; c <= ('Z' - 'A'); ++c)
@@ -126,7 +126,7 @@ public:
         // Add another set of trust lines in another ledger so we can see
         // differences in historic ledgers.
         Account const gw2{"gw2"};
-        env.fund(XRP(10000), gw2);
+        env.fund(BIXRP(10000), gw2);
 
         // gw2 requires authorization.
         env(fset(gw2, asfRequireAuth));
@@ -376,8 +376,8 @@ public:
         // It isn't easy to explicitly delete a trust line, so we do so in a
         // round-about fashion.  It takes 4 actors:
         //   o Gateway gw1 issues USD
-        //   o alice offers to buy 100 USD for 100 XRP.
-        //   o becky offers to sell 100 USD for 100 XRP.
+        //   o alice offers to buy 100 USD for 100 BIXRP.
+        //   o becky offers to sell 100 USD for 100 BIXRP.
         // There will now be an inferred trustline between alice and gw1.
         //   o alice pays her 100 USD to cheri.
         // alice should now have no USD and no trustline to gw1.
@@ -386,7 +386,7 @@ public:
         Account const cheri{"cheri"};
         Account const gw1{"gw1"};
         Account const gw2{"gw2"};
-        env.fund(XRP(10000), alice, becky, cheri, gw1, gw2);
+        env.fund(BIXRP(10000), alice, becky, cheri, gw1, gw2);
         env.close();
 
         auto const USD = gw1["USD"];
@@ -400,12 +400,12 @@ public:
         env(pay(gw2, becky, EUR(100)));
         env.close();
 
-        // alice offers to buy 100 EUR for 100 XRP.
-        env(offer(alice, EUR(100), XRP(100)));
+        // alice offers to buy 100 EUR for 100 BIXRP.
+        env(offer(alice, EUR(100), BIXRP(100)));
         env.close();
 
-        // becky offers to buy 100 XRP for 100 EUR.
-        env(offer(becky, XRP(100), EUR(100)));
+        // becky offers to buy 100 BIXRP for 100 EUR.
+        env(offer(becky, BIXRP(100), EUR(100)));
         env.close();
 
         // Get account_lines for alice.  Limit at 1, so we get a marker.
@@ -525,7 +525,7 @@ public:
                 lines[jss::ripplerpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
         LedgerInfo const ledger3Info = env.closed()->info();
         BEAST_EXPECT(ledger3Info.seq == 3);
@@ -598,7 +598,7 @@ public:
         }
         // Create trust lines to share with alice.
         Account const gw1{"gw1"};
-        env.fund(XRP(10000), gw1);
+        env.fund(BIXRP(10000), gw1);
         std::vector<IOU> gw1Currencies;
 
         for (char c = 0; c <= ('Z' - 'A'); ++c)
@@ -619,7 +619,7 @@ public:
         // Add another set of trust lines in another ledger so we can see
         // differences in historic ledgers.
         Account const gw2{"gw2"};
-        env.fund(XRP(10000), gw2);
+        env.fund(BIXRP(10000), gw2);
 
         // gw2 requires authorization.
         env(fset(gw2, asfRequireAuth));
@@ -1054,8 +1054,8 @@ public:
         // It isn't easy to explicitly delete a trust line, so we do so in a
         // round-about fashion.  It takes 4 actors:
         //   o Gateway gw1 issues EUR
-        //   o alice offers to buy 100 EUR for 100 XRP.
-        //   o becky offers to sell 100 EUR for 100 XRP.
+        //   o alice offers to buy 100 EUR for 100 BIXRP.
+        //   o becky offers to sell 100 EUR for 100 BIXRP.
         // There will now be an inferred trustline between alice and gw2.
         //   o alice pays her 100 EUR to cheri.
         // alice should now have no EUR and no trustline to gw2.
@@ -1064,7 +1064,7 @@ public:
         Account const cheri{"cheri"};
         Account const gw1{"gw1"};
         Account const gw2{"gw2"};
-        env.fund(XRP(10000), alice, becky, cheri, gw1, gw2);
+        env.fund(BIXRP(10000), alice, becky, cheri, gw1, gw2);
         env.close();
 
         auto const USD = gw1["USD"];
@@ -1078,12 +1078,12 @@ public:
         env(pay(gw2, becky, EUR(100)));
         env.close();
 
-        // alice offers to buy 100 EUR for 100 XRP.
-        env(offer(alice, EUR(100), XRP(100)));
+        // alice offers to buy 100 EUR for 100 BIXRP.
+        env(offer(alice, EUR(100), BIXRP(100)));
         env.close();
 
-        // becky offers to buy 100 XRP for 100 EUR.
-        env(offer(becky, XRP(100), EUR(100)));
+        // becky offers to buy 100 BIXRP for 100 EUR.
+        env(offer(becky, BIXRP(100), EUR(100)));
         env.close();
 
         // Get account_lines for alice.  Limit at 1, so we get a marker.

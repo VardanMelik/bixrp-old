@@ -38,7 +38,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(XRP(10000), noripple(alice));
+        env.fund(BIXRP(10000), noripple(alice));
         // ask for the ledger entry - account root, to check its flags
         auto const jrr = env.le(alice);
         BEAST_EXPECT((*env.le(alice))[sfFlags] == 0u);
@@ -54,7 +54,7 @@ public:
 
         // Test without DepositAuth enabled initially.
         Env env(*this, supported_amendments() - featureDepositAuth);
-        env.fund(XRP(10000), noripple(alice));
+        env.fund(BIXRP(10000), noripple(alice));
 
         // Give alice a regular key so she can legally set and clear
         // her asfDisableMaster flag.
@@ -108,7 +108,7 @@ public:
         testFlags(
             {asfRequireDest,
              asfRequireAuth,
-             asfDisallowXRP,
+             asfDisallowBIXRP,
              asfGlobalFreeze,
              asfDisableMaster,
              asfDefaultRipple});
@@ -119,7 +119,7 @@ public:
         testFlags(
             {asfRequireDest,
              asfRequireAuth,
-             asfDisallowXRP,
+             asfDisallowBIXRP,
              asfGlobalFreeze,
              asfDisableMaster,
              asfDefaultRipple,
@@ -134,7 +134,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(XRP(10000), noripple(alice));
+        env.fund(BIXRP(10000), noripple(alice));
 
         std::uint32_t const orig_flags = (*env.le(alice))[sfFlags];
 
@@ -157,7 +157,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(XRP(10000), noripple(alice));
+        env.fund(BIXRP(10000), noripple(alice));
         env.memoize("eric");
         env(regkey(alice, "eric"));
 
@@ -178,7 +178,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         auto jt = noop(alice);
         // The Domain field is represented as the hex string of the lowercase
         // ASCII of the domain. For example, the domain example.com would be
@@ -228,7 +228,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         auto jt = noop(alice);
 
         auto const rkp = randomKeyPair(KeyType::ed25519);
@@ -255,7 +255,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         auto jt = noop(alice);
 
         std::string const locator =
@@ -277,7 +277,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         auto jt = noop(alice);
 
         std::string const mh("5F31A79367DC3137FADA860C05742EE6");
@@ -309,7 +309,7 @@ public:
             Env env(*this, features);
 
             Account const alice("alice");
-            env.fund(XRP(10000), alice);
+            env.fund(BIXRP(10000), alice);
 
             for (auto const& r : testData)
             {
@@ -354,7 +354,7 @@ public:
              transferRate += 0.03125)
         {
             Env env(*this);
-            env.fund(XRP(10000), gw, alice, bob);
+            env.fund(BIXRP(10000), gw, alice, bob);
             env.close();
             env.trust(USD(10), alice, bob);
             env.close();
@@ -386,7 +386,7 @@ public:
         for (double transferRate : {4.0, 4.294967295})
         {
             Env env(*this);
-            env.fund(XRP(10000), gw, alice, bob);
+            env.fund(BIXRP(10000), gw, alice, bob);
             env.close();
             env.trust(USD(10), alice, bob);
             env.close();
@@ -437,10 +437,10 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
 
-        auto jt = fset(alice, asfDisallowXRP);
-        jt[jss::ClearFlag] = asfDisallowXRP;
+        auto jt = fset(alice, asfDisallowBIXRP);
+        jt[jss::ClearFlag] = asfDisallowBIXRP;
         env(jt, ter(temINVALID_FLAG));
 
         jt = fset(alice, asfRequireAuth);
@@ -451,8 +451,8 @@ public:
         jt[jss::ClearFlag] = asfRequireDest;
         env(jt, ter(temINVALID_FLAG));
 
-        jt = fset(alice, asfDisallowXRP);
-        jt[sfFlags.fieldName] = tfAllowXRP;
+        jt = fset(alice, asfDisallowBIXRP);
+        jt[sfFlags.fieldName] = tfAllowBIXRP;
         env(jt, ter(temINVALID_FLAG));
 
         jt = fset(alice, asfRequireAuth);
@@ -482,7 +482,7 @@ public:
         Account const alice("alice");
         Account const bob("bob");
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         // alice should have an empty directory.
@@ -510,7 +510,7 @@ public:
         Env env(*this);
         Account const alice("alice");
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         std::uint32_t const ticketSeq{env.seq(alice) + 1};

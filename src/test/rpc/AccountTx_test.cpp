@@ -114,7 +114,7 @@ class AccountTx_test : public beast::unit_test::suite
 
         Env env(*this);
         Account A1{"A1"};
-        env.fund(XRP(10000), A1);
+        env.fund(BIXRP(10000), A1);
         env.close();
 
         // Ledger 3 has the two txs associated with funding the account
@@ -258,14 +258,14 @@ class AccountTx_test : public beast::unit_test::suite
         Account const gw{"gw"};
         auto const USD{gw["USD"]};
 
-        env.fund(XRP(1000000), alice, gw);
+        env.fund(BIXRP(1000000), alice, gw);
         env.close();
 
         // AccountSet
         env(noop(alice));
 
         // Payment
-        env(pay(alice, gw, XRP(100)));
+        env(pay(alice, gw, BIXRP(100)));
 
         // Regular key set
         env(regkey(alice, alie));
@@ -274,7 +274,7 @@ class AccountTx_test : public beast::unit_test::suite
         // Trust and Offers
         env(trust(alice, USD(200)), sig(alie));
         std::uint32_t const offerSeq{env.seq(alice)};
-        env(offer(alice, USD(50), XRP(150)), sig(alie));
+        env(offer(alice, USD(50), BIXRP(150)), sig(alie));
         env.close();
 
         {
@@ -306,14 +306,14 @@ class AccountTx_test : public beast::unit_test::suite
 
             NetClock::time_point const nextTime{env.now() + 2s};
 
-            Json::Value escrowWithFinish{escrow(alice, alice, XRP(500))};
+            Json::Value escrowWithFinish{escrow(alice, alice, BIXRP(500))};
             escrowWithFinish[sfFinishAfter.jsonName] =
                 nextTime.time_since_epoch().count();
 
             std::uint32_t const escrowFinishSeq{env.seq(alice)};
             env(escrowWithFinish, sig(alie));
 
-            Json::Value escrowWithCancel{escrow(alice, alice, XRP(500))};
+            Json::Value escrowWithCancel{escrow(alice, alice, BIXRP(500))};
             escrowWithCancel[sfFinishAfter.jsonName] =
                 nextTime.time_since_epoch().count();
             escrowWithCancel[sfCancelAfter.jsonName] =
@@ -353,7 +353,7 @@ class AccountTx_test : public beast::unit_test::suite
             payChanCreate[jss::Account] = alice.human();
             payChanCreate[jss::Destination] = gw.human();
             payChanCreate[jss::Amount] =
-                XRP(500).value().getJson(JsonOptions::none);
+                BIXRP(500).value().getJson(JsonOptions::none);
             payChanCreate[sfSettleDelay.jsonName] =
                 NetClock::duration{100s}.count();
             payChanCreate[sfPublicKey.jsonName] = strHex(alice.pk().slice());
@@ -370,7 +370,7 @@ class AccountTx_test : public beast::unit_test::suite
                 payChanFund[jss::Account] = alice.human();
                 payChanFund[sfChannel.jsonName] = payChanIndex;
                 payChanFund[jss::Amount] =
-                    XRP(200).value().getJson(JsonOptions::none);
+                    BIXRP(200).value().getJson(JsonOptions::none);
                 env(payChanFund, sig(alie));
                 env.close();
             }
@@ -389,13 +389,13 @@ class AccountTx_test : public beast::unit_test::suite
         // Check
         {
             auto const aliceCheckId = keylet::check(alice, env.seq(alice)).key;
-            env(check::create(alice, gw, XRP(300)), sig(alie));
+            env(check::create(alice, gw, BIXRP(300)), sig(alie));
 
             auto const gwCheckId = keylet::check(gw, env.seq(gw)).key;
-            env(check::create(gw, alice, XRP(200)));
+            env(check::create(gw, alice, BIXRP(200)));
             env.close();
 
-            env(check::cash(alice, gwCheckId, XRP(200)), sig(alie));
+            env(check::cash(alice, gwCheckId, BIXRP(200)), sig(alie));
             env(check::cancel(alice, aliceCheckId), sig(alie));
             env.close();
         }
@@ -475,7 +475,7 @@ class AccountTx_test : public beast::unit_test::suite
         Account const alice{"alice"};
         Account const becky{"becky"};
 
-        env.fund(XRP(10000), alice, becky);
+        env.fund(BIXRP(10000), alice, becky);
         env.close();
 
         // Verify that becky's account root is present.
@@ -551,21 +551,21 @@ class AccountTx_test : public beast::unit_test::suite
             }
         }
 
-        // All it takes is a large enough XRP payment to resurrect
+        // All it takes is a large enough BIXRP payment to resurrect
         // becky's account.  Try too small a payment.
-        env(pay(alice, becky, XRP(19)), ter(tecNO_DST_INSUF_XRP));
+        env(pay(alice, becky, BIXRP(19)), ter(tecNO_DST_INSUF_BIXRP));
         env.close();
 
         // Actually resurrect becky's account.
-        env(pay(alice, becky, XRP(45)));
+        env(pay(alice, becky, BIXRP(45)));
         env.close();
 
         // becky's account root should be back.
         BEAST_EXPECT(env.closed()->exists(beckyAcctKey));
-        BEAST_EXPECT(env.balance(becky) == XRP(45));
+        BEAST_EXPECT(env.balance(becky) == BIXRP(45));
 
         // becky pays alice.
-        env(pay(becky, alice, XRP(20)));
+        env(pay(becky, alice, BIXRP(20)));
         env.close();
 
         // Setup is done.  Look at the transactions returned by account_tx.

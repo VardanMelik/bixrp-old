@@ -99,8 +99,8 @@ class ReportingETL_test : public beast::unit_test::suite
 
         Account const alice{"alice"};
         Account const bob{"bob"};
-        env.fund(XRP(10000), alice);
-        env.fund(XRP(10000), bob);
+        env.fund(BIXRP(10000), alice);
+        env.fund(BIXRP(10000), bob);
         env.close();
 
         ledger = env.app().getLedgerMaster().getLedgerBySeq(4);
@@ -390,14 +390,14 @@ class ReportingETL_test : public beast::unit_test::suite
         };
 
         Account const alice{"alice"};
-        env.fund(XRP(100000), alice);
+        env.fund(BIXRP(100000), alice);
 
         int num_accounts = 10;
 
         for (auto i = 0; i < num_accounts; i++)
         {
             Account const bob{std::string("bob") + std::to_string(i)};
-            env.fund(XRP(1000), bob);
+            env.fund(BIXRP(1000), bob);
         }
         env.close();
 
@@ -424,7 +424,7 @@ class ReportingETL_test : public beast::unit_test::suite
         for (auto i = 0; i < num_accounts; i++)
         {
             Account const cat{std::string("cat") + std::to_string(i)};
-            env.fund(XRP(1000), cat);
+            env.fund(BIXRP(1000), cat);
             if (i % 100 == 0)
                 env.close();
         }
@@ -508,7 +508,7 @@ class ReportingETL_test : public beast::unit_test::suite
         for (auto i = 0; i < num_accounts; i++)
         {
             Account const cat{std::string("cat") + std::to_string(i)};
-            env.fund(XRP(1000), cat);
+            env.fund(BIXRP(1000), cat);
             if (i % 2 == 0)
                 env.close();
         }
@@ -616,7 +616,7 @@ class ReportingETL_test : public beast::unit_test::suite
         };
 
         Account const alice{"alice"};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
         env.close();
 
         for (auto& sle : env.closed()->sles)

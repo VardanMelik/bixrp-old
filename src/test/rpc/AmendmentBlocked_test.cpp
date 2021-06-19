@@ -41,7 +41,7 @@ class AmendmentBlocked_test : public beast::unit_test::suite
         auto const alice = Account{"alice"};
         auto const bob = Account{"bob"};
         Account const ali{"ali", KeyType::secp256k1};
-        env.fund(XRP(10000), alice, bob, gw);
+        env.fund(BIXRP(10000), alice, bob, gw);
         env.memoize(ali);
         env.trust(USD(600), alice);
         env.trust(USD(700), bob);

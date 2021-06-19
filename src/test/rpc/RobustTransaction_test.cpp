@@ -35,7 +35,7 @@ public:
         using namespace std::chrono_literals;
         using namespace jtx;
         Env env(*this);
-        env.fund(XRP(10000), "alice", "bob");
+        env.fund(BIXRP(10000), "alice", "bob");
         env.close();
         auto wsc = makeWSClient(env.app().config());
 
@@ -60,7 +60,7 @@ public:
             // Submit past ledger sequence transaction
             Json::Value payment;
             payment[jss::secret] = toBase58(generateSeed("alice"));
-            payment[jss::tx_json] = pay("alice", "bob", XRP(1));
+            payment[jss::tx_json] = pay("alice", "bob", BIXRP(1));
             payment[jss::tx_json][sfLastLedgerSequence.fieldName] = 1;
             auto jv = wsc->invoke("submit", payment);
             if (wsc->version() == 2)
@@ -75,7 +75,7 @@ public:
                 jv[jss::result][jss::engine_result] == "tefMAX_LEDGER");
 
             // Submit past sequence transaction
-            payment[jss::tx_json] = pay("alice", "bob", XRP(1));
+            payment[jss::tx_json] = pay("alice", "bob", BIXRP(1));
             payment[jss::tx_json][sfSequence.fieldName] = env.seq("alice") - 1;
             jv = wsc->invoke("submit", payment);
             if (wsc->version() == 2)
@@ -181,7 +181,7 @@ public:
     {
         using namespace jtx;
         Env env(*this);
-        env.fund(XRP(10000), "alice", "bob");
+        env.fund(BIXRP(10000), "alice", "bob");
         env.close();
         auto wsc = makeWSClient(env.app().config());
 
@@ -189,7 +189,7 @@ public:
             // Submit normal payment
             Json::Value jv;
             jv[jss::secret] = toBase58(generateSeed("alice"));
-            jv[jss::tx_json] = pay("alice", "bob", XRP(1));
+            jv[jss::tx_json] = pay("alice", "bob", BIXRP(1));
             jv = wsc->invoke("submit", jv);
             if (wsc->version() == 2)
             {
@@ -239,7 +239,7 @@ public:
         using namespace std::chrono_literals;
         using namespace jtx;
         Env env(*this);
-        env.fund(XRP(10000), "alice", "bob");
+        env.fund(BIXRP(10000), "alice", "bob");
         env.close();
         auto wsc = makeWSClient(env.app().config());
 
@@ -247,7 +247,7 @@ public:
             // Submit normal payment
             Json::Value jv;
             jv[jss::secret] = toBase58(generateSeed("alice"));
-            jv[jss::tx_json] = pay("alice", "bob", XRP(1));
+            jv[jss::tx_json] = pay("alice", "bob", BIXRP(1));
             jv = wsc->invoke("submit", jv);
             if (wsc->version() == 2)
             {
@@ -432,7 +432,7 @@ public:
         using namespace std::chrono_literals;
         using namespace jtx;
         Env env(*this);
-        env.fund(XRP(10000), "alice");
+        env.fund(BIXRP(10000), "alice");
         env.close();
         auto wsc = makeWSClient(env.app().config());
 

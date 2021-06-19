@@ -52,7 +52,7 @@ public:
         // Pay alice enough to meet the initial reserve, but not enough to
         // meet the reserve for a SignerListSet.
         auto const fee = env.current()->fees().base;
-        auto const smallSignersReserve = reserve1 ? XRP(250) : XRP(350);
+        auto const smallSignersReserve = reserve1 ? BIXRP(250) : BIXRP(350);
         env.fund(smallSignersReserve - drops(1), alice);
         env.close();
         env.require(owners(alice, 0));
@@ -74,7 +74,7 @@ public:
         {
             // Pay alice enough to almost make the reserve for the biggest
             // possible list.
-            auto const addReserveBigSigners = reserve1 ? XRP(0) : XRP(350);
+            auto const addReserveBigSigners = reserve1 ? BIXRP(0) : BIXRP(350);
             env(pay(env.master, alice, addReserveBigSigners + fee - drops(1)));
 
             // Replace with the biggest possible signer list.  Should fail.
@@ -114,7 +114,7 @@ public:
         using namespace jtx;
         Env env{*this, features};
         Account const alice{"alice", KeyType::ed25519};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
 
         // Add alice as a multisigner for herself.  Should fail.
         env(signers(alice, 1, {{alice, 1}}), ter(temBAD_SIGNER));
@@ -187,7 +187,7 @@ public:
         using namespace jtx;
         Env env{*this, features};
         Account const alice{"alice", KeyType::ed25519};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
         env.close();
 
         // Attach phantom signers to alice and use them for a transaction.
@@ -250,7 +250,7 @@ public:
         using namespace jtx;
         Env env{*this, features};
         Account const alice{"alice", KeyType::ed25519};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
         env.close();
 
         // Attach maximum possible number of signers to alice.
@@ -314,7 +314,7 @@ public:
         using namespace jtx;
         Env env{*this, features};
         Account const alice{"alice", KeyType::ed25519};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
         env.close();
 
         // The signatures in a transaction must be submitted in sorted order.
@@ -341,7 +341,7 @@ public:
         Account const alice{"alice", KeyType::ed25519};
         Account const becky{"becky", KeyType::secp256k1};
         Account const cheri{"cheri", KeyType::ed25519};
-        env.fund(XRP(1000), alice, becky, cheri);
+        env.fund(BIXRP(1000), alice, becky, cheri);
         env.close();
 
         // For a different situation, give alice a regular key but don't use it.
@@ -396,7 +396,7 @@ public:
         Account const alice{"alice", KeyType::secp256k1};
         Account const becky{"becky", KeyType::ed25519};
         Account const cheri{"cheri", KeyType::secp256k1};
-        env.fund(XRP(1000), alice, becky, cheri);
+        env.fund(BIXRP(1000), alice, becky, cheri);
         env.close();
 
         // Attach signers to alice.
@@ -467,7 +467,7 @@ public:
         Account const alice{"alice", KeyType::secp256k1};
         Account const becky{"becky", KeyType::ed25519};
         Account const cheri{"cheri", KeyType::secp256k1};
-        env.fund(XRP(1000), alice, becky, cheri);
+        env.fund(BIXRP(1000), alice, becky, cheri);
         env.close();
 
         // Attach signers to alice.
@@ -702,7 +702,7 @@ public:
         Account const becky{"becky", KeyType::ed25519};
         Account const cheri{"cheri", KeyType::secp256k1};
         Account const daria{"daria", KeyType::ed25519};
-        env.fund(XRP(1000), alice, becky, cheri, daria);
+        env.fund(BIXRP(1000), alice, becky, cheri, daria);
         env.close();
 
         // alice uses a regular key with the master disabled.
@@ -846,7 +846,7 @@ public:
         using namespace jtx;
         Env env{*this, features};
         Account const alice{"alice", KeyType::ed25519};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
 
         // There are three negative tests we need to make:
         //  M0. A lone master key cannot be disabled.
@@ -927,7 +927,7 @@ public:
         using namespace jtx;
         Env env{*this, features};
         Account const alice{"alice", KeyType::secp256k1};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
 
         // Give alice a regular key with a zero fee.  Should succeed.  Once.
         Account const alie{"alie", KeyType::ed25519};
@@ -943,7 +943,7 @@ public:
         // In contrast, trying to multisign for a regular key with a zero
         // fee should always fail.  Even the first time.
         Account const becky{"becky", KeyType::ed25519};
-        env.fund(XRP(1000), becky);
+        env.fund(BIXRP(1000), becky);
 
         env(signers(becky, 1, {{alice, 1}}), sig(becky));
         env(regkey(becky, alie), msig(alice), fee(0), ter(telINSUF_FEE_P));
@@ -966,7 +966,7 @@ public:
         Account const zelda{"zelda", KeyType::secp256k1};
         Account const gw{"gw"};
         auto const USD = gw["USD"];
-        env.fund(XRP(1000), alice, becky, zelda, gw);
+        env.fund(BIXRP(1000), alice, becky, zelda, gw);
         env.close();
 
         // alice uses a regular key with the master disabled.
@@ -983,7 +983,7 @@ public:
         // Multisign a ttPAYMENT.
         auto const baseFee = env.current()->fees().base;
         std::uint32_t aliceSeq = env.seq(alice);
-        env(pay(alice, env.master, XRP(1)),
+        env(pay(alice, env.master, BIXRP(1)),
             msig(becky, bogie),
             fee(3 * baseFee));
         env.close();
@@ -1017,7 +1017,7 @@ public:
         env.require(balance(gw, alice["USD"](-50)));
 
         std::uint32_t const offerSeq = env.seq(alice);
-        env(offer(alice, XRP(50), USD(50)),
+        env(offer(alice, BIXRP(50), USD(50)),
             msig(becky, bogie),
             fee(3 * baseFee));
         env.close();
@@ -1065,7 +1065,7 @@ public:
         };
 
         Account const alice{"alice"};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
         env(signers(alice, 1, {{bogie, 1}, {demon, 1}}), sig(alice));
 
         auto const baseFee = env.current()->fees().base;
@@ -1215,7 +1215,7 @@ public:
         Env env{*this, features};
         Account const alice{"alice", KeyType::ed25519};
         Account const becky{"becky", KeyType::secp256k1};
-        env.fund(XRP(1000), alice, becky);
+        env.fund(BIXRP(1000), alice, becky);
         env.close();
 
         auto const baseFee = env.current()->fees().base;
@@ -1239,7 +1239,7 @@ public:
         Env env{*this, features};
         Account const alice{"alice", KeyType::ed25519};
         Account const becky{"becky", KeyType::secp256k1};
-        env.fund(XRP(1000), alice, becky);
+        env.fund(BIXRP(1000), alice, becky);
         env.close();
 
         // alice sets up a signer list with becky as a signer.
@@ -1321,13 +1321,13 @@ public:
                 return cfg;
             }),
             features);
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
         env.close();
 
         env(signers(alice, 2, {{bogie, 1}, {ghost, 1}}));
         env.close();
 
-        // Use sign_for to sign a transaction where alice pays 10 XRP to
+        // Use sign_for to sign a transaction where alice pays 10 BIXRP to
         // masterpassphrase.
         auto const baseFee = env.current()->fees().base;
         Json::Value jvSig1;
@@ -1401,7 +1401,7 @@ public:
         Account const daria{"daria", KeyType::ed25519};
 
         Env env{*this, supported_amendments() - featureMultiSignReserve};
-        env.fund(XRP(1000), alice, becky, cheri, daria);
+        env.fund(BIXRP(1000), alice, becky, cheri, daria);
         env.close();
 
         // Give alice and becky signer lists before the amendment goes live.
@@ -1488,7 +1488,7 @@ public:
         using namespace jtx;
         Env env{*this, features};
         Account const alice{"alice", KeyType::ed25519};
-        env.fund(XRP(2000), alice);
+        env.fund(BIXRP(2000), alice);
         env.close();
 
         // Create a few tickets that alice can use up.

@@ -32,7 +32,7 @@ public:
         using namespace test::jtx;
         Env env{*this, FeatureBitset{}};
         Account const alice{"alice"};
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
 
         auto lc_result = env.rpc("ledger_closed")[jss::result];
         BEAST_EXPECT(
@@ -47,7 +47,7 @@ public:
 
         auto const ar_alice = env.le(alice);
         BEAST_EXPECT(ar_alice->getAccountID(sfAccount) == alice.id());
-        BEAST_EXPECT((*ar_alice)[sfBalance] == XRP(10000));
+        BEAST_EXPECT((*ar_alice)[sfBalance] == BIXRP(10000));
 
         lc_result = env.rpc("ledger_closed")[jss::result];
         BEAST_EXPECT(

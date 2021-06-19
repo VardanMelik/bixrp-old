@@ -36,7 +36,7 @@ class OwnerInfo_test : public beast::unit_test::suite
         Env env{*this};
 
         auto const alice = Account{"alice"};
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         {  // missing account field
@@ -90,17 +90,17 @@ class OwnerInfo_test : public beast::unit_test::suite
 
         auto const alice = Account{"alice"};
         auto const gw = Account{"gateway"};
-        env.fund(XRP(10000), alice, gw);
+        env.fund(BIXRP(10000), alice, gw);
         auto const USD = gw["USD"];
         auto const CNY = gw["CNY"];
         env(trust(alice, USD(1000)));
         env(trust(alice, CNY(1000)));
-        env(offer(alice, USD(1), XRP(1000)));
+        env(offer(alice, USD(1), BIXRP(1000)));
         env.close();
 
         env(pay(gw, alice, USD(50)));
         env(pay(gw, alice, CNY(50)));
-        env(offer(alice, CNY(2), XRP(1000)));
+        env(offer(alice, CNY(2), BIXRP(1000)));
 
         Json::Value params;
         params[jss::account] = alice.human();
@@ -153,7 +153,7 @@ class OwnerInfo_test : public beast::unit_test::suite
         BEAST_EXPECT(offers[0u][jss::Account] == alice.human());
         BEAST_EXPECT(
             offers[0u][sfTakerGets.fieldName] ==
-            XRP(1000).value().getJson(JsonOptions::none));
+            BIXRP(1000).value().getJson(JsonOptions::none));
         BEAST_EXPECT(
             offers[0u][sfTakerPays.fieldName] ==
             USD(1).value().getJson(JsonOptions::none));
@@ -200,7 +200,7 @@ class OwnerInfo_test : public beast::unit_test::suite
         BEAST_EXPECT(offers[0u][jss::Account] == alice.human());
         BEAST_EXPECT(
             offers[0u][sfTakerGets.fieldName] ==
-            XRP(1000).value().getJson(JsonOptions::none));
+            BIXRP(1000).value().getJson(JsonOptions::none));
         BEAST_EXPECT(
             offers[0u][sfTakerPays.fieldName] ==
             CNY(2).value().getJson(JsonOptions::none));

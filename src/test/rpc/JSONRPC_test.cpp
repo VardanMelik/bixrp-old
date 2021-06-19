@@ -404,7 +404,7 @@ static constexpr TxnTestData txnTestArray[] = {
        "Missing field 'tx_json.Sequence'.",
        "Missing field 'tx_json.Sequence'."}}},
 
-    {"Cannot create XRP to XRP paths.",
+    {"Cannot create BIXRP to BIXRP paths.",
      __LINE__,
      R"({
     "command": "doesnt_matter",
@@ -418,8 +418,8 @@ static constexpr TxnTestData txnTestArray[] = {
         "TransactionType": "Payment"
     }
 })",
-     {{"Cannot build XRP to XRP paths.",
-       "Cannot build XRP to XRP paths.",
+     {{"Cannot build BIXRP to BIXRP paths.",
+       "Cannot build BIXRP to BIXRP paths.",
        "Missing field 'tx_json.Sequence'.",
        "Missing field 'tx_json.Sequence'."}}},
 
@@ -498,7 +498,7 @@ static constexpr TxnTestData txnTestArray[] = {
        "Missing field 'tx_json.Sequence'.",
        "Missing field 'tx_json.Sequence'."}}},
 
-    {"'Amount' may not be XRP for pathfinding, but 'SendMax' may be XRP.",
+    {"'Amount' may not be BIXRP for pathfinding, but 'SendMax' may be BIXRP.",
      __LINE__,
      R"({
     "command": "doesnt_matter",
@@ -2407,7 +2407,7 @@ public:
         // "c" (phantom signer) is rPcNzota6B8YBokhYtcTNqQVCngtbnWfux.
 
         test::jtx::Env env(*this);
-        env.fund(test::jtx::XRP(100000), a, ed, g);
+        env.fund(test::jtx::BIXRP(100000), a, ed, g);
         env.close();
 
         env(trust(a, USD(1000)));
