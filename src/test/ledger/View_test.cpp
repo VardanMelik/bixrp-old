@@ -529,17 +529,17 @@ class View_test : public beast::unit_test::suite
         auto const USD = gw["USD"];
         auto const EUR = gw["EUR"];
 
-        env.fund(XRP(10000), alice, bob, carol, gw);
+        env.fund(BIXRP(10000), alice, bob, carol, gw);
         env.trust(USD(100), alice, bob, carol);
         {
             // Global freezing.
             env(pay(gw, alice, USD(50)));
-            env(offer(alice, XRP(5), USD(5)));
+            env(offer(alice, BIXRP(5), USD(5)));
 
             // Now freeze gw.
             env(fset(gw, asfGlobalFreeze));
             env.close();
-            env(offer(alice, XRP(4), USD(5)), ter(tecFROZEN));
+            env(offer(alice, BIXRP(4), USD(5)), ter(tecFROZEN));
             env.close();
 
             // Alice's USD balance should be zero if frozen.
@@ -556,7 +556,7 @@ class View_test : public beast::unit_test::suite
             // Thaw gw and try again.
             env(fclear(gw, asfGlobalFreeze));
             env.close();
-            env(offer("alice", XRP(4), USD(5)));
+            env(offer("alice", BIXRP(4), USD(5)));
         }
         {
             // Local freezing.
@@ -618,33 +618,33 @@ class View_test : public beast::unit_test::suite
                     fhZERO_IF_FROZEN,
                     env.journal));
 
-            // carol's XRP balance should be her holdings minus her reserve.
-            auto const carolsXRP = accountHolds(
+            // carol's BIXRP balance should be her holdings minus her reserve.
+            auto const carolsBIXRP = accountHolds(
                 *env.closed(),
                 carol,
-                xrpCurrency(),
-                xrpAccount(),
+                bixrpCurrency(),
+                bixrpAccount(),
                 fhZERO_IF_FROZEN,
                 env.journal);
-            // carol's XRP balance:              10000
+            // carol's BIXRP balance:              10000
             // base reserve:                      -200
             // 1 trust line times its reserve: 1 * -50
             //                                 -------
             // carol's available balance:         9750
-            BEAST_EXPECT(carolsXRP == XRP(9750));
+            BEAST_EXPECT(carolsBIXRP == BIXRP(9750));
 
-            // carol should be able to spend *more* than her XRP balance on
+            // carol should be able to spend *more* than her BIXRP balance on
             // a fee by eating into her reserve.
-            env(noop(carol), fee(carolsXRP + XRP(10)));
+            env(noop(carol), fee(carolsBIXRP + BIXRP(10)));
             env.close();
 
-            // carol's XRP balance should now show as zero.
+            // carol's BIXRP balance should now show as zero.
             BEAST_EXPECT(
-                XRP(0) ==
+                BIXRP(0) ==
                 accountHolds(
                     *env.closed(),
                     carol,
-                    xrpCurrency(),
+                    bixrpCurrency(),
                     gw,
                     fhZERO_IF_FROZEN,
                     env.journal));
@@ -687,7 +687,7 @@ class View_test : public beast::unit_test::suite
 
         auto const gw1 = Account("gw1");
 
-        env.fund(XRP(10000), gw1);
+        env.fund(BIXRP(10000), gw1);
         env.close();
 
         auto rdView = env.closed();
@@ -715,11 +715,11 @@ class View_test : public beast::unit_test::suite
         // The first Env.
         Env eA(*this);
 
-        eA.fund(XRP(10000), alice);
+        eA.fund(BIXRP(10000), alice);
         eA.close();
         auto const rdViewA3 = eA.closed();
 
-        eA.fund(XRP(10000), bob);
+        eA.fund(BIXRP(10000), bob);
         eA.close();
         auto const rdViewA4 = eA.closed();
 
@@ -729,11 +729,11 @@ class View_test : public beast::unit_test::suite
 
         // Make ledgers that are incompatible with the first ledgers.  Note
         // that bob is funded before alice.
-        eB.fund(XRP(10000), bob);
+        eB.fund(BIXRP(10000), bob);
         eB.close();
         auto const rdViewB3 = eB.closed();
 
-        eB.fund(XRP(10000), alice);
+        eB.fund(BIXRP(10000), alice);
         eB.close();
         auto const rdViewB4 = eB.closed();
 
@@ -794,7 +794,7 @@ class View_test : public beast::unit_test::suite
         {
             Env env(*this);
             BEAST_EXPECT(env.app().openLedger().empty());
-            env.fund(XRP(10000), Account("test"));
+            env.fund(BIXRP(10000), Account("test"));
             BEAST_EXPECT(!env.app().openLedger().empty());
         }
     }

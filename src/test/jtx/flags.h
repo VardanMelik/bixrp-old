@@ -61,8 +61,8 @@ private:
             case asfRequireAuth:
                 mask_ |= lsfRequireAuth;
                 break;
-            case asfDisallowXRP:
-                mask_ |= lsfDisallowXRP;
+            case asfDisallowBIXRP:
+                mask_ |= lsfDisallowBIXRP;
                 break;
             case asfDisableMaster:
                 mask_ |= lsfDisableMaster;

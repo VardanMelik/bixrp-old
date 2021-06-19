@@ -439,12 +439,12 @@ class Ticket_test : public beast::unit_test::suite
 
         // Exercise fees.
         std::uint32_t const ticketSeq_A{env.seq(master) + 1};
-        env(ticket::create(master, 1), fee(XRP(10)));
+        env(ticket::create(master, 1), fee(BIXRP(10)));
         checkTicketCreateMeta(env);
         env.close();
         env.require(owners(master, 1), tickets(master, 1));
 
-        env(ticket::create(master, 1), fee(XRP(-1)), ter(temBAD_FEE));
+        env(ticket::create(master, 1), fee(BIXRP(-1)), ter(temBAD_FEE));
 
         // Exercise flags.
         std::uint32_t const ticketSeq_B{env.seq(master) + 1};
@@ -492,7 +492,7 @@ class Ticket_test : public beast::unit_test::suite
             Env env{*this};
             Account alice{"alice"};
 
-            env.fund(XRP(100000), alice);
+            env.fund(BIXRP(100000), alice);
 
             std::uint32_t ticketSeq{env.seq(alice) + 1};
             env(ticket::create(alice, 250));
@@ -531,7 +531,7 @@ class Ticket_test : public beast::unit_test::suite
             Env env{*this};
             Account alice{"alice"};
 
-            env.fund(XRP(100000), alice);
+            env.fund(BIXRP(100000), alice);
             env.close();
 
             std::uint32_t ticketSeq_AB{env.seq(alice) + 1};
@@ -631,7 +631,7 @@ class Ticket_test : public beast::unit_test::suite
         Env env{*this};
         Account alice{"alice"};
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         // Successfully create tickets (using a sequence)
@@ -665,7 +665,7 @@ class Ticket_test : public beast::unit_test::suite
         env.require(owners(alice, 2), tickets(alice, 2));
         BEAST_EXPECT(ticketSeq_DE + 2 == env.seq(alice));
 
-        env(pay(alice, env.master, XRP(20)), ticket::use(ticketSeq_DE + 1));
+        env(pay(alice, env.master, BIXRP(20)), ticket::use(ticketSeq_DE + 1));
         checkTicketConsumeMeta(env);
         env.close();
         env.require(owners(alice, 1), tickets(alice, 1));
@@ -727,7 +727,7 @@ class Ticket_test : public beast::unit_test::suite
         Env env{*this};
         Account alice{"alice"};
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         // Lambda that returns the hash of the most recent transaction.
@@ -758,7 +758,7 @@ class Ticket_test : public beast::unit_test::suite
         env(noop(alice), ticket::use(--ticketSeq));
         uint256 const txHash_2{getTxID()};
 
-        env(pay(alice, env.master, XRP(200)), ticket::use(--ticketSeq));
+        env(pay(alice, env.master, BIXRP(200)), ticket::use(--ticketSeq));
         uint256 const txHash_3{getTxID()};
 
         env(deposit::auth(alice, env.master), ticket::use(--ticketSeq));
@@ -768,10 +768,10 @@ class Ticket_test : public beast::unit_test::suite
         // different ledgers.
         env.close();
 
-        env(pay(alice, env.master, XRP(300)), ticket::use(--ticketSeq));
+        env(pay(alice, env.master, BIXRP(300)), ticket::use(--ticketSeq));
         uint256 const txHash_5{getTxID()};
 
-        env(pay(alice, env.master, XRP(400)), ticket::use(--ticketSeq));
+        env(pay(alice, env.master, BIXRP(400)), ticket::use(--ticketSeq));
         uint256 const txHash_6{getTxID()};
 
         env(deposit::unauth(alice, env.master), ticket::use(--ticketSeq));
@@ -843,7 +843,7 @@ class Ticket_test : public beast::unit_test::suite
         Env env{*this};
         Account alice{"alice"};
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         // Successfully create tickets (using a sequence)
@@ -934,7 +934,7 @@ class Ticket_test : public beast::unit_test::suite
             Env env{*this, supported_amendments() - featureTicketBatch};
             Account alice{"alice"};
 
-            env.fund(XRP(10000), alice);
+            env.fund(BIXRP(10000), alice);
             env.close();
 
             // Fail to create a ticket.
@@ -958,7 +958,7 @@ class Ticket_test : public beast::unit_test::suite
             Env env{*this, supported_amendments()};
             Account alice{"alice"};
 
-            env.fund(XRP(10000), alice);
+            env.fund(BIXRP(10000), alice);
             env.close();
 
             // Create a ticket.

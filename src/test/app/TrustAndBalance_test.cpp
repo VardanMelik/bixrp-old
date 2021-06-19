@@ -52,7 +52,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
         using namespace test::jtx;
 
         Env env{*this, features};
-        env(pay(env.master, "alice", XRP(1)), ter(tecNO_DST_INSUF_XRP));
+        env(pay(env.master, "alice", BIXRP(1)), ter(tecNO_DST_INSUF_BIXRP));
         env.close();
     }
 
@@ -79,7 +79,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
         Account alice{"alice"};
         Account bob{"bob"};
 
-        env.fund(XRP(10000), gw, alice, bob);
+        env.fund(BIXRP(10000), gw, alice, bob);
         env.close();
 
         // credit limit doesn't exist yet - verify ledger_entry
@@ -167,7 +167,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
         Account alice{"alice"};
         Account bob{"bob"};
 
-        env.fund(XRP(10000), alice, bob);
+        env.fund(BIXRP(10000), alice, bob);
         env.close();
 
         env(trust(alice, bob["USD"](600)));
@@ -213,7 +213,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
         Account alice{"alice"};
         Account bob{"bob"};
 
-        env.fund(XRP(10000), gw, alice, bob);
+        env.fund(BIXRP(10000), gw, alice, bob);
         env.close();
 
         env(trust(alice, gw["AUD"](100)));
@@ -288,7 +288,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
         Account alice{"alice"};
         Account bob{"bob"};
 
-        env.fund(XRP(10000), gw, alice, bob);
+        env.fund(BIXRP(10000), gw, alice, bob);
         env.close();
 
         // set a transfer rate
@@ -337,7 +337,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
         Account alice{"alice"};
         Account bob{"bob"};
 
-        env.fund(XRP(10000), gw, alice, bob);
+        env.fund(BIXRP(10000), gw, alice, bob);
         env.close();
 
         env(trust(alice, gw["USD"](600)));
@@ -382,7 +382,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
         Account bob{"bob"};
         Account carol{"carol"};
 
-        env.fund(XRP(10000), gw, amazon, alice, bob, carol);
+        env.fund(BIXRP(10000), gw, amazon, alice, bob, carol);
         env.close();
 
         env(trust(amazon, gw["USD"](2000)));
@@ -444,7 +444,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
         Account alice{"alice"};
         auto wsc = test::makeWSClient(env.app().config());
 
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
         env.close();
 
         Json::Value jvs;
@@ -459,7 +459,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
 
         Json::Value jv;
         auto tx = env.jt(
-            pay(env.master, alice, XRP(10000)),
+            pay(env.master, alice, BIXRP(10000)),
             json(sfInvoiceID.fieldName, invoiceid));
         jv[jss::tx_blob] = strHex(tx.stx->getSerializer().slice());
         auto jrr = wsc->invoke("submit", jv)[jss::result];

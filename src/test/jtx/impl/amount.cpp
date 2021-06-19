@@ -75,7 +75,7 @@ operator<<(std::ostream& os, PrettyAmount const& amount)
     if (amount.value().native())
     {
         // measure in hundredths
-        auto const c = dropsPerXRP.drops() / 100;
+        auto const c = dropsPerBIXRP.drops() / 100;
         auto const n = amount.value().mantissa();
         if (n < c)
         {
@@ -85,11 +85,11 @@ operator<<(std::ostream& os, PrettyAmount const& amount)
                 os << n << " drops";
             return os;
         }
-        auto const d = double(n) / dropsPerXRP.drops();
+        auto const d = double(n) / dropsPerBIXRP.drops();
         if (amount.value().negative())
             os << "-";
 
-        os << to_places(d, 6) << " XRP";
+        os << to_places(d, 6) << " BIXRP";
     }
     else
     {
@@ -102,7 +102,7 @@ operator<<(std::ostream& os, PrettyAmount const& amount)
 
 //------------------------------------------------------------------------------
 
-XRP_t const XRP{};
+BIXRP_t const BIXRP{};
 
 PrettyAmount IOU::operator()(epsilon_t) const
 {

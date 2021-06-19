@@ -26,7 +26,7 @@ namespace jtx {
 void
 balance::operator()(Env& env) const
 {
-    if (isXRP(value_.issue()))
+    if (isBIXRP(value_.issue()))
     {
         auto const sle = env.le(account_);
         if (none_)

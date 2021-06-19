@@ -50,7 +50,7 @@ public:
         auto const baseReserve = env.current()->fees().accountReserve(0);
         auto const threelineReserve = env.current()->fees().accountReserve(3);
 
-        env.fund(XRP(10000), gwA, gwB, assistor);
+        env.fund(BIXRP(10000), gwA, gwB, assistor);
 
         // Fund creator with ...
         env.fund(
@@ -119,7 +119,7 @@ public:
         auto const alice = Account{"alice"};
         auto const USD = gw["USD"];
 
-        env.fund(XRP(10000), gw, alice);
+        env.fund(BIXRP(10000), gw, alice);
         env.close();
 
         // Cannot pay alice without a trustline.
@@ -161,7 +161,7 @@ public:
 
         auto const gw = Account{"gateway"};
         auto const alice = Account{"alice"};
-        env.fund(XRP(10000), gw, alice);
+        env.fund(BIXRP(10000), gw, alice);
 
         // Require valid tf flags
         for (std::uint64_t badFlag = 1u;
@@ -176,7 +176,7 @@ public:
                     ter(temINVALID_FLAG));
         }
 
-        // trust amount can't be XRP
+        // trust amount can't be BIXRP
         env(trust_explicit_amt(alice, drops(10000)), ter(temBAD_LIMIT));
 
         // trust amount can't be badCurrency IOU
@@ -214,7 +214,7 @@ public:
         auto const& fromAcct = createOnHighAcct ? alice : bob;
         auto const& toAcct = createOnHighAcct ? bob : alice;
 
-        env.fund(XRP(10000), fromAcct, toAcct);
+        env.fund(BIXRP(10000), fromAcct, toAcct);
 
         auto txWithoutQuality = trust(toAcct, fromAcct["USD"](100));
         txWithoutQuality["QualityIn"] = "0";

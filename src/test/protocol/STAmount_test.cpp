@@ -165,34 +165,34 @@ public:
         {
             testcase("set value (native)");
 
-            Issue const xrp(xrpIssue());
+            Issue const bixrp(xrpIssue());
 
             // fractional XRP (i.e. drops)
-            testSetValue("1", xrp);
-            testSetValue("22", xrp);
-            testSetValue("333", xrp);
-            testSetValue("4444", xrp);
-            testSetValue("55555", xrp);
-            testSetValue("666666", xrp);
+            testSetValue("1", bixrp);
+            testSetValue("22", bixrp);
+            testSetValue("333", bixrp);
+            testSetValue("4444", bixrp);
+            testSetValue("55555", bixrp);
+            testSetValue("666666", bixrp);
 
-            // 1 XRP up to 100 billion, in powers of 10 (in drops)
-            testSetValue("1000000", xrp);
-            testSetValue("10000000", xrp);
-            testSetValue("100000000", xrp);
-            testSetValue("1000000000", xrp);
-            testSetValue("10000000000", xrp);
-            testSetValue("100000000000", xrp);
-            testSetValue("1000000000000", xrp);
-            testSetValue("10000000000000", xrp);
-            testSetValue("100000000000000", xrp);
-            testSetValue("1000000000000000", xrp);
-            testSetValue("10000000000000000", xrp);
-            testSetValue("100000000000000000", xrp);
+            // 1 BIXRP up to 100 billion, in powers of 10 (in drops)
+            testSetValue("1000000", bixrp);
+            testSetValue("10000000", bixrp);
+            testSetValue("100000000", bixrp);
+            testSetValue("1000000000", bixrp);
+            testSetValue("10000000000", bixrp);
+            testSetValue("100000000000", bixrp);
+            testSetValue("1000000000000", bixrp);
+            testSetValue("10000000000000", bixrp);
+            testSetValue("100000000000000", bixrp);
+            testSetValue("1000000000000000", bixrp);
+            testSetValue("10000000000000000", bixrp);
+            testSetValue("100000000000000000", bixrp);
 
             // Invalid native values:
-            testSetValue("1.1", xrp, false);
-            testSetValue("100000000000000001", xrp, false);
-            testSetValue("1000000000000000000", xrp, false);
+            testSetValue("1.1", bixrp, false);
+            testSetValue("100000000000000001", bixrp, false);
+            testSetValue("1000000000000000000", bixrp, false);
         }
 
         {
@@ -298,7 +298,7 @@ public:
         unexpected(STAmount().getText() != "0", "STAmount fail");
         unexpected(STAmount(31).getText() != "31", "STAmount fail");
         unexpected(STAmount(310).getText() != "310", "STAmount fail");
-        unexpected(to_string(Currency()) != "XRP", "cHC(XRP)");
+        unexpected(to_string(Currency()) != "BIXRP", "cHC(BIXRP)");
         Currency c;
         unexpected(!to_currency(c, "USD"), "create USD currency");
         unexpected(to_string(c) != "USD", "check USD currency");
@@ -391,14 +391,14 @@ public:
                     .getText() != "60",
             "STAmount multiply fail 1");
         unexpected(
-            multiply(STAmount(noIssue(), 20), STAmount(3), xrpIssue())
+            multiply(STAmount(noIssue(), 20), STAmount(3), bixrpIssue())
                     .getText() != "60",
             "STAmount multiply fail 2");
         unexpected(
             multiply(STAmount(20), STAmount(3), noIssue()).getText() != "60",
             "STAmount multiply fail 3");
         unexpected(
-            multiply(STAmount(20), STAmount(3), xrpIssue()).getText() != "60",
+            multiply(STAmount(20), STAmount(3), bixrpIssue()).getText() != "60",
             "STAmount multiply fail 4");
 
         if (divide(STAmount(noIssue(), 60), STAmount(3), noIssue()).getText() !=
@@ -415,7 +415,7 @@ public:
         }
 
         unexpected(
-            divide(STAmount(noIssue(), 60), STAmount(3), xrpIssue())
+            divide(STAmount(noIssue(), 60), STAmount(3), bixrpIssue())
                     .getText() != "20",
             "STAmount divide fail");
 
@@ -425,7 +425,7 @@ public:
             "STAmount divide fail");
 
         unexpected(
-            divide(STAmount(noIssue(), 60), STAmount(noIssue(), 3), xrpIssue())
+            divide(STAmount(noIssue(), 60), STAmount(noIssue(), 3), bixrpIssue())
                     .getText() != "20",
             "STAmount divide fail");
 
@@ -532,11 +532,11 @@ public:
 
         BEAST_EXPECT(bigDsmall == beast::zero);
 
-        bigDsmall = divide(smallValue, bigValue, xrpIssue());
+        bigDsmall = divide(smallValue, bigValue, bixrpIssue());
 
         BEAST_EXPECT(bigDsmall == beast::zero);
 
-        bigDsmall = divide(smallValue, bigNative, xrpIssue());
+        bigDsmall = divide(smallValue, bigNative, bixrpIssue());
 
         BEAST_EXPECT(bigDsmall == beast::zero);
 
@@ -596,9 +596,9 @@ public:
         log << fourThirdsB;
         log << fourThirdsC;
 
-        STAmount dripTest1 = mulRound (twoThird2, two, xrpIssue (), false);
-        STAmount dripTest2 = multiply (twoThird2, two, xrpIssue ());
-        STAmount dripTest3 = mulRound (twoThird2, two, xrpIssue (), true);
+        STAmount dripTest1 = mulRound (twoThird2, two, bixrpIssue (), false);
+        STAmount dripTest2 = multiply (twoThird2, two, bixrpIssue ());
+        STAmount dripTest3 = mulRound (twoThird2, two, bixrpIssue (), true);
         log << dripTest1;
         log << dripTest2;
         log << dripTest3;
@@ -606,27 +606,27 @@ public:
     }
 
     void
-    testConvertXRP()
+    testConvertBIXRP()
     {
-        testcase("STAmount to XRPAmount conversions");
+        testcase("STAmount to BIXRPAmount conversions");
 
         Issue const usd{Currency(0x5553440000000000), AccountID(0x4985601)};
-        Issue const xrp{xrpIssue()};
+        Issue const bixrp{bixrpIssue()};
 
         for (std::uint64_t drops = 100000000000000000; drops != 1;
              drops = drops / 10)
         {
-            auto const t = amountFromString(xrp, std::to_string(drops));
-            auto const s = t.xrp();
+            auto const t = amountFromString(bixrp, std::to_string(drops));
+            auto const s = t.bixrp();
             BEAST_EXPECT(s.drops() == drops);
-            BEAST_EXPECT(t == STAmount(XRPAmount(drops)));
-            BEAST_EXPECT(s == XRPAmount(drops));
+            BEAST_EXPECT(t == STAmount(BIXRPAmount(drops)));
+            BEAST_EXPECT(s == BIXRPAmount(drops));
         }
 
         try
         {
             auto const t = amountFromString(usd, "136500");
-            fail(to_string(t.xrp()));
+            fail(to_string(t.bixrp()));
         }
         catch (std::logic_error const&)
         {
@@ -644,7 +644,7 @@ public:
         testcase("STAmount to IOUAmount conversions");
 
         Issue const usd{Currency(0x5553440000000000), AccountID(0x4985601)};
-        Issue const xrp{xrpIssue()};
+        Issue const bixrp{bixrpIssue()};
 
         for (std::uint64_t dollars = 10000000000; dollars != 1;
              dollars = dollars / 10)
@@ -658,7 +658,7 @@ public:
 
         try
         {
-            auto const t = amountFromString(xrp, "136500");
+            auto const t = amountFromString(bixrp, "136500");
             fail(to_string(t.iou()));
         }
         catch (std::logic_error const&)
@@ -682,7 +682,7 @@ public:
         testArithmetic();
         testUnderflow();
         testRounding();
-        testConvertXRP();
+        testConvertBIXRP();
         testConvertIOU();
     }
 };

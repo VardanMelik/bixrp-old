@@ -611,7 +611,7 @@ public:
                         nodeParams,
                         journal_);
                 BEAST_EXPECT(
-                    db->earliestLedgerSeq() == XRP_LEDGER_EARLIEST_SEQ);
+                    db->earliestLedgerSeq() == BIXRP_LEDGER_EARLIEST_SEQ);
             }
 
             // Set an invalid earliest ledger sequence
@@ -656,7 +656,7 @@ public:
             {
                 // Set to default earliest ledger sequence
                 nodeParams.set(
-                    "earliest_seq", std::to_string(XRP_LEDGER_EARLIEST_SEQ));
+                    "earliest_seq", std::to_string(BIXRP_LEDGER_EARLIEST_SEQ));
                 std::unique_ptr<Database> db2 =
                     Manager::instance().make_Database(
                         "test",

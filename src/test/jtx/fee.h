@@ -48,8 +48,8 @@ public:
 
     explicit fee(STAmount const& amount) : amount_(amount)
     {
-        if (!isXRP(*amount_))
-            Throw<std::runtime_error>("fee: not XRP");
+        if (!isBIXRP(*amount_))
+            Throw<std::runtime_error>("fee: not BIXRP");
     }
 
     explicit fee(std::uint64_t amount) : fee{STAmount{amount}}

@@ -30,7 +30,7 @@ namespace jtx {
 /** A balance matches.
 
     This allows "none" which means either the account
-    doesn't exist (no XRP) or the trust line does not
+    doesn't exist (no BIXRP) or the trust line does not
     exist. If an amount is specified, the SLE must
     exist even if the amount is 0, or else the test
     fails.
@@ -44,7 +44,7 @@ private:
 
 public:
     balance(Account const& account, none_t)
-        : none_(true), account_(account), value_(XRP)
+        : none_(true), account_(account), value_(BIXRP)
     {
     }
 

@@ -54,8 +54,8 @@ public:
 
     struct TestData
     {
-        std::string xrpTxBlob;
-        std::string xrpTxHash;
+        std::string bixrpTxBlob;
+        std::string bixrpTxHash;
         std::string usdTxBlob;
         std::string usdTxHash;
         const static int fund = 10000;
@@ -70,7 +70,7 @@ public:
         Env env(*this, envconfig(addGrpcConfig));
         auto const alice = Account("alice");
         auto const bob = Account("bob");
-        env.fund(XRP(TestData::fund), "alice", "bob");
+        env.fund(BIXRP(TestData::fund), "alice", "bob");
         env.trust(bob["USD"](TestData::fund), alice);
         env.close();
 
@@ -85,24 +85,24 @@ public:
         auto wsc = makeWSClient(env.app().config());
         {
             Json::Value jrequestXrp;
-            jrequestXrp[jss::secret] = toBase58(generateSeed("alice"));
-            jrequestXrp[jss::tx_json] =
-                pay("alice", "bob", XRP(TestData::fund / 2));
-            Json::Value jreply_xrp = wsc->invoke("sign", jrequestXrp);
+            jrequestBIXrp[jss::secret] = toBase58(generateSeed("alice"));
+            jrequestBIXrp[jss::tx_json] =
+                pay("alice", "bob", BIXRP(TestData::fund / 2));
+            Json::Value jreply_bixrp = wsc->invoke("sign", jrequestBIXrp);
 
-            if (!BEAST_EXPECT(jreply_xrp.isMember(jss::result)))
+            if (!BEAST_EXPECT(jreply_bixrp.isMember(jss::result)))
                 return;
-            if (!BEAST_EXPECT(jreply_xrp[jss::result].isMember(jss::tx_blob)))
+            if (!BEAST_EXPECT(jreply_bixrp[jss::result].isMember(jss::tx_blob)))
                 return;
-            testData.xrpTxBlob =
-                toBinary(jreply_xrp[jss::result][jss::tx_blob].asString());
-            if (!BEAST_EXPECT(jreply_xrp[jss::result].isMember(jss::tx_json)))
+            testData.bixrpTxBlob =
+                toBinary(jreply_bixrp[jss::result][jss::tx_blob].asString());
+            if (!BEAST_EXPECT(jreply_bixrp[jss::result].isMember(jss::tx_json)))
                 return;
             if (!BEAST_EXPECT(
-                    jreply_xrp[jss::result][jss::tx_json].isMember(jss::hash)))
+                    jreply_bixrp[jss::result][jss::tx_json].isMember(jss::hash)))
                 return;
-            testData.xrpTxHash = toBinary(
-                jreply_xrp[jss::result][jss::tx_json][jss::hash].asString());
+            testData.bixrpTxHash = toBinary(
+                jreply_bixrp[jss::result][jss::tx_json][jss::hash].asString());
         }
         {
             Json::Value jrequestUsd;
@@ -130,7 +130,7 @@ public:
     void
     testSubmitGoodBlobGrpc()
     {
-        testcase("Submit good blobs, XRP, USD, and same transaction twice");
+        testcase("Submit good blobs, BIXRP, USD, and same transaction twice");
 
         using namespace jtx;
         std::unique_ptr<Config> config = envconfig(addGrpcConfig);
@@ -138,16 +138,16 @@ public:
         Env env(*this, std::move(config));
         auto const alice = Account("alice");
         auto const bob = Account("bob");
-        env.fund(XRP(TestData::fund), "alice", "bob");
+        env.fund(BIXRP(TestData::fund), "alice", "bob");
         env.trust(bob["USD"](TestData::fund), alice);
         env.close();
 
         auto getClient = [&grpcPort]() { return SubmitClient(grpcPort); };
 
-        // XRP
+        // BIXRP
         {
             auto client = getClient();
-            client.request.set_signed_transaction(testData.xrpTxBlob);
+            client.request.set_signed_transaction(testData.bixrpTxBlob);
             client.SubmitTransaction();
             if (!BEAST_EXPECT(client.status.ok()))
             {
@@ -155,7 +155,7 @@ public:
             }
             BEAST_EXPECT(client.reply.engine_result().result() == "tesSUCCESS");
             BEAST_EXPECT(client.reply.engine_result_code() == 0);
-            BEAST_EXPECT(client.reply.hash() == testData.xrpTxHash);
+            BEAST_EXPECT(client.reply.hash() == testData.bixrpTxHash);
         }
         // USD
         {
@@ -207,16 +207,16 @@ public:
         // bad blob with correct length, cannot parse
         {
             auto client = getClient();
-            auto xrpTxBlobCopy(testData.xrpTxBlob);
-            std::reverse(xrpTxBlobCopy.begin(), xrpTxBlobCopy.end());
-            client.request.set_signed_transaction(xrpTxBlobCopy);
+            auto bixrpTxBlobCopy(testData.bixrpTxBlob);
+            std::reverse(bixrpTxBlobCopy.begin(), bixrpTxBlobCopy.end());
+            client.request.set_signed_transaction(bixrpTxBlobCopy);
             client.SubmitTransaction();
             BEAST_EXPECT(!client.status.ok());
         }
         // good blob, can parse but no account
         {
             auto client = getClient();
-            client.request.set_signed_transaction(testData.xrpTxBlob);
+            client.request.set_signed_transaction(testData.bixrpTxBlob);
             client.SubmitTransaction();
             if (!BEAST_EXPECT(client.status.ok()))
             {
@@ -240,15 +240,15 @@ public:
 
         auto const alice = Account("alice");
         auto const bob = Account("bob");
-        // fund 1000 (TestData::fund/10) XRP, the transaction sends 5000
-        // (TestData::fund/2) XRP, so insufficient funds
-        env.fund(XRP(TestData::fund / 10), "alice", "bob");
+        // fund 1000 (TestData::fund/10) BIXRP, the transaction sends 5000
+        // (TestData::fund/2) biXRP, so insufficient funds
+        env.fund(BIXRP(TestData::fund / 10), "alice", "bob");
         env.trust(bob["USD"](TestData::fund), alice);
         env.close();
 
         {
             SubmitClient client(grpcPort);
-            client.request.set_signed_transaction(testData.xrpTxBlob);
+            client.request.set_signed_transaction(testData.bixrpTxBlob);
             client.SubmitTransaction();
             if (!BEAST_EXPECT(client.status.ok()))
             {

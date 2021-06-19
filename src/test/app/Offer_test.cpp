@@ -1123,7 +1123,7 @@ public:
         // Sell and buy the same asset
         {
             // Alice tries an XRP to XRP order:
-            env(offer(alice, XRP(1000), XRP(1000)), ter(temBAD_OFFER));
+            env(offer(alice, BIXRP(1000), BIXRP(1000)), ter(temBAD_OFFER));
             env.require(owners(alice, 0), offers(alice, 0));
 
             // Alice tries an IOU to IOU order:
@@ -1135,16 +1135,16 @@ public:
 
         // Offers with negative amounts
         {
-            env(offer(alice, -USD(1000), XRP(1000)), ter(temBAD_OFFER));
+            env(offer(alice, -USD(1000), BIXRP(1000)), ter(temBAD_OFFER));
             env.require(owners(alice, 1), offers(alice, 0));
 
-            env(offer(alice, USD(1000), -XRP(1000)), ter(temBAD_OFFER));
+            env(offer(alice, USD(1000), -BIXRP(1000)), ter(temBAD_OFFER));
             env.require(owners(alice, 1), offers(alice, 0));
         }
 
         // Offer with a bad expiration
         {
-            env(offer(alice, USD(1000), XRP(1000)),
+            env(offer(alice, USD(1000), BIXRP(1000)),
                 json(sfExpiration.fieldName, std::uint32_t(0)),
                 ter(temBAD_EXPIRATION));
             env.require(owners(alice, 1), offers(alice, 0));
@@ -1152,17 +1152,17 @@ public:
 
         // Offer with a bad offer sequence
         {
-            env(offer(alice, USD(1000), XRP(1000)),
+            env(offer(alice, USD(1000), BIXRP(1000)),
                 json(jss::OfferSequence, std::uint32_t(0)),
                 ter(temBAD_SEQUENCE));
             env.require(owners(alice, 1), offers(alice, 0));
         }
 
-        // Use XRP as a currency code
+        // Use BIXRP as a currency code
         {
             auto const BAD = IOU(gw, badCurrency());
 
-            env(offer(alice, XRP(1000), BAD(1000)), ter(temBAD_CURRENCY));
+            env(offer(alice, BIXRP(1000), BAD(1000)), ter(temBAD_CURRENCY));
             env.require(owners(alice, 1), offers(alice, 0));
         }
     }
@@ -1179,9 +1179,9 @@ public:
         auto const bob = Account{"bob"};
         auto const USD = gw["USD"];
 
-        auto const startBalance = XRP(1000000);
+        auto const startBalance = BIXRP(1000000);
         auto const usdOffer = USD(1000);
-        auto const xrpOffer = XRP(1000);
+        auto const bixrpOffer = BIXRP(1000);
 
         Env env{*this, features};
 
@@ -1203,7 +1203,7 @@ public:
         // The DepositPreauth amendment changes the return code; adapt to that.
         bool const featPreauth{features[featureDepositPreauth]};
 
-        env(offer(alice, xrpOffer, usdOffer),
+        env(offer(alice, bixrpOffer, usdOffer),
             json(sfExpiration.fieldName, lastClose(env)),
             ter(featPreauth ? TER{tecEXPIRED} : TER{tesSUCCESS}));
 
@@ -1215,7 +1215,7 @@ public:
         env.close();
 
         // Add an offer that expires before the next ledger close
-        env(offer(alice, xrpOffer, usdOffer),
+        env(offer(alice, bixrpOffer, usdOffer),
             json(sfExpiration.fieldName, lastClose(env) + 1),
             ter(tesSUCCESS));
         env.require(
@@ -1233,7 +1233,7 @@ public:
             owners(alice, 2));
 
         // Add offer - the expired offer is removed
-        env(offer(bob, usdOffer, xrpOffer), ter(tesSUCCESS));
+        env(offer(bob, usdOffer, bixrpOffer), ter(tesSUCCESS));
         env.require(
             balance(alice, startBalance - f - f - f),
             balance(alice, usdOffer),
@@ -1256,11 +1256,11 @@ public:
         auto const USD = gw["USD"];
 
         auto const usdOffer = USD(1000);
-        auto const xrpOffer = XRP(1000);
+        auto const bixrpOffer = BIXRP(1000);
 
         Env env{*this, features};
 
-        env.fund(XRP(1000000), gw);
+        env.fund(BIXRP(1000000), gw);
 
         // The fee that's charged for transactions
         auto const f = env.current()->fees().base;
@@ -1268,35 +1268,35 @@ public:
         // Account is at the reserve, and will dip below once
         // fees are subtracted.
         env.fund(reserve(env, 0), "alice");
-        env(offer("alice", usdOffer, xrpOffer), ter(tecUNFUNDED_OFFER));
+        env(offer("alice", usdOffer, bixrpOffer), ter(tecUNFUNDED_OFFER));
         env.require(balance("alice", reserve(env, 0) - f), owners("alice", 0));
 
         // Account has just enough for the reserve and the
         // fee.
         env.fund(reserve(env, 0) + f, "bob");
-        env(offer("bob", usdOffer, xrpOffer), ter(tecUNFUNDED_OFFER));
+        env(offer("bob", usdOffer, bixrpOffer), ter(tecUNFUNDED_OFFER));
         env.require(balance("bob", reserve(env, 0)), owners("bob", 0));
 
         // Account has enough for the reserve, the fee and
         // the offer, and a bit more, but not enough for the
         // reserve after the offer is placed.
-        env.fund(reserve(env, 0) + f + XRP(1), "carol");
+        env.fund(reserve(env, 0) + f + BIXRP(1), "carol");
         env(offer("carol", usdOffer, xrpOffer), ter(tecINSUF_RESERVE_OFFER));
         env.require(
-            balance("carol", reserve(env, 0) + XRP(1)), owners("carol", 0));
+            balance("carol", reserve(env, 0) + BIXRP(1)), owners("carol", 0));
 
         // Account has enough for the reserve plus one
         // offer, and the fee.
         env.fund(reserve(env, 1) + f, "dan");
-        env(offer("dan", usdOffer, xrpOffer), ter(tesSUCCESS));
+        env(offer("dan", usdOffer, bixrpOffer), ter(tesSUCCESS));
         env.require(balance("dan", reserve(env, 1)), owners("dan", 1));
 
         // Account has enough for the reserve plus one
         // offer, the fee and the entire offer amount.
-        env.fund(reserve(env, 1) + f + xrpOffer, "eve");
-        env(offer("eve", usdOffer, xrpOffer), ter(tesSUCCESS));
+        env.fund(reserve(env, 1) + f + bixrpOffer, "eve");
+        env(offer("eve", usdOffer, bixrpOffer), ter(tesSUCCESS));
         env.require(
-            balance("eve", reserve(env, 1) + xrpOffer), owners("eve", 1));
+            balance("eve", reserve(env, 1) + bixrpOffer), owners("eve", 1));
     }
 
     void
@@ -1316,10 +1316,10 @@ public:
         Env env{*this, features};
         env.close();
 
-        env.fund(XRP(10000), gw);
+        env.fund(BIXRP(10000), gw);
         if (use_partner)
         {
-            env.fund(XRP(10000), partner);
+            env.fund(BIXRP(10000), partner);
             env(trust(partner, USD(100)));
             env(trust(partner, BTC(500)));
             env(pay(gw, partner, USD(100)));
@@ -1332,19 +1332,19 @@ public:
 
         // PART 1:
         // we will make two offers that can be used to bridge BTC to USD
-        // through XRP
-        env(offer(account_to_test, BTC(250), XRP(1000)));
+        // through BIXRP
+        env(offer(account_to_test, BTC(250), BIXRP(1000)));
         env.require(offers(account_to_test, 1));
 
         // validate that the book now shows a BTC for XRP offer
-        BEAST_EXPECT(isOffer(env, account_to_test, BTC(250), XRP(1000)));
+        BEAST_EXPECT(isOffer(env, account_to_test, BTC(250), BIXRP(1000)));
 
         auto const secondLegSeq = env.seq(account_to_test);
-        env(offer(account_to_test, XRP(1000), USD(50)));
+        env(offer(account_to_test, BIXRP(1000), USD(50)));
         env.require(offers(account_to_test, 2));
 
-        // validate that the book also shows a XRP for USD offer
-        BEAST_EXPECT(isOffer(env, account_to_test, XRP(1000), USD(50)));
+        // validate that the book also shows a BIXRP for USD offer
+        BEAST_EXPECT(isOffer(env, account_to_test, BIXRP(1000), USD(50)));
 
         // now make an offer that will cross and auto-bridge, meaning
         // the outstanding offers will be taken leaving us with none
@@ -1354,7 +1354,7 @@ public:
         BEAST_EXPECT(jrr[jss::offers].isArray());
         BEAST_EXPECT(jrr[jss::offers].size() == 0);
 
-        jrr = getBookOffers(env, BTC, XRP);
+        jrr = getBookOffers(env, BTC, BIXRP);
         BEAST_EXPECT(jrr[jss::offers].isArray());
         BEAST_EXPECT(jrr[jss::offers].size() == 0);
 
@@ -1377,7 +1377,7 @@ public:
                 auto const& offer = *offerPtr;
                 BEAST_EXPECT(offer[sfLedgerEntryType] == ltOFFER);
                 BEAST_EXPECT(offer[sfTakerGets] == USD(0));
-                BEAST_EXPECT(offer[sfTakerPays] == XRP(0));
+                BEAST_EXPECT(offer[sfTakerPays] == BIXRP(0));
             }
         }
 

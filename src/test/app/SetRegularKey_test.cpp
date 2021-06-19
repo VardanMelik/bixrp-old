@@ -35,7 +35,7 @@ public:
         Env env{*this, supported_amendments() - fixMasterKeyAsRegularKey};
         Account const alice("alice");
         Account const bob("bob");
-        env.fund(XRP(10000), alice, bob);
+        env.fund(BIXRP(10000), alice, bob);
 
         env(regkey(alice, bob));
         auto const ar = env.le(alice);
@@ -75,7 +75,7 @@ public:
         Env env{*this, supported_amendments() | fixMasterKeyAsRegularKey};
         Account const alice("alice");
         Account const bob("bob");
-        env.fund(XRP(10000), alice, bob);
+        env.fund(BIXRP(10000), alice, bob);
 
         env(regkey(alice, bob));
         env(noop(alice), sig(bob));
@@ -111,7 +111,7 @@ public:
             "Set regular key to master key (before fixMasterKeyAsRegularKey)");
         Env env{*this, supported_amendments() - fixMasterKeyAsRegularKey};
         Account const alice("alice");
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
 
         // Must be possible unless amendment `fixMasterKeyAsRegularKey` enabled.
         env(regkey(alice, alice), sig(alice));
@@ -141,7 +141,7 @@ public:
             "Set regular key to master key (after fixMasterKeyAsRegularKey)");
         Env env{*this, supported_amendments() | fixMasterKeyAsRegularKey};
         Account const alice("alice");
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
 
         // Must be possible unless amendment `fixMasterKeyAsRegularKey` enabled.
         env(regkey(alice, alice), ter(temBAD_REGKEY));
@@ -156,7 +156,7 @@ public:
         Env env(*this);
         Account const alice("alice");
         Account const bob("bob");
-        env.fund(XRP(10000), alice, bob);
+        env.fund(BIXRP(10000), alice, bob);
 
         auto ar = env.le(alice);
         BEAST_EXPECT(
@@ -191,7 +191,7 @@ public:
         Env env(*this);
         Account const alice("alice");
         Account const bob("bob");
-        env.fund(XRP(10000), alice, bob);
+        env.fund(BIXRP(10000), alice, bob);
 
         auto jv = regkey(alice, bob);
         jv[sfFlags.fieldName] = tfUniversalMask;
@@ -206,7 +206,7 @@ public:
         testcase("Ticket regular key");
         Env env{*this};
         Account const alice{"alice", KeyType::ed25519};
-        env.fund(XRP(1000), alice);
+        env.fund(BIXRP(1000), alice);
         env.close();
 
         // alice makes herself some tickets.

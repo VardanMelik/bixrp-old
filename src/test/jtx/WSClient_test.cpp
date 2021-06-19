@@ -38,7 +38,7 @@ public:
             jv["streams"] = Json::arrayValue;
             jv["streams"].append("ledger");
         }
-        env.fund(XRP(10000), "alice");
+        env.fund(BIXRP(10000), "alice");
         env.close();
         auto jv = wsc->getMsg(std::chrono::seconds(1));
         pass();

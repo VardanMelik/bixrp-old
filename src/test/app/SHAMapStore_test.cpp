@@ -199,7 +199,7 @@ public:
         Env env(*this, envconfig(onlineDelete));
 
         auto& store = env.app().getSHAMapStore();
-        env.fund(XRP(10000), noripple("alice"));
+        env.fund(BIXRP(10000), noripple("alice"));
 
         ledgerCheck(env, 1, 2);
         transactionCheck(env, 0);
@@ -230,7 +230,7 @@ public:
 
         for (auto i = firstSeq + 1; i < deleteInterval + firstSeq; ++i)
         {
-            env.fund(XRP(10000), noripple("test" + std::to_string(i)));
+            env.fund(BIXRP(10000), noripple("test" + std::to_string(i)));
             env.close();
 
             ledgerTmp = env.rpc("ledger", "current");

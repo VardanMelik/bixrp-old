@@ -29,7 +29,7 @@ namespace jtx {
 Json::Value
 trust(Account const& account, STAmount const& amount, std::uint32_t flags)
 {
-    if (isXRP(amount))
+    if (isBIXRP(amount))
         Throw<std::runtime_error>("trust() requires IOU");
     Json::Value jv;
     jv[jss::Account] = account.human();
@@ -46,7 +46,7 @@ trust(
     Account const& peer,
     std::uint32_t flags)
 {
-    if (isXRP(amount))
+    if (isBIXRP(amount))
         Throw<std::runtime_error>("trust() requires IOU");
     Json::Value jv;
     jv[jss::Account] = account.human();

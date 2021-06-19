@@ -92,17 +92,17 @@ public:
 
         try
         {
-            XRP(0.0000001);
+            BIXRP(0.0000001);
             fail("missing exception");
         }
         catch (std::domain_error const&)
         {
             pass();
         }
-        XRP(-0.000001);
+        BIXRP(-0.000001);
         try
         {
-            XRP(-0.0000009);
+            BIXRP(-0.0000009);
             fail("missing exception");
         }
         catch (std::domain_error const&)
@@ -110,23 +110,23 @@ public:
             pass();
         }
 
-        BEAST_EXPECT(to_string(XRP(5)) == "5 XRP");
-        BEAST_EXPECT(to_string(XRP(.80)) == "0.8 XRP");
-        BEAST_EXPECT(to_string(XRP(.005)) == "5000 drops");
-        BEAST_EXPECT(to_string(XRP(0.1)) == "0.1 XRP");
-        BEAST_EXPECT(to_string(XRP(10000)) == "10000 XRP");
+        BEAST_EXPECT(to_string(BIXRP(5)) == "5 BIXRP");
+        BEAST_EXPECT(to_string(BIXRP(.80)) == "0.8 BIXRP");
+        BEAST_EXPECT(to_string(BIXRP(.005)) == "5000 drops");
+        BEAST_EXPECT(to_string(BIXRP(0.1)) == "0.1 BIXRP");
+        BEAST_EXPECT(to_string(BIXRP(10000)) == "10000 BIXRP");
         BEAST_EXPECT(to_string(drops(10)) == "10 drops");
-        BEAST_EXPECT(to_string(drops(123400000)) == "123.4 XRP");
-        BEAST_EXPECT(to_string(XRP(-5)) == "-5 XRP");
-        BEAST_EXPECT(to_string(XRP(-.99)) == "-0.99 XRP");
-        BEAST_EXPECT(to_string(XRP(-.005)) == "-5000 drops");
-        BEAST_EXPECT(to_string(XRP(-0.1)) == "-0.1 XRP");
+        BEAST_EXPECT(to_string(drops(123400000)) == "123.4 BIXRP");
+        BEAST_EXPECT(to_string(BIXRP(-5)) == "-5 BIXRP");
+        BEAST_EXPECT(to_string(BIXRP(-.99)) == "-0.99 BIXRP");
+        BEAST_EXPECT(to_string(BIXRP(-.005)) == "-5000 drops");
+        BEAST_EXPECT(to_string(BIXRP(-0.1)) == "-0.1 BIXRP");
         BEAST_EXPECT(to_string(drops(-10)) == "-10 drops");
-        BEAST_EXPECT(to_string(drops(-123400000)) == "-123.4 XRP");
+        BEAST_EXPECT(to_string(drops(-123400000)) == "-123.4 BIXRP");
 
-        BEAST_EXPECT(XRP(1) == drops(1000000));
-        BEAST_EXPECT(XRP(1) == STAmount(1000000));
-        BEAST_EXPECT(STAmount(1000000) == XRP(1));
+        BEAST_EXPECT(BIXRP(1) == drops(1000000));
+        BEAST_EXPECT(BIXRP(1) == STAmount(1000000));
+        BEAST_EXPECT(STAmount(1000000) == BIXRP(1));
 
         auto const gw = Account("gw");
         auto const USD = gw["USD"];
@@ -147,7 +147,7 @@ public:
     testEnv()
     {
         using namespace jtx;
-        auto const n = XRP(10000);
+        auto const n = BIXRP(10000);
         auto const gw = Account("gw");
         auto const USD = gw["USD"];
         auto const alice = Account("alice");
@@ -155,7 +155,7 @@ public:
         // unfunded
         {
             Env env(*this);
-            env(pay("alice", "bob", XRP(1000)),
+            env(pay("alice", "bob", BIXRP(1000)),
                 seq(1),
                 fee(10),
                 sig("alice"),
@@ -238,11 +238,11 @@ public:
         auto const gw = Account("gw");
         auto const USD = gw["USD"];
         env.require(balance("alice", none));
-        env.require(balance("alice", XRP(none)));
-        env.fund(XRP(10000), "alice", gw);
+        env.require(balance("alice", BIXRP(none)));
+        env.fund(BIXRP(10000), "alice", gw);
         env.require(balance("alice", USD(none)));
         env.trust(USD(100), "alice");
-        env.require(balance("alice", XRP(10000)));  // fee refunded
+        env.require(balance("alice", BIXRP(10000)));  // fee refunded
         env.require(balance("alice", USD(0)));
         env(pay(gw, "alice", USD(10)), require(balance("alice", USD(10))));
 
@@ -263,7 +263,7 @@ public:
         Account const alice("alice", KeyType::ed25519);
         Account const bob("bob", KeyType::secp256k1);
         Account const carol("carol");
-        env.fund(XRP(10000), alice, bob);
+        env.fund(BIXRP(10000), alice, bob);
 
         // Master key only
         env(noop(alice));
@@ -302,20 +302,20 @@ public:
         auto const gw = Account("gateway");
         auto const USD = gw["USD"];
 
-        env.fund(XRP(10000), "alice", "bob", "carol", gw);
-        env.require(balance("alice", XRP(10000)));
-        env.require(balance("bob", XRP(10000)));
-        env.require(balance("carol", XRP(10000)));
-        env.require(balance(gw, XRP(10000)));
+        env.fund(BIXRP(10000), "alice", "bob", "carol", gw);
+        env.require(balance("alice", BIXRP(10000)));
+        env.require(balance("bob", BIXRP(10000)));
+        env.require(balance("carol", BIXRP(10000)));
+        env.require(balance(gw, BIXRP(10000)));
 
-        env(pay(env.master, "alice", XRP(1000)), fee(none), ter(temMALFORMED));
-        env(pay(env.master, "alice", XRP(1000)), fee(1), ter(telINSUF_FEE_P));
-        env(pay(env.master, "alice", XRP(1000)), seq(none), ter(temMALFORMED));
-        env(pay(env.master, "alice", XRP(1000)), seq(20), ter(terPRE_SEQ));
-        env(pay(env.master, "alice", XRP(1000)), sig(none), ter(temMALFORMED));
-        env(pay(env.master, "alice", XRP(1000)), sig("bob"), ter(tefBAD_AUTH));
+        env(pay(env.master, "alice", BIXRP(1000)), fee(none), ter(temMALFORMED));
+        env(pay(env.master, "alice", BIXRP(1000)), fee(1), ter(telINSUF_FEE_P));
+        env(pay(env.master, "alice", BIXRP(1000)), seq(none), ter(temMALFORMED));
+        env(pay(env.master, "alice", BIXRP(1000)), seq(20), ter(terPRE_SEQ));
+        env(pay(env.master, "alice", BIXRP(1000)), sig(none), ter(temMALFORMED));
+        env(pay(env.master, "alice", BIXRP(1000)), sig("bob"), ter(tefBAD_AUTH));
 
-        env(pay(env.master, "dilbert", XRP(1000)), sig(env.master));
+        env(pay(env.master, "dilbert", BIXRP(1000)), sig(env.master));
 
         env.trust(USD(100), "alice", "bob", "carol");
         env.require(owners("alice", 1), lines("alice", 1));
@@ -325,13 +325,13 @@ public:
         env.require(balance("carol", USD(50)));
         env.require(balance(gw, Account("carol")["USD"](-50)));
 
-        env(offer("carol", XRP(50), USD(50)), require(owners("carol", 2)));
+        env(offer("carol", BIXRP(50), USD(50)), require(owners("carol", 2)));
         env(pay("alice", "bob", any(USD(10))), ter(tecPATH_DRY));
         env(pay("alice", "bob", any(USD(10))),
-            paths(XRP),
-            sendmax(XRP(10)),
+            paths(BIXRP),
+            sendmax(BIXRP(10)),
             ter(tecPATH_PARTIAL));
-        env(pay("alice", "bob", any(USD(10))), paths(XRP), sendmax(XRP(20)));
+        env(pay("alice", "bob", any(USD(10))), paths(BIXRP), sendmax(BIXRP(20)));
         env.require(balance("bob", USD(10)));
         env.require(balance("carol", USD(39.5)));
 
@@ -376,7 +376,7 @@ public:
         auto const USD = gw["USD"];
 
         auto const alice = Account{"alice"};
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
 
         auto const localTxCnt = env.app().getOPs().getLocalTxCount();
         auto const queueTxCount =
@@ -424,7 +424,7 @@ public:
         BEAST_EXPECT(env.app().getOPs().getLocalTxCount() == localTxCnt);
         BEAST_EXPECT(env.current()->txCount() == openTxCount);
 
-        jr = applyTxn(offer(alice, XRP(1000), USD(1000)));
+        jr = applyTxn(offer(alice, BIXRP(1000), USD(1000)));
 
         BEAST_EXPECT(
             jr[jss::result][jss::engine_result] == "tecUNFUNDED_OFFER");
@@ -457,7 +457,7 @@ public:
         using namespace jtx;
 
         Env env(*this);
-        env.fund(XRP(10000), "alice");
+        env.fund(BIXRP(10000), "alice");
         env(signers("alice", 1, {{"alice", 1}, {"bob", 2}}),
             ter(temBAD_SIGNER));
         env(signers("alice", 1, {{"bob", 1}, {"carol", 2}}));
@@ -484,7 +484,7 @@ public:
 
         {
             Env env(*this);
-            env.fund(XRP(10000), "alice");
+            env.fund(BIXRP(10000), "alice");
             env(noop("alice"),
                 require(owners("alice", 0), tickets("alice", 0)));
             env(ticket::create("alice", 1),
@@ -538,7 +538,7 @@ public:
     {
         using namespace jtx;
         Env env(*this);
-        env.fund(XRP(100000), "alice");
+        env.fund(BIXRP(100000), "alice");
         auto jt1 = env.jt(noop("alice"));
         BEAST_EXPECT(!jt1.get<std::uint16_t>());
         auto jt2 = env.jt(noop("alice"), prop<std::uint16_t>(-1));
@@ -608,7 +608,7 @@ public:
     {
         using namespace jtx;
         Env env(*this);
-        env.fund(XRP(10000), "alice");
+        env.fund(BIXRP(10000), "alice");
         env(noop("alice"), memodata("data"));
         env(noop("alice"), memoformat("format"));
         env(noop("alice"), memotype("type"));
@@ -660,9 +660,9 @@ public:
         Env env(*this);
         env.close();
         env.close();
-        env.fund(XRP(100000), "alice", "bob");
+        env.fund(BIXRP(100000), "alice", "bob");
         env.close();
-        env(pay("alice", "bob", XRP(100)));
+        env(pay("alice", "bob", BIXRP(100)));
         env.close();
         env(noop("alice"));
         env.close();
@@ -676,15 +676,15 @@ public:
         Env env(*this);
         auto const gw = Account("gw");
         auto const USD = gw["USD"];
-        env.fund(XRP(10000), "alice", "bob");
+        env.fund(BIXRP(10000), "alice", "bob");
         env.json(
             pay("alice", "bob", USD(10)),
             path(Account("alice")),
             path("bob"),
             path(USD),
-            path(~XRP),
+            path(~BIXRP),
             path(~USD),
-            path("bob", USD, ~XRP, ~USD));
+            path("bob", USD, ~BIXRP, ~USD));
     }
 
     // Test that jtx can re-sign a transaction that's already been signed.
@@ -694,7 +694,7 @@ public:
         using namespace jtx;
         Env env(*this);
 
-        env.fund(XRP(10000), "alice");
+        env.fund(BIXRP(10000), "alice");
         auto const baseFee = env.current()->fees().base;
         std::uint32_t const aliceSeq = env.seq("alice");
 
@@ -714,7 +714,7 @@ public:
         Env_ss envs(env);
 
         auto const alice = Account("alice");
-        env.fund(XRP(10000), alice);
+        env.fund(BIXRP(10000), alice);
 
         {
             envs(noop(alice), fee(none), seq(none))();
