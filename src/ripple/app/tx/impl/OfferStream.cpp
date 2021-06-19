@@ -28,7 +28,7 @@ bool
 checkIssuers(ReadView const& view, Book const& book)
 {
     auto issuerExists = [](ReadView const& view, Issue const& iss) -> bool {
-        return isXRP(iss.account) || view.read(keylet::account(iss.account));
+        return isBIXRP(iss.account) || view.read(keylet::account(iss.account));
     };
     return issuerExists(view, book.in) && issuerExists(view, book.out);
 }
@@ -120,16 +120,16 @@ accountFundsHelper(
         view, id, issue.currency, issue.account, freezeHandling, j));
 }
 
-static XRPAmount
+static BIXRPAmount
 accountFundsHelper(
     ReadView const& view,
     AccountID const& id,
-    XRPAmount const& amtDefault,
+    BIXRPAmount const& amtDefault,
     Issue const& issue,
     FreezeHandling freezeHandling,
     beast::Journal j)
 {
-    return toAmount<XRPAmount>(accountHolds(
+    return toAmount<BIXRPAmount>(accountHolds(
         view, id, issue.currency, issue.account, freezeHandling, j));
 }
 
@@ -140,31 +140,31 @@ TOfferStreamBase<TIn, TOut>::shouldRmSmallIncreasedQOffer() const
 {
     static_assert(
         std::is_same_v<TTakerPays, IOUAmount> ||
-            std::is_same_v<TTakerPays, XRPAmount>,
+            std::is_same_v<TTakerPays, BIXRPAmount>,
         "STAmount is not supported");
 
     static_assert(
         std::is_same_v<TTakerGets, IOUAmount> ||
-            std::is_same_v<TTakerGets, XRPAmount>,
+            std::is_same_v<TTakerGets, BIXRPAmount>,
         "STAmount is not supported");
 
     static_assert(
-        !std::is_same_v<TTakerPays, XRPAmount> ||
-            !std::is_same_v<TTakerGets, XRPAmount>,
-        "Cannot have XRP/XRP offers");
+        !std::is_same_v<TTakerPays, BIXRPAmount> ||
+            !std::is_same_v<TTakerGets, BIXRPAmount>,
+        "Cannot have BIXRP/BIXRP offers");
 
     if (!view_.rules().enabled(fixRmSmallIncreasedQOffers))
         return false;
 
     // Consider removing the offer if:
-    //  o `TakerPays` is XRP (because of XRP drops granularity) or
+    //  o `TakerPays` is BIXRP (because of BIXRP drops granularity) or
     //  o `TakerPays` and `TakerGets` are both IOU and `TakerPays`<`TakerGets`
-    constexpr bool const inIsXRP = std::is_same_v<TTakerPays, XRPAmount>;
-    constexpr bool const outIsXRP = std::is_same_v<TTakerGets, XRPAmount>;
+    constexpr bool const inIsBIXRP = std::is_same_v<TTakerPays, BIXRPAmount>;
+    constexpr bool const outIsBIXRP = std::is_same_v<TTakerGets, BIXRPAmount>;
 
-    if constexpr (outIsXRP)
+    if constexpr (outIsBIXRP)
     {
-        // If `TakerGets` is XRP, the worst this offer's quality can change is
+        // If `TakerGets` is BIXRP, the worst this offer's quality can change is
         // to about 10^-81 `TakerPays` and 1 drop `TakerGets`. This will be
         // remarkably good quality for any realistic asset, so these offers
         // don't need this extra check.
@@ -175,7 +175,7 @@ TOfferStreamBase<TIn, TOut>::shouldRmSmallIncreasedQOffer() const
         toAmount<TTakerPays>(offer_.amount().in),
         toAmount<TTakerGets>(offer_.amount().out)};
 
-    if constexpr (!inIsXRP && !outIsXRP)
+    if constexpr (!inIsBIXRP && !outIsBIXRP)
     {
         if (ofrAmts.in >= ofrAmts.out)
             return false;
@@ -295,35 +295,35 @@ TOfferStreamBase<TIn, TOut>::step()
         }
 
         bool const rmSmallIncreasedQOffer = [&] {
-            bool const inIsXRP = isXRP(offer_.issueIn());
-            bool const outIsXRP = isXRP(offer_.issueOut());
-            if (inIsXRP && !outIsXRP)
+            bool const inIsBIXRP = isBIXRP(offer_.issueIn());
+            bool const outIsXRP = isBIXRP(offer_.issueOut());
+            if (inIsBIXRP && !outIsBIXRP)
             {
                 // Without the `if constexpr`, the
                 // `shouldRmSmallIncreasedQOffer` template will be instantiated
                 // even if it is never used. This can cause compiler errors in
                 // some cases, hence the `if constexpr` guard.
-                // Note that TIn can be XRPAmount or STAmount, and TOut can be
+                // Note that TIn can be BIXRPAmount or STAmount, and TOut can be
                 // IOUAmount or STAmount.
                 if constexpr (!(std::is_same_v<TIn, IOUAmount> ||
-                                std::is_same_v<TOut, XRPAmount>))
-                    return shouldRmSmallIncreasedQOffer<XRPAmount, IOUAmount>();
+                                std::is_same_v<TOut, BIXRPAmount>))
+                    return shouldRmSmallIncreasedQOffer<BIXRPAmount, IOUAmount>();
             }
-            if (!inIsXRP && outIsXRP)
+            if (!inIsBIXRP && outIsBIXRP)
             {
                 // See comment above for `if constexpr` rationale
-                if constexpr (!(std::is_same_v<TIn, XRPAmount> ||
+                if constexpr (!(std::is_same_v<TIn, BIXRPAmount> ||
                                 std::is_same_v<TOut, IOUAmount>))
-                    return shouldRmSmallIncreasedQOffer<IOUAmount, XRPAmount>();
+                    return shouldRmSmallIncreasedQOffer<IOUAmount, BIXRPAmount>();
             }
-            if (!inIsXRP && !outIsXRP)
+            if (!inIsBIXRP && !outIsBIXRP)
             {
                 // See comment above for `if constexpr` rationale
-                if constexpr (!(std::is_same_v<TIn, XRPAmount> ||
-                                std::is_same_v<TOut, XRPAmount>))
+                if constexpr (!(std::is_same_v<TIn, BIXRPAmount> ||
+                                std::is_same_v<TOut, BIXRPAmount>))
                     return shouldRmSmallIncreasedQOffer<IOUAmount, IOUAmount>();
             }
-            assert(0);  // xrp/xrp offer!?! should never happen
+            assert(0);  // bixrp/bixrp offer!?! should never happen
             return false;
         }();
 
@@ -376,11 +376,11 @@ FlowOfferStream<TIn, TOut>::permRmOffer(uint256 const& offerIndex)
 
 template class FlowOfferStream<STAmount, STAmount>;
 template class FlowOfferStream<IOUAmount, IOUAmount>;
-template class FlowOfferStream<XRPAmount, IOUAmount>;
-template class FlowOfferStream<IOUAmount, XRPAmount>;
+template class FlowOfferStream<BIXRPAmount, IOUAmount>;
+template class FlowOfferStream<IOUAmount, BIXRPAmount>;
 
 template class TOfferStreamBase<STAmount, STAmount>;
 template class TOfferStreamBase<IOUAmount, IOUAmount>;
-template class TOfferStreamBase<XRPAmount, IOUAmount>;
-template class TOfferStreamBase<IOUAmount, XRPAmount>;
+template class TOfferStreamBase<BIXRPAmount, IOUAmount>;
+template class TOfferStreamBase<IOUAmount, BIXRPAmount>;
 }  // namespace ripple

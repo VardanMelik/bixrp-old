@@ -60,7 +60,7 @@ struct is_contiguous_container<
 
     @note This class stores its values internally in big-endian
           form and that internal representation is part of the
-          binary protocol of the XRP Ledger and cannot be changed
+          binary protocol of the BIXRP Ledger and cannot be changed
           arbitrarily without causing breakage.
 
           @tparam Bits The number of bits this integer should have; must

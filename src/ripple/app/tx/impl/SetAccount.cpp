@@ -111,14 +111,14 @@ SetAccount::preflight(PreflightContext const& ctx)
     }
 
     //
-    // DisallowXRP
+    // DisallowBIXRP
     //
-    bool bSetDisallowXRP =
-        (uTxFlags & tfDisallowXRP) || (uSetFlag == asfDisallowXRP);
-    bool bClearDisallowXRP =
-        (uTxFlags & tfAllowXRP) || (uClearFlag == asfDisallowXRP);
+    bool bSetDisallowBIXRP =
+        (uTxFlags & tfDisallowBIXRP) || (uSetFlag == asfDisallowBIXRP);
+    bool bClearDisallowBIXRP =
+        (uTxFlags & tfAllowBIXRP) || (uClearFlag == asfDisallowBIXRP);
 
-    if (bSetDisallowXRP && bClearDisallowXRP)
+    if (bSetDisallowBIXRP && bClearDisallowBIXRP)
     {
         JLOG(j.trace()) << "Malformed transaction: Contradictory flags set.";
         return temINVALID_FLAG;
@@ -234,10 +234,10 @@ SetAccount::doApply()
         (uTxFlags & tfRequireAuth) || (uSetFlag == asfRequireAuth)};
     bool const bClearRequireAuth{
         (uTxFlags & tfOptionalAuth) || (uClearFlag == asfRequireAuth)};
-    bool const bSetDisallowXRP{
-        (uTxFlags & tfDisallowXRP) || (uSetFlag == asfDisallowXRP)};
-    bool const bClearDisallowXRP{
-        (uTxFlags & tfAllowXRP) || (uClearFlag == asfDisallowXRP)};
+    bool const bSetDisallowBIXRP{
+        (uTxFlags & tfDisallowBIXRP) || (uSetFlag == asfDisallowBIXRP)};
+    bool const bClearDisallowBIXRP{
+        (uTxFlags & tfAllowBIXRP) || (uClearFlag == asfDisallowBIXRP)};
 
     bool const sigWithMaster{[&tx, &acct = account_]() {
         auto const spk = tx.getSigningPubKey();
@@ -283,18 +283,18 @@ SetAccount::doApply()
     }
 
     //
-    // DisallowXRP
+    // DisallowBIXRP
     //
-    if (bSetDisallowXRP && !(uFlagsIn & lsfDisallowXRP))
+    if (bSetDisallowBIXRP && !(uFlagsIn & lsfDisallowBIXRP))
     {
-        JLOG(j_.trace()) << "Set lsfDisallowXRP.";
-        uFlagsOut |= lsfDisallowXRP;
+        JLOG(j_.trace()) << "Set lsfDisallowBIXRP.";
+        uFlagsOut |= lsfDisallowBIXRP;
     }
 
-    if (bClearDisallowXRP && (uFlagsIn & lsfDisallowXRP))
+    if (bClearDisallowBIXRP && (uFlagsIn & lsfDisallowBIXRP))
     {
-        JLOG(j_.trace()) << "Clear lsfDisallowXRP.";
-        uFlagsOut &= ~lsfDisallowXRP;
+        JLOG(j_.trace()) << "Clear lsfDisallowBIXRP.";
+        uFlagsOut &= ~lsfDisallowBIXRP;
     }
 
     //

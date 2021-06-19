@@ -33,16 +33,16 @@ namespace ripple {
 TxConsequences
 Payment::makeTxConsequences(PreflightContext const& ctx)
 {
-    auto calculateMaxXRPSpend = [](STTx const& tx) -> XRPAmount {
+    auto calculateMaxBIXRPSpend = [](STTx const& tx) -> BIXRPAmount {
         STAmount const maxAmount =
             tx.isFieldPresent(sfSendMax) ? tx[sfSendMax] : tx[sfAmount];
 
-        // If there's no sfSendMax in XRP, and the sfAmount isn't
-        // in XRP, then the transaction does not spend XRP.
-        return maxAmount.native() ? maxAmount.xrp() : beast::zero;
+        // If there's no sfSendMax in BIXRP, and the sfAmount isn't
+        // in BIXRP, then the transaction does not spend BIXRP.
+        return maxAmount.native() ? maxAmount.bixrp() : beast::zero;
     };
 
-    return TxConsequences{ctx.tx, calculateMaxXRPSpend(ctx.tx)};
+    return TxConsequences{ctx.tx, calculateMaxBIXRPSpend(ctx.tx)};
 }
 
 NotTEC
@@ -89,8 +89,8 @@ Payment::preflight(PreflightContext const& ctx)
     auto const& uSrcCurrency = maxSourceAmount.getCurrency();
     auto const& uDstCurrency = saDstAmount.getCurrency();
 
-    // isZero() is XRP.  FIX!
-    bool const bXRPDirect = uSrcCurrency.isZero() && uDstCurrency.isZero();
+    // isZero() is BIXRP.  FIX!
+    bool const bBIXRPDirect = uSrcCurrency.isZero() && uDstCurrency.isZero();
 
     if (!isLegalNet(saDstAmount) || !isLegalNet(maxSourceAmount))
         return temBAD_AMOUNT;
@@ -131,40 +131,40 @@ Payment::preflight(PreflightContext const& ctx)
                         << to_string(uDstCurrency);
         return temREDUNDANT;
     }
-    if (bXRPDirect && bMax)
+    if (bBIXRPDirect && bMax)
     {
         // Consistent but redundant transaction.
         JLOG(j.trace()) << "Malformed transaction: "
-                        << "SendMax specified for XRP to XRP.";
-        return temBAD_SEND_XRP_MAX;
+                        << "SendMax specified for BIXRP to BIXRP.";
+        return temBAD_SEND_BIXRP_MAX;
     }
-    if (bXRPDirect && bPaths)
+    if (bBIXRPDirect && bPaths)
     {
-        // XRP is sent without paths.
+        // BIXRP is sent without paths.
         JLOG(j.trace()) << "Malformed transaction: "
-                        << "Paths specified for XRP to XRP.";
-        return temBAD_SEND_XRP_PATHS;
+                        << "Paths specified for BIXRP to BIXRP.";
+        return temBAD_SEND_BIXRP_PATHS;
     }
-    if (bXRPDirect && partialPaymentAllowed)
-    {
-        // Consistent but redundant transaction.
-        JLOG(j.trace()) << "Malformed transaction: "
-                        << "Partial payment specified for XRP to XRP.";
-        return temBAD_SEND_XRP_PARTIAL;
-    }
-    if (bXRPDirect && limitQuality)
+    if (bBIXRPDirect && partialPaymentAllowed)
     {
         // Consistent but redundant transaction.
         JLOG(j.trace()) << "Malformed transaction: "
-                        << "Limit quality specified for XRP to XRP.";
-        return temBAD_SEND_XRP_LIMIT;
+                        << "Partial payment specified for BIXRP to BIXRP.";
+        return temBAD_SEND_BIXRP_PARTIAL;
     }
-    if (bXRPDirect && !defaultPathsAllowed)
+    if (bBIXRPDirect && limitQuality)
     {
         // Consistent but redundant transaction.
         JLOG(j.trace()) << "Malformed transaction: "
-                        << "No ripple direct specified for XRP to XRP.";
-        return temBAD_SEND_XRP_NO_DIRECT;
+                        << "Limit quality specified for BIXRP to BIXRP.";
+        return temBAD_SEND_BIXRP_LIMIT;
+    }
+    if (bBIXRPDirect && !defaultPathsAllowed)
+    {
+        // Consistent but redundant transaction.
+        JLOG(j.trace()) << "Malformed transaction: "
+                        << "No ripple direct specified for BIXRP to BIXRP.";
+        return temBAD_SEND_BIXRP_NO_DIRECT;
     }
 
     auto const deliverMin = tx[~sfDeliverMin];
@@ -255,7 +255,7 @@ Payment::preclaim(PreclaimContext const& ctx)
             // TODO: dedupe
             // Another transaction could create the account and then this
             // transaction would succeed.
-            return tecNO_DST_INSUF_XRP;
+            return tecNO_DST_INSUF_BIXRP;
         }
     }
     else if (
@@ -363,7 +363,7 @@ Payment::doApply()
 
     bool const bRipple = paths || sendMax || !saDstAmount.native();
 
-    // If the destination has lsfDepositAuth set, then only direct XRP
+    // If the destination has lsfDepositAuth set, then only direct BIXRP
     // payments (no intermediate steps) are allowed to the destination.
     if (!depositPreauth && bRipple && reqDepositAuth)
         return tecNO_PERMISSION;
@@ -439,7 +439,7 @@ Payment::doApply()
 
     assert(saDstAmount.native());
 
-    // Direct XRP payment.
+    // Direct BIXRP payment.
 
     auto const sleSrc = view().peek(keylet::account(account_));
     if (!sleSrc)
@@ -455,15 +455,15 @@ Payment::doApply()
     // mPriorBalance is the balance on the sending account BEFORE the
     // fees were charged. We want to make sure we have enough reserve
     // to send. Allow final spend to use reserve for fee.
-    auto const mmm = std::max(reserve, ctx_.tx.getFieldAmount(sfFee).xrp());
+    auto const mmm = std::max(reserve, ctx_.tx.getFieldAmount(sfFee).bixrp());
 
-    if (mPriorBalance < saDstAmount.xrp() + mmm)
+    if (mPriorBalance < saDstAmount.bixrp() + mmm)
     {
         // Vote no. However the transaction might succeed, if applied in
         // a different order.
         JLOG(j_.trace()) << "Delay transaction: Insufficient funds: "
                          << " " << to_string(mPriorBalance) << " / "
-                         << to_string(saDstAmount.xrp() + mmm) << " ("
+                         << to_string(saDstAmount.bixrp() + mmm) << " ("
                          << to_string(reserve) << ")";
 
         return tecUNFUNDED_PAYMENT;
@@ -474,19 +474,19 @@ Payment::doApply()
     if (reqDepositAuth)
     {
         // If depositPreauth is enabled, then an account that requires
-        // authorization has three ways to get an XRP Payment in:
+        // authorization has three ways to get an BIXRP Payment in:
         //  1. If Account == Destination, or
         //  2. If Account is deposit preauthorized by destination, or
-        //  3. If the destination's XRP balance is
+        //  3. If the destination's BIXRP balance is
         //    a. less than or equal to the base reserve and
         //    b. the deposit amount is less than or equal to the base reserve,
         // then we allow the deposit.
         //
         // Rule 3 is designed to keep an account from getting wedged
         // in an unusable state if it sets the lsfDepositAuth flag and
-        // then consumes all of its XRP.  Without the rule if an
-        // account with lsfDepositAuth set spent all of its XRP, it
-        // would be unable to acquire more XRP required to pay fees.
+        // then consumes all of its BIXRP.  Without the rule if an
+        // account with lsfDepositAuth set spent all of its BIXRP, it
+        // would be unable to acquire more BIXRP required to pay fees.
         //
         // We choose the base reserve as our bound because it is
         // a small number that seldom changes but is always sufficient
@@ -496,7 +496,7 @@ Payment::doApply()
             if (!view().exists(keylet::depositPreauth(uDstAccountID, account_)))
             {
                 // Get the base reserve.
-                XRPAmount const dstReserve{view().fees().accountReserve(0)};
+                BIXRPAmount const dstReserve{view().fees().accountReserve(0)};
 
                 if (saDstAmount > dstReserve ||
                     sleDst->getFieldAmount(sfBalance) > dstReserve)

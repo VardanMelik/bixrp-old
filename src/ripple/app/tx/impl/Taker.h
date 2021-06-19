@@ -33,7 +33,7 @@
 namespace ripple {
 
 /** The flavor of an offer crossing */
-enum class CrossType { XrpToIou, IouToXrp, IouToIou };
+enum class CrossType { XrpToIou, IouToBIXrp, IouToIou };
 
 /** State for the active party during order book or payment operations. */
 class BasicTaker
@@ -78,7 +78,7 @@ protected:
         {
             using beast::zero;
 
-            if (isXRP(order.in) && isXRP(order.out))
+            if (isBIXRP(order.in) && isBIXRP(order.out))
                 return false;
 
             return order.in >= zero && order.out >= zero &&
@@ -91,7 +91,7 @@ private:
     log_flow(char const* description, Flow const& flow);
 
     Flow
-    flow_xrp_to_iou(
+    flow_bixrp_to_iou(
         Amounts const& offer,
         Quality quality,
         STAmount const& owner_funds,
@@ -99,7 +99,7 @@ private:
         Rate const& rate_out);
 
     Flow
-    flow_iou_to_xrp(
+    flow_iou_to_bixrp(
         Amounts const& offer,
         Quality quality,
         STAmount const& owner_funds,
@@ -259,9 +259,9 @@ public:
     get_funds(AccountID const& account, STAmount const& funds) const override;
 
     STAmount const&
-    get_xrp_flow() const
+    get_bixrp_flow() const
     {
-        return xrp_flow_;
+        return bixrp_flow_;
     }
 
     std::uint32_t
@@ -306,7 +306,7 @@ private:
         Offer& leg2);
 
     TER
-    transferXRP(
+    transferBIXRP(
         AccountID const& from,
         AccountID const& to,
         STAmount const& amount);
@@ -328,7 +328,7 @@ private:
     ApplyView& view_;
 
     // The amount of XRP that flowed if we were autobridging
-    STAmount xrp_flow_;
+    STAmount bixrp_flow_;
 
     // The number direct crossings that we performed
     std::uint32_t direct_crossings_;

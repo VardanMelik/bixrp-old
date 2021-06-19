@@ -244,7 +244,7 @@ public:
     rawReplace(std::shared_ptr<SLE> const& sle) override;
 
     void
-    rawDestroyXRP(XRPAmount const& fee) override;
+    rawDestroyBIXRP(BIXRPAmount const& fee) override;
 
     // TxsRawView
 

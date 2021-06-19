@@ -59,7 +59,7 @@ SetTrust::preflight(PreflightContext const& ctx)
 
     if (badCurrency() == saLimitAmount.getCurrency())
     {
-        JLOG(j.trace()) << "Malformed transaction: specifies XRP as IOU";
+        JLOG(j.trace()) << "Malformed transaction: specifies BIXRP as IOU";
         return temBAD_CURRENCY;
     }
 
@@ -158,13 +158,13 @@ SetTrust::doApply()
     //
     // Without this logic, a gateway that wanted to have a
     // new user use its services, would have to give that
-    // user enough XRP to cover not only the account reserve
+    // user enough BIXRP to cover not only the account reserve
     // but the incremental reserve for the trust line as
     // well. A person with no intention of using the gateway
-    // could use the extra XRP for their own purposes.
+    // could use the extra BIXRP for their own purposes.
 
-    XRPAmount const reserveCreate(
-        (uOwnerCount < 2) ? XRPAmount(beast::zero)
+    BIXRPAmount const reserveCreate(
+        (uOwnerCount < 2) ? BIXRPAmount(beast::zero)
                           : view().fees().accountReserve(uOwnerCount + 1));
 
     std::uint32_t uQualityIn(bQualityIn ? ctx_.tx.getFieldU32(sfQualityIn) : 0);
@@ -439,7 +439,7 @@ SetTrust::doApply()
             JLOG(j_.trace())
                 << "Delay transaction: Insufficent reserve to add trust line.";
 
-            // Another transaction could provide XRP to the account and then
+            // Another transaction could provide BIXRP to the account and then
             // this transaction would succeed.
             terResult = tecINSUF_RESERVE_LINE;
         }

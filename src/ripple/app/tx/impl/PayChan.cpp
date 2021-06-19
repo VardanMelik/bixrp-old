@@ -36,8 +36,8 @@ namespace ripple {
 /*
     PaymentChannel
 
-        Payment channels permit off-ledger checkpoints of XRP payments flowing
-        in a single direction. A channel sequesters the owner's XRP in its own
+        Payment channels permit off-ledger checkpoints of BIXRP payments flowing
+        in a single direction. A channel sequesters the owner's BIXRP in its own
         ledger entry. The owner can authorize the recipient to claim up to a
         given balance by giving the receiver a signed message (off-ledger). The
         recipient can use this signed message to claim any unpaid balance while
@@ -58,7 +58,7 @@ namespace ripple {
         Destination
             The recipient at the end of the channel.
         Amount
-            The amount of XRP to deposit in the channel immediately.
+            The amount of BIXRP to deposit in the channel immediately.
         SettleDelay
             The amount of time everyone but the recipient must wait for a
             superior claim.
@@ -86,7 +86,7 @@ namespace ripple {
         Channel
             The 256-bit ID of the channel.
         Amount
-            The amount of XRP to add.
+            The amount of BIXRP to add.
         Expiration (optional)
             Time the channel closes. The transaction will fail if the expiration
             times does not satisfy the SettleDelay constraints.
@@ -97,8 +97,8 @@ namespace ripple {
         Channel
             The 256-bit ID of the channel.
         Balance (optional)
-            The total amount of XRP delivered after this claim is processed
-   (optional, not needed if just closing). Amount (optional) The amount of XRP
+            The total amount of BIXRP delivered after this claim is processed
+   (optional, not needed if just closing). Amount (optional) The amount of BIXRP
    the signature is for (not needed if equal to Balance or just closing the
    line). Signature (optional) Authorization for the balance above, signed by
    the owner (optional, not needed if closing or owner is performing the
@@ -165,7 +165,7 @@ closeChannel(
 TxConsequences
 PayChanCreate::makeTxConsequences(PreflightContext const& ctx)
 {
-    return TxConsequences{ctx.tx, ctx.tx[sfAmount].xrp()};
+    return TxConsequences{ctx.tx, ctx.tx[sfAmount].bixrp()};
 }
 
 NotTEC
@@ -178,7 +178,7 @@ PayChanCreate::preflight(PreflightContext const& ctx)
     if (!isTesSuccess(ret))
         return ret;
 
-    if (!isXRP(ctx.tx[sfAmount]) || (ctx.tx[sfAmount] <= beast::zero))
+    if (!isBIXRP(ctx.tx[sfAmount]) || (ctx.tx[sfAmount] <= beast::zero))
         return temBAD_AMOUNT;
 
     if (ctx.tx[sfAccount] == ctx.tx[sfDestination])
@@ -222,10 +222,10 @@ PayChanCreate::preclaim(PreclaimContext const& ctx)
             !ctx.tx[~sfDestinationTag])
             return tecDST_TAG_NEEDED;
 
-        // Obeying the lsfDisallowXRP flag was a bug.  Piggyback on
+        // Obeying the lsfDisallowBIXRP flag was a bug.  Piggyback on
         // featureDepositAuth to remove the bug.
         if (!ctx.view.rules().enabled(featureDepositAuth) &&
-            ((*sled)[sfFlags] & lsfDisallowXRP))
+            ((*sled)[sfFlags] & lsfDisallowBIXRP))
             return tecNO_TARGET;
     }
 
@@ -304,7 +304,7 @@ PayChanCreate::doApply()
 TxConsequences
 PayChanFund::makeTxConsequences(PreflightContext const& ctx)
 {
-    return TxConsequences{ctx.tx, ctx.tx[sfAmount].xrp()};
+    return TxConsequences{ctx.tx, ctx.tx[sfAmount].bixrp()};
 }
 
 NotTEC
@@ -317,7 +317,7 @@ PayChanFund::preflight(PreflightContext const& ctx)
     if (!isTesSuccess(ret))
         return ret;
 
-    if (!isXRP(ctx.tx[sfAmount]) || (ctx.tx[sfAmount] <= beast::zero))
+    if (!isBIXRP(ctx.tx[sfAmount]) || (ctx.tx[sfAmount] <= beast::zero))
         return temBAD_AMOUNT;
 
     return preflight2(ctx);
@@ -406,11 +406,11 @@ PayChanClaim::preflight(PreflightContext const& ctx)
         return ret;
 
     auto const bal = ctx.tx[~sfBalance];
-    if (bal && (!isXRP(*bal) || *bal <= beast::zero))
+    if (bal && (!isBIXRP(*bal) || *bal <= beast::zero))
         return temBAD_AMOUNT;
 
     auto const amt = ctx.tx[~sfAmount];
-    if (amt && (!isXRP(*amt) || *amt <= beast::zero))
+    if (amt && (!isBIXRP(*amt) || *amt <= beast::zero))
         return temBAD_AMOUNT;
 
     if (bal && amt && *bal > *amt)
@@ -435,8 +435,8 @@ PayChanClaim::preflight(PreflightContext const& ctx)
         // The signature isn't needed if txAccount == src, but if it's
         // present, check it
 
-        auto const reqBalance = bal->xrp();
-        auto const authAmt = amt ? amt->xrp() : reqBalance;
+        auto const reqBalance = bal->bixrp();
+        auto const authAmt = amt ? amt->bixrp() : reqBalance;
 
         if (reqBalance > authAmt)
             return temBAD_AMOUNT;
@@ -483,9 +483,9 @@ PayChanClaim::doApply()
 
     if (ctx_.tx[~sfBalance])
     {
-        auto const chanBalance = slep->getFieldAmount(sfBalance).xrp();
-        auto const chanFunds = slep->getFieldAmount(sfAmount).xrp();
-        auto const reqBalance = ctx_.tx[sfBalance].xrp();
+        auto const chanBalance = slep->getFieldAmount(sfBalance).bixrp();
+        auto const chanFunds = slep->getFieldAmount(sfAmount).bixrp();
+        auto const reqBalance = ctx_.tx[sfBalance].bixrp();
 
         if (txAccount == dst && !ctx_.tx[~sfSignature])
             return temBAD_SIGNATURE;
@@ -508,11 +508,11 @@ PayChanClaim::doApply()
         if (!sled)
             return tecNO_DST;
 
-        // Obeying the lsfDisallowXRP flag was a bug.  Piggyback on
+        // Obeying the lsfDisallowBIXRP flag was a bug.  Piggyback on
         // featureDepositAuth to remove the bug.
         bool const depositAuth{ctx_.view().rules().enabled(featureDepositAuth)};
         if (!depositAuth &&
-            (txAccount == src && (sled->getFlags() & lsfDisallowXRP)))
+            (txAccount == src && (sled->getFlags() & lsfDisallowBIXRP)))
             return tecNO_TARGET;
 
         // Check whether the destination account requires deposit authorization.
@@ -530,7 +530,7 @@ PayChanClaim::doApply()
         }
 
         (*slep)[sfBalance] = ctx_.tx[sfBalance];
-        XRPAmount const reqDelta = reqBalance - chanBalance;
+        BIXRPAmount const reqDelta = reqBalance - chanBalance;
         assert(reqDelta >= beast::zero);
         (*sled)[sfBalance] = (*sled)[sfBalance] + reqDelta;
         ctx_.view().update(sled);

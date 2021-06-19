@@ -326,7 +326,7 @@ SetSignerList::replaceSignerList()
         flags = 0;
     }
 
-    XRPAmount const newReserve{
+    BIXRPAmount const newReserve{
         view().fees().accountReserve(oldOwnerCount + addedOwnerCount)};
 
     // We check the reserve against the starting balance because we want to

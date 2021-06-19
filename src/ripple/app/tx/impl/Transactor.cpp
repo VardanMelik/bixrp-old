@@ -76,7 +76,7 @@ preflight1(PreflightContext const& ctx)
 
     // No point in going any further if the transaction fee is malformed.
     auto const fee = ctx.tx.getFieldAmount(sfFee);
-    if (!fee.native() || fee.negative() || !isLegalAmount(fee.xrp()))
+    if (!fee.native() || fee.negative() || !isLegalAmount(fee.bixrp()))
     {
         JLOG(ctx.j.debug()) << "preflight1: invalid fee";
         return temBAD_FEE;
@@ -154,7 +154,7 @@ Transactor::calculateBaseFee(ReadView const& view, STTx const& tx)
     return baseFee + (signerCount * baseFee);
 }
 
-XRPAmount
+BIXRPAmount
 Transactor::minimumFee(
     Application& app,
     FeeUnit64 baseFee,
@@ -170,7 +170,7 @@ Transactor::checkFee(PreclaimContext const& ctx, FeeUnit64 baseFee)
     if (!ctx.tx[sfFee].native())
         return temBAD_FEE;
 
-    auto const feePaid = ctx.tx[sfFee].xrp();
+    auto const feePaid = ctx.tx[sfFee].bixrp();
     if (!isLegalAmount(feePaid) || feePaid < beast::zero)
         return temBAD_FEE;
 
@@ -193,7 +193,7 @@ Transactor::checkFee(PreclaimContext const& ctx, FeeUnit64 baseFee)
     if (!sle)
         return terNO_ACCOUNT;
 
-    auto const balance = (*sle)[sfBalance].xrp();
+    auto const balance = (*sle)[sfBalance].bixrp();
 
     if (balance < feePaid)
     {
@@ -216,7 +216,7 @@ Transactor::checkFee(PreclaimContext const& ctx, FeeUnit64 baseFee)
 TER
 Transactor::payFee()
 {
-    auto const feePaid = ctx_.tx[sfFee].xrp();
+    auto const feePaid = ctx_.tx[sfFee].bixrp();
 
     auto const sle = view().peek(keylet::account(account_));
     if (!sle)
@@ -228,7 +228,7 @@ Transactor::payFee()
     mSourceBalance -= feePaid;
     sle->setFieldAmount(sfBalance, mSourceBalance);
 
-    // VFALCO Should we call view().rawDestroyXRP() here as well?
+    // VFALCO Should we call view().rawDestroyBIXRP() here as well?
 
     return tesSUCCESS;
 }
@@ -428,7 +428,7 @@ Transactor::apply()
 
     if (sle)
     {
-        mPriorBalance = STAmount{(*sle)[sfBalance]}.xrp();
+        mPriorBalance = STAmount{(*sle)[sfBalance]}.bixrp();
         mSourceBalance = mPriorBalance;
 
         TER result = consumeSeqProxy(sle);
@@ -713,8 +713,8 @@ removeUnfundedOffers(
 }
 
 /** Reset the context, discarding any changes made and adjust the fee */
-std::pair<TER, XRPAmount>
-Transactor::reset(XRPAmount fee)
+std::pair<TER, BIXRPAmount>
+Transactor::reset(BIXRPAmount fee)
 {
     ctx_.discard();
 
@@ -725,7 +725,7 @@ Transactor::reset(XRPAmount fee)
         // is missing then we can't very well charge it a fee, can we?
         return {tefINTERNAL, beast::zero};
 
-    auto const balance = txnAcct->getFieldAmount(sfBalance).xrp();
+    auto const balance = txnAcct->getFieldAmount(sfBalance).bixrp();
 
     // balance should have already been checked in checkFee / preFlight.
     assert(balance != beast::zero && (!view().open() || balance >= fee));
@@ -788,7 +788,7 @@ Transactor::operator()()
         stream << "preclaim result: " << transToken(result);
 
     bool applied = isTesSuccess(result);
-    auto fee = ctx_.tx.getFieldAmount(sfFee).xrp();
+    auto fee = ctx_.tx.getFieldAmount(sfFee).bixrp();
 
     if (ctx_.size() > oversizeMetaDataCap)
         result = tecOVERSIZE;
@@ -891,7 +891,7 @@ Transactor::operator()()
         // transaction. We just need to account for it in the ledger
         // header.
         if (!view().open() && fee != beast::zero)
-            ctx_.destroyXRP(fee);
+            ctx_.destroyBIXRP(fee);
 
         // Once we call apply, we will no longer be able to look at view()
         ctx_.apply(result);

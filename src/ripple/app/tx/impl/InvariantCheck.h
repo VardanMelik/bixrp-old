@@ -77,7 +77,7 @@ public:
     finalize(
         STTx const& tx,
         TER const tec,
-        XRPAmount const fee,
+        BIXRPAmount const fee,
         ReadView const& view,
         beast::Journal const& j);
 };
@@ -102,20 +102,20 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
 
 /**
- * @brief Invariant: A transaction must not create XRP and should only destroy
- * the XRP fee.
+ * @brief Invariant: A transaction must not create BIXRP and should only destroy
+ * the BIXRP fee.
  *
  * We iterate through all account roots, payment channels and escrow entries
- * that were modified and calculate the net change in XRP caused by the
+ * that were modified and calculate the net change in BIXRP caused by the
  * transactions.
  */
-class XRPNotCreated
+class BIXRPNotCreated
 {
     std::int64_t drops_ = 0;
 
@@ -130,7 +130,7 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
@@ -158,19 +158,19 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
 
 /**
- * @brief Invariant: An account XRP balance must be in XRP and take a value
- *                   between 0 and INITIAL_XRP drops, inclusive.
+ * @brief Invariant: An account BIXRP balance must be in BIXRP and take a value
+ *                   between 0 and INITIAL_BIXRP drops, inclusive.
  *
  * We iterate all account roots modified by the transaction and ensure that
- * their XRP balances are reasonable.
+ * their BIXRP balances are reasonable.
  */
-class XRPBalanceChecks
+class BIXRPBalanceChecks
 {
     bool bad_ = false;
 
@@ -185,7 +185,7 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
@@ -210,20 +210,20 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
 
 /**
- * @brief Invariant: Trust lines using XRP are not allowed.
+ * @brief Invariant: Trust lines using BIXRP are not allowed.
  *
  * We iterate all the trust lines created by this transaction and ensure
  * that they are against a valid issuer.
  */
-class NoXRPTrustLines
+class NoBIXRPTrustLines
 {
-    bool xrpTrustLine_ = false;
+    bool bixrpTrustLine_ = false;
 
 public:
     void
@@ -236,17 +236,17 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
 
 /**
  * @brief Invariant: offers should be for non-negative amounts and must not
- *                   be XRP to XRP.
+ *                   be BIXRP to BIXRP.
  *
  * Examine all offers modified by the transaction and ensure that there are
- * no offers which contain negative amounts or which exchange XRP for XRP.
+ * no offers which contain negative amounts or which exchange BIXRP for BIXRP.
  */
 class NoBadOffers
 {
@@ -263,14 +263,14 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
 
 /**
  * @brief Invariant: an escrow entry must take a value between 0 and
- *                   INITIAL_XRP drops exclusive.
+ *                   INITIAL_BIXRP drops exclusive.
  */
 class NoZeroEscrow
 {
@@ -287,7 +287,7 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
@@ -313,7 +313,7 @@ public:
     finalize(
         STTx const&,
         TER const,
-        XRPAmount const,
+        BIXRPAmount const,
         ReadView const&,
         beast::Journal const&);
 };
@@ -324,9 +324,9 @@ using InvariantChecks = std::tuple<
     TransactionFeeCheck,
     AccountRootsNotDeleted,
     LedgerEntryTypesMatch,
-    XRPBalanceChecks,
-    XRPNotCreated,
-    NoXRPTrustLines,
+    BIXRPBalanceChecks,
+    BIXRPNotCreated,
+    NoBIXRPTrustLines,
     NoBadOffers,
     NoZeroEscrow,
     ValidNewAccountRoot>;

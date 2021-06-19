@@ -849,7 +849,7 @@ $$ LANGUAGE plpgsql;
 -- account_tx() RPC helper. From the rippled reporting process, only the
 -- parameters without defaults are required. For the parameters with
 -- defaults, validation should be done by rippled, such as:
--- _in_account_id should be a valid xrp base58 address.
+-- _in_account_id should be a valid bixrp base58 address.
 -- _in_forward either true or false according to the published api
 -- _in_limit should be validated and not simply passed through from
 -- client.
@@ -1249,7 +1249,7 @@ $$ LANGUAGE plpgsql;
 
 -- Return number of whole seconds since the latest ledger was inserted, based
 -- on ledger close time (not wall clock) of the insert.
--- Note that ledgers.closing_time is number of seconds since the XRP
+-- Note that ledgers.closing_time is number of seconds since the BIXRP
 -- epoch, which is 01/01/2000 00:00:00. This in turn is 946684800 seconds
 -- after the UNIX epoch. This conforms to the "age" field in the
 -- server_info RPC call.

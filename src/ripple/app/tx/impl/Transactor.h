@@ -90,8 +90,8 @@ protected:
     beast::Journal const j_;
 
     AccountID const account_;
-    XRPAmount mPriorBalance;   // Balance before fees.
-    XRPAmount mSourceBalance;  // Balance after fees.
+    BIXRPAmount mPriorBalance;   // Balance before fees.
+    BIXRPAmount mSourceBalance;  // Balance after fees.
 
     virtual ~Transactor() = default;
     Transactor(Transactor const&) = delete;
@@ -180,7 +180,7 @@ protected:
         @param fees Fee settings from the current ledger
         @param flags Transaction processing fees
      */
-    static XRPAmount
+    static BIXRPAmount
     minimumFee(
         Application& app,
         FeeUnit64 baseFee,
@@ -188,8 +188,8 @@ protected:
         ApplyFlags flags);
 
 private:
-    std::pair<TER, XRPAmount>
-    reset(XRPAmount fee);
+    std::pair<TER, BIXRPAmount>
+    reset(BIXRPAmount fee);
 
     TER
     consumeSeqProxy(SLE::pointer const& sleAccount);

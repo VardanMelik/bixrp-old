@@ -80,12 +80,12 @@ public:
     virtual void
     rawReplace(std::shared_ptr<SLE> const& sle) = 0;
 
-    /** Destroy XRP.
+    /** Destroy BIXRP.
 
         This is used to pay for transaction fees.
     */
     virtual void
-    rawDestroyXRP(XRPAmount const& fee) = 0;
+    rawDestroyBIXRP(BIXRPAmount const& fee) = 0;
 };
 
 //------------------------------------------------------------------------------

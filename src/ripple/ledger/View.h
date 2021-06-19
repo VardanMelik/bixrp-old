@@ -82,14 +82,14 @@ accountFunds(
     FreezeHandling freezeHandling,
     beast::Journal j);
 
-// Return the account's liquid (not reserved) XRP.  Generally prefer
+// Return the account's liquid (not reserved) BIXRP.  Generally prefer
 // calling accountHolds() over this interface.  However this interface
 // allows the caller to temporarily adjust the owner count should that be
 // necessary.
 //
 // @param ownerCountAdj positive to add to count, negative to reduce count.
-[[nodiscard]] XRPAmount
-xrpLiquid(
+[[nodiscard]] BIXRPAmount
+bixrpLiquid(
     ReadView const& view,
     AccountID const& id,
     std::int32_t ownerCountAdj,
@@ -349,7 +349,7 @@ redeemIOU(
     beast::Journal j);
 
 [[nodiscard]] TER
-transferXRP(
+transferBIXRP(
     ApplyView& view,
     AccountID const& from,
     AccountID const& to,

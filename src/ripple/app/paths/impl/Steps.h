@@ -142,7 +142,7 @@ public:
     }
 
     // for debugging. Return the src and dst accounts for a direct step
-    // For XRP endpoints, one of src or dst will be the root account
+    // For BIXRP endpoints, one of src or dst will be the root account
     virtual boost::optional<std::pair<AccountID, AccountID>>
     directStepAccts() const
     {
@@ -555,7 +555,7 @@ directStepEqual(
     Currency const& currency);
 
 bool
-xrpEndpointStepEqual(Step const& step, AccountID const& acc);
+bixrpEndpointStepEqual(Step const& step, AccountID const& acc);
 
 bool
 bookStepEqual(Step const& step, ripple::Book const& book);
@@ -578,11 +578,11 @@ std::pair<TER, std::unique_ptr<Step>>
 make_BookStepXI(StrandContext const& ctx, Issue const& out);
 
 std::pair<TER, std::unique_ptr<Step>>
-make_XRPEndpointStep(StrandContext const& ctx, AccountID const& acc);
+make_BIXRPEndpointStep(StrandContext const& ctx, AccountID const& acc);
 
 template <class InAmt, class OutAmt>
 bool
-isDirectXrpToXrp(Strand const& strand);
+isDirectBIXrpToBIXrp(Strand const& strand);
 /// @endcond
 
 }  // namespace ripple

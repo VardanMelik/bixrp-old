@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_XRPAMOUNT_H_INCLUDED
-#define RIPPLE_BASICS_XRPAMOUNT_H_INCLUDED
+#ifndef RIPPLE_BASICS_BIBIXRPAmount_H_INCLUDED
+#define RIPPLE_BASICS_zBIBIXRPAmount_H_INCLUDED
 
 #include <ripple/basics/contract.h>
 #include <ripple/basics/safe_cast.h>
@@ -37,16 +37,16 @@ namespace ripple {
 
 namespace feeunit {
 
-/** "drops" are the smallest divisible amount of XRP. This is what most
+/** "drops" are the smallest divisible amount of BIXRP. This is what most
     of the code uses. */
 struct dropTag;
 
 }  // namespace feeunit
 
-class XRPAmount : private boost::totally_ordered<XRPAmount>,
-                  private boost::additive<XRPAmount>,
-                  private boost::equality_comparable<XRPAmount, std::int64_t>,
-                  private boost::additive<XRPAmount, std::int64_t>
+class BIXRPAmount : private boost::totally_ordered<BIXRPAmount>,
+                  private boost::additive<BIXRPAmount>,
+                  private boost::equality_comparable<BIXRPAmount, std::int64_t>,
+                  private boost::additive<BIXRPAmount, std::int64_t>
 {
 public:
     using unit_type = feeunit::dropTag;
@@ -56,88 +56,88 @@ private:
     value_type drops_;
 
 public:
-    XRPAmount() = default;
-    constexpr XRPAmount(XRPAmount const& other) = default;
-    constexpr XRPAmount&
-    operator=(XRPAmount const& other) = default;
+    BIXRPAmount() = default;
+    constexpr BIXRPAmount(BIXRPAmount const& other) = default;
+    constexpr BIXRPAmount&
+    operator=(BIXRPAmount const& other) = default;
 
-    constexpr XRPAmount(beast::Zero) : drops_(0)
+    constexpr BIXRPAmount(beast::Zero) : drops_(0)
     {
     }
 
-    constexpr XRPAmount& operator=(beast::Zero)
+    constexpr BIXRPAmount& operator=(beast::Zero)
     {
         drops_ = 0;
         return *this;
     }
 
-    constexpr explicit XRPAmount(value_type drops) : drops_(drops)
+    constexpr explicit BIXRPAmount(value_type drops) : drops_(drops)
     {
     }
 
-    XRPAmount&
+    BIXRPAmount&
     operator=(value_type drops)
     {
         drops_ = drops;
         return *this;
     }
 
-    constexpr XRPAmount
+    constexpr BIXRPAmount
     operator*(value_type const& rhs) const
     {
-        return XRPAmount{drops_ * rhs};
+        return BIXRPAmount{drops_ * rhs};
     }
 
-    friend constexpr XRPAmount
-    operator*(value_type lhs, XRPAmount const& rhs)
+    friend constexpr BIXRPAmount
+    operator*(value_type lhs, BIXRPAmount const& rhs)
     {
         // multiplication is commutative
         return rhs * lhs;
     }
 
-    XRPAmount&
-    operator+=(XRPAmount const& other)
+    BIXRPAmount&
+    operator+=(BIXRPAmount const& other)
     {
         drops_ += other.drops();
         return *this;
     }
 
-    XRPAmount&
-    operator-=(XRPAmount const& other)
+    BIXRPAmount&
+    operator-=(BIXRPAmount const& other)
     {
         drops_ -= other.drops();
         return *this;
     }
 
-    XRPAmount&
+    BIXRPAmount&
     operator+=(value_type const& rhs)
     {
         drops_ += rhs;
         return *this;
     }
 
-    XRPAmount&
+    BIXRPAmount&
     operator-=(value_type const& rhs)
     {
         drops_ -= rhs;
         return *this;
     }
 
-    XRPAmount&
+    BIXRPAmount&
     operator*=(value_type const& rhs)
     {
         drops_ *= rhs;
         return *this;
     }
 
-    XRPAmount
+    BIXRPAmount
     operator-() const
     {
-        return XRPAmount{-drops_};
+        return BIXRPAmount{-drops_};
     }
 
     bool
-    operator==(XRPAmount const& other) const
+    operator==(BIXRPAmount const& other) const
     {
         return drops_ == other.drops_;
     }
@@ -149,7 +149,7 @@ public:
     }
 
     bool
-    operator<(XRPAmount const& other) const
+    operator<(BIXRPAmount const& other) const
     {
         return drops_ < other.drops_;
     }
@@ -175,7 +175,7 @@ public:
     }
 
     constexpr double
-    decimalXRP() const;
+    decimalBIXRP() const;
 
     template <class Dest>
     boost::optional<Dest>
@@ -200,7 +200,7 @@ public:
 
     template <class Dest>
     Dest
-    dropsAs(XRPAmount defaultValue) const
+    dropsAs(BIXRPAmount defaultValue) const
     {
         return dropsAs<Dest>().value_or(defaultValue.drops());
     }
@@ -210,7 +210,7 @@ public:
     {
         static_assert(
             std::is_signed_v<value_type> && std::is_integral_v<value_type>,
-            "Expected XRPAmount to be a signed integral type");
+            "Expected BIXRPAmount to be a signed integral type");
 
         constexpr auto min = std::numeric_limits<Json::Int>::min();
         constexpr auto max = std::numeric_limits<Json::Int>::max();
@@ -233,45 +233,45 @@ public:
     }
 
     friend std::istream&
-    operator>>(std::istream& s, XRPAmount& val)
+    operator>>(std::istream& s, BIXRPAmount& val)
     {
         s >> val.drops_;
         return s;
     }
 
-    static XRPAmount
+    static BIXRPAmount
     minPositiveAmount()
     {
-        return XRPAmount{1};
+        return BIXRPAmount{1};
     }
 };
 
 /** Number of drops per 1 XRP */
-constexpr XRPAmount DROPS_PER_XRP{1'000'000};
+constexpr BIXRPAmount DROPS_PER_XRP{1'000'000};
 
 constexpr double
-XRPAmount::decimalXRP() const
+BIXRPAmount::decimalBIXRP() const
 {
-    return static_cast<double>(drops_) / DROPS_PER_XRP.drops();
+    return static_cast<double>(drops_) / DROPS_PER_BIXRP.drops();
 }
 
-// Output XRPAmount as just the drops value.
+// Output BIXRPAmount as just the drops value.
 template <class Char, class Traits>
 std::basic_ostream<Char, Traits>&
-operator<<(std::basic_ostream<Char, Traits>& os, const XRPAmount& q)
+operator<<(std::basic_ostream<Char, Traits>& os, const BIXRPAmount& q)
 {
     return os << q.drops();
 }
 
 inline std::string
-to_string(XRPAmount const& amount)
+to_string(BIXRPAmount const& amount)
 {
     return std::to_string(amount.drops());
 }
 
-inline XRPAmount
+inline BIXRPAmount
 mulRatio(
-    XRPAmount const& amt,
+    BIXRPAmount const& amt,
     std::uint32_t num,
     std::uint32_t den,
     bool roundUp)
@@ -292,11 +292,11 @@ mulRatio(
         if (neg && !roundUp)
             r -= 1;
     }
-    if (r > std::numeric_limits<XRPAmount::value_type>::max())
-        Throw<std::overflow_error>("XRP mulRatio overflow");
-    return XRPAmount(r.convert_to<XRPAmount::value_type>());
+    if (r > std::numeric_limits<BIXRPAmount::value_type>::max())
+        Throw<std::overflow_error>("BIXRP mulRatio overflow");
+    return BIXRPAmount(r.convert_to<BIXRPAmount::value_type>());
 }
 
 }  // namespace ripple
 
-#endif  // RIPPLE_BASICS_XRPAMOUNT_H_INCLUDED
+#endif  // RIPPLE_BASICS_BIXRPAmount_H_INCLUDED

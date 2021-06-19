@@ -125,7 +125,7 @@ protected:
     BIXRPAmount
     bixrpLiquidImpl(ReadView& sb, std::int32_t reserveReduction) const
     {
-        return ripple::xrpLiquid(sb, acc_, reserveReduction, j_);
+        return ripple::bixrpLiquid(sb, acc_, reserveReduction, j_);
     }
 
     std::string
@@ -208,22 +208,22 @@ private:
     }
 
 public:
-    XRPEndpointOfferCrossingStep(StrandContext const& ctx, AccountID const& acc)
-        : XRPEndpointStep<XRPEndpointOfferCrossingStep>(ctx, acc)
+    BIXRPEndpointOfferCrossingStep(StrandContext const& ctx, AccountID const& acc)
+        : BIXRPEndpointStep<BIXRPEndpointOfferCrossingStep>(ctx, acc)
         , reserveReduction_(computeReserveReduction(ctx, acc))
     {
     }
 
-    XRPAmount
-    xrpLiquid(ReadView& sb) const
+    BIXRPAmount
+    bixrpLiquid(ReadView& sb) const
     {
-        return xrpLiquidImpl(sb, reserveReduction_);
+        return bixrpLiquidImpl(sb, reserveReduction_);
     }
 
     std::string
     logString() const override
     {
-        return logStringImpl("XRPEndpointOfferCrossingStep");
+        return logStringImpl("BIXRPEndpointOfferCrossingStep");
     }
 
 private:
@@ -235,15 +235,15 @@ private:
 template <class TDerived>
 inline bool
 operator==(
-    XRPEndpointStep<TDerived> const& lhs,
-    XRPEndpointStep<TDerived> const& rhs)
+    BIXRPEndpointStep<TDerived> const& lhs,
+    BIXRPEndpointStep<TDerived> const& rhs)
 {
     return lhs.acc_ == rhs.acc_ && lhs.isLast_ == rhs.isLast_;
 }
 
 template <class TDerived>
 std::pair<boost::optional<Quality>, DebtDirection>
-XRPEndpointStep<TDerived>::qualityUpperBound(
+BIXRPEndpointStep<TDerived>::qualityUpperBound(
     ReadView const& v,
     DebtDirection prevStepDir) const
 {
@@ -253,45 +253,45 @@ XRPEndpointStep<TDerived>::qualityUpperBound(
 }
 
 template <class TDerived>
-std::pair<XRPAmount, XRPAmount>
-XRPEndpointStep<TDerived>::revImp(
+std::pair<BIXRPAmount, BIXRPAmount>
+BIXRPEndpointStep<TDerived>::revImp(
     PaymentSandbox& sb,
     ApplyView& afView,
     boost::container::flat_set<uint256>& ofrsToRm,
-    XRPAmount const& out)
+    BIXRPAmount const& out)
 {
-    auto const balance = static_cast<TDerived const*>(this)->xrpLiquid(sb);
+    auto const balance = static_cast<TDerived const*>(this)->bixrpLiquid(sb);
 
     auto const result = isLast_ ? out : std::min(balance, out);
 
-    auto& sender = isLast_ ? xrpAccount() : acc_;
-    auto& receiver = isLast_ ? acc_ : xrpAccount();
+    auto& sender = isLast_ ? bixrpAccount() : acc_;
+    auto& receiver = isLast_ ? acc_ : bixrpAccount();
     auto ter = accountSend(sb, sender, receiver, toSTAmount(result), j_);
     if (ter != tesSUCCESS)
-        return {XRPAmount{beast::zero}, XRPAmount{beast::zero}};
+        return {BIXRPAmount{beast::zero}, BIXRPAmount{beast::zero}};
 
     cache_.emplace(result);
     return {result, result};
 }
 
 template <class TDerived>
-std::pair<XRPAmount, XRPAmount>
-XRPEndpointStep<TDerived>::fwdImp(
+std::pair<BIXRPAmount, BIXRPAmount>
+BIXRPEndpointStep<TDerived>::fwdImp(
     PaymentSandbox& sb,
     ApplyView& afView,
     boost::container::flat_set<uint256>& ofrsToRm,
-    XRPAmount const& in)
+    BIXRPAmount const& in)
 {
     assert(cache_);
-    auto const balance = static_cast<TDerived const*>(this)->xrpLiquid(sb);
+    auto const balance = static_cast<TDerived const*>(this)->bixrpLiquid(sb);
 
     auto const result = isLast_ ? in : std::min(balance, in);
 
-    auto& sender = isLast_ ? xrpAccount() : acc_;
-    auto& receiver = isLast_ ? acc_ : xrpAccount();
+    auto& sender = isLast_ ? bixrpAccount() : acc_;
+    auto& receiver = isLast_ ? acc_ : bixrpAccount();
     auto ter = accountSend(sb, sender, receiver, toSTAmount(result), j_);
     if (ter != tesSUCCESS)
-        return {XRPAmount{beast::zero}, XRPAmount{beast::zero}};
+        return {BIXRPAmount{beast::zero}, BIXRPAmount{beast::zero}};
 
     cache_.emplace(result);
     return {result, result};
@@ -299,7 +299,7 @@ XRPEndpointStep<TDerived>::fwdImp(
 
 template <class TDerived>
 std::pair<bool, EitherAmount>
-XRPEndpointStep<TDerived>::validFwd(
+BIXRPEndpointStep<TDerived>::validFwd(
     PaymentSandbox& sb,
     ApplyView& afView,
     EitherAmount const& in)
@@ -307,45 +307,45 @@ XRPEndpointStep<TDerived>::validFwd(
     if (!cache_)
     {
         JLOG(j_.error()) << "Expected valid cache in validFwd";
-        return {false, EitherAmount(XRPAmount(beast::zero))};
+        return {false, EitherAmount(BIXRPAmount(beast::zero))};
     }
 
     assert(in.native);
 
-    auto const& xrpIn = in.xrp;
-    auto const balance = static_cast<TDerived const*>(this)->xrpLiquid(sb);
+    auto const& bixrpIn = in.bixrp;
+    auto const balance = static_cast<TDerived const*>(this)->bixrpLiquid(sb);
 
-    if (!isLast_ && balance < xrpIn)
+    if (!isLast_ && balance < bixrpIn)
     {
-        JLOG(j_.warn()) << "XRPEndpointStep: Strand re-execute check failed."
+        JLOG(j_.warn()) << "BIXRPEndpointStep: Strand re-execute check failed."
                         << " Insufficient balance: " << to_string(balance)
-                        << " Requested: " << to_string(xrpIn);
+                        << " Requested: " << to_string(bixrpIn);
         return {false, EitherAmount(balance)};
     }
 
-    if (xrpIn != *cache_)
+    if (bixrpIn != *cache_)
     {
-        JLOG(j_.warn()) << "XRPEndpointStep: Strand re-execute check failed."
+        JLOG(j_.warn()) << "BIXRPEndpointStep: Strand re-execute check failed."
                         << " ExpectedIn: " << to_string(*cache_)
-                        << " CachedIn: " << to_string(xrpIn);
+                        << " CachedIn: " << to_string(bixrpIn);
     }
     return {true, in};
 }
 
 template <class TDerived>
 TER
-XRPEndpointStep<TDerived>::check(StrandContext const& ctx) const
+BIXRPEndpointStep<TDerived>::check(StrandContext const& ctx) const
 {
     if (!acc_)
     {
-        JLOG(j_.debug()) << "XRPEndpointStep: specified bad account.";
+        JLOG(j_.debug()) << "BIXRPEndpointStep: specified bad account.";
         return temBAD_PATH;
     }
 
     auto sleAcc = ctx.view.read(keylet::account(acc_));
     if (!sleAcc)
     {
-        JLOG(j_.warn()) << "XRPEndpointStep: can't send or receive XRP from "
+        JLOG(j_.warn()) << "BIXRPEndpointStep: can't send or receive BIXRP from "
                            "non-existent account: "
                         << acc_;
         return terNO_ACCOUNT;
@@ -356,19 +356,19 @@ XRPEndpointStep<TDerived>::check(StrandContext const& ctx) const
         return temBAD_PATH;
     }
 
-    auto& src = isLast_ ? xrpAccount() : acc_;
-    auto& dst = isLast_ ? acc_ : xrpAccount();
-    auto ter = checkFreeze(ctx.view, src, dst, xrpCurrency());
+    auto& src = isLast_ ? bixrpAccount() : acc_;
+    auto& dst = isLast_ ? acc_ : bixrpAccount();
+    auto ter = checkFreeze(ctx.view, src, dst, bixrpCurrency());
     if (ter != tesSUCCESS)
         return ter;
 
     if (ctx.view.rules().enabled(fix1781))
     {
         auto const issuesIndex = isLast_ ? 0 : 1;
-        if (!ctx.seenDirectIssues[issuesIndex].insert(xrpIssue()).second)
+        if (!ctx.seenDirectIssues[issuesIndex].insert(bixrpIssue()).second)
         {
             JLOG(j_.debug())
-                << "XRPEndpointStep: loop detected: Index: " << ctx.strandSize
+                << "BIXRPEndpointStep: loop detected: Index: " << ctx.strandSize
                 << ' ' << *this;
             return temBAD_PATH_LOOP;
         }
@@ -382,10 +382,10 @@ XRPEndpointStep<TDerived>::check(StrandContext const& ctx) const
 namespace test {
 // Needed for testing
 bool
-xrpEndpointStepEqual(Step const& step, AccountID const& acc)
+bixrpEndpointStepEqual(Step const& step, AccountID const& acc)
 {
     if (auto xs =
-            dynamic_cast<XRPEndpointStep<XRPEndpointPaymentStep> const*>(&step))
+            dynamic_cast<BIXRPEndpointStep<BIXRPEndpointPaymentStep> const*>(&step))
     {
         return xs->acc() == acc;
     }
@@ -396,20 +396,20 @@ xrpEndpointStepEqual(Step const& step, AccountID const& acc)
 //------------------------------------------------------------------------------
 
 std::pair<TER, std::unique_ptr<Step>>
-make_XRPEndpointStep(StrandContext const& ctx, AccountID const& acc)
+make_BIXRPEndpointStep(StrandContext const& ctx, AccountID const& acc)
 {
     TER ter = tefINTERNAL;
     std::unique_ptr<Step> r;
     if (ctx.offerCrossing)
     {
         auto offerCrossingStep =
-            std::make_unique<XRPEndpointOfferCrossingStep>(ctx, acc);
+            std::make_unique<BIXRPEndpointOfferCrossingStep>(ctx, acc);
         ter = offerCrossingStep->check(ctx);
         r = std::move(offerCrossingStep);
     }
     else  // payment
     {
-        auto paymentStep = std::make_unique<XRPEndpointPaymentStep>(ctx, acc);
+        auto paymentStep = std::make_unique<BIXRPEndpointPaymentStep>(ctx, acc);
         ter = paymentStep->check(ctx);
         r = std::move(paymentStep);
     }
