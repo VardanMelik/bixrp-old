@@ -316,7 +316,7 @@ struct Flow_test : public beast::unit_test::suite
             BEAST_EXPECT(!isOffer(env, bob, BTC(50), USD(50)));
         }
         {
-            // simple IOU/BIXRP XRP/IOU offer
+            // simple IOU/BIXRP BIXRP/IOU offer
             Env env(*this, features);
 
             env.fund(BIXRP(10000), alice, bob, carol, gw);

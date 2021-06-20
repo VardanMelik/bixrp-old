@@ -683,7 +683,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             env.close();
 
             // alice can now pay becky.
-            env(pay(alice, becky, XRP(100)));
+            env(pay(alice, becky, BIXRP(100)));
             env(pay(alice, becky, USD(100)));
             env.close();
 
@@ -701,7 +701,7 @@ struct DepositPreauth_test : public beast::unit_test::suite
             env(deposit::unauth(becky, carol));
             env.close();
 
-            env(pay(alice, becky, XRP(100)));
+            env(pay(alice, becky, BIXRP(100)));
             env(pay(alice, becky, USD(100)));
             env.close();
 

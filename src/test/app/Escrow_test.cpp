@@ -531,7 +531,7 @@ struct Escrow_test : public beast::unit_test::suite
             finish_time(env.now() + 1s),
             ter(temBAD_AMOUNT));
 
-        // Sending zero or no XRP:
+        // Sending zero or no BIXRP:
         env(escrow("alice", "carol", BIXRP(0)),
             finish_time(env.now() + 1s),
             ter(temBAD_AMOUNT));
