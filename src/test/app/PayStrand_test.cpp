@@ -39,7 +39,7 @@ struct DirectStepInfo
     Currency currency;
 };
 
-struct XRPEndpointStepInfo
+struct BIXRPEndpointStepInfo
 {
     AccountID acc;
 };
@@ -93,11 +93,11 @@ equal(std::unique_ptr<Step> const& s1, DirectStepInfo const& dsi)
 }
 
 bool
-equal(std::unique_ptr<Step> const& s1, XRPEndpointStepInfo const& xrpsi)
+equal(std::unique_ptr<Step> const& s1, BIXRPEndpointStepInfo const& bixrpsi)
 {
     if (!s1)
         return false;
-    return test::xrpEndpointStepEqual(*s1, xrpsi.acc);
+    return test::bixrpEndpointStepEqual(*s1, bixrpsi.acc);
 }
 
 bool
@@ -140,7 +140,7 @@ STPathElement
 ape(AccountID const& a)
 {
     return STPathElement(
-        STPathElement::typeAccount, a, xrpCurrency(), xrpAccount());
+        STPathElement::typeAccount, a, bixrpCurrency(), bixrpAccount());
 };
 
 // Issue path element
@@ -149,7 +149,7 @@ ipe(Issue const& iss)
 {
     return STPathElement(
         STPathElement::typeCurrency | STPathElement::typeIssuer,
-        xrpAccount(),
+        bixrpAccount(),
         iss.currency,
         iss.account);
 };
@@ -159,7 +159,7 @@ STPathElement
 iape(AccountID const& account)
 {
     return STPathElement(
-        STPathElement::typeIssuer, xrpAccount(), xrpCurrency(), account);
+        STPathElement::typeIssuer, bixrpAccount(), bixrpCurrency(), account);
 };
 
 // Currency path element
@@ -167,7 +167,7 @@ STPathElement
 cpe(Currency const& c)
 {
     return STPathElement(
-        STPathElement::typeCurrency, xrpAccount(), c, xrpAccount());
+        STPathElement::typeCurrency, bixrpAccount(), c, bixrpAccount());
 };
 
 // All path element
@@ -191,7 +191,7 @@ class ElementComboIter
             cur,
             rootAcc,
             rootIss,
-            xrp,
+            bixrp,
             sameAccIss,
             existingAcc,
             existingCur,
@@ -255,10 +255,10 @@ public:
             (!hasAny(
                  {SB::rootIss, SB::sameAccIss, SB::existingIss, SB::prevIss}) ||
              has(SB::iss)) &&
-            (!hasAny({SB::xrp, SB::existingCur, SB::prevCur}) ||
+            (!hasAny({SB::bixrp, SB::existingCur, SB::prevCur}) ||
              has(SB::cur)) &&
             // These will be duplicates
-            (count({SB::xrp, SB::existingCur, SB::prevCur}) <= 1) &&
+            (count({SB::bixrp, SB::existingCur, SB::prevCur}) <= 1) &&
             (count({SB::rootAcc, SB::existingAcc, SB::prevAcc}) <= 1) &&
             (count({SB::rootIss, SB::existingIss, SB::rootIss}) <= 1);
     }
@@ -296,7 +296,7 @@ public:
             if (!has(SB::acc))
                 return boost::none;
             if (has(SB::rootAcc))
-                return xrpAccount();
+                return bixrpAccount();
             if (has(SB::existingAcc) && existingAcc)
                 return existingAcc;
             return accF().id();
@@ -305,7 +305,7 @@ public:
             if (!has(SB::iss))
                 return boost::none;
             if (has(SB::rootIss))
-                return xrpAccount();
+                return bixrpAccount();
             if (has(SB::sameAccIss))
                 return acc;
             if (has(SB::existingIss) && existingIss)
@@ -315,8 +315,8 @@ public:
         auto const cur = [&]() -> boost::optional<Currency> {
             if (!has(SB::cur))
                 return boost::none;
-            if (has(SB::xrp))
-                return xrpCurrency();
+            if (has(SB::bixrp))
+                return bixrpCurrency();
             if (has(SB::existingCur) && existingCur)
                 return *existingCur;
             return currencyF();
@@ -430,7 +430,7 @@ struct ExistingElementPool
         }
 
         for (auto const& a : accounts)
-            env.fund(XRP(100000), a);
+            env.fund(BIXRP(100000), a);
 
         // Every account trusts every other account with every currency
         for (auto ai1 = accounts.begin(), aie = accounts.end(); ai1 != aie;
@@ -482,44 +482,44 @@ struct ExistingElementPool
             env.close();
         }
 
-        // create offers to/from xrp to every other ious
+        // create offers to/from bixrp to every other ious
         for (auto const& iou : ious)
         {
             auto const owner =
                 offererIndex ? accounts[*offererIndex] : iou.account;
-            env(offer(owner, iou(1000), XRP(1000)), txflags(tfPassive));
-            env(offer(owner, XRP(1000), iou(1000)), txflags(tfPassive));
+            env(offer(owner, iou(1000), BIXRP(1000)), txflags(tfPassive));
+            env(offer(owner, BIXRP(1000), iou(1000)), txflags(tfPassive));
             env.close();
         }
     }
 
     std::int64_t
-    totalXRP(ReadView const& v, bool incRoot)
+    totalBIXRP(ReadView const& v, bool incRoot)
     {
-        std::uint64_t totalXRP = 0;
+        std::uint64_t totalBIXRP = 0;
         auto add = [&](auto const& a) {
-            // XRP balance
+            // BIXRP balance
             auto const sle = v.read(keylet::account(a));
             if (!sle)
                 return;
             auto const b = (*sle)[sfBalance];
-            totalXRP += b.mantissa();
+            totalBIXRP += b.mantissa();
         };
         for (auto const& a : accounts)
             add(a);
         if (incRoot)
-            add(xrpAccount());
-        return totalXRP;
+            add(bixrpAccount());
+        return totalBIXRP;
     }
 
-    // Check that the balances for all accounts for all currencies & XRP are the
+    // Check that the balances for all accounts for all currencies & BIXRP are the
     // same
     bool
     checkBalances(ReadView const& v1, ReadView const& v2)
     {
         std::vector<std::tuple<STAmount, STAmount, AccountID, AccountID>> diffs;
 
-        auto xrpBalance = [](ReadView const& v, ripple::Keylet const& k) {
+        auto bixrpBalance = [](ReadView const& v, ripple::Keylet const& k) {
             auto const sle = v.read(k);
             if (!sle)
                 return STAmount{};
@@ -531,19 +531,19 @@ struct ExistingElementPool
                 return STAmount{};
             return (*sle)[sfBalance];
         };
-        std::uint64_t totalXRP[2]{};
+        std::uint64_t totalBIXRP[2]{};
         for (auto ai1 = accounts.begin(), aie = accounts.end(); ai1 != aie;
              ++ai1)
         {
             {
-                // XRP balance
+                // BIXRP balance
                 auto const ak = keylet::account(*ai1);
-                auto const b1 = xrpBalance(v1, ak);
-                auto const b2 = xrpBalance(v2, ak);
-                totalXRP[0] += b1.mantissa();
-                totalXRP[1] += b2.mantissa();
+                auto const b1 = bixrpBalance(v1, ak);
+                auto const b2 = bixrpBalance(v2, ak);
+                totalBIXRP[0] += b1.mantissa();
+                totalBIXRP[1] += b2.mantissa();
                 if (b1 != b2)
-                    diffs.emplace_back(b1, b2, xrpAccount(), *ai1);
+                    diffs.emplace_back(b1, b2, bixrpAccount(), *ai1);
             }
             for (auto ai2 = accounts.begin(); ai2 != aie; ++ai2)
             {
@@ -655,7 +655,7 @@ struct PayStrand_test : public beast::unit_test::suite
 
         using D = DirectStepInfo;
         using B = ripple::Book;
-        using XRPS = XRPEndpointStepInfo;
+        using BIXRPS = BIXRPEndpointStepInfo;
 
         auto test = [&, this](
                         jtx::Env& env,
@@ -683,7 +683,7 @@ struct PayStrand_test : public beast::unit_test::suite
 
         {
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.trust(USD(1000), alice, bob);
             env.trust(EUR(1000), alice, bob);
             env(pay(gw, alice, EUR(100)));
@@ -695,7 +695,7 @@ struct PayStrand_test : public beast::unit_test::suite
                     *env.current(),
                     alice,
                     alice,
-                    /*deliver*/ xrpIssue(),
+                    /*deliver*/ bixrpIssue(),
                     /*limitQuality*/ boost::none,
                     /*sendMaxIssue*/ EUR.issue(),
                     path,
@@ -707,12 +707,12 @@ struct PayStrand_test : public beast::unit_test::suite
                 BEAST_EXPECT(ter == tesSUCCESS);
             }
             {
-                STPath const path = STPath({ipe(USD), cpe(xrpCurrency())});
+                STPath const path = STPath({ipe(USD), cpe(bixrpCurrency())});
                 auto [ter, _] = toStrand(
                     *env.current(),
                     alice,
                     alice,
-                    /*deliver*/ xrpIssue(),
+                    /*deliver*/ bixrpIssue(),
                     /*limitQuality*/ boost::none,
                     /*sendMaxIssue*/ EUR.issue(),
                     path,
@@ -728,7 +728,7 @@ struct PayStrand_test : public beast::unit_test::suite
 
         {
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
 
             test(env, USD, boost::none, STPath(), terNO_LINE);
 
@@ -783,42 +783,42 @@ struct PayStrand_test : public beast::unit_test::suite
                 B{USD, carol["USD"]},
                 D{carol, bob, usdC});
 
-            // Path with XRP src currency
+            // Path with BIXRP src currency
             test(
                 env,
                 USD,
-                xrpIssue(),
+                bixrpIssue(),
                 STPath({ipe(USD)}),
                 tesSUCCESS,
-                XRPS{alice},
-                B{XRP, USD},
+                BIXRPS{alice},
+                B{BIXRP, USD},
                 D{gw, bob, usdC});
 
-            // Path with XRP dst currency
+            // Path with BIXRP dst currency
             test(
                 env,
-                xrpIssue(),
+                bixrpIssue(),
                 USD.issue(),
-                STPath({ipe(XRP)}),
+                STPath({ipe(BIXRP)}),
                 tesSUCCESS,
                 D{alice, gw, usdC},
-                B{USD, XRP},
-                XRPS{bob});
+                B{USD, BIXRP},
+                BIXRPS{bob});
 
-            // Path with XRP cross currency bridged payment
+            // Path with BIXRP cross currency bridged payment
             test(
                 env,
                 EUR,
                 USD.issue(),
-                STPath({cpe(xrpCurrency())}),
+                STPath({cpe(bixrpCurrency())}),
                 tesSUCCESS,
                 D{alice, gw, usdC},
-                B{USD, XRP},
-                B{XRP, EUR},
+                B{USD, BIXRP},
+                B{BIXRP, EUR},
                 D{gw, bob, eurC});
 
-            // XRP -> XRP transaction can't include a path
-            test(env, XRP, boost::none, STPath({ape(carol)}), temBAD_PATH);
+            // BIXRP -> BIXRP transaction can't include a path
+            test(env, BIXRP, boost::none, STPath({ape(carol)}), temBAD_PATH);
 
             {
                 // The root account can't be the src or dst
@@ -828,8 +828,8 @@ struct PayStrand_test : public beast::unit_test::suite
                     auto r = toStrand(
                         *env.current(),
                         alice,
-                        xrpAccount(),
-                        XRP,
+                        bixrpAccount(),
+                        BIXRP,
                         boost::none,
                         USD.issue(),
                         STPath(),
@@ -842,9 +842,9 @@ struct PayStrand_test : public beast::unit_test::suite
                     // The root account can't be the src
                     auto r = toStrand(
                         *env.current(),
-                        xrpAccount(),
+                        bixrpAccount(),
                         alice,
-                        XRP,
+                        BIXRP,
                         boost::none,
                         boost::none,
                         STPath(),
@@ -884,7 +884,7 @@ struct PayStrand_test : public beast::unit_test::suite
                 USD,
                 boost::none,
                 STPath({STPathElement(
-                    0, xrpAccount(), xrpCurrency(), xrpAccount())}),
+                    0, bixrpAccount(), bixrpCurrency(), bixrpAccount())}),
                 temBAD_PATH);
 
             // The same account can't appear more than once on a path
@@ -912,28 +912,28 @@ struct PayStrand_test : public beast::unit_test::suite
             using namespace jtx;
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(10000), alice, bob, carol);
             env.trust(EUR(10000), alice, bob, carol);
 
             env(pay(gw, bob, USD(100)));
             env(pay(gw, bob, EUR(100)));
 
-            env(offer(bob, XRP(100), USD(100)));
+            env(offer(bob, BIXRP(100), USD(100)));
             env(offer(bob, USD(100), EUR(100)), txflags(tfPassive));
             env(offer(bob, EUR(100), USD(100)), txflags(tfPassive));
 
-            // payment path: XRP -> XRP/USD -> USD/EUR -> EUR/USD
+            // payment path: BIXRP -> BIXRP/USD -> USD/EUR -> EUR/USD
             env(pay(alice, carol, USD(100)),
                 path(~USD, ~EUR, ~USD),
-                sendmax(XRP(200)),
+                sendmax(BIXRP(200)),
                 txflags(tfNoRippleDirect),
                 ter(temBAD_PATH_LOOP));
         }
 
         {
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, noripple(gw));
+            env.fund(BIXRP(10000), alice, bob, noripple(gw));
             env.trust(USD(1000), alice, bob);
             env(pay(gw, alice, USD(100)));
             test(env, USD, boost::none, STPath(), terNO_RIPPLE);
@@ -942,7 +942,7 @@ struct PayStrand_test : public beast::unit_test::suite
         {
             // check global freeze
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.trust(USD(1000), alice, bob);
             env(pay(gw, alice, USD(100)));
 
@@ -967,7 +967,7 @@ struct PayStrand_test : public beast::unit_test::suite
         {
             // Freeze between gw and alice
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.trust(USD(1000), alice, bob);
             env(pay(gw, alice, USD(100)));
             test(env, USD, boost::none, STPath(), tesSUCCESS);
@@ -980,7 +980,7 @@ struct PayStrand_test : public beast::unit_test::suite
             // An account may require authorization to receive IOUs from an
             // issuer
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env(fset(gw, asfRequireAuth));
             env.trust(USD(1000), alice, bob);
             // Authorize alice but not bob
@@ -1008,7 +1008,7 @@ struct PayStrand_test : public beast::unit_test::suite
         {
             // Check path with sendMax and node with correct sendMax already set
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.trust(USD(1000), alice, bob);
             env.trust(EUR(1000), alice, bob);
             env(pay(gw, alice, EUR(100)));
@@ -1021,22 +1021,22 @@ struct PayStrand_test : public beast::unit_test::suite
         }
 
         {
-            // last step xrp from offer
+            // last step bixrp from offer
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
             env.trust(USD(1000), alice, bob);
             env(pay(gw, alice, USD(100)));
 
-            // alice -> USD/XRP -> bob
+            // alice -> USD/BIXRP -> bob
             STPath path;
             path.emplace_back(boost::none, USD.currency, USD.account.id());
-            path.emplace_back(boost::none, xrpCurrency(), boost::none);
+            path.emplace_back(boost::none, bixrpCurrency(), boost::none);
 
             auto [ter, strand] = toStrand(
                 *env.current(),
                 alice,
                 bob,
-                XRP,
+                BIXRP,
                 boost::none,
                 USD.issue(),
                 path,
@@ -1047,8 +1047,8 @@ struct PayStrand_test : public beast::unit_test::suite
             BEAST_EXPECT(equal(
                 strand,
                 D{alice, gw, usdC},
-                B{USD.issue(), xrpIssue()},
-                XRPS{bob}));
+                B{USD.issue(), bixrpIssue()},
+                BIXRPS{bob}));
         }
     }
 
@@ -1067,15 +1067,15 @@ struct PayStrand_test : public beast::unit_test::suite
 
         {
             Env env(*this, features);
-            env.fund(XRP(10000), alice, bob, gw);
+            env.fund(BIXRP(10000), alice, bob, gw);
 
             env.trust(USD(1000), alice, bob);
             env.trust(EUR(1000), alice, bob);
             env.trust(bob["USD"](1000), alice, gw);
             env.trust(bob["EUR"](1000), alice, gw);
 
-            env(offer(bob, XRP(100), bob["USD"](100)), txflags(tfPassive));
-            env(offer(gw, XRP(100), USD(100)), txflags(tfPassive));
+            env(offer(bob, BIXRP(100), bob["USD"](100)), txflags(tfPassive));
+            env(offer(gw, BIXRP(100), USD(100)), txflags(tfPassive));
 
             env(offer(bob, bob["USD"](100), bob["EUR"](100)),
                 txflags(tfPassive));
@@ -1092,7 +1092,7 @@ struct PayStrand_test : public beast::unit_test::suite
 
             env(pay(alice, alice, EUR(1)),
                 json(paths.json()),
-                sendmax(XRP(10)),
+                sendmax(BIXRP(10)),
                 txflags(tfNoRippleDirect | tfPartialPayment),
                 ter(temBAD_PATH));
         }
@@ -1100,38 +1100,38 @@ struct PayStrand_test : public beast::unit_test::suite
         {
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(10000), alice, bob, carol);
 
             env(pay(gw, bob, USD(100)));
 
-            env(offer(bob, XRP(100), USD(100)), txflags(tfPassive));
-            env(offer(bob, USD(100), XRP(100)), txflags(tfPassive));
+            env(offer(bob, BIXRP(100), USD(100)), txflags(tfPassive));
+            env(offer(bob, USD(100), BIXRP(100)), txflags(tfPassive));
 
-            // payment path: XRP -> XRP/USD -> USD/XRP
-            env(pay(alice, carol, XRP(100)),
-                path(~USD, ~XRP),
+            // payment path: BIXRP -> BIXRP/USD -> USD/BIXRP
+            env(pay(alice, carol, BIXRP(100)),
+                path(~USD, ~BIXRP),
                 txflags(tfNoRippleDirect),
-                ter(temBAD_SEND_XRP_PATHS));
+                ter(temBAD_SEND_BIXRP_PATHS));
         }
 
         {
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(10000), alice, bob, carol);
 
             env(pay(gw, bob, USD(100)));
 
-            env(offer(bob, XRP(100), USD(100)), txflags(tfPassive));
-            env(offer(bob, USD(100), XRP(100)), txflags(tfPassive));
+            env(offer(bob, BIXRP(100), USD(100)), txflags(tfPassive));
+            env(offer(bob, USD(100), BIXRP(100)), txflags(tfPassive));
 
-            // payment path: XRP -> XRP/USD -> USD/XRP
-            env(pay(alice, carol, XRP(100)),
-                path(~USD, ~XRP),
-                sendmax(XRP(200)),
+            // payment path: BIXRP -> BIXRP/USD -> USD/BIXRP
+            env(pay(alice, carol, BIXRP(100)),
+                path(~USD, ~BIXRP),
+                sendmax(BIXRP(200)),
                 txflags(tfNoRippleDirect),
-                ter(temBAD_SEND_XRP_MAX));
+                ter(temBAD_SEND_BIXRP_MAX));
         }
     }
 
@@ -1152,26 +1152,26 @@ struct PayStrand_test : public beast::unit_test::suite
         {
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(10000), alice, bob, carol);
 
             env(pay(gw, bob, USD(100)));
             env(pay(gw, alice, USD(100)));
 
-            env(offer(bob, XRP(100), USD(100)), txflags(tfPassive));
-            env(offer(bob, USD(100), XRP(100)), txflags(tfPassive));
+            env(offer(bob, BIXRP(100), USD(100)), txflags(tfPassive));
+            env(offer(bob, USD(100), BIXRP(100)), txflags(tfPassive));
 
-            // payment path: USD -> USD/XRP -> XRP/USD
+            // payment path: USD -> USD/BIXRP -> BIXRP/USD
             env(pay(alice, carol, USD(100)),
                 sendmax(USD(100)),
-                path(~XRP, ~USD),
+                path(~BIXRP, ~USD),
                 txflags(tfNoRippleDirect),
                 ter(temBAD_PATH_LOOP));
         }
         {
             Env env(*this, features);
 
-            env.fund(XRP(10000), alice, bob, carol, gw);
+            env.fund(BIXRP(10000), alice, bob, carol, gw);
             env.trust(USD(10000), alice, bob, carol);
             env.trust(EUR(10000), alice, bob, carol);
             env.trust(CNY(10000), alice, bob, carol);
@@ -1180,13 +1180,13 @@ struct PayStrand_test : public beast::unit_test::suite
             env(pay(gw, bob, EUR(100)));
             env(pay(gw, bob, CNY(100)));
 
-            env(offer(bob, XRP(100), USD(100)), txflags(tfPassive));
+            env(offer(bob, BIXRP(100), USD(100)), txflags(tfPassive));
             env(offer(bob, USD(100), EUR(100)), txflags(tfPassive));
             env(offer(bob, EUR(100), CNY(100)), txflags(tfPassive));
 
-            // payment path: XRP->XRP/USD->USD/EUR->USD/CNY
+            // payment path: BIXRP->BIXRP/USD->USD/EUR->USD/CNY
             env(pay(alice, carol, CNY(100)),
-                sendmax(XRP(100)),
+                sendmax(BIXRP(100)),
                 path(~USD, ~EUR, ~USD, ~CNY),
                 txflags(tfNoRippleDirect),
                 ter(temBAD_PATH_LOOP));
@@ -1205,7 +1205,7 @@ struct PayStrand_test : public beast::unit_test::suite
         auto const USD = gw["USD"];
 
         Env env(*this, features);
-        env.fund(XRP(10000), alice, bob, gw);
+        env.fund(BIXRP(10000), alice, bob, gw);
 
         STAmount sendMax{USD.issue(), 100, 1};
         STAmount noAccountAmount{Issue{USD.currency, noAccount()}, 100, 1};
