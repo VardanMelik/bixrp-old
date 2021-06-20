@@ -810,7 +810,7 @@ amountFromString(Issue const& issue, std::string const& amount)
 
     bool negative = (match[1].matched && (match[1] == "-"));
 
-    // Can't specify XRP using fractional representation
+    // Can't specify BIXRP using fractional representation
     if (isBIXRP(issue) && match[3].matched)
         Throw<std::runtime_error>("BIXRP must be specified in integral drops.");
 
@@ -1225,7 +1225,7 @@ mulRound(
     if (v1 == beast::zero || v2 == beast::zero)
         return {issue};
 
-    bool const xrp = isBIXRP(issue);
+    bool const bixrp = isBIXRP(issue);
 
     if (v1.native() && v2.native() && bixrp)
     {

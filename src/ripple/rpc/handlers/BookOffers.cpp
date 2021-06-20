@@ -112,7 +112,7 @@ doBookOffers(RPC::JsonContext& context)
     }
     else
     {
-        pay_issuer = xrpAccount();
+        pay_issuer = bixrpAccount();
     }
 
     if (isBIXRP(pay_currency) && !isBIXRP(pay_issuer))
@@ -145,7 +145,7 @@ doBookOffers(RPC::JsonContext& context)
     }
     else
     {
-        get_issuer = xrpAccount();
+        get_issuer = bixrpAccount();
     }
 
     if (isBIXRP(get_currency) && !isBIXRP(get_issuer))

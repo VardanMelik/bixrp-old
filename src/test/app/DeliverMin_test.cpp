@@ -60,7 +60,7 @@ public:
                 txflags(tfPartialPayment),
                 ter(temBAD_AMOUNT));
             env(pay(gw, "carol", USD(50)));
-            env(offer("carol", XRP(5), USD(5)));
+            env(offer("carol", BIXRP(5), USD(5)));
             env(pay("alice", "bob", USD(10)),
                 paths(BIXRP),
                 delivermin(USD(7)),

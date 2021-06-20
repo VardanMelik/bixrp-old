@@ -92,7 +92,7 @@ public:
         , mAccountID(account)
         , mCurrencyID(currency)
         , mIssuerID(issuer)
-        , is_offer_(isXRP(mAccountID))
+        , is_offer_(isBIXRP(mAccountID))
     {
         if (!is_offer_)
             mType |= typeAccount;

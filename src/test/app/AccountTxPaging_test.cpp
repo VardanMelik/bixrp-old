@@ -558,7 +558,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
 
         std::vector<std::shared_ptr<STTx const>> txns;
 
-        env.fund(XRP(1000000), alice, gw);
+        env.fund(BIXRP(1000000), alice, gw);
         env.close();
 
         // AccountSet
@@ -848,7 +848,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      BEAST_EXPECT(res.check_create()
                                       .send_max()
                                       .value()
-                                      .has_xrp_amount()) &&
+                                      .has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.check_create()
                                 .send_max()
@@ -871,7 +871,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      BEAST_EXPECT(res.check_create()
                                       .send_max()
                                       .value()
-                                      .has_xrp_amount()) &&
+                                      .has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.check_create()
                                 .send_max()
@@ -911,7 +911,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      BEAST_EXPECT(res.payment_channel_fund()
                                       .amount()
                                       .value()
-                                      .has_xrp_amount()) &&
+                                      .has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.payment_channel_fund()
                                 .amount()
@@ -929,7 +929,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      BEAST_EXPECT(res.payment_channel_create()
                                       .amount()
                                       .value()
-                                      .has_xrp_amount()) &&
+                                      .has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.payment_channel_create()
                                 .amount()
@@ -992,7 +992,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      BEAST_EXPECT(res.escrow_create()
                                       .amount()
                                       .value()
-                                      .has_xrp_amount()) &&
+                                      .has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.escrow_create()
                                 .amount()
@@ -1021,7 +1021,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                      BEAST_EXPECT(res.escrow_create()
                                       .amount()
                                       .value()
-                                      .has_xrp_amount()) &&
+                                      .has_bixrp_amount()) &&
                      BEAST_EXPECT(
                             res.escrow_create()
                                 .amount()

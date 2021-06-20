@@ -462,7 +462,7 @@ populateFee(T& to, STObject const& from)
 {
     if (from.isFieldPresent(sfFee))
     {
-        to.mutable_fee()->set_drops(from.getFieldAmount(sfFee).xrp().drops());
+        to.mutable_fee()->set_drops(from.getFieldAmount(sfFee).bixrp().drops());
     }
 }
 
@@ -1761,7 +1761,7 @@ convert(
         boost::optional<std::uint32_t> lowestTicket;
         boost::optional<std::uint32_t> highestTicket;
         bool anyAuthChanged = false;
-        XRPAmount totalSpend(0);
+        BIXRPAmount totalSpend(0);
 
         for (auto const& tx : from)
         {

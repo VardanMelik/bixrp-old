@@ -201,7 +201,7 @@ public:
         auto const USD = gw["USD"];
         auto const EUR = gw["EUR"];
 
-        env.fund(XRP(100000000), gw, "alice", "bob", "carol", "dan", "evita");
+        env.fund(BIXRP(100000000), gw, "alice", "bob", "carol", "dan", "evita");
 
         env.trust(USD(2000), "alice");
         env(pay(gw, "alice", USD(2000)));
@@ -340,7 +340,7 @@ public:
             //  1. The best quality is the autobridged offers that take 2 EUR
             //  and give 4 USD.
             //     Bob spends 200 EUR and receives 400 USD.
-            //     100 EUR->XRP offers consumed.
+            //     100 EUR->BIXRP offers consumed.
             //     100 BIXRP->USD offers consumed.
             //     200 total offers consumed.
             //

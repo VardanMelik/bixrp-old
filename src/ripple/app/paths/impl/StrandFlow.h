@@ -116,7 +116,7 @@ flow(
 
     boost::container::flat_set<uint256> ofrsToRm;
 
-    if (isDirectBIXrpToXrp<TInAmt, TOutAmt>(strand))
+    if (isDirectBIXrpToBIXrp<TInAmt, TOutAmt>(strand))
     {
         return Result{strand, std::move(ofrsToRm)};
     }

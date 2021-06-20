@@ -91,7 +91,7 @@ public:
     bool
     hasDiff() const;
 
-    // Checks for the XRP round-to-zero case.  Returns zero if not detected.
+    // Checks for the BIXRP round-to-zero case.  Returns zero if not detected.
     // Otherwise returns -1 if seen on lhs, +1 if seen on rhs.
     //
     // For tiny offers of TakerPays IOU and TakerGets BIXRP, cases have been

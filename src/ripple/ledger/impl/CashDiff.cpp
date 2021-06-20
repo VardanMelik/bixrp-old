@@ -287,7 +287,7 @@ getCashFlow(ReadView const& view, CashFilter f, ApplyStateTable const& table)
 class CashDiff::Impl
 {
 private:
-    // Note differences in destroyed XRP between two ApplyStateTables.
+    // Note differences in destroyed BIXRP between two ApplyStateTables.
     struct DropsGone
     {
         BIXRPAmount lhs;

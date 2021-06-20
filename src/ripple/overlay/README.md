@@ -334,7 +334,7 @@ Ultimately, the goal is to ensure that two endpoints A and B know that they are
 talking directly to each other over a single end-to-end SSL/TLS session instead
 of two separate SSL/TLS sessions, with an attacker acting as a proxy.
 
-The XRP Ledger protocol prevents this attack by leveraging the fact that the two
+The BIXRP Ledger protocol prevents this attack by leveraging the fact that the two
 servers each have a node identity, in the form of **`secp256k1`** keypairs, and
 use that to strongly bind the SSL/TLS session to the node identities of each of
 the two servers at the end of the SSL/TLS session.

@@ -120,7 +120,7 @@ transResults()
         MAKE_ERROR(temBAD_AMOUNT,             "Can only send positive amounts."),
         MAKE_ERROR(temBAD_CURRENCY,           "Malformed: Bad currency."),
         MAKE_ERROR(temBAD_EXPIRATION,         "Malformed: Bad expiration."),
-        MAKE_ERROR(temBAD_FEE,                "Invalid fee, negative or not XRP."),
+        MAKE_ERROR(temBAD_FEE,                "Invalid fee, negative or not BIXRP."),
         MAKE_ERROR(temBAD_ISSUER,             "Malformed: Bad issuer."),
         MAKE_ERROR(temBAD_LIMIT,              "Limits must be non-negative."),
         MAKE_ERROR(temBAD_OFFER,              "Malformed: Bad offer."),

@@ -33,7 +33,7 @@
 namespace ripple {
 
 /** The flavor of an offer crossing */
-enum class CrossType { XrpToIou, IouToBIXrp, IouToIou };
+enum class CrossType { BIXrpToIou, IouToBIXrp, IouToIou };
 
 /** State for the active party during order book or payment operations. */
 class BasicTaker
@@ -327,7 +327,7 @@ private:
     // The underlying ledger entry we are dealing with
     ApplyView& view_;
 
-    // The amount of XRP that flowed if we were autobridging
+    // The amount of BIXRP that flowed if we were autobridging
     STAmount bixrp_flow_;
 
     // The number direct crossings that we performed

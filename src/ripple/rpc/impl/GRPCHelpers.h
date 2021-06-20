@@ -67,7 +67,7 @@ convert(T& to, STAmount const& from)
 {
     if (from.native())
     {
-        to.mutable_value()->mutable_xrp_amount()->set_drops(from.xrp().drops());
+        to.mutable_value()->mutable_bixrp_amount()->set_drops(from.bixrp().drops());
     }
     else
     {

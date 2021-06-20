@@ -463,7 +463,7 @@ public:
         Account const alice("alice");
         Account const becky("becky");
 
-        env.fund(XRP(10000), alice, becky);
+        env.fund(BIXRP(10000), alice, becky);
         env.close();
 
         // Verify that becky's account root is present.
