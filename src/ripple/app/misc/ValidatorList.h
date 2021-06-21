@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/rippled
+    This file is part of bixd: link
     Copyright (c) 2015 Ripple Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
@@ -128,11 +128,11 @@ struct ValidatorBlobInfo
     Trusted Validators List
     -----------------------
 
-    Rippled accepts ledger proposals and validations from trusted validator
+    Bixd accepts ledger proposals and validations from trusted validator
     nodes. A ledger is considered fully-validated once the number of received
     trusted validations for a ledger meets or exceeds a quorum value.
 
-    This class manages the set of validation public keys the local rippled node
+    This class manages the set of validation public keys the local bixd node
     trusts. The list of trusted keys is populated using the keys listed in the
     configuration file as well as lists signed by trusted publishers. The
     trusted publisher public keys are specified in the config.

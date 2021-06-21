@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/rippled
+    This file is part of Bixd: 
     Copyright (c) 2012-2015 Ripple Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
@@ -66,9 +66,9 @@ protocol = wss
 [node_size]
 medium
 
-# This is primary persistent datastore for rippled.  This includes transaction
+# This is primary persistent datastore for bixd.  This includes transaction
 # metadata, account states, and ledger headers.  Helpful information can be
-# found here: https://ripple.com/wiki/NodeBackEnd
+# found here: 
 # delete old ledgers while maintaining at least 2000. Do not require an
 # external administrative command to initiate deletion.
 [node_db]
@@ -122,9 +122,9 @@ backend=sqlite
 }
 
 /**
-   Write a rippled config file and remove when done.
+   Write a bixd config file and remove when done.
  */
-class RippledCfgGuard : public ripple::test::detail::FileDirGuard
+class BixdCfgGuard : public ripple::test::detail::FileDirGuard
 {
 private:
     path dataDir_;
@@ -134,7 +134,7 @@ private:
     Config config_;
 
 public:
-    RippledCfgGuard(
+    BixdCfgGuard(
         beast::unit_test::suite& test,
         path subDir,
         path const& dbPath,
@@ -183,7 +183,7 @@ public:
         return fileExists();
     }
 
-    ~RippledCfgGuard()
+    ~BixdippledCfgGuard()
     {
         try
         {
@@ -197,7 +197,7 @@ public:
         catch (std::exception& e)
         {
             // if we throw here, just let it die.
-            test_.log << "Error in ~RippledCfgGuard: " << e.what() << std::endl;
+            test_.log << "Error in ~BixdCfgGuard: " << e.what() << std::endl;
         };
     }
 };
@@ -341,7 +341,7 @@ port_wss_admin
             ripple::test::detail::DirGuard const g0(*this, "test_db");
             path const dataDirRel("test_data_dir");
             path const dataDirAbs(cwd / g0.subdir() / dataDirRel);
-            detail::RippledCfgGuard const g(
+            detail::BixdCfgGuard const g(
                 *this, g0.subdir(), dataDirAbs, "", false);
             auto const& c(g.config());
             BEAST_EXPECT(g.dataDirExists());
@@ -351,7 +351,7 @@ port_wss_admin
         {
             // read from file relative path
             std::string const dbPath("my_db");
-            detail::RippledCfgGuard const g(*this, "test_db", dbPath, "");
+            detail::BixdCfgGuard const g(*this, "test_db", dbPath, "");
             auto const& c(g.config());
             std::string const nativeDbPath = absolute(path(dbPath)).string();
             BEAST_EXPECT(g.dataDirExists());
@@ -360,7 +360,7 @@ port_wss_admin
         }
         {
             // read from file no path
-            detail::RippledCfgGuard const g(*this, "test_db", "", "");
+            detail::BixdCfgGuard const g(*this, "test_db", "", "");
             auto const& c(g.config());
             std::string const nativeDbPath =
                 absolute(g.subdir() / path(Config::databaseDirName)).string();
@@ -547,7 +547,7 @@ trustthesevalidators.gov
             std::string const valFileName = "validators.txt";
             detail::ValidatorsTxtGuard const vtg(
                 *this, "test_cfg", valFileName);
-            detail::RippledCfgGuard const rcg(
+            detail::BixdCfgGuard const rcg(
                 *this, vtg.subdir(), "", valFileName, false);
             BEAST_EXPECT(vtg.validatorsFileExists());
             BEAST_EXPECT(rcg.configFileExists());
@@ -565,7 +565,7 @@ trustthesevalidators.gov
             detail::ValidatorsTxtGuard const vtg(
                 *this, "test_cfg", "validators.txt");
             auto const valFilePath = ".." / vtg.subdir() / "validators.txt";
-            detail::RippledCfgGuard const rcg(
+            detail::BixdCfgGuard const rcg(
                 *this, vtg.subdir(), "", valFilePath, false);
             BEAST_EXPECT(vtg.validatorsFileExists());
             BEAST_EXPECT(rcg.configFileExists());
@@ -581,7 +581,7 @@ trustthesevalidators.gov
             // load from validators file in default location
             detail::ValidatorsTxtGuard const vtg(
                 *this, "test_cfg", "validators.txt");
-            detail::RippledCfgGuard const rcg(
+            detail::BixdCfgGuard const rcg(
                 *this, vtg.subdir(), "", "", false);
             BEAST_EXPECT(vtg.validatorsFileExists());
             BEAST_EXPECT(rcg.configFileExists());
@@ -602,7 +602,7 @@ trustthesevalidators.gov
             detail::ValidatorsTxtGuard const vtgDefault(
                 *this, vtg.subdir(), "validators.txt", false);
             BEAST_EXPECT(vtgDefault.validatorsFileExists());
-            detail::RippledCfgGuard const rcg(
+            detail::BixdCfgGuard const rcg(
                 *this, vtg.subdir(), "", vtg.validatorsFile(), false);
             BEAST_EXPECT(rcg.configFileExists());
             auto const& c(rcg.config());
@@ -652,7 +652,7 @@ trustthesevalidators.gov
         }
         {
             // load should throw if [validators], [validator_keys] and
-            // [validator_list_keys] are missing from rippled cfg and
+            // [validator_list_keys] are missing from bixd cfg and
             // validators file
             Config c;
             boost::format cc("[validators_file]\n%1%\n");
@@ -682,9 +682,9 @@ trustthesevalidators.gov
     void
     testSetup(bool explicitPath)
     {
-        detail::RippledCfgGuard const cfg(
+        detail::BixdCfgGuard const cfg(
             *this, "testSetup", explicitPath ? "test_db" : "", "");
-        /* RippledCfgGuard has a Config object that gets loaded on
+        /* BixdCfgGuard has a Config object that gets loaded on
             construction, but Config::setup is not reentrant, so we
             need a fresh config for every test case, so ignore it.
         */
@@ -801,7 +801,7 @@ trustthesevalidators.gov
     void
     testPort()
     {
-        detail::RippledCfgGuard const cfg(*this, "testPort", "", "");
+        detail::BixdCfgGuard const cfg(*this, "testPort", "", "");
         auto const& conf = cfg.config();
         if (!BEAST_EXPECT(conf.exists("port_rpc")))
             return;

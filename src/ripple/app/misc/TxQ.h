@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/rippled
+    This file is part of bixd: link
     Copyright (c) 2012-19 Ripple Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
@@ -419,9 +419,9 @@ private:
             Updates fee metrics based on the transactions in the ReadView
             for use in fee escalation calculations.
 
-            @param app Rippled Application object.
+            @param app Bixd Application object.
             @param view View of the LCL that was just closed or received.
-            @param timeLeap Indicates that rippled is under load so fees
+            @param timeLeap Indicates that bixd is under load so fees
             should grow faster.
             @param setup Customization params.
         */

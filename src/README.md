@@ -1,13 +1,13 @@
-# rippled Source
+# bixd Source
 
 Some of these directories come from entire outside repositories brought in
 using [git-subtree][]. This means that the source files are inserted directly
-into the `rippled` repository. They can be edited and committed just as if they
+into the `bixd` repository. They can be edited and committed just as if they
 were normal files.
 [git-subtree]: https://github.com/apenwarr/git-subtree
 
 If you create a commit that contains files both from a subtree, and from the
-`rippled` source tree, please use care when designing the commit message, since
+`bixd` source tree, please use care when designing the commit message, since
 it will appear in the subtree's individual repository when the changes are
 pushed back to the upstream. Better yet, do not mix files from subtrees and
 `ripple` in the same commit at all.
@@ -20,7 +20,7 @@ Source folders:
 | `ed25519-donna` | https://github.com/floodyberry/ed25519-donna | [Ed25519](http://ed25519.cr.yp.to/) digital signatures |
 | `ripple`        | N/A                                          | **Core source code for `rippled`** |
 | `secp256k1`     | https://github.com/bitcoin-core/secp256k1    | ECDSA digital signatures using the **secp256k1** curve |
-| `test`          | N/A                                          | **Unit tests for `rippled`** |
+| `test`          | N/A                                          | **Unit tests for `bixd`** |
 
 The following dependencies are downloaded and built using ExternalProject
 (or FetchContent, where possible). Refer to CMakeLists.txt file for

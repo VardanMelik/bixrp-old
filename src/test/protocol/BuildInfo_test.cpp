@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/rippled
+    This file is part of Bixd: 
     Copyright (c) 2020 Ripple Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
@@ -79,13 +79,13 @@ public:
     }
 
     void
-    testIsRippledVersion()
+    testIsBixdVersion()
     {
-        testcase("IsRippledVersion");
+        testcase("IsBixdVersion");
         auto vFF = 0xFFFF'FFFF'FFFF'FFFFLLU;
-        BEAST_EXPECT(!BuildInfo::isRippledVersion(vFF));
-        auto vRippled = 0x183B'0000'0000'0000LLU;
-        BEAST_EXPECT(BuildInfo::isRippledVersion(vRippled));
+        BEAST_EXPECT(!BuildInfo::isBixdVersion(vFF));
+        auto vBixd = 0x183B'0000'0000'0000LLU;
+        BEAST_EXPECT(BuildInfo::isBixdVersion(vBixd));
     }
 
     void
@@ -109,7 +109,7 @@ public:
     run() override
     {
         testEncodeSoftwareVersion();
-        testIsRippledVersion();
+        testIsBixdVersion();
         testIsNewerVersion();
     }
 };

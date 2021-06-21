@@ -1,6 +1,6 @@
 # Fees
 
-Rippled's fee mechanism consists of several interrelated processes:
+Bixd's fee mechanism consists of several interrelated processes:
 
 1. [Rapid Fee escalation](#fee-escalation)
 2. [The Transaction Queue](#transaction-queue)
@@ -180,7 +180,7 @@ single-signed transaction (eg. Payment, Account Set, Offer Create, etc)
 that requires a fee.
 
 In the future, there may be other transaction types that require
-more (or less) work for rippled to process. Those transactions may have
+more (or less) work for bixd to process. Those transactions may have
 a higher (or lower) base fee, requiring a correspondingly higher (or
 lower) fee to get into the same position as a reference transaction.
 
@@ -264,7 +264,7 @@ values by 5 for a multi-signed transaction with 4 signatures.)
 
 The `fee` result is always instantanteous, and relates to the open
 ledger. It includes the sequence number of the current open ledger,
-but may not make sense if rippled is not synced to the network.
+but may not make sense if bixd is not synced to the network.
 
 Result format:
 ```
@@ -291,7 +291,7 @@ Result format:
 }
 ```
 
-### [`server_info`](https://ripple.com/build/rippled-apis/#server-info) command
+### [`server_info`](link) command
 
 **The fields listed here are still experimental, and may change
 without warning.**
@@ -313,7 +313,7 @@ need to overcome `load_factor_fee_escalation`, though if it does not, it
 is more likely to be queued than immediately processed into the open
 ledger.
 
-### [`server_state`](https://ripple.com/build/rippled-apis/#server-state) command
+### [`server_state`](link) command
 
 **The fields listed here are still experimental, and may change
 without warning.**

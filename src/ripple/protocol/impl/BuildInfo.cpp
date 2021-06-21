@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/rippled
+    This file is part of bixd: 
     Copyright (c) 2012, 2013 Ripple Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
@@ -73,7 +73,7 @@ getVersionString()
 std::string const&
 getFullVersionString()
 {
-    static std::string const value = "rippled-" + getVersionString();
+    static std::string const value = "bixd-" + getVersionString();
     return value;
 }
 
@@ -155,7 +155,7 @@ getEncodedVersion()
 }
 
 bool
-isRippledVersion(std::uint64_t version)
+isBixdVersion(std::uint64_t version)
 {
     return (version & implementationVersionIdentifierMask) ==
         implementationVersionIdentifier;
@@ -164,7 +164,7 @@ isRippledVersion(std::uint64_t version)
 bool
 isNewerVersion(std::uint64_t version)
 {
-    if (isRippledVersion(version))
+    if (isBixdVersion(version))
         return version > getEncodedVersion();
     return false;
 }
