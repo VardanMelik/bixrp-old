@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,29 +17,29 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/app/misc/ValidatorSite.h>
-#include <ripple/basics/base64.h>
-#include <ripple/basics/make_SSLContext.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/overlay/Cluster.h>
-#include <ripple/overlay/impl/ConnectAttempt.h>
-#include <ripple/overlay/impl/PeerImp.h>
-#include <ripple/overlay/predicates.h>
-#include <ripple/peerfinder/make_Manager.h>
-#include <ripple/rpc/handlers/GetCounts.h>
-#include <ripple/rpc/json_body.h>
-#include <ripple/server/SimpleWriter.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/app/misc/ValidatorSite.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/make_SSLContext.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/overlay/Cluster.h>
+#include <bixd/overlay/impl/ConnectAttempt.h>
+#include <bixd/overlay/impl/PeerImp.h>
+#include <bixd/overlay/predicates.h>
+#include <bixd/peerfinder/make_Manager.h>
+#include <bixd/rpc/handlers/GetCounts.h>
+#include <bixd/rpc/json_body.h>
+#include <bixd/server/SimpleWriter.h>
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/utility/in_place_factory.hpp>
 
-namespace ripple {
+namespace bixd {
 
 namespace CrawlOptions {
 enum {
@@ -513,8 +513,8 @@ OverlayImpl::onPrepare()
     // servers to serve as bootstrap:
     if (bootstrapIps.empty())
     {
-        // Pool of servers operated by Ripple Labs Inc. - https://ripple.com
-        bootstrapIps.push_back("r.ripple.com 51235");
+        // Pool of servers operated by bixd Labs Inc. - https://bixd.com
+        bootstrapIps.push_back("r.bixd.com 51235");
 
         // Pool of servers operated by Alloy Networks - https://www.alloy.ee
         bootstrapIps.push_back("zaphod.alloy.ee 51235");
@@ -543,7 +543,7 @@ OverlayImpl::onPrepare()
                 m_peerFinder->addFallbackStrings(base + name, ips);
         });
 
-    // Add the ips_fixed from the rippled.cfg file
+    // Add the ips_fixed from the bixd.cfg file
     if (!app_.config().standalone() && !app_.config().IPS_FIXED.empty())
     {
         m_resolver.resolve(
@@ -821,7 +821,7 @@ OverlayImpl::lastLink(std::uint32_t id)
 
 /** The number of active peers on the network
     Active peers are only those peers that have completed the handshake
-    and are running the Ripple protocol.
+    and are running the bixd protocol.
 */
 std::size_t
 OverlayImpl::size() const
@@ -1588,4 +1588,4 @@ make_Overlay(
         collector);
 }
 
-}  // namespace ripple
+}  // namespace bixd

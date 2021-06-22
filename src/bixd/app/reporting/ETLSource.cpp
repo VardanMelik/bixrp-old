@@ -801,9 +801,8 @@ ETLSource::forwardToP2p(RPC::JsonContext& context) const
         net::connect(ws->next_layer(), results.begin(), results.end());
 
         // Set a decorator to change the User-Agent of the handshake
-        // and to tell rippled to charge the client IP for RPC
+        // and to tell bixd to charge the client IP for RPC
         // resources. See "secure_gateway" in
-        // https://github.com/ripple/rippled/blob/develop/cfg/rippled-example.cfg
         ws->set_option(websocket::stream_base::decorator(
             [&context](websocket::request_type& req) {
                 req.set(

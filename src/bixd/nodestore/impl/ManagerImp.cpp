@@ -37,8 +37,8 @@ void
 ManagerImp::missing_backend()
 {
     Throw<std::runtime_error>(
-        "Your rippled.cfg is missing a [node_db] entry, "
-        "please see the rippled-example.cfg file!");
+        "Your bixd.cfg is missing a [node_db] entry, "
+        "please see the bixd-example.cfg file!");
 }
 
 std::unique_ptr<Backend>
@@ -55,10 +55,10 @@ ManagerImp::make_Backend(
     auto factory{find(type)};
     if (!factory)
     {
-#ifndef RIPPLED_REPORTING
+#ifndef BIXD_REPORTING
         if (boost::iequals(type, "cassandra"))
             Throw<std::runtime_error>(
-                "To use Cassandra as a nodestore, build rippled with "
+                "To use Cassandra as a nodestore, build bixd with "
                 "-Dreporting=ON");
 #endif
         missing_backend();
@@ -131,4 +131,4 @@ Manager::instance()
 }
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

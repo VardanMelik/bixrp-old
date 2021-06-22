@@ -132,7 +132,7 @@ Transaction::load(
 Transaction::Locator
 Transaction::locate(uint256 const& id, Application& app)
 {
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
     auto baseCmd = boost::format(R"(SELECT tx('%s');)");
 
     std::string txHash = "\\x" + strHex(id);

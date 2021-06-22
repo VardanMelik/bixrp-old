@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_PERFLOG_H
-#define RIPPLE_BASICS_PERFLOG_H
+#ifndef BIXD_BASICS_PERFLOG_H
+#define BIXD_BASICS_PERFLOG_H
 
-#include <ripple/core/JobTypes.h>
-#include <ripple/json/json_value.h>
+#include <bixd/core/JobTypes.h>
+#include <bixd/json/json_value.h>
 #include <boost/filesystem.hpp>
 #include <chrono>
 #include <cstdint>
@@ -33,7 +33,7 @@ namespace beast {
 class Journal;
 }
 
-namespace ripple {
+namespace bixd {
 namespace perf {
 
 /**
@@ -55,7 +55,7 @@ public:
     using microseconds = std::chrono::microseconds;
 
     /**
-     * Configuration from [perf] section of rippled.cfg.
+     * Configuration from [perf] section of bixdd.cfg.
      */
     struct Setup
     {
@@ -175,6 +175,6 @@ make_PerfLog(
     std::function<void()>&& signalStop);
 
 }  // namespace perf
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_BASICS_PERFLOG_H
+#endif  // bixd_BASICS_PERFLOG_H

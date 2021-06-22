@@ -50,7 +50,7 @@ struct AccountTransactionsData
     }
 };
 
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
 /// Write new ledger and transaction data to Postgres
 /// @param info Ledger Info to write
 /// @param accountTxData transaction data to write

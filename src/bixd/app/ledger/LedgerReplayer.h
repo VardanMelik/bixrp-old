@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2020 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2020 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_LEDGERREPLAYER_H_INCLUDED
-#define RIPPLE_APP_LEDGER_LEDGERREPLAYER_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_LEDGERREPLAYER_H_INCLUDED
+#define BIXD_APP_LEDGER_LEDGERREPLAYER_H_INCLUDED
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/LedgerReplayTask.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/Stoppable.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/LedgerReplayTask.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/Stoppable.h>
 
 #include <memory>
 #include <mutex>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 class LedgerReplayClient;
@@ -141,6 +141,6 @@ private:
     friend class test::LedgerReplayClient;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

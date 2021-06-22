@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifdef RIPPLED_REPORTING
-#ifndef RIPPLE_CORE_PG_H_INCLUDED
-#define RIPPLE_CORE_PG_H_INCLUDED
+#ifdef BIXD_REPORTING
+#ifndef BIXD_CORE_PG_H_INCLUDED
+#define BIXD_CORE_PG_H_INCLUDED
 
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/basics/Log.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/protocol/Protocol.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/protocol/Protocol.h>
 #include <boost/lexical_cast.hpp>
 #include <atomic>
 #include <chrono>
@@ -38,7 +38,7 @@
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 // These postgres structs must be freed only by the postgres API.
 using pg_result_type = std::unique_ptr<PGresult, void (*)(PGresult*)>;
@@ -517,7 +517,7 @@ make_PgPool(Section const& pgConfig, Stoppable& parent, beast::Journal j);
 void
 initSchema(std::shared_ptr<PgPool> const& pool);
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_CORE_PG_H_INCLUDED
-#endif  // RIPPLED_REPORTING
+#endif  // bixd_CORE_PG_H_INCLUDED
+#endif  // bixdD_REPORTING

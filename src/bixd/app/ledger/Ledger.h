@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,24 +17,24 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_LEDGER_H_INCLUDED
-#define RIPPLE_APP_LEDGER_LEDGER_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_LEDGER_H_INCLUDED
+#define BIXD_APP_LEDGER_LEDGER_H_INCLUDED
 
-#include <ripple/basics/CountedObject.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/TimeKeeper.h>
-#include <ripple/ledger/CachedView.h>
-#include <ripple/ledger/TxMeta.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Book.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/STLedgerEntry.h>
-#include <ripple/protocol/Serializer.h>
-#include <ripple/shamap/SHAMap.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/TimeKeeper.h>
+#include <bixd/ledger/CachedView.h>
+#include <bixd/ledger/TxMeta.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Book.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/STLedgerEntry.h>
+#include <bixd/protocol/Serializer.h>
+#include <bixd/shamap/SHAMap.h>
 #include <boost/optional.hpp>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 class Application;
 class Job;
@@ -511,6 +511,6 @@ deserializeTxPlusMeta(SHAMapItem const& item);
 uint256
 calculateLedgerHash(LedgerInfo const& info);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

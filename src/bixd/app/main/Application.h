@@ -250,7 +250,7 @@ public:
     virtual bool
     serverOkay(std::string& reason) = 0;
 
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
     virtual std::shared_ptr<PgPool> const&
     getPgPool() = 0;
 #endif

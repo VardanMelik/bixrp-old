@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/rippled
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_CONSENSUSTRANSSETSF_H_INCLUDED
-#define RIPPLE_APP_LEDGER_CONSENSUSTRANSSETSF_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_CONSENSUSTRANSSETSF_H_INCLUDED
+#define BIXD_APP_LEDGER_CONSENSUSTRANSSETSF_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/TaggedCache.h>
-#include <ripple/shamap/SHAMapSyncFilter.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/TaggedCache.h>
+#include <bixd/shamap/SHAMapSyncFilter.h>
 
-namespace ripple {
+namespace bixd {
 
 // Sync filters allow low-level SHAMapSync code to interact correctly with
 // higher-level structures such as caches and transaction stores
@@ -56,6 +56,6 @@ private:
     beast::Journal const j_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -780,9 +780,9 @@ GRPCServer::onStart()
     if (running_ = impl_.start(); running_)
     {
         thread_ = std::thread([this]() {
-            beast::setCurrentThreadName("rippled : GRPCServer");
+            beast::setCurrentThreadName("bixd : GRPCServer");
             // Start the event loop and begin handling requests
-            beast::setCurrentThreadName("rippled: grpc");
+            beast::setCurrentThreadName("bixd: grpc");
             this->impl_.handleRpcs();
         });
     }

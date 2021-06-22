@@ -193,7 +193,7 @@ public:
     void
     doRun()
     {
-        beast::setCurrentThreadName("rippled: SNTPClock");
+        beast::setCurrentThreadName("bixd: SNTPClock");
         io_service_.run();
     }
 

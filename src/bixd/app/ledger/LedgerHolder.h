@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_LEDGERHOLDER_H_INCLUDED
-#define RIPPLE_APP_LEDGER_LEDGERHOLDER_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_LEDGERHOLDER_H_INCLUDED
+#define BIXD_APP_LEDGER_LEDGERHOLDER_H_INCLUDED
 
-#include <ripple/basics/contract.h>
+#include <bixd/basics/contract.h>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 // Can std::atomic<std::shared_ptr>> make this lock free?
 
@@ -70,6 +70,6 @@ private:
     std::shared_ptr<Ledger const> m_heldLedger;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

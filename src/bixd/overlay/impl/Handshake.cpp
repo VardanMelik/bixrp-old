@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/base64.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/beast/rfc2616.h>
-#include <ripple/overlay/impl/Handshake.h>
-#include <ripple/protocol/digest.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/beast/rfc2616.h>
+#include <bixd/overlay/impl/Handshake.h>
+#include <bixd/protocol/digest.h>
 #include <boost/regex.hpp>
 #include <algorithm>
 #include <chrono>
@@ -32,7 +32,7 @@
 // VFALCO Shouldn't we have to include the OpenSSL
 // headers or something for SSL_get_finished?
 
-namespace ripple {
+namespace bixd {
 
 std::optional<std::string>
 getFeatureValue(
@@ -115,7 +115,7 @@ makeFeaturesResponseHeader(
     @note This construct is non-standard. There are potential "standard"
           alternatives that should be considered. For a discussion, on
           this topic, see https://github.com/openssl/openssl/issues/5509 and
-          https://github.com/ripple/rippled/issues/2413.
+         
 */
 static std::optional<base_uint<512>>
 hashLastMessage(SSL const* ssl, size_t (*get)(const SSL*, void*, size_t))
@@ -170,7 +170,7 @@ makeSharedValue(stream_type& ssl, beast::Journal journal)
 void
 buildHandshake(
     boost::beast::http::fields& h,
-    ripple::uint256 const& sharedValue,
+    bixd::uint256 const& sharedValue,
     std::optional<std::uint32_t> networkID,
     beast::IP::Address public_ip,
     beast::IP::Address remote_ip,
@@ -223,7 +223,7 @@ buildHandshake(
 PublicKey
 verifyHandshake(
     boost::beast::http::fields const& headers,
-    ripple::uint256 const& sharedValue,
+    bixd::uint256 const& sharedValue,
     std::optional<std::uint32_t> networkID,
     beast::IP::Address public_ip,
     beast::IP::Address remote,
@@ -415,4 +415,4 @@ makeResponse(
     return resp;
 }
 
-}  // namespace ripple
+}  // namespace bixd

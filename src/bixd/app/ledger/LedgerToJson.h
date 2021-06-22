@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/rippled
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_LEDGERTOJSON_H_INCLUDED
-#define RIPPLE_APP_LEDGER_LEDGERTOJSON_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_LEDGERTOJSON_H_INCLUDED
+#define BIXD_APP_LEDGER_LEDGERTOJSON_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/json/Object.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/json/Object.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
 
-namespace ripple {
+namespace bixd {
 
 struct LedgerFill
 {
@@ -86,6 +86,6 @@ serializeHex(STObject const& o)
 {
     return strHex(serializeBlob(o));
 }
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

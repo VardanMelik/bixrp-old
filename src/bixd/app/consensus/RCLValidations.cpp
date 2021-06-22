@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/rippled
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012-2017 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,25 +17,25 @@
 */
 //==============================================================================
 
-#include <ripple/app/consensus/RCLValidations.h>
-#include <ripple/app/ledger/InboundLedger.h>
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/consensus/LedgerTiming.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/core/TimeKeeper.h>
+#include <bixd/app/consensus/RCLValidations.h>
+#include <bixd/app/ledger/InboundLedger.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/consensus/LedgerTiming.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/core/TimeKeeper.h>
 #include <memory>
 #include <mutex>
 #include <thread>
 
-namespace ripple {
+namespace bixd {
 
 RCLValidatedLedger::RCLValidatedLedger(MakeGenesis)
     : ledgerID_{0}, ledgerSeq_{0}, j_{beast::Journal::getNullSink()}
@@ -219,4 +219,4 @@ handleNewValidation(
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

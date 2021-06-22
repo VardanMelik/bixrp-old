@@ -17,7 +17,7 @@
 */
 //==============================================================================
 
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
 #include <ripple/app/reporting/DBHelpers.h>
 #include <memory>
 

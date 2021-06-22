@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/rippled
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,47 +17,47 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/AcceptedLedger.h>
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/LedgerToJson.h>
-#include <ripple/app/ledger/OrderBookDB.h>
-#include <ripple/app/ledger/PendingSaves.h>
-#include <ripple/app/ledger/TransactionMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/reporting/DBHelpers.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/consensus/LedgerTiming.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/core/Pg.h>
-#include <ripple/core/SociDB.h>
-#include <ripple/json/to_string.h>
-#include <ripple/nodestore/Database.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/ledger/AcceptedLedger.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/LedgerToJson.h>
+#include <bixd/app/ledger/OrderBookDB.h>
+#include <bixd/app/ledger/PendingSaves.h>
+#include <bixd/app/ledger/TransactionMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/reporting/DBHelpers.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/consensus/LedgerTiming.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/core/Pg.h>
+#include <bixd/core/SociDB.h>
+#include <bixd/json/to_string.h>
+#include <bixd/nodestore/Database.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/jss.h>
 #include <boost/optional.hpp>
 #include <cassert>
 #include <utility>
 #include <vector>
 
-#include <ripple/nodestore/impl/DatabaseNodeImp.h>
+#include <bixd/nodestore/impl/DatabaseNodeImp.h>
 
-namespace ripple {
+namespace bixd {
 
 create_genesis_t const create_genesis{};
 
@@ -1304,7 +1304,7 @@ loadLedgerInfosPostgres(
     Application& app)
 {
     std::vector<LedgerInfo> infos;
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
     auto log = app.journal("Ledger");
     assert(app.config().reporting());
     std::stringstream sql;
@@ -1783,7 +1783,7 @@ flatFetchTransactions(ReadView const& ledger, Application& app)
         return {};
     }
     std::vector<uint256> nodestoreHashes;
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
 
     auto log = app.journal("Ledger");
 
@@ -1848,4 +1848,4 @@ flatFetchTransactions(ReadView const& ledger, Application& app)
 
     return flatFetchTransactions(app, nodestoreHashes);
 }
-}  // namespace ripple
+}  // namespace bixd

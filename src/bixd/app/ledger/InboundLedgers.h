@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/rippled
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_INBOUNDLEDGERS_H_INCLUDED
-#define RIPPLE_APP_LEDGER_INBOUNDLEDGERS_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_INBOUNDLEDGERS_H_INCLUDED
+#define BIXD_APP_LEDGER_INBOUNDLEDGERS_H_INCLUDED
 
-#include <ripple/app/ledger/InboundLedger.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/protocol/RippleLedgerHash.h>
+#include <bixd/app/ledger/InboundLedger.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/protocol/bixdLedgerHash.h>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 /** Manages the lifetime of inbound ledgers.
 
@@ -93,6 +93,6 @@ make_InboundLedgers(
     Stoppable& parent,
     beast::insight::Collector::ptr const& collector);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -176,7 +176,7 @@ getSingleSection(
 //
 //------------------------------------------------------------------------------
 
-char const* const Config::configFileName = "rippled.cfg";
+char const* const Config::configFileName = "bixd.cfg";
 char const* const Config::databaseDirName = "db";
 char const* const Config::validatorsFileName = "validators.txt";
 

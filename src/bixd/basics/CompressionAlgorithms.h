@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLED_COMPRESSIONALGORITHMS_H_INCLUDED
-#define RIPPLED_COMPRESSIONALGORITHMS_H_INCLUDED
+#ifndef BIXD_COMPRESSIONALGORITHMS_H_INCLUDED
+#define BIXD_COMPRESSIONALGORITHMS_H_INCLUDED
 
-#include <ripple/basics/contract.h>
+#include <bixd/basics/contract.h>
 #include <algorithm>
 #include <cstdint>
 #include <lz4.h>
 #include <stdexcept>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 namespace compression_algorithms {
 
@@ -154,6 +154,6 @@ lz4Decompress(
 
 }  // namespace compression_algorithms
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLED_COMPRESSIONALGORITHMS_H_INCLUDED
+#endif  // bixdD_COMPRESSIONALGORITHMS_H_INCLUDED

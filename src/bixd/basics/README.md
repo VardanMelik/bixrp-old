@@ -5,7 +5,7 @@ Utility functions and classes.
 ripple/basic should contain no dependencies on other modules.
 
 
-Choosing a rippled container.
+Choosing a bixd container.
 =============================
 
 * `std::vector`
@@ -23,11 +23,11 @@ Choosing a rippled container.
 * `std::set`
   * For sorted containers.
 
-* `ripple::hash_set`
+* `bixd::hash_set`
   * Where inserts and contains need to be O(1).
   * For "small" sets, `std::set` might be faster and smaller.
 
-* `ripple::hardened_hash_set`
+* `bixd::hardened_hash_set`
   * For data sets where the key could be manipulated by an attacker
     in an attempt to mount an algorithmic complexity attack:  see
     http://en.wikipedia.org/wiki/Algorithmic_complexity_attack
@@ -36,5 +36,5 @@ Choosing a rippled container.
 The following container is deprecated
 
 * `std::unordered_set`
- * Use `ripple::hash_set` instead, which uses a better hashing algorithm.
- * Or use `ripple::hardened_hash_set` to prevent algorithmic complexity attacks.
+ * Use `bixd::hash_set` instead, which uses a better hashing algorithm.
+ * Or use `bixd::hardened_hash_set` to prevent algorithmic complexity attacks.

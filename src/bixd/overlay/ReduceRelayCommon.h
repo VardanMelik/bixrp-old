@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2020 Ripple Labs Inc.
+    Copyright 2020 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_REDUCERELAYCOMMON_H_INCLUDED
-#define RIPPLE_OVERLAY_REDUCERELAYCOMMON_H_INCLUDED
+#ifndef BIXD_OVERLAY_REDUCERELAYCOMMON_H_INCLUDED
+#define BIXD_OVERLAY_REDUCERELAYCOMMON_H_INCLUDED
 
 #include <chrono>
 
-namespace ripple {
+namespace bixd {
 
 namespace reduce_relay {
 
@@ -51,6 +51,6 @@ static constexpr auto WAIT_ON_BOOTUP = std::chrono::minutes{10};
 
 }  // namespace reduce_relay
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLED_REDUCERELAYCOMMON_H_INCLUDED
+#endif  // BIXD_REDUCERELAYCOMMON_H_INCLUDED

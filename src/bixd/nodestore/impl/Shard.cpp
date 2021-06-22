@@ -588,7 +588,7 @@ Shard::finalize(
         A lock is required when calling the NuDB verify function. Because
         this can be a time consuming process, the server may desync.
         Until this function is modified to work on an open database, we
-        are unable to use it from rippled.
+        are unable to use it from bixd.
 
         // Verify backend integrity
         backend_->verify();

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_CONSENSUSS_VALIDATIONS_H_INCLUDED
-#define RIPPLE_APP_CONSENSUSS_VALIDATIONS_H_INCLUDED
+#ifndef BIXD_APP_CONSENSUSS_VALIDATIONS_H_INCLUDED
+#define BIXD_APP_CONSENSUSS_VALIDATIONS_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/consensus/Validations.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/RippleLedgerHash.h>
-#include <ripple/protocol/STValidation.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/consensus/Validations.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/bixdLedgerHash.h>
+#include <bixd/protocol/STValidation.h>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 class Application;
 
@@ -40,8 +40,8 @@ class RCLValidation
     std::shared_ptr<STValidation> val_;
 
 public:
-    using NodeKey = ripple::PublicKey;
-    using NodeID = ripple::NodeID;
+    using NodeKey = bixd::PublicKey;
+    using NodeID = bixd::NodeID;
 
     /** Constructor
 
@@ -250,6 +250,6 @@ handleNewValidation(
     std::shared_ptr<STValidation> const& val,
     std::string const& source);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

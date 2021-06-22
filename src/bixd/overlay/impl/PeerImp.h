@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixdbixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_PEERIMP_H_INCLUDED
-#define RIPPLE_OVERLAY_PEERIMP_H_INCLUDED
+#ifndef BIXD_OVERLAY_PEERIMP_H_INCLUDED
+#define BIXD_OVERLAY_PEERIMP_H_INCLUDED
 
-#include <ripple/app/consensus/RCLCxPeerPos.h>
-#include <ripple/app/ledger/impl/LedgerReplayMsgHandler.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/RangeSet.h>
-#include <ripple/beast/utility/WrappedSink.h>
-#include <ripple/overlay/Squelch.h>
-#include <ripple/overlay/impl/OverlayImpl.h>
-#include <ripple/overlay/impl/ProtocolMessage.h>
-#include <ripple/overlay/impl/ProtocolVersion.h>
-#include <ripple/peerfinder/PeerfinderManager.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/resource/Fees.h>
+#include <bixd/app/consensus/RCLCxPeerPos.h>
+#include <bixd/app/ledger/impl/LedgerReplayMsgHandler.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/RangeSet.h>
+#include <bixd/beast/utility/WrappedSink.h>
+#include <bixd/overlay/Squelch.h>
+#include <bixd/overlay/impl/OverlayImpl.h>
+#include <bixd/overlay/impl/ProtocolMessage.h>
+#include <bixd/overlay/impl/ProtocolVersion.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/resource/Fees.h>
 
 #include <boost/circular_buffer.hpp>
 #include <boost/endian/conversion.hpp>
@@ -42,7 +42,7 @@
 #include <cstdint>
 #include <queue>
 
-namespace ripple {
+namespace bixd {
 
 struct ValidatorBlobInfo;
 
@@ -322,7 +322,7 @@ public:
         return publicKey_;
     }
 
-    /** Return the version of rippled that the peer is running, if reported. */
+    /** Return the version of bixd that the peer is running, if reported. */
     std::string
     getVersion() const;
 
@@ -667,6 +667,6 @@ PeerImp::sendEndpoints(FwdIt first, FwdIt last)
     send(std::make_shared<Message>(tm, protocol::mtENDPOINTS));
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_ACCOUNTID_H_INCLUDED
-#define RIPPLE_PROTOCOL_ACCOUNTID_H_INCLUDED
+#ifndef BIXD_PROTOCOL_ACCOUNTID_H_INCLUDED
+#define BIXD_PROTOCOL_ACCOUNTID_H_INCLUDED
 
-#include <ripple/protocol/tokens.h>
+#include <bixd/protocol/tokens.h>
 // VFALCO Uncomment when the header issues are resolved
-//#include <ripple/protocol/PublicKey.h>
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/json/json_value.h>
+//#include <bixd/protocol/PublicKey.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/json/json_value.h>
 #include <boost/optional.hpp>
 #include <cstddef>
 #include <mutex>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -111,7 +111,7 @@ operator<<(std::ostream& os, AccountID const& x)
 /** Caches the base58 representations of AccountIDs
 
     This operation occurs with sufficient frequency to
-    justify having a cache. In the future, rippled should
+    justify having a cache. In the future, bixd should
     require clients to receive "binary" results, where
     AccountIDs are hex-encoded.
 */
@@ -130,7 +130,7 @@ public:
 
     explicit AccountIDCache(std::size_t capacity);
 
-    /** Return ripple::toBase58 for the AccountID
+    /** Return bixd::toBase58 for the AccountID
 
         Thread Safety:
             Safe to call from any thread concurrently
@@ -142,7 +142,7 @@ public:
     toBase58(AccountID const&) const;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 //------------------------------------------------------------------------------
 
@@ -151,7 +151,7 @@ namespace std {
 // DEPRECATED
 // VFALCO Use beast::uhash or a hardened container
 template <>
-struct hash<ripple::AccountID> : ripple::AccountID::hasher
+struct hash<bixd::AccountID> : bixd::AccountID::hasher
 {
     explicit hash() = default;
 };

@@ -1,8 +1,8 @@
-Reporting mode is a special operating mode of rippled, designed to handle RPCs
+Reporting mode is a special operating mode of bixd, designed to handle RPCs
 for validated data. A server running in reporting mode does not connect to the
 p2p network, but rather extracts validated data from a node that is connected
-to the p2p network. To run rippled in reporting mode, you must also run a
-separate rippled node in p2p mode, to use as an ETL source. Multiple reporting
+to the p2p network. To run bixd in reporting mode, you must also run a
+separate bixd node in p2p mode, to use as an ETL source. Multiple reporting
 nodes can share access to the same network accessible databases (Postgres and
 Cassandra); at any given time, only one reporting node will be performing ETL
 and writing to the databases, while the others simply read from the databases.
@@ -59,7 +59,7 @@ postgres=# create database [database];
 Creating the keyspace:
 ```
 $ cqlsh [host] [port]
-> CREATE KEYSPACE rippled WITH REPLICATION =
+> CREATE KEYSPACE bixd WITH REPLICATION =
   {'class' : 'SimpleStrategy', 'replication_factor' : 3    };
 ```
 A replication factor of 3 is recommended. However, when running locally, only a
@@ -101,7 +101,7 @@ time (to avoid sending the same message more than once to the same client).
 # API changes
 A reporting node defaults to only returning validated data. If a ledger is not
 specified, the most recently validated ledger is used. This is in contrast to
-the normal rippled behavior, where the open ledger is used by default.
+the normal bixd behavior, where the open ledger is used by default.
 
 Reporting will reject all subscribe requests for streams "server", "manifests",
 "validations", "peer_status" and "consensus".

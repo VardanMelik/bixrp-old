@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: /bixd
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,33 +17,33 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_LEDGERMASTER_H_INCLUDED
-#define RIPPLE_APP_LEDGER_LEDGERMASTER_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_LEDGERMASTER_H_INCLUDED
+#define BIXD_APP_LEDGER_LEDGERMASTER_H_INCLUDED
 
-#include <ripple/app/ledger/AbstractFetchPackContainer.h>
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/ledger/LedgerCleaner.h>
-#include <ripple/app/ledger/LedgerHistory.h>
-#include <ripple/app/ledger/LedgerHolder.h>
-#include <ripple/app/ledger/LedgerReplay.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/CanonicalTXSet.h>
-#include <ripple/basics/RangeSet.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/insight/Collector.h>
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/RippleLedgerHash.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/protocol/messages.h>
+#include <bixd/app/ledger/AbstractFetchPackContainer.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/ledger/LedgerCleaner.h>
+#include <bixd/app/ledger/LedgerHistory.h>
+#include <bixd/app/ledger/LedgerHolder.h>
+#include <bixd/app/ledger/LedgerReplay.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/CanonicalTXSet.h>
+#include <bixd/basics/RangeSet.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/insight/Collector.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/bixdLedgerHash.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/protocol/messages.h>
 #include <boost/optional.hpp>
 
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 class Peer;
 class Transaction;
@@ -460,6 +460,6 @@ private:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

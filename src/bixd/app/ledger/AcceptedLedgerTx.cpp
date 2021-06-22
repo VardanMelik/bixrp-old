@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/rippled
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/AcceptedLedgerTx.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/ledger/AcceptedLedgerTx.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/jss.h>
 
-namespace ripple {
+namespace bixd {
 
 AcceptedLedgerTx::AcceptedLedgerTx(
     std::shared_ptr<ReadView const> const& ledger,
@@ -117,4 +117,4 @@ AcceptedLedgerTx::buildJson()
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

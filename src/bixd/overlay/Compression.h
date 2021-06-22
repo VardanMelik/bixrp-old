@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLED_COMPRESSION_H_INCLUDED
-#define RIPPLED_COMPRESSION_H_INCLUDED
+#ifndef BIXD_COMPRESSION_H_INCLUDED
+#define BIXD_COMPRESSION_H_INCLUDED
 
-#include <ripple/basics/CompressionAlgorithms.h>
-#include <ripple/basics/Log.h>
+#include <bixd/basics/CompressionAlgorithms.h>
+#include <bixd/basics/Log.h>
 #include <lz4frame.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace compression {
 
@@ -57,7 +57,7 @@ decompress(
     try
     {
         if (algorithm == Algorithm::LZ4)
-            return ripple::compression_algorithms::lz4Decompress(
+            return bixd::compression_algorithms::lz4Decompress(
                 in, inSize, decompressed, decompressedSize);
         else
         {
@@ -93,7 +93,7 @@ compress(
     try
     {
         if (algorithm == Algorithm::LZ4)
-            return ripple::compression_algorithms::lz4Compress(
+            return bixd::compression_algorithms::lz4Compress(
                 in, inSize, std::forward<BufferFactory>(bf));
         else
         {
@@ -109,6 +109,6 @@ compress(
 }
 }  // namespace compression
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLED_COMPRESSION_H_INCLUDED
+#endif  // bixdD_COMPRESSION_H_INCLUDED

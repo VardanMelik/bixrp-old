@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_CONFIG_H_INCLUDED
-#define RIPPLE_CORE_CONFIG_H_INCLUDED
+#ifndef BIXD_CORE_CONFIG_H_INCLUDED
+#define BIXD_CORE_CONFIG_H_INCLUDED
 
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/basics/FeeUnits.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/beast/net/IPEndpoint.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/protocol/SystemParameters.h>  // VFALCO Breaks levelization
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/basics/FeeUnits.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/beast/net/IPEndpoint.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/protocol/SystemParameters.h>  // VFALCO Breaks levelization
 #include <boost/beast/core/string.hpp>
 #include <boost/filesystem.hpp>  // VFALCO FIX: This include should not be here
 #include <boost/lexical_cast.hpp>
@@ -39,7 +39,7 @@
 #include <unordered_set>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 class Rules;
 
@@ -121,9 +121,9 @@ public:
     bool nodeToShard = false;
     bool ELB_SUPPORT = false;
 
-    std::vector<std::string> IPS;           // Peer IPs from rippled.cfg.
-    std::vector<std::string> IPS_FIXED;     // Fixed Peer IPs from rippled.cfg.
-    std::vector<std::string> SNTP_SERVERS;  // SNTP servers from rippled.cfg.
+    std::vector<std::string> IPS;           // Peer IPs from bixd.cfg.
+    std::vector<std::string> IPS_FIXED;     // Fixed Peer IPs from bixd.cfg.
+    std::vector<std::string> SNTP_SERVERS;  // SNTP servers from bixd.cfg.
 
     enum StartUpType { FRESH, NORMAL, LOAD, LOAD_FILE, REPLAY, NETWORK };
     StartUpType START_UP = NORMAL;
@@ -318,6 +318,6 @@ public:
         const;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

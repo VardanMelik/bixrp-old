@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/basics/UptimeClock.h>
+#include <bixd/basics/UptimeClock.h>
 
-namespace ripple {
+namespace bixd {
 
 std::atomic<UptimeClock::rep> UptimeClock::now_{0};  // seconds since start
 std::atomic<bool> UptimeClock::stop_{false};         // stop update thread
 
-// On rippled shutdown, cancel and wait for the update thread
+// On bixd shutdown, cancel and wait for the update thread
 UptimeClock::update_thread::~update_thread()
 {
     if (joinable())
     {
         stop_ = true;
         // This join() may take up to a 1s, but happens only
-        // once at rippled shutdown.
+        // once at bixd shutdown.
         join();
     }
 }
@@ -55,7 +55,7 @@ UptimeClock::start_clock()
     }};
 }
 
-// This actually measures time since first use, instead of since rippled start.
+// This actually measures time since first use, instead of since bixdd start.
 // However the difference between these two epochs is a small fraction of a
 // second and unimportant.
 
@@ -65,8 +65,8 @@ UptimeClock::now()
     // start the update thread on first use
     static const auto init = start_clock();
 
-    // Return the number of seconds since rippled start
+    // Return the number of seconds since bixdd start
     return time_point{duration{now_}};
 }
 
-}  // namespace ripple
+}  // namespace bixd

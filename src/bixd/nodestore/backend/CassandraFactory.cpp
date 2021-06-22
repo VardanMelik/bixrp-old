@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
 
 #include <cassandra.h>
 #include <libpq-fe.h>
 
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/nodestore/Backend.h>
-#include <ripple/nodestore/Factory.h>
-#include <ripple/nodestore/Manager.h>
-#include <ripple/nodestore/impl/DecodedBlob.h>
-#include <ripple/nodestore/impl/EncodedBlob.h>
-#include <ripple/nodestore/impl/codec.h>
-#include <ripple/protocol/digest.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/nodestore/Backend.h>
+#include <bixd/nodestore/Factory.h>
+#include <bixd/nodestore/Manager.h>
+#include <bixd/nodestore/impl/DecodedBlob.h>
+#include <bixd/nodestore/impl/EncodedBlob.h>
+#include <bixd/nodestore/impl/codec.h>
+#include <bixd/protocol/digest.h>
 #include <boost/asio/steady_timer.hpp>
 #include <boost/filesystem.hpp>
 #include <atomic>
@@ -53,7 +53,7 @@
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 void
@@ -1007,5 +1007,5 @@ public:
 static CassandraFactory cassandraFactory;
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd
 #endif

@@ -343,7 +343,7 @@ ValidatorList::cacheValidatorFile(
 
     Json::Value value =
         buildFileData(strHex(pubKey), publisherLists_.at(pubKey), j_);
-    // rippled should be the only process writing to this file, so
+    // bixd should be the only process writing to this file, so
     // if it ever needs to be read, it is not expected to change externally, so
     // delay the refresh as long as possible: 24 hours. (See also
     // `ValidatorSite::missingSite()`)

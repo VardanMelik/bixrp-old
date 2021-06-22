@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/rippled
-    Copyright (c) 2018 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2018 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_BUILD_LEDGER_H_INCLUDED
-#define RIPPLE_APP_LEDGER_BUILD_LEDGER_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_BUILD_LEDGER_H_INCLUDED
+#define BIXD_APP_LEDGER_BUILD_LEDGER_H_INCLUDED
 
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/ledger/ApplyView.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/ledger/ApplyView.h>
 #include <chrono>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 class Application;
 class CanonicalTXSet;
@@ -78,5 +78,5 @@ buildLedger(
     Application& app,
     beast::Journal j);
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

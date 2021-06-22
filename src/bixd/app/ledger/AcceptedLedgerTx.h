@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/rippled
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_ACCEPTEDLEDGERTX_H_INCLUDED
-#define RIPPLE_APP_LEDGER_ACCEPTEDLEDGERTX_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_ACCEPTEDLEDGERTX_H_INCLUDED
+#define BIXD_APP_LEDGER_ACCEPTEDLEDGERTX_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/protocol/AccountID.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/protocol/AccountID.h>
 #include <boost/container/flat_set.hpp>
 
-namespace ripple {
+namespace bixd {
 
 class Logs;
 
@@ -45,7 +45,7 @@ class Logs;
 
     @see {uri}
 
-    @ingroup ripple_ledger
+    @ingroup bixd_ledger
 */
 class AcceptedLedgerTx
 {
@@ -138,6 +138,6 @@ private:
     buildJson();
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

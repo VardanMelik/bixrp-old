@@ -166,7 +166,7 @@ public:
     // Required by the SHAMapStore
     TransactionMaster m_txMaster;
 
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
     std::shared_ptr<PgPool> pgPool_;
 #endif
     NodeStoreScheduler m_nodeStoreScheduler;
@@ -244,7 +244,7 @@ public:
     static std::size_t
     numberOfThreads(Config const& config)
     {
-#if RIPPLE_SINGLE_IO_SERVICE_THREAD
+#if BIXD_SINGLE_IO_SERVICE_THREAD
         return 1;
 #else
         auto const cores = std::thread::hardware_concurrency();
@@ -282,7 +282,7 @@ public:
               [this]() { signalStop(); }))
 
         , m_txMaster(*this)
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
         , pgPool_(
               config_->reporting() ? make_PgPool(
                                          config_->section("ledger_tx_tables"),
@@ -870,7 +870,7 @@ public:
         return *mLedgerDB;
     }
 
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
     std::shared_ptr<PgPool> const&
     getPgPool() override
     {
@@ -971,7 +971,7 @@ public:
             }
             else if (!config_->reportingReadOnly())  // use pg
             {
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
                 initSchema(pgPool_);
 #endif
             }
@@ -1260,7 +1260,7 @@ public:
                 {
                     JLOG(m_journal.fatal())
                         << "Free SQLite space for transaction db is less than "
-                           "512MB. To fix this, rippled must be executed with "
+                           "512MB. To fix this, bixd must be executed with "
                            "the "
                            "vacuum parameter before restarting. "
                            "Note that this activity can take multiple days, "
@@ -1289,7 +1289,7 @@ public:
         m_acceptedLedgerCache.sweep();
         cachedSLEs_.expire();
 
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
         if (config().reporting())
             pgPool_->idleSweeper();
 #endif
@@ -1623,7 +1623,7 @@ ApplicationImp::setup()
                                   "implications and have";
         JLOG(m_journal.warn()) << "*** been deprecated. They will be removed "
                                   "in a future release of";
-        JLOG(m_journal.warn()) << "*** rippled.";
+        JLOG(m_journal.warn()) << "*** bixd.";
         JLOG(m_journal.warn()) << "*** If you do not use them to sign "
                                   "transactions please edit your";
         JLOG(m_journal.warn())
@@ -2109,7 +2109,7 @@ ApplicationImp::loadOldLedger(
                 << " UTC.\n"
                    "This replay will not handle your ledger as it was "
                    "originally "
-                   "handled.\nConsider running an earlier version of rippled "
+                   "handled.\nConsider running an earlier version of bixd "
                    "to "
                    "get the older rules.\n*** CONTINUING ***\n";
         }
@@ -2270,7 +2270,7 @@ ApplicationImp::setMaxDisallowedLedger()
 {
     if (config().reporting())
     {
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
         auto seq = PgQuery(pgPool_)("SELECT max_ledger()");
         if (seq && !seq.isNull())
             maxDisallowedLedger_ = seq.asBigInt();

@@ -81,8 +81,8 @@ enum class OperatingMode {
     needed.
 
     A backend application or local client can trust a local instance of
-    rippled / NetworkOPs. However, client software connecting to non-local
-    instances of rippled will need to be hardened to protect against hostile
+    bixd / NetworkOPs. However, client software connecting to non-local
+    instances of bixd will need to be hardened to protect against hostile
     or unreliable servers.
 */
 class NetworkOPs : public InfoSub::Source

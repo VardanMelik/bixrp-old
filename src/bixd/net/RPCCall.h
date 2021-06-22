@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_RPCCALL_H_INCLUDED
-#define RIPPLE_NET_RPCCALL_H_INCLUDED
+#ifndef BIXD_NET_RPCCALL_H_INCLUDED
+#define BIXD_NET_RPCCALL_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/core/Config.h>
-#include <ripple/json/json_value.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/Config.h>
+#include <bixd/json/json_value.h>
 #include <boost/asio/io_service.hpp>
 #include <functional>
 #include <string>
@@ -30,7 +30,7 @@
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 // This a trusted interface, the user is expected to provide valid input to
 // perform valid requests. Error catching and reporting is not a requirement of
@@ -38,7 +38,7 @@ namespace ripple {
 //
 // Improvements to be more strict and to provide better diagnostics are welcome.
 
-/** Processes Ripple RPC calls. */
+/** Processes bixd RPC calls. */
 namespace RPCCall {
 
 int
@@ -65,7 +65,7 @@ fromNetwork(
     std::unordered_map<std::string, std::string> headers = {});
 }  // namespace RPCCall
 
-/** Given a rippled command line, return the corresponding JSON.
+/** Given a bixd command line, return the corresponding JSON.
  */
 Json::Value
 cmdLineToJSONRPC(std::vector<std::string> const& args, beast::Journal j);
@@ -79,6 +79,6 @@ rpcClient(
     Logs& logs,
     std::unordered_map<std::string, std::string> const& headers = {});
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

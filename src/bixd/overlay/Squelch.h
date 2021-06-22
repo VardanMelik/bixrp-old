@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_SQUELCH_H_INCLUDED
-#define RIPPLE_OVERLAY_SQUELCH_H_INCLUDED
+#ifndef BIXD_OVERLAY_SQUELCH_H_INCLUDED
+#define BIXD_OVERLAY_SQUELCH_H_INCLUDED
 
-#include <ripple/basics/random.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/overlay/ReduceRelayCommon.h>
-#include <ripple/protocol/PublicKey.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/overlay/ReduceRelayCommon.h>
+#include <bixd/protocol/PublicKey.h>
 
 #include <algorithm>
 #include <chrono>
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 
 namespace reduce_relay {
 
@@ -124,6 +124,6 @@ Squelch<clock_type>::expireSquelch(PublicKey const& validator)
 
 }  // namespace reduce_relay
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLED_SQUELCH_H
+#endif  // BIXD_SQUELCH_H

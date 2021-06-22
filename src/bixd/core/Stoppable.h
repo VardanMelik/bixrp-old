@@ -172,7 +172,7 @@ class RootStoppable;
 
     @note A Stoppable may not be restarted.
 
-    The form of the Stoppable tree in the rippled application evolves as
+    The form of the Stoppable tree in the bixd application evolves as
     the source code changes and reacts to new demands. As of July in 2020
     the Stoppable tree had this form:
 
