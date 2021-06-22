@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/main/NodeIdentity.h>
-#include <ripple/basics/Log.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/core/DatabaseCon.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/main/NodeIdentity.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/core/DatabaseCon.h>
 #include <boost/format.hpp>
 #include <boost/optional.hpp>
 

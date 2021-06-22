@@ -20,14 +20,14 @@
 #ifndef RIPPLE_APP_LEDGER_OPENLEDGER_H_INCLUDED
 #define RIPPLE_APP_LEDGER_OPENLEDGER_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/misc/CanonicalTXSet.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/CachedSLEs.h>
-#include <ripple/ledger/OpenView.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/misc/CanonicalTXSet.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/CachedSLEs.h>
+#include <bixd/ledger/OpenView.h>
 #include <cassert>
 #include <mutex>
 

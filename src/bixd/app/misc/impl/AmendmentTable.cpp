@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/AmendmentTable.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/AmendmentTable.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/jss.h>
 #include <boost/format.hpp>
 #include <boost/regex.hpp>
 #include <algorithm>

@@ -17,7 +17,7 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/NodeStoreScheduler.h>
+#include <bixd/app/main/NodeStoreScheduler.h>
 #include <cassert>
 
 namespace ripple {

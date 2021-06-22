@@ -20,9 +20,9 @@
 #ifndef RIPPLE_APP_MISC_CANONICALTXSET_H_INCLUDED
 #define RIPPLE_APP_MISC_CANONICALTXSET_H_INCLUDED
 
-#include <ripple/protocol/RippleLedgerHash.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/SeqProxy.h>
+#include <bixd/protocol/RippleLedgerHash.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/SeqProxy.h>
 
 namespace ripple {
 

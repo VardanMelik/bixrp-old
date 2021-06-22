@@ -20,9 +20,9 @@
 #ifndef RIPPLE_APP_MISC_DETAIL_WORKBASE_H_INCLUDED
 #define RIPPLE_APP_MISC_DETAIL_WORKBASE_H_INCLUDED
 
-#include <ripple/app/misc/detail/Work.h>
-#include <ripple/basics/random.h>
-#include <ripple/protocol/BuildInfo.h>
+#include <bixd/app/misc/detail/Work.h>
+#include <bixd/basics/random.h>
+#include <bixd/protocol/BuildInfo.h>
 
 #include <boost/asio.hpp>
 #include <boost/beast/core/multi_buffer.hpp>

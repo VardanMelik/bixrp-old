@@ -20,11 +20,11 @@
 #ifndef RIPPLE_APP_LEDGER_LEDGERDELTAACQUIRE_H_INCLUDED
 #define RIPPLE_APP_LEDGER_LEDGERDELTAACQUIRE_H_INCLUDED
 
-#include <ripple/app/ledger/InboundLedger.h>
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/ledger/impl/TimeoutCounter.h>
-#include <ripple/basics/CountedObject.h>
-#include <ripple/basics/base_uint.h>
+#include <bixd/app/ledger/InboundLedger.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/ledger/impl/TimeoutCounter.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/basics/base_uint.h>
 
 #include <list>
 #include <map>

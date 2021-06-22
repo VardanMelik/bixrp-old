@@ -20,11 +20,11 @@
 #ifndef RIPPLE_APP_LEDGER_LEDGERHISTORY_H_INCLUDED
 #define RIPPLE_APP_LEDGER_LEDGERHISTORY_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/beast/insight/Collector.h>
-#include <ripple/beast/insight/Event.h>
-#include <ripple/protocol/RippleLedgerHash.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/beast/insight/Collector.h>
+#include <bixd/beast/insight/Event.h>
+#include <bixd/protocol/RippleLedgerHash.h>
 
 namespace ripple {
 

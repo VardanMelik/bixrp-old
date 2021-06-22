@@ -17,7 +17,7 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/CollectorManager.h>
+#include <bixd/app/main/CollectorManager.h>
 #include <memory>
 
 namespace ripple {

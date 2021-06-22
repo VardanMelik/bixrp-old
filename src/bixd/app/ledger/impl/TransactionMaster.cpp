@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/TransactionMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/protocol/STTx.h>
+#include <bixd/app/ledger/TransactionMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/protocol/STTx.h>
 
 namespace ripple {
 

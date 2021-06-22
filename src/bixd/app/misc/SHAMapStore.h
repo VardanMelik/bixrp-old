@@ -20,9 +20,9 @@
 #ifndef RIPPLE_APP_MISC_SHAMAPSTORE_H_INCLUDED
 #define RIPPLE_APP_MISC_SHAMAPSTORE_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/nodestore/Manager.h>
-#include <ripple/protocol/ErrorCodes.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/nodestore/Manager.h>
+#include <bixd/protocol/ErrorCodes.h>
 #include <boost/optional.hpp>
 
 namespace ripple {

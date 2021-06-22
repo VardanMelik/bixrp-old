@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/OpenLedger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/basics/mulDiv.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/ledger/OpenLedger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/basics/mulDiv.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/protocol/st.h>
 #include <boost/algorithm/clamp.hpp>
 #include <algorithm>
 #include <limits>

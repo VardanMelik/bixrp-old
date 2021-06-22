@@ -20,9 +20,9 @@
 #ifndef RIPPLE_APP_MAIN_NODESTORESCHEDULER_H_INCLUDED
 #define RIPPLE_APP_MAIN_NODESTORESCHEDULER_H_INCLUDED
 
-#include <ripple/core/JobQueue.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/nodestore/Scheduler.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/nodestore/Scheduler.h>
 #include <atomic>
 
 namespace ripple {

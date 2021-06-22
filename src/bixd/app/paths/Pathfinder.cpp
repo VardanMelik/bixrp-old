@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/OrderBookDB.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/paths/Pathfinder.h>
-#include <ripple/app/paths/RippleCalc.h>
-#include <ripple/app/paths/RippleLineCache.h>
-#include <ripple/app/paths/Tuning.h>
-#include <ripple/app/paths/impl/PathfinderUtils.h>
-#include <ripple/basics/Log.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/json/to_string.h>
-#include <ripple/ledger/PaymentSandbox.h>
+#include <bixd/app/ledger/OrderBookDB.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/paths/Pathfinder.h>
+#include <bixd/app/paths/RippleCalc.h>
+#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/app/paths/Tuning.h>
+#include <bixd/app/paths/impl/PathfinderUtils.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/json/to_string.h>
+#include <bixd/ledger/PaymentSandbox.h>
 
 #include <tuple>
 

@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/LedgerReplayTask.h>
-#include <ripple/app/ledger/LedgerReplayer.h>
-#include <ripple/app/ledger/impl/LedgerDeltaAcquire.h>
-#include <ripple/app/ledger/impl/SkipListAcquire.h>
-#include <ripple/core/JobQueue.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/LedgerReplayTask.h>
+#include <bixd/app/ledger/LedgerReplayer.h>
+#include <bixd/app/ledger/impl/LedgerDeltaAcquire.h>
+#include <bixd/app/ledger/impl/SkipListAcquire.h>
+#include <bixd/core/JobQueue.h>
 
 namespace ripple {
 

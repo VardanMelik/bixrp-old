@@ -20,13 +20,13 @@
 #ifndef RIPPLE_APP_MISC_TRANSACTION_H_INCLUDED
 #define RIPPLE_APP_MISC_TRANSACTION_H_INCLUDED
 
-#include <ripple/basics/RangeSet.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/ledger/TxMeta.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/TER.h>
+#include <bixd/basics/RangeSet.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/ledger/TxMeta.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/TER.h>
 #include <boost/optional.hpp>
 #include <boost/variant.hpp>
 

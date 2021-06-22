@@ -20,10 +20,10 @@
 #ifndef RIPPLE_APP_MISC_AMENDMENTTABLE_H_INCLUDED
 #define RIPPLE_APP_MISC_AMENDMENTTABLE_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/STValidation.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/STValidation.h>
 
 namespace ripple {
 

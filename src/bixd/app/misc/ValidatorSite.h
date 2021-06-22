@@ -20,13 +20,13 @@
 #ifndef RIPPLE_APP_MISC_VALIDATORSITE_H_INCLUDED
 #define RIPPLE_APP_MISC_VALIDATORSITE_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/app/misc/detail/Work.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/core/Config.h>
-#include <ripple/json/json_value.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/app/misc/detail/Work.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/core/Config.h>
+#include <bixd/json/json_value.h>
 
 #include <boost/asio.hpp>
 

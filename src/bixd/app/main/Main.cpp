@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/main/DBInit.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/beast/clock/basic_seconds_clock.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/core/TimeKeeper.h>
-#include <ripple/json/to_string.h>
-#include <ripple/net/RPCCall.h>
-#include <ripple/protocol/BuildInfo.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/RPCHandler.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/main/DBInit.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/beast/clock/basic_seconds_clock.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/core/TimeKeeper.h>
+#include <bixd/json/to_string.h>
+#include <bixd/net/RPCCall.h>
+#include <bixd/protocol/BuildInfo.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/RPCHandler.h>
 
 #include <beast/unit_test/match.hpp>
 #include <test/unit_test/multi_runner.h>

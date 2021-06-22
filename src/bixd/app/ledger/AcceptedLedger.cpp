@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/AcceptedLedger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/chrono.h>
+#include <bixd/app/ledger/AcceptedLedger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/chrono.h>
 
 namespace ripple {
 

@@ -20,13 +20,13 @@
 #ifndef RIPPLE_APP_MAIN_APPLICATION_H_INCLUDED
 #define RIPPLE_APP_MAIN_APPLICATION_H_INCLUDED
 
-#include <ripple/basics/TaggedCache.h>
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/core/Config.h>
-#include <ripple/overlay/PeerReservationTable.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/shamap/FullBelowCache.h>
-#include <ripple/shamap/TreeNodeCache.h>
+#include <bixd/basics/TaggedCache.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/core/Config.h>
+#include <bixd/overlay/PeerReservationTable.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/shamap/FullBelowCache.h>
+#include <bixd/shamap/TreeNodeCache.h>
 #include <boost/asio.hpp>
 #include <memory>
 #include <mutex>

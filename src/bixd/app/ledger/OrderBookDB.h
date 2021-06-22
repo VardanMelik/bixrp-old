@@ -20,10 +20,10 @@
 #ifndef RIPPLE_APP_LEDGER_ORDERBOOKDB_H_INCLUDED
 #define RIPPLE_APP_LEDGER_ORDERBOOKDB_H_INCLUDED
 
-#include <ripple/app/ledger/AcceptedLedgerTx.h>
-#include <ripple/app/ledger/BookListeners.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/OrderBook.h>
+#include <bixd/app/ledger/AcceptedLedgerTx.h>
+#include <bixd/app/ledger/BookListeners.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/OrderBook.h>
 #include <mutex>
 
 namespace ripple {

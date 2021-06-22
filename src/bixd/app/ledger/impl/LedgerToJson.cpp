@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerToJson.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/core/Pg.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/DeliveredAmount.h>
+#include <bixd/app/ledger/LedgerToJson.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/core/Pg.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/DeliveredAmount.h>
 
 #include <date/date.h>
 

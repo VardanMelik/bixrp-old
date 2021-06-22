@@ -20,11 +20,11 @@
 #ifndef RIPPLE_APP_LEDGER_TRANSACTIONMASTER_H_INCLUDED
 #define RIPPLE_APP_LEDGER_TRANSACTIONMASTER_H_INCLUDED
 
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/basics/RangeSet.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/shamap/SHAMapItem.h>
-#include <ripple/shamap/SHAMapTreeNode.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/basics/RangeSet.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/shamap/SHAMapItem.h>
+#include <bixd/shamap/SHAMapTreeNode.h>
 
 namespace ripple {
 

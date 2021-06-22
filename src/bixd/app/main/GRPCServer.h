@@ -20,18 +20,18 @@
 #ifndef RIPPLE_CORE_GRPCSERVER_H_INCLUDED
 #define RIPPLE_CORE_GRPCSERVER_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/net/InfoSub.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/resource/Charge.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/GRPCHandlers.h>
-#include <ripple/rpc/Role.h>
-#include <ripple/rpc/impl/Handler.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/net/InfoSub.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/resource/Charge.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/GRPCHandlers.h>
+#include <bixd/rpc/Role.h>
+#include <bixd/rpc/impl/Handler.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/Tuning.h>
 
 #include "org/xrpl/rpc/v1/xrp_ledger.grpc.pb.h"
 #include <grpcpp/grpcpp.h>

@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/app/consensus/RCLValidations.h>
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/misc/NegativeUNLVote.h>
+#include <bixd/app/consensus/RCLValidations.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/misc/NegativeUNLVote.h>
 
 namespace ripple {
 

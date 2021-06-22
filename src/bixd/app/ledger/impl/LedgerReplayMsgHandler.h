@@ -20,8 +20,8 @@
 #ifndef RIPPLE_APP_LEDGER_LEDGERREPLAYMSGHANDLER_H_INCLUDED
 #define RIPPLE_APP_LEDGER_LEDGERREPLAYMSGHANDLER_H_INCLUDED
 
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/protocol/messages.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/protocol/messages.h>
 
 namespace ripple {
 class Application;

@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/Manifest.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/base64.h>
-#include <ripple/basics/contract.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/Sign.h>
+#include <bixd/app/misc/Manifest.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/Sign.h>
 #include <boost/algorithm/clamp.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/regex.hpp>

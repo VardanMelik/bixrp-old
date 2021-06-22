@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/Credit.h>
-#include <ripple/app/paths/Flow.h>
-#include <ripple/app/paths/impl/AmountSpec.h>
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/app/paths/impl/StrandFlow.h>
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/XRPAmount.h>
+#include <bixd/app/paths/Credit.h>
+#include <bixd/app/paths/Flow.h>
+#include <bixd/app/paths/impl/AmountSpec.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/app/paths/impl/StrandFlow.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/XRPAmount.h>
 
 #include <boost/container/flat_set.hpp>
 

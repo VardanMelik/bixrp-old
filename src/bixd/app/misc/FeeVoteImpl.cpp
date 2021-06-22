@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/FeeVote.h>
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/FeeVote.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/protocol/st.h>
 
 namespace ripple {
 

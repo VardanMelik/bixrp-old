@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/app/misc/ValidatorSite.h>
-#include <ripple/app/misc/detail/WorkFile.h>
-#include <ripple/app/misc/detail/WorkPlain.h>
-#include <ripple/app/misc/detail/WorkSSL.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/base64.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/app/misc/ValidatorSite.h>
+#include <bixd/app/misc/detail/WorkFile.h>
+#include <bixd/app/misc/detail/WorkPlain.h>
+#include <bixd/app/misc/detail/WorkSSL.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/base64.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/jss.h>
 #include <boost/algorithm/clamp.hpp>
 #include <boost/regex.hpp>
 #include <algorithm>

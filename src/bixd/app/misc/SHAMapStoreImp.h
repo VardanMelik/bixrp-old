@@ -20,11 +20,11 @@
 #ifndef RIPPLE_APP_MISC_SHAMAPSTOREIMP_H_INCLUDED
 #define RIPPLE_APP_MISC_SHAMAPSTOREIMP_H_INCLUDED
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/SHAMapStore.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/nodestore/DatabaseRotating.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/SHAMapStore.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/nodestore/DatabaseRotating.h>
 #include <atomic>
 #include <chrono>
 #include <condition_variable>

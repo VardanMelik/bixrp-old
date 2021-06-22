@@ -20,12 +20,12 @@
 #ifndef RIPPLE_TXQ_H_INCLUDED
 #define RIPPLE_TXQ_H_INCLUDED
 
-#include <ripple/app/tx/applySteps.h>
-#include <ripple/ledger/ApplyView.h>
-#include <ripple/ledger/OpenView.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/SeqProxy.h>
-#include <ripple/protocol/TER.h>
+#include <bixd/app/tx/applySteps.h>
+#include <bixd/ledger/ApplyView.h>
+#include <bixd/ledger/OpenView.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/SeqProxy.h>
+#include <bixd/protocol/TER.h>
 #include <boost/circular_buffer.hpp>
 #include <boost/intrusive/set.hpp>
 

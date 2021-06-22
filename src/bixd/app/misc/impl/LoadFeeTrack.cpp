@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/basics/FeeUnits.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/basics/FeeUnits.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/jss.h>
 
 #include <cstdint>
 #include <numeric>

@@ -20,14 +20,14 @@
 #ifndef RIPPLE_APP_MISC_VALIDATORLIST_H_INCLUDED
 #define RIPPLE_APP_MISC_VALIDATORLIST_H_INCLUDED
 
-#include <ripple/app/misc/Manifest.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/core/TimeKeeper.h>
-#include <ripple/crypto/csprng.h>
-#include <ripple/json/json_value.h>
-#include <ripple/overlay/Message.h>
-#include <ripple/protocol/PublicKey.h>
+#include <bixd/app/misc/Manifest.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/core/TimeKeeper.h>
+#include <bixd/crypto/csprng.h>
+#include <bixd/json/json_value.h>
+#include <bixd/overlay/Message.h>
+#include <bixd/protocol/PublicKey.h>
 #include <boost/iterator/counting_iterator.hpp>
 #include <boost/range/adaptors.hpp>
 #include <boost/thread/shared_mutex.hpp>

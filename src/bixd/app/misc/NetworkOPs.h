@@ -20,19 +20,19 @@
 #ifndef RIPPLE_APP_MISC_NETWORKOPS_H_INCLUDED
 #define RIPPLE_APP_MISC_NETWORKOPS_H_INCLUDED
 
-#include <ripple/app/consensus/RCLCxPeerPos.h>
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/net/InfoSub.h>
-#include <ripple/protocol/STValidation.h>
+#include <bixd/app/consensus/RCLCxPeerPos.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/net/InfoSub.h>
+#include <bixd/protocol/STValidation.h>
 #include <boost/asio.hpp>
 #include <deque>
 #include <memory>
 #include <tuple>
 
-#include <ripple/protocol/messages.h>
+#include <bixd/protocol/messages.h>
 
 namespace ripple {
 

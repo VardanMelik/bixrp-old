@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/paths/PathRequests.h>
-#include <ripple/basics/Log.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/paths/PathRequests.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
 #include <algorithm>
 
 namespace ripple {

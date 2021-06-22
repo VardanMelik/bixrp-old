@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/basics/FileUtilities.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/base64.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/protocol/messages.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/basics/FileUtilities.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/base64.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/protocol/messages.h>
 #include <boost/regex.hpp>
 
 #include <date/date.h>

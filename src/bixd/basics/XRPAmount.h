@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_BIBIXRPAmount_H_INCLUDED
-#define RIPPLE_BASICS_zBIBIXRPAmount_H_INCLUDED
+#ifndef BIXD_BASICS_BIBIXRPAmount_H_INCLUDED
+#define BIXD_BASICS_zBIBIXRPAmount_H_INCLUDED
 
-#include <ripple/basics/contract.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/utility/Zero.h>
-#include <ripple/json/json_value.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/utility/Zero.h>
+#include <bixd/json/json_value.h>
 
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/operators.hpp>
@@ -33,7 +33,7 @@
 #include <string>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 namespace feeunit {
 
@@ -247,7 +247,7 @@ public:
 };
 
 /** Number of drops per 1 XRP */
-constexpr BIXRPAmount DROPS_PER_XRP{1'000'000};
+constexpr BIXRPAmount DROPS_PER_BIXRP{1'000'000};
 
 constexpr double
 BIXRPAmount::decimalBIXRP() const
@@ -297,6 +297,6 @@ mulRatio(
     return BIXRPAmount(r.convert_to<BIXRPAmount::value_type>());
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_BASICS_BIXRPAmount_H_INCLUDED
+#endif  // BIXD_BASICS_BIXRPAmount_H_INCLUDED

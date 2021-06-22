@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/basics/DecayingSample.h>
-#include <ripple/basics/Log.h>
-#include <ripple/beast/container/aged_map.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/basics/DecayingSample.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/container/aged_map.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/protocol/jss.h>
 #include <memory>
 #include <mutex>
 

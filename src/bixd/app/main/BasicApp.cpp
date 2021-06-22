@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/BasicApp.h>
-#include <ripple/beast/core/CurrentThreadName.h>
+#include <bixd/app/main/BasicApp.h>
+#include <bixd/beast/core/CurrentThreadName.h>
 
 BasicApp::BasicApp(std::size_t numberOfThreads)
 {

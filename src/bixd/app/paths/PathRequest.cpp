@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/paths/AccountCurrencies.h>
-#include <ripple/app/paths/PathRequest.h>
-#include <ripple/app/paths/PathRequests.h>
-#include <ripple/app/paths/RippleCalc.h>
-#include <ripple/app/paths/impl/PathfinderUtils.h>
-#include <ripple/basics/Log.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/core/Config.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/paths/AccountCurrencies.h>
+#include <bixd/app/paths/PathRequest.h>
+#include <bixd/app/paths/PathRequests.h>
+#include <bixd/app/paths/RippleCalc.h>
+#include <bixd/app/paths/impl/PathfinderUtils.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/core/Config.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/UintTypes.h>
 
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/rpc/impl/Tuning.h>
 #include <boost/algorithm/clamp.hpp>
 #include <boost/optional.hpp>
 

@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/AccountStateSF.h>
-#include <ripple/app/ledger/InboundLedger.h>
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/TransactionStateSF.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/basics/Log.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/shamap/SHAMapNodeID.h>
+#include <bixd/app/ledger/AccountStateSF.h>
+#include <bixd/app/ledger/InboundLedger.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/TransactionStateSF.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/shamap/SHAMapNodeID.h>
 
 #include <algorithm>
 

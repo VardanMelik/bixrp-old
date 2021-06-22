@@ -20,8 +20,8 @@
 #ifndef RIPPLE_APP_LEDGER_LOCALTXS_H_INCLUDED
 #define RIPPLE_APP_LEDGER_LOCALTXS_H_INCLUDED
 
-#include <ripple/app/misc/CanonicalTXSet.h>
-#include <ripple/ledger/ReadView.h>
+#include <bixd/app/misc/CanonicalTXSet.h>
+#include <bixd/ledger/ReadView.h>
 #include <memory>
 
 namespace ripple {

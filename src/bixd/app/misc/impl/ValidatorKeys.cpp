@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/ValidatorKeys.h>
+#include <bixd/app/misc/ValidatorKeys.h>
 
-#include <ripple/app/misc/Manifest.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/base64.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/ConfigSections.h>
+#include <bixd/app/misc/Manifest.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/base64.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/ConfigSections.h>
 
 namespace ripple {
 ValidatorKeys::ValidatorKeys(Config const& config, beast::Journal j)

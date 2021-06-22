@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/TransactionMaster.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/SHAMapStoreImp.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/core/Pg.h>
-#include <ripple/nodestore/impl/DatabaseRotatingImp.h>
+#include <bixd/app/ledger/TransactionMaster.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/SHAMapStoreImp.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/core/Pg.h>
+#include <bixd/nodestore/impl/DatabaseRotatingImp.h>
 
 #include <boost/algorithm/string/predicate.hpp>
 

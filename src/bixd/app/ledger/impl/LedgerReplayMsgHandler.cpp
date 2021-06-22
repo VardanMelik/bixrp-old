@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/LedgerReplayer.h>
-#include <ripple/app/ledger/impl/LedgerReplayMsgHandler.h>
-#include <ripple/app/main/Application.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/LedgerReplayer.h>
+#include <bixd/app/ledger/impl/LedgerReplayMsgHandler.h>
+#include <bixd/app/main/Application.h>
 
 #include <memory>
 

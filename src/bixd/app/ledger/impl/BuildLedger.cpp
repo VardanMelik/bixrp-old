@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/BuildLedger.h>
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/ledger/LedgerReplay.h>
-#include <ripple/app/ledger/OpenLedger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/CanonicalTXSet.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/app/ledger/BuildLedger.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/ledger/LedgerReplay.h>
+#include <bixd/app/ledger/OpenLedger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/CanonicalTXSet.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/protocol/Feature.h>
 
 namespace ripple {
 

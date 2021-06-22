@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/ConsensusTransSetSF.h>
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/InboundTransactions.h>
-#include <ripple/app/ledger/impl/TransactionAcquire.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/overlay/impl/ProtocolMessage.h>
+#include <bixd/app/ledger/ConsensusTransSetSF.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/InboundTransactions.h>
+#include <bixd/app/ledger/impl/TransactionAcquire.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/overlay/impl/ProtocolMessage.h>
 
 #include <memory>
 

@@ -20,8 +20,8 @@
 #ifndef RIPPLE_APP_MISC_IMPL_ACCOUNTTXPAGING_H_INCLUDED
 #define RIPPLE_APP_MISC_IMPL_ACCOUNTTXPAGING_H_INCLUDED
 
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/core/DatabaseCon.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/core/DatabaseCon.h>
 #include <cstdint>
 #include <string>
 #include <utility>

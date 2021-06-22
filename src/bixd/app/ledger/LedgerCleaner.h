@@ -20,11 +20,11 @@
 #ifndef RIPPLE_APP_LEDGER_LEDGERCLEANER_H_INCLUDED
 #define RIPPLE_APP_LEDGER_LEDGERCLEANER_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/json/json_value.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/json/json_value.h>
 #include <memory>
 
 namespace ripple {

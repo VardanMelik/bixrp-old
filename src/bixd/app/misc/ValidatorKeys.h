@@ -20,10 +20,10 @@
 #ifndef RIPPLE_APP_MISC_VALIDATOR_KEYS_H_INCLUDED
 #define RIPPLE_APP_MISC_VALIDATOR_KEYS_H_INCLUDED
 
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/UintTypes.h>
 #include <string>
 
 namespace ripple {

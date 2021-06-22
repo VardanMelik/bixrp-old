@@ -20,7 +20,7 @@
 #ifndef RIPPLE_APP_MAIN_LOADMANAGER_H_INCLUDED
 #define RIPPLE_APP_MAIN_LOADMANAGER_H_INCLUDED
 
-#include <ripple/core/Stoppable.h>
+#include <bixd/core/Stoppable.h>
 #include <memory>
 #include <mutex>
 #include <thread>

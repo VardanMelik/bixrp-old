@@ -20,11 +20,11 @@
 #ifndef RIPPLE_APP_MISC_FEEVOTE_H_INCLUDED
 #define RIPPLE_APP_MISC_FEEVOTE_H_INCLUDED
 
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/protocol/SystemParameters.h>
-#include <ripple/shamap/SHAMap.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/protocol/SystemParameters.h>
+#include <bixd/shamap/SHAMap.h>
 
 namespace ripple {
 

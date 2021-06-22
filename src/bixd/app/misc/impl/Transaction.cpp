@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/core/Pg.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/core/Pg.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/jss.h>
 #include <boost/optional.hpp>
 
 namespace ripple {

@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/GRPCServer.h>
-#include <ripple/app/reporting/P2pProxy.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/resource/Fees.h>
+#include <bixd/app/main/GRPCServer.h>
+#include <bixd/app/reporting/P2pProxy.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/resource/Fees.h>
 
 #include <beast/net/IPAddressConversion.h>
 

@@ -20,11 +20,11 @@
 #ifndef RIPPLE_APP_MISC_NEGATIVEUNLVOTE_H_INCLUDED
 #define RIPPLE_APP_MISC_NEGATIVEUNLVOTE_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/UintTypes.h>
 
 #include <optional>
 

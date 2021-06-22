@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/OpenLedger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/ledger/CachedView.h>
-#include <ripple/overlay/Message.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/overlay/predicates.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/app/ledger/OpenLedger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/ledger/CachedView.h>
+#include <bixd/overlay/Message.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/overlay/predicates.h>
+#include <bixd/protocol/Feature.h>
 #include <boost/range/adaptor/transformed.hpp>
 
 namespace ripple {
