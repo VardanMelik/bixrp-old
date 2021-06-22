@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/consensus/RCLCxPeerPos.h>
-#include <ripple/core/Config.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/Serializer.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/consensus/RCLCxPeerPos.h>
+#include <bixd/core/Config.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/Serializer.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/jss.h>
 
-namespace ripple {
+namespace bixd {
 
 // Used to construct received proposals
 RCLCxPeerPos::RCLCxPeerPos(
@@ -100,4 +100,4 @@ RCLCxPeerPos::Data::Data(
 {
 }
 
-}  // namespace ripple
+}  // namespace bixd

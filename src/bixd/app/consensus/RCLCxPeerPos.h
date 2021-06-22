@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/rippled
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_CONSENSUS_RCLCXPEERPOS_H_INCLUDED
-#define RIPPLE_APP_CONSENSUS_RCLCXPEERPOS_H_INCLUDED
+#ifndef BIXD_APP_CONSENSUS_RCLCXPEERPOS_H_INCLUDED
+#define BIXD_APP_CONSENSUS_RCLCXPEERPOS_H_INCLUDED
 
-#include <ripple/basics/CountedObject.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/beast/hash/hash_append.h>
-#include <ripple/consensus/ConsensusProposal.h>
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/beast/hash/hash_append.h>
+#include <bixd/consensus/ConsensusProposal.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
 #include <chrono>
 #include <cstdint>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 /** A peer's signed, proposed position for use in RCLConsensus.
 
@@ -155,6 +155,6 @@ proposalUniqueId(
     Slice const& publicKey,
     Slice const& signature);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

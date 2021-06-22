@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,28 +17,28 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_CONSENSUS_RCLCONSENSUS_H_INCLUDED
-#define RIPPLE_APP_CONSENSUS_RCLCONSENSUS_H_INCLUDED
+#ifndef BIXD_APP_CONSENSUS_RCLCONSENSUS_H_INCLUDED
+#define BIXD_APP_CONSENSUS_RCLCONSENSUS_H_INCLUDED
 
-#include <ripple/app/consensus/RCLCensorshipDetector.h>
-#include <ripple/app/consensus/RCLCxLedger.h>
-#include <ripple/app/consensus/RCLCxPeerPos.h>
-#include <ripple/app/consensus/RCLCxTx.h>
-#include <ripple/app/misc/FeeVote.h>
-#include <ripple/app/misc/NegativeUNLVote.h>
-#include <ripple/basics/CountedObject.h>
-#include <ripple/basics/Log.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/consensus/Consensus.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/overlay/Message.h>
-#include <ripple/protocol/RippleLedgerHash.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/shamap/SHAMap.h>
+#include <bixd/app/consensus/RCLCensorshipDetector.h>
+#include <bixd/app/consensus/RCLCxLedger.h>
+#include <bixd/app/consensus/RCLCxPeerPos.h>
+#include <bixd/app/consensus/RCLCxTx.h>
+#include <bixd/app/misc/FeeVote.h>
+#include <bixd/app/misc/NegativeUNLVote.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/consensus/Consensus.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/overlay/Message.h>
+#include <bixd/protocol/bixdLedgerHash.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/shamap/SHAMap.h>
 #include <atomic>
 #include <mutex>
 #include <set>
-namespace ripple {
+namespace bixd {
 
 class InboundTransactions;
 class LocalTxs;
@@ -531,6 +531,6 @@ private:
     Consensus<Adaptor> consensus_;
     beast::Journal const j_;
 };
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

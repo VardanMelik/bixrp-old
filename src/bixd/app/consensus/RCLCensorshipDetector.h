@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/rippled
-    Copyright (c) 2018 Ripple Labs Inc.
+    This file is part of bixd: 
+    Copyright (c) 2018 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_CONSENSUS_RCLCENSORSHIPDETECTOR_H_INCLUDED
-#define RIPPLE_APP_CONSENSUS_RCLCENSORSHIPDETECTOR_H_INCLUDED
+#ifndef BIXD_APP_CONSENSUS_RCLCENSORSHIPDETECTOR_H_INCLUDED
+#define BIXD_APP_CONSENSUS_RCLCENSORSHIPDETECTOR_H_INCLUDED
 
-#include <ripple/basics/algorithm.h>
-#include <ripple/shamap/SHAMap.h>
+#include <bixd/basics/algorithm.h>
+#include <bixd/shamap/SHAMap.h>
 #include <algorithm>
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 template <class TxID, class Sequence>
 class RCLCensorshipDetector
@@ -140,6 +140,6 @@ public:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif
