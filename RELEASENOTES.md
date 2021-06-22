@@ -2,16 +2,16 @@
 
 ![XRP](docs/images/xrp-text-mark-black-small@2x.png)
 
-This document contains the release notes for `rippled`, the reference server implementation of the XRP Ledger protocol. To learn more about how to build, run or update a `rippled` server, visit https://xrpl.org/install-rippled.html
+This document contains the release notes for `bixd`, the reference server implementation of the XRP Ledger protocol. To learn more about how to build, run or update a `bixd` server, visit https://xrpl.org/install-bixd.html
 
  
-Have new ideas? Need help with setting up your node? Come visit us [here](https://github.com/ripple/rippled/issues/new/choose)
+Have new ideas? Need help with setting up your node? Come visit us [here](https://github.com/ripple/bixd/issues/new/choose)
 
 # Releases
 
 ## Version 1.7.2
 
-This the 1.7.2 release of rippled, the reference server implementation of the XRP Ledger protocol. This release protects against the security issue [CVE-2021-3499](https://www.openssl.org/news/secadv/20210325.txt) affecting OpenSSL, adds an amendment to fix an issue with small offers not being properly removed from order books in some cases, and includes various other minor fixes.
+This the 1.7.2 release of bixd, the reference server implementation of the XRP Ledger protocol. This release protects against the security issue [CVE-2021-3499](https://www.openssl.org/news/secadv/20210325.txt) affecting OpenSSL, adds an amendment to fix an issue with small offers not being properly removed from order books in some cases, and includes various other minor fixes.
 Version 1.7.2 supersedes version 1.7.1 and adds fixes for more issues that were discovered during the release cycle.
 
 ## Action Required
@@ -22,28 +22,28 @@ If you operate an XRP Ledger validator, please learn more about this amendment s
 
 ### Bug Fixes
 
-- **fixRmSmallIncreasedQOffers Amendment:** This amendment fixes an issue where certain small offers can be left at the tip of an order book without being consumed or removed when appropriate and causes some payments and Offers to fail when they should have succeeded [(#3827)](https://github.com/ripple/rippled/pull/3827).
-- **Adjust OpenSSL defaults and mitigate CVE-2021-3499:** Prior to this fix, servers compiled against a vulnerable version of OpenSSL could have a crash triggered by a malicious network connection. This fix disables renegotiation support in OpenSSL so that the rippled server is not vulnerable to this bug regardless of the OpenSSL version used to compile the server. This also removes support for deprecated TLS versions 1.0 and 1.1 and ciphers that are not part of TLS 1.2 [(#79e69da)](https://github.com/ripple/rippled/pull/3843/commits/79e69da3647019840dca49622621c3d88bc3883f).
-- **Support HTTP health check in reporting mode:** Enables the Health Check special method when running the server in the new Reporting Mode introduced in 1.7.0 [(9c8cadd)](https://github.com/ripple/rippled/pull/3843/commits/9c8caddc5a197bdd642556f8beb14f06d53cdfd3).
-- **Maintain compatibility for forwarded RPC responses:** Fixes a case in API responses from servers in Reporting Mode, where requests that were forwarded to a P2P-mode server would have the result field nested inside another result field [(8579eb0)](https://github.com/ripple/rippled/pull/3843/commits/8579eb0c191005022dcb20641444ab471e277f67).
-- **Add load_factor in reporting mode:** Adds a load_factor value to the server info method response when running the server in Reporting Mode so that the response is compatible with the format returned by servers in P2P mode (the default) [(430802c)](https://github.com/ripple/rippled/pull/3843/commits/430802c1cf6d4179f2249a30bfab9eff8e1fa748).
-- **Properly encode metadata from tx RPC command:** Fixes a problem where transaction metadata in the tx API method response would be in JSON format even when binary was requested [(7311629)](https://github.com/ripple/rippled/pull/3843/commits/73116297aa94c4acbfc74c2593d1aa2323b4cc52).
-- **Updates to Windows builds:** When building on Windows, use vcpkg 2021 by default and add compatibility with MSVC 2019 [(36fe196)](https://github.com/ripple/rippled/pull/3843/commits/36fe1966c3cd37f668693b5d9910fab59c3f8b1f), [(30fd458)](https://github.com/ripple/rippled/pull/3843/commits/30fd45890b1d3d5f372a2091d1397b1e8e29d2ca).
+- **fixRmSmallIncreasedQOffers Amendment:** This amendment fixes an issue where certain small offers can be left at the tip of an order book without being consumed or removed when appropriate and causes some payments and Offers to fail when they should have succeeded [(#3827)](https://github.com/ripple/bixd/pull/3827).
+- **Adjust OpenSSL defaults and mitigate CVE-2021-3499:** Prior to this fix, servers compiled against a vulnerable version of OpenSSL could have a crash triggered by a malicious network connection. This fix disables renegotiation support in OpenSSL so that the bixd server is not vulnerable to this bug regardless of the OpenSSL version used to compile the server. This also removes support for deprecated TLS versions 1.0 and 1.1 and ciphers that are not part of TLS 1.2 [(#79e69da)](https://github.com/ripple/bixd/pull/3843/commits/79e69da3647019840dca49622621c3d88bc3883f).
+- **Support HTTP health check in reporting mode:** Enables the Health Check special method when running the server in the new Reporting Mode introduced in 1.7.0 [(9c8cadd)](https://github.com/ripple/bixd/pull/3843/commits/9c8caddc5a197bdd642556f8beb14f06d53cdfd3).
+- **Maintain compatibility for forwarded RPC responses:** Fixes a case in API responses from servers in Reporting Mode, where requests that were forwarded to a P2P-mode server would have the result field nested inside another result field [(8579eb0)](https://github.com/ripple/bixd/pull/3843/commits/8579eb0c191005022dcb20641444ab471e277f67).
+- **Add load_factor in reporting mode:** Adds a load_factor value to the server info method response when running the server in Reporting Mode so that the response is compatible with the format returned by servers in P2P mode (the default) [(430802c)](https://github.com/ripple/bixd/pull/3843/commits/430802c1cf6d4179f2249a30bfab9eff8e1fa748).
+- **Properly encode metadata from tx RPC command:** Fixes a problem where transaction metadata in the tx API method response would be in JSON format even when binary was requested [(7311629)](https://github.com/ripple/bixd/pull/3843/commits/73116297aa94c4acbfc74c2593d1aa2323b4cc52).
+- **Updates to Windows builds:** When building on Windows, use vcpkg 2021 by default and add compatibility with MSVC 2019 [(36fe196)](https://github.com/ripple/bixd/pull/3843/commits/36fe1966c3cd37f668693b5d9910fab59c3f8b1f), [(30fd458)](https://github.com/ripple/bixd/pull/3843/commits/30fd45890b1d3d5f372a2091d1397b1e8e29d2ca).
 
 ## Version 1.7.0 
 
-Ripple has released version 1.7.0 of `rippled`, the reference server implementation of the XRP Ledger protocol. 
-This release [significantly improves memory usage](https://blog.ripplex.io/how-ripples-c-team-cut-rippleds-memory-footprint-down-to-size/), introduces a protocol amendment to allow out-of-order transaction execution with Tickets, and brings several other features and improvements. 
+Ripple has released version 1.7.0 of `bixd`, the reference server implementation of the XRP Ledger protocol. 
+This release [significantly improves memory usage](https://blog.ripplex.io/how-ripples-c-team-cut-bixds-memory-footprint-down-to-size/), introduces a protocol amendment to allow out-of-order transaction execution with Tickets, and brings several other features and improvements. 
 
 ## Upgrading (SPECIAL ACTION REQUIRED)
-If you use the precompiled binaries of rippled that Ripple publishes for supported platforms, please note that Ripple has renewed the GPG key used to sign these packages. 
+If you use the precompiled binaries of bixd that Ripple publishes for supported platforms, please note that Ripple has renewed the GPG key used to sign these packages. 
 If you are upgrading from a previous install, you must download and trust the renewed key. Automatic upgrades will not work until you have re-trusted the key.
 ### Red Hat Enterprise Linux / CentOS
 
-Perform a [manual upgrade](https://xrpl.org/update-rippled-manually-on-centos-rhel.html). When prompted, confirm that the key's fingerprint matches the following example, then press `y` to accept the updated key:
+Perform a [manual upgrade](https://xrpl.org/update-bixd-manually-on-centos-rhel.html). When prompted, confirm that the key's fingerprint matches the following example, then press `y` to accept the updated key:
 
 ```
-$ sudo yum install rippled
+$ sudo yum install bixd
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
 * base: mirror.web-ster.com
@@ -51,28 +51,28 @@ Loading mirror speeds from cached hostfile
 * extras: ftp.osuosl.org
 * updates: mirrors.vcea.wsu.edu
 ripple-nightly/signature                                                                                                                                                                                                                                 |  650 B  00:00:00    
-Retrieving key from https://repos.ripple.com/repos/rippled-rpm/nightly/repodata/repomd.xml.key
+Retrieving key from https://repos.ripple.com/repos/bixd-rpm/nightly/repodata/repomd.xml.key
 Importing GPG key 0xCCAFD9A2:
-Userid     : "TechOps Team at Ripple <techops+rippled@ripple.com>"
+Userid     : "TechOps Team at Ripple <techops+bixd@ripple.com>"
 Fingerprint: c001 0ec2 05b3 5a33 10dc 90de 395f 97ff ccaf d9a2
-From       : https://repos.ripple.com/repos/rippled-rpm/nightly/repodata/repomd.xml.key
+From       : https://repos.ripple.com/repos/bixd-rpm/nightly/repodata/repomd.xml.key
 Is this ok [y/N]: y
 ```
 
 ### Ubuntu / Debian
 
-Download and trust the updated public key, then perform a [manual upgrade](https://xrpl.org/update-rippled-manually-on-ubuntu.html) as follows:
+Download and trust the updated public key, then perform a [manual upgrade](https://xrpl.org/update-bixd-manually-on-ubuntu.html) as follows:
 
 ```
 wget -q -O - "https://repos.ripple.com/repos/api/gpg/key/public" | \
     sudo apt-key add -
 sudo apt -y update
-sudo apt -y install rippled
+sudo apt -y install bixd
 ```
 
 ### New and Improved Features
 
-- **Rework deferred node logic and async fetch behavior:** This change significantly improves ledger sync and fetch times while reducing memory consumption.  (https://blog.ripplex.io/how-ripples-c-team-cut-rippleds-memory-footprint-down-to-size/)
+- **Rework deferred node logic and async fetch behavior:** This change significantly improves ledger sync and fetch times while reducing memory consumption.  (https://blog.ripplex.io/how-ripples-c-team-cut-bixds-memory-footprint-down-to-size/)
 - **New Ticket feature:** Tickets are a mechanism to prepare and send certain transactions outside of the normal sequence order. This version reworks and completes the implementation for Tickets after more than 6 years of development. This feature is now open for voting as the newly-introduced `TicketBatch` amendment, which replaces the previously-proposed `Tickets` amendment. The specification for this change can be found at: [xrp-community/standards-drafts#16](https://github.com/xrp-community/standards-drafts/issues/16)
 - **Add Reporting Mode:** The server can be compiled to operate in a new mode that serves API requests for validated ledger data without connecting directly to the peer-to-peer network. (The server needs a gRPC connection to another server that is on the peer-to-peer network.) Reporting Mode servers can share access to ledger data via Apache Cassandra and PostgreSQL to more efficiently serve API requests while peer-to-peer servers specialize in broadcasting and processing transactions.
 - **Optimize relaying of validation and proposal messages:** Servers typically receive multiple copies of any given message from directly connected peers; in particular, consensus proposal and validation messages are often relayed with extremely high redundancy. For servers with several peers, this can cause redundant work. This commit introduces experimental code that attempts to optimize the relaying of proposals and validations by allowing servers to instruct their peers to "squelch" delivery of selected proposals and validations. This change is considered experimental at this time and is disabled by default because the functioning of the consensus network depends on messages propagating with high reliability through the constantly-changing peer-to-peer network. Server operators who wish to test the optimized code can enable it in their server config file.
@@ -86,26 +86,26 @@ Going forward, use the [feature method](https://xrpl.org/feature.html) to view a
 - **Support UNLs with future effective dates:** Updates the format for the recommended validator list file format, allowing publishers to pre-publish the next recommended UNL while the current one is still valid. The server is still backwards compatible with the previous format, but the new format removes some uncertainty during the transition from one list to the next. Also, starting with this release, the server locks down and reports an error if it has no valid validator list. You can clear the error by loading a validator list from a file or by configuring a different UNL and restarting; the error also goes away on its own if the server is able to obtain a trusted validator list from the network (for example, after an network outage resolves itself).
 - **Improve manifest relaying:** Servers now propagate change messages for validators' ephemeral public keys ("manifests") on a best-effort basis, to make manifests more available throughout the peer-to-peer network. Previously, the server would only relay manifests from validators it trusts locally, which made it difficult to detect and track validators that are not broadly trusted.
 - **Implement ledger forward replay feature:** The server can now sync up to the network by "playing forward" transactions from a previously saved ledger until it catches up to the network. Compared with the default behavior of fetching the latest state and working backwards, forward replay can save time and bandwidth by reconstructing previous ledgers' state data rather than downloading the pre-calculated results from the network. As an added bonus, forward replay confirms that the rest of the network followed the same transaction processing rules as the local server when processing the intervening ledgers. This feature is considered experimental this time and can be enabled with an option in the config file.
-- **Make the transaction job queue limit adjustable:** The server uses a job queue to manage tasks, with limits on how many jobs of a particular type can be queued. The previously hard-coded limit associated with transactions is now configurable. Server operators can increase the number of transactions their server is able to queue, which may be useful if your server has a large memory capacity or you expect an influx of transactions. (https://github.com/ripple/rippled/issues/3556)
-- **Add public_key to the Validator List method response:** The [Validator List method](https://xrpl.org/validator-list.html) can be used to request a recommended validator list from a rippled instance. The response now includes the public key of the requested list. (https://github.com/ripple/rippled/issues/3392)
+- **Make the transaction job queue limit adjustable:** The server uses a job queue to manage tasks, with limits on how many jobs of a particular type can be queued. The previously hard-coded limit associated with transactions is now configurable. Server operators can increase the number of transactions their server is able to queue, which may be useful if your server has a large memory capacity or you expect an influx of transactions. (https://github.com/ripple/bixd/issues/3556)
+- **Add public_key to the Validator List method response:** The [Validator List method](https://xrpl.org/validator-list.html) can be used to request a recommended validator list from a bixd instance. The response now includes the public key of the requested list. (https://github.com/ripple/bixd/issues/3392)
 - **Server operators can now configure maximum inbound and outbound peers separately:** The new `peers_in_max` and `peers_out_max` config options allow server operators to independently control the maximum number of inbound and outbound peers the server allows. [70c4ecc]
 - **Improvements to shard downloading:** Previously the download_shard command could only load shards over HTTPS. Compressed shards can now also be downloaded over plain HTTP. The server fully checks the data for integrity and consistency, so the encryption is not strictly necessary. When initiating multiple shard downloads, the server now returns an error if there is not enough space to store all the shards currently being downloaded.
 - **The manifest command is now public:** The manifest API method returns public information about a given validator. The required permissions have been changed so it is now part of the public API.
 
 ### Bug Fixes
 
-- **Implement sticky DNS resolution for validator list retrieval:** When attempting to load a validator list from a configured site, attempt to reuse the last IP that was successfully used if that IP is still present in the DNS response. (https://github.com/ripple/rippled/issues/3494).
-- **Improve handling of RPC ledger_index argument:** You can now provide the `ledger_index` as a numeric string. This allows you to copy and use the numeric string `ledger_index` value returned by certain RPC commands. Previously you could only send native JSON numbers or shortcut strings such as "validated" in the `ledger_index` field. (https://github.com/ripple/rippled/issues/3533)
+- **Implement sticky DNS resolution for validator list retrieval:** When attempting to load a validator list from a configured site, attempt to reuse the last IP that was successfully used if that IP is still present in the DNS response. (https://github.com/ripple/bixd/issues/3494).
+- **Improve handling of RPC ledger_index argument:** You can now provide the `ledger_index` as a numeric string. This allows you to copy and use the numeric string `ledger_index` value returned by certain RPC commands. Previously you could only send native JSON numbers or shortcut strings such as "validated" in the `ledger_index` field. (https://github.com/ripple/bixd/issues/3533)
 - **Fix improper promotion of bool on return**  [6968da1]
 - **Fix ledger sequence on copynode** [ef53197] 
--  **Fix parsing of node public keys in `manifest` CLI:** The previous code attempts to validate the provided node public key using a function that assumes that the encoded public key is for an account. This causes the parsing to fail. This commit fixes #3317 (https://github.com/ripple/rippled/issues/3317) by letting the caller specify the type of the public key being checked.
-- **Fix idle peer timer:** Fixes a bug where a function to remove idle peers was called every second instead of every 4 seconds. #3754 (https://github.com/ripple/rippled/issues/3754)
+-  **Fix parsing of node public keys in `manifest` CLI:** The previous code attempts to validate the provided node public key using a function that assumes that the encoded public key is for an account. This causes the parsing to fail. This commit fixes #3317 (https://github.com/ripple/bixd/issues/3317) by letting the caller specify the type of the public key being checked.
+- **Fix idle peer timer:** Fixes a bug where a function to remove idle peers was called every second instead of every 4 seconds. #3754 (https://github.com/ripple/bixd/issues/3754)
 - **Add database counters:** Fix bug where DatabaseRotateImp::getBackend and ::sync utilized the writable backend without a lock. ::getBackend was replaced with ::getCounters.
 - **Improve online_delete configuration and DB tuning** [6e9051e]
-- **Improve handling of burst writes in NuDB database** ( https://github.com/ripple/rippled/pull/3662 )
+- **Improve handling of burst writes in NuDB database** ( https://github.com/ripple/bixd/pull/3662 )
 - **Fix excessive logging after disabling history shards.** Previously if you configured the server with a shard store, then disabled it, the server output excessive warning messages about the shard limit being exceeded.
-- **Fixed some issues with negotiating link compression.** ( https://github.com/ripple/rippled/pull/3705 )
-- **Fixed a potential thread deadlock with history sharding.** ( https://github.com/ripple/rippled/pull/3683 )
+- **Fixed some issues with negotiating link compression.** ( https://github.com/ripple/bixd/pull/3705 )
+- **Fixed a potential thread deadlock with history sharding.** ( https://github.com/ripple/bixd/pull/3683 )
 - **Various fixes to typos and comments, refactoring, and build system improvements**
 
 ## Version 1.6.0
@@ -115,70 +115,70 @@ adverse conditions, as well as numerous bug fixes and optimizations.
 
 ### New and Improved Features
 
-- Initial implementation of Negative UNL functionality: This change can improve the liveness of the network during periods of network instability, by allowing servers to track which validators are temporarily offline and to adjust quorum calculations to match. This change requires an amendment, but the amendment is not in the **1.6.0** release. Ripple expects to run extensive public testing for Negative UNL functionality on the Devnet in the coming weeks. If public testing satisfies all requirements across security, reliability, stability, and performance, then the amendment could be included in a version 2.0 release. [[#3380](https://github.com/ripple/rippled/pull/3380)]
-- Validation Hardening: This change allows servers to detect accidental misconfiguration of validators, as well as potentially Byzantine behavior by malicious validators. Servers can now log a message to notify operators if they detect a single validator issuing validations for multiple, incompatible ledger versions, or validations from multiple servers sharing a key. As part of this update, validators report the version of `rippled` they are using, as well as the hash of the last ledger they consider to be fully validated, in validation messages. [[#3291](https://github.com/ripple/rippled/pull/3291)] ![Amendment: Required](https://img.shields.io/badge/Amendment-Required-red)
-- Software Upgrade Monitoring & Notification: After the `HardenedValidations` amendment is enabled and the validators begin reporting the versions of `rippled` they are running, a server can check how many of the validators on its UNL run a newer version of the software than itself. If more than 60% of a server's validators are running a newer version, the server writes a message to notify the operator to consider upgrading their software. [[#3447](https://github.com/ripple/rippled/pull/3447)]
-- Link Compression: Beginning with **1.6.0**, server operators can enable support for compressing peer-to-peer messages. This can save bandwidth at a cost of higher CPU usage. This support is disabled by default and should prove useful for servers with a large number of peers. [[#3287](https://github.com/ripple/rippled/pull/3287)]
-- Unconditionalize Amendments that were enabled in 2017: This change removes legacy code which the network has not used since 2017. This change limits the ability to [replay](https://github.com/xrp-community/standards-drafts/issues/14) ledgers that rely on the pre-2017 behavior. [[#3292](https://github.com/ripple/rippled/pull/3292)]
-- New Health Check Method: Perform a simple HTTP request to get a summary of the health of the server: Healthy, Warning, or Critical. [[#3365](https://github.com/ripple/rippled/pull/3365)]
-- Start work on API version 2. Version 2 of the API will be part of a future release. The first breaking change will be to consolidate several closely related error messages that can occur when the server is not synced into a single "notSynced" error message. [[#3269](https://github.com/ripple/rippled/pull/3269)]
-- Improved shard concurrency: Improvements to the shard engine have helped reduce the lock scope on all public functions, increasing the concurrency of the code. [[#3251](https://github.com/ripple/rippled/pull/3251)]
-- Default Port: In the config file, the `[ips_fixed]` and `[ips]` stanzas now use the [IANA-assigned port](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?search=2459) for the XRP Ledger protocol (2459) when no port is specified. The `connect` API method also uses the same port by default. [[#2861](https://github.com/ripple/rippled/pull/2861)].
-- Improve proposal and validation relaying. The peer-to-peer protocol always relays trusted proposals and validations (as part of the [consensus process](https://xrpl.org/consensus.html)), but only relays _untrusted_ proposals and validations in certain circumstances. This update adds configuration options so server operators can fine-tune how their server handles untrusted proposals and validations, and changes the default behavior to prioritize untrusted validations higher than untrusted proposals.  [[#3391](https://github.com/ripple/rippled/pull/3391)]
-- Various Build and CI Improvements including updates to RocksDB 6.7.3 [[#3356](https://github.com/ripple/rippled/pull/3356)], NuDB 2.0.3 [[#3437](https://github.com/ripple/rippled/pull/3437)], adjusting CMake settings so that rippled can be built as a submodule [[#3449](https://github.com/ripple/rippled/pull/3449)], and adding Travis CI settings for Ubuntu Bionic Beaver [[#3319](https://github.com/ripple/rippled/pull/3319)].
-- Better documentation in the config file for online deletion and database tuning. [[#3429](https://github.com/ripple/rippled/pull/3429)]
+- Initial implementation of Negative UNL functionality: This change can improve the liveness of the network during periods of network instability, by allowing servers to track which validators are temporarily offline and to adjust quorum calculations to match. This change requires an amendment, but the amendment is not in the **1.6.0** release. Ripple expects to run extensive public testing for Negative UNL functionality on the Devnet in the coming weeks. If public testing satisfies all requirements across security, reliability, stability, and performance, then the amendment could be included in a version 2.0 release. [[#3380](https://github.com/ripple/bixd/pull/3380)]
+- Validation Hardening: This change allows servers to detect accidental misconfiguration of validators, as well as potentially Byzantine behavior by malicious validators. Servers can now log a message to notify operators if they detect a single validator issuing validations for multiple, incompatible ledger versions, or validations from multiple servers sharing a key. As part of this update, validators report the version of `bixd` they are using, as well as the hash of the last ledger they consider to be fully validated, in validation messages. [[#3291](https://github.com/ripple/bixd/pull/3291)] ![Amendment: Required](https://img.shields.io/badge/Amendment-Required-red)
+- Software Upgrade Monitoring & Notification: After the `HardenedValidations` amendment is enabled and the validators begin reporting the versions of `bixd` they are running, a server can check how many of the validators on its UNL run a newer version of the software than itself. If more than 60% of a server's validators are running a newer version, the server writes a message to notify the operator to consider upgrading their software. [[#3447](https://github.com/ripple/bixd/pull/3447)]
+- Link Compression: Beginning with **1.6.0**, server operators can enable support for compressing peer-to-peer messages. This can save bandwidth at a cost of higher CPU usage. This support is disabled by default and should prove useful for servers with a large number of peers. [[#3287](https://github.com/ripple/bixd/pull/3287)]
+- Unconditionalize Amendments that were enabled in 2017: This change removes legacy code which the network has not used since 2017. This change limits the ability to [replay](https://github.com/xrp-community/standards-drafts/issues/14) ledgers that rely on the pre-2017 behavior. [[#3292](https://github.com/ripple/bixd/pull/3292)]
+- New Health Check Method: Perform a simple HTTP request to get a summary of the health of the server: Healthy, Warning, or Critical. [[#3365](https://github.com/ripple/bixd/pull/3365)]
+- Start work on API version 2. Version 2 of the API will be part of a future release. The first breaking change will be to consolidate several closely related error messages that can occur when the server is not synced into a single "notSynced" error message. [[#3269](https://github.com/ripple/bixd/pull/3269)]
+- Improved shard concurrency: Improvements to the shard engine have helped reduce the lock scope on all public functions, increasing the concurrency of the code. [[#3251](https://github.com/ripple/bixd/pull/3251)]
+- Default Port: In the config file, the `[ips_fixed]` and `[ips]` stanzas now use the [IANA-assigned port](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?search=2459) for the XRP Ledger protocol (2459) when no port is specified. The `connect` API method also uses the same port by default. [[#2861](https://github.com/ripple/bixd/pull/2861)].
+- Improve proposal and validation relaying. The peer-to-peer protocol always relays trusted proposals and validations (as part of the [consensus process](https://xrpl.org/consensus.html)), but only relays _untrusted_ proposals and validations in certain circumstances. This update adds configuration options so server operators can fine-tune how their server handles untrusted proposals and validations, and changes the default behavior to prioritize untrusted validations higher than untrusted proposals.  [[#3391](https://github.com/ripple/bixd/pull/3391)]
+- Various Build and CI Improvements including updates to RocksDB 6.7.3 [[#3356](https://github.com/ripple/bixd/pull/3356)], NuDB 2.0.3 [[#3437](https://github.com/ripple/bixd/pull/3437)], adjusting CMake settings so that bixd can be built as a submodule [[#3449](https://github.com/ripple/bixd/pull/3449)], and adding Travis CI settings for Ubuntu Bionic Beaver [[#3319](https://github.com/ripple/bixd/pull/3319)].
+- Better documentation in the config file for online deletion and database tuning. [[#3429](https://github.com/ripple/bixd/pull/3429)]
 
 
 ### Bug Fixes
 
-- Fix the 14 day timer to enable amendment to start at the correct quorum size [[#3396](https://github.com/ripple/rippled/pull/3396)]
-- Improve online delete backend lock which addresses a possibility in the online delete process where one or more backend shared pointer references may become invalid during rotation. [[#3342](https://github.com/ripple/rippled/pull/3342)]
-- Address an issue that can occur during the loading of validator tokens, where a deliberately malformed token could cause the server to crash during startup. [[#3326](https://github.com/ripple/rippled/pull/3326)]
-- Add delivered amount to GetAccountTransactionHistory. The delivered_amount field was not being populated when calling GetAccountTransactionHistory. In contrast, the delivered_amount field was being populated when calling GetTransaction. This change populates delivered_amount in the response to GetAccountTransactionHistory, and adds a unit test to make sure the results delivered by GetTransaction and GetAccountTransactionHistory match each other. [[#3370](https://github.com/ripple/rippled/pull/3370)]
-- Fix build issues for GCC 10 [[#3393](https://github.com/ripple/rippled/pull/3393)]
-- Fix historical ledger acquisition - this fixes an issue where historical ledgers were acquired only since the last online deletion interval instead of the configured value to allow deletion.[[#3369](https://github.com/ripple/rippled/pull/3369)]
-- Fix build issue with Docker [#3416](https://github.com/ripple/rippled/pull/3416)]
-- Add Shard family. The App Family utilizes a single shared Tree Node and Full Below cache for all history shards. This can create a problem when acquiring a shard that shares an account state node that was recently cached from another shard operation. The new Shard Family class solves this issue by managing separate Tree Node and Full Below caches for each shard. [#3448](https://github.com/ripple/rippled/pull/3448)]
-- Amendment table clean up which fixes a calculation issue with majority. [#3428](https://github.com/ripple/rippled/pull/3428)]
-- Add the `ledger_cleaner` command to rippled command line help [[#3305](https://github.com/ripple/rippled/pull/3305)]
+- Fix the 14 day timer to enable amendment to start at the correct quorum size [[#3396](https://github.com/ripple/bixd/pull/3396)]
+- Improve online delete backend lock which addresses a possibility in the online delete process where one or more backend shared pointer references may become invalid during rotation. [[#3342](https://github.com/ripple/bixd/pull/3342)]
+- Address an issue that can occur during the loading of validator tokens, where a deliberately malformed token could cause the server to crash during startup. [[#3326](https://github.com/ripple/bixd/pull/3326)]
+- Add delivered amount to GetAccountTransactionHistory. The delivered_amount field was not being populated when calling GetAccountTransactionHistory. In contrast, the delivered_amount field was being populated when calling GetTransaction. This change populates delivered_amount in the response to GetAccountTransactionHistory, and adds a unit test to make sure the results delivered by GetTransaction and GetAccountTransactionHistory match each other. [[#3370](https://github.com/ripple/bixd/pull/3370)]
+- Fix build issues for GCC 10 [[#3393](https://github.com/ripple/bixd/pull/3393)]
+- Fix historical ledger acquisition - this fixes an issue where historical ledgers were acquired only since the last online deletion interval instead of the configured value to allow deletion.[[#3369](https://github.com/ripple/bixd/pull/3369)]
+- Fix build issue with Docker [#3416](https://github.com/ripple/bixd/pull/3416)]
+- Add Shard family. The App Family utilizes a single shared Tree Node and Full Below cache for all history shards. This can create a problem when acquiring a shard that shares an account state node that was recently cached from another shard operation. The new Shard Family class solves this issue by managing separate Tree Node and Full Below caches for each shard. [#3448](https://github.com/ripple/bixd/pull/3448)]
+- Amendment table clean up which fixes a calculation issue with majority. [#3428](https://github.com/ripple/bixd/pull/3428)]
+- Add the `ledger_cleaner` command to bixd command line help [[#3305](https://github.com/ripple/bixd/pull/3305)]
 - Various typo and comments fixes.
 
 
 ## Version 1.5.0
 
-The `rippled` 1.5.0 release introduces several improvements and new features, including support for gRPC API, API versioning, UNL propagation via the peer network, new RPC methods `validator_info` and `manifest`, augmented `submit` method, improved `tx` method response, improved command line parsing, improved handshake protocol, improved package building and various other minor bug fixes and improvements.
+The `bixd` 1.5.0 release introduces several improvements and new features, including support for gRPC API, API versioning, UNL propagation via the peer network, new RPC methods `validator_info` and `manifest`, augmented `submit` method, improved `tx` method response, improved command line parsing, improved handshake protocol, improved package building and various other minor bug fixes and improvements.
 
 This release also introduces two new amendments: `fixQualityUpperBound` and `RequireFullyCanonicalSig`.
 
-Several improvements to the sharding system are currently being evaluated for inclusion into the upcoming 1.6 release of `rippled`. These changes are incompatible with shards generated by previous versions of the code. 
+Several improvements to the sharding system are currently being evaluated for inclusion into the upcoming 1.6 release of `bixd`. These changes are incompatible with shards generated by previous versions of the code. 
 Additionally, an issue with the existing sharding engine can result in a server running versions 1.4 or 1.5 of the software to experience a deadlock and automatically restart when running with the sharding feature enabled. 
 At this time, the developers recommend running with sharding disabled, pending the improvements scheduled to be introduced with 1.6. For more information on how to disable sharding, please visit https://xrpl.org/configure-history-sharding.html
 
  
 **New and Updated Features**
-- The `RequireFullyCanonicalSig` amendment which changes the signature requirements for the XRP Ledger protocol so that non-fully-canonical signatures are no longer valid. This protects against transaction malleability on all transactions, instead of just transactions with the tfFullyCanonicalSig flag enabled. Without this amendment, a transaction is malleable if it uses a secp256k1 signature and does not have tfFullyCanonicalSig enabled. Most signing utilities enable tfFullyCanonicalSig by default, but there are exceptions. With this amendment, no single-signed transactions are malleable. (Multi-signed transactions may still be malleable if signers provide more signatures than are necessary.) All transactions must use the fully canonical form of the signature, regardless of the tfFullyCanonicalSig flag. Signing utilities that do not create fully canonical signatures are not supported. All of Ripple's signing utilities have been providing fully-canonical signatures exclusively since at least 2014. For more information. [`ec137044a`](https://github.com/ripple/rippled/commit/ec137044a014530263cd3309d81643a5a3c1fdab)
-- Native [gRPC API](https://grpc.io/) support. Currently, this API provides a subset of the full `rippled` [API](https://xrpl.org/rippled-api.html). You can enable the gRPC API on your server with a new configuration stanza. [`7d867b806`](https://github.com/ripple/rippled/commit/7d867b806d70fc41fb45e3e61b719397033b272c)
-- API Versioning which allows for future breaking change of RPC methods to co-exist with existing versions. [`2aa11fa41`](https://github.com/ripple/rippled/commit/2aa11fa41d4a7849ae6a5d7a11df6f367191e3ef)
-- Nodes now receive and broadcast UNLs over the peer network under various conditions. [`2c71802e3`](https://github.com/ripple/rippled/commit/2c71802e389a59118024ea0152123144c084b31c)
-- Augmented `submit` method to include additional details on the status of the command. [`79e9085dd`](https://github.com/ripple/rippled/commit/79e9085dd1eb72864afe841225b78ec96e72b5ca)
-- Improved `tx` method response with additional details on ledgers searched. [`47501b7f9`](https://github.com/ripple/rippled/commit/47501b7f99d4103d9ad405e399169fc251161548)
-- New `validator_info` method which returns information pertaining to the current validator's keys, manifest sequence, and domain. [`3578acaf0`](https://github.com/ripple/rippled/commit/3578acaf0b5f2d27ddc33f5b4cc81d21be1903ae)
-- New `manifest` method which looks up manifest information for the specified key (either master or ephemeral). [`3578acaf0`](https://github.com/ripple/rippled/commit/3578acaf0b5f2d27ddc33f5b4cc81d21be1903ae)
-- Introduce handshake protocol for compression negotiation (compression is not implemented at this point) and other minor improvements. [`f6916bfd4`](https://github.com/ripple/rippled/commit/f6916bfd429ce654e017ae9686cb023d9e05408b)
-- Remove various old conditionals introduced by amendments. [`(51ed7db00`](https://github.com/ripple/rippled/commit/51ed7db0027ba822739bd9de6f2613f97c1b227b), [`6e4945c56)`](https://github.com/ripple/rippled/commit/6e4945c56b1a1c063b32921d7750607587ec3063)
-- Add `getRippledInfo` info gathering script to `rippled` Linux packages. [`acf4b7889`](https://github.com/ripple/rippled/commit/acf4b78892074303cb1fa22b778da5e7e7eddeda)
+- The `RequireFullyCanonicalSig` amendment which changes the signature requirements for the XRP Ledger protocol so that non-fully-canonical signatures are no longer valid. This protects against transaction malleability on all transactions, instead of just transactions with the tfFullyCanonicalSig flag enabled. Without this amendment, a transaction is malleable if it uses a secp256k1 signature and does not have tfFullyCanonicalSig enabled. Most signing utilities enable tfFullyCanonicalSig by default, but there are exceptions. With this amendment, no single-signed transactions are malleable. (Multi-signed transactions may still be malleable if signers provide more signatures than are necessary.) All transactions must use the fully canonical form of the signature, regardless of the tfFullyCanonicalSig flag. Signing utilities that do not create fully canonical signatures are not supported. All of Ripple's signing utilities have been providing fully-canonical signatures exclusively since at least 2014. For more information. [`ec137044a`](https://github.com/ripple/bixd/commit/ec137044a014530263cd3309d81643a5a3c1fdab)
+- Native [gRPC API](https://grpc.io/) support. Currently, this API provides a subset of the full `bixd` [API](https://xrpl.org/bixd-api.html). You can enable the gRPC API on your server with a new configuration stanza. [`7d867b806`](https://github.com/ripple/bixd/commit/7d867b806d70fc41fb45e3e61b719397033b272c)
+- API Versioning which allows for future breaking change of RPC methods to co-exist with existing versions. [`2aa11fa41`](https://github.com/ripple/bixd/commit/2aa11fa41d4a7849ae6a5d7a11df6f367191e3ef)
+- Nodes now receive and broadcast UNLs over the peer network under various conditions. [`2c71802e3`](https://github.com/ripple/bixd/commit/2c71802e389a59118024ea0152123144c084b31c)
+- Augmented `submit` method to include additional details on the status of the command. [`79e9085dd`](https://github.com/ripple/bixd/commit/79e9085dd1eb72864afe841225b78ec96e72b5ca)
+- Improved `tx` method response with additional details on ledgers searched. [`47501b7f9`](https://github.com/ripple/bixd/commit/47501b7f99d4103d9ad405e399169fc251161548)
+- New `validator_info` method which returns information pertaining to the current validator's keys, manifest sequence, and domain. [`3578acaf0`](https://github.com/ripple/bixd/commit/3578acaf0b5f2d27ddc33f5b4cc81d21be1903ae)
+- New `manifest` method which looks up manifest information for the specified key (either master or ephemeral). [`3578acaf0`](https://github.com/ripple/bixd/commit/3578acaf0b5f2d27ddc33f5b4cc81d21be1903ae)
+- Introduce handshake protocol for compression negotiation (compression is not implemented at this point) and other minor improvements. [`f6916bfd4`](https://github.com/ripple/bixd/commit/f6916bfd429ce654e017ae9686cb023d9e05408b)
+- Remove various old conditionals introduced by amendments. [`(51ed7db00`](https://github.com/ripple/bixd/commit/51ed7db0027ba822739bd9de6f2613f97c1b227b), [`6e4945c56)`](https://github.com/ripple/bixd/commit/6e4945c56b1a1c063b32921d7750607587ec3063)
+- Add `getbixdInfo` info gathering script to `bixd` Linux packages. [`acf4b7889`](https://github.com/ripple/bixd/commit/acf4b78892074303cb1fa22b778da5e7e7eddeda)
 
 **Bug Fixes and Improvements**
-- The `fixQualityUpperBound` amendment which fixes a bug in unused code for estimating the ratio of input to output of individual steps in cross-currency payments. [`9d3626fec`](https://github.com/ripple/rippled/commit/9d3626fec5b610100f401dc0d25b9ec8e4a9a362)
-- `tx` method now properly fetches all historical tx if they are incorporated into a validated ledger under rules that applied at the time. [`11cf27e00`](https://github.com/ripple/rippled/commit/11cf27e00698dbfc099b23463927d1dac829ed19)
-- Fix to how `fail_hard` flag is handled with the `submit` method - transactions that are submitted with the `fail_hard` flag that result in any TER code besides tesSUCCESS is neither queued nor held. [`cd9732b47`](https://github.com/ripple/rippled/commit/cd9732b47a9d4e95bcb74e048d2c76fa118b80fb)
-- Remove unused `Beast` code. [`172ead822`](https://github.com/ripple/rippled/commit/172ead822159a3c1f9b73217da4316df48851ab6)
-- Lag ratchet code fix to use proper ephemeral public keys instead of the long-term master public keys.[`6529d3e6f`](https://github.com/ripple/rippled/commit/6529d3e6f7333fc5226e5aa9ae65f834cb93dfe5)
+- The `fixQualityUpperBound` amendment which fixes a bug in unused code for estimating the ratio of input to output of individual steps in cross-currency payments. [`9d3626fec`](https://github.com/ripple/bixd/commit/9d3626fec5b610100f401dc0d25b9ec8e4a9a362)
+- `tx` method now properly fetches all historical tx if they are incorporated into a validated ledger under rules that applied at the time. [`11cf27e00`](https://github.com/ripple/bixd/commit/11cf27e00698dbfc099b23463927d1dac829ed19)
+- Fix to how `fail_hard` flag is handled with the `submit` method - transactions that are submitted with the `fail_hard` flag that result in any TER code besides tesSUCCESS is neither queued nor held. [`cd9732b47`](https://github.com/ripple/bixd/commit/cd9732b47a9d4e95bcb74e048d2c76fa118b80fb)
+- Remove unused `Beast` code. [`172ead822`](https://github.com/ripple/bixd/commit/172ead822159a3c1f9b73217da4316df48851ab6)
+- Lag ratchet code fix to use proper ephemeral public keys instead of the long-term master public keys.[`6529d3e6f`](https://github.com/ripple/bixd/commit/6529d3e6f7333fc5226e5aa9ae65f834cb93dfe5)
 
 
 ## Version 1.4.0
 
-The `rippled` 1.4.0 release introduces several improvements and new features, including support for deleting accounts, improved peer slot management, improved CI integration and package building and support for [C++17](https://en.wikipedia.org/wiki/C%2B%2B17) and [Boost 1.71](https://www.boost.org/users/history/version_1_71_0.html). Finally, this release removes the code for the `SHAMapV2` amendment which failed to gain majority support and has been obsoleted by other improvements.
+The `bixd` 1.4.0 release introduces several improvements and new features, including support for deleting accounts, improved peer slot management, improved CI integration and package building and support for [C++17](https://en.wikipedia.org/wiki/C%2B%2B17) and [Boost 1.71](https://www.boost.org/users/history/version_1_71_0.html). Finally, this release removes the code for the `SHAMapV2` amendment which failed to gain majority support and has been obsoleted by other improvements.
  
 **New and Updated Features**
 - The `DeletableAccounts` amendment which, if enabled, will make it possible for users to delete unused or unneeded accounts, recovering the account's reserve.
@@ -197,7 +197,7 @@ The `rippled` 1.4.0 release introduces several improvements and new features, in
 
 ## Version 1.3.1
 
-The `rippled` 1.3.1 release improves the built-in deadlock detection code, improves logging during process startup, changes the package build pipeline and improves the build documentation.
+The `bixd` 1.3.1 release improves the built-in deadlock detection code, improves logging during process startup, changes the package build pipeline and improves the build documentation.
 
 **New and Updated Features**
 
@@ -208,7 +208,7 @@ This release has no new features.
 - Improve logging during process startup (7c24f7b1)
 
 ## Version 1.3.0
-The `rippled` 1.3.0 release introduces several new features and overall improvements to the codebase, including the `fixMasterKeyAsRegularKey` amendment, code to adjust the timing of the consensus process and support for decentralized validator domain verification. The release also includes miscellaneous improvements including in the transaction censorship detection code, transaction validation code, manifest parsing code, configuration file parsing code, log file rotation code, and in the build, continuous integration, testing and package building pipelines.
+The `bixd` 1.3.0 release introduces several new features and overall improvements to the codebase, including the `fixMasterKeyAsRegularKey` amendment, code to adjust the timing of the consensus process and support for decentralized validator domain verification. The release also includes miscellaneous improvements including in the transaction censorship detection code, transaction validation code, manifest parsing code, configuration file parsing code, log file rotation code, and in the build, continuous integration, testing and package building pipelines.
 
 **New and Updated Features**
 - The `fixMasterKeyAsRegularKey` amendment which, if enabled, will correct a technical flaw that allowed setting an account's regular key to the account's master key.
@@ -221,7 +221,7 @@ The `rippled` 1.3.0 release introduces several new features and overall improvem
 
 ## Version 1.2.4
 
-The `rippled` 1.2.4 release improves the way that shard crawl requests are routed and the robustness of configured validator list retrieval by imposing a 20 second timeout.
+The `bixd` 1.2.4 release improves the way that shard crawl requests are routed and the robustness of configured validator list retrieval by imposing a 20 second timeout.
 
 **New and Updated Features**
 
@@ -234,7 +234,7 @@ This release has no new features.
 
 ## Version 1.2.3
 
-The `rippled` 1.2.3 release corrects a technical flaw which in some circumstances can cause a null pointer dereference that can crash the server.
+The `bixd` 1.2.3 release corrects a technical flaw which in some circumstances can cause a null pointer dereference that can crash the server.
 
 **New and Updated Features**
 
@@ -246,7 +246,7 @@ This release has no new features.
 
 ## Version 1.2.2
 
-The `rippled` 1.2.2 release corrects a technical flaw in the fee escalation
+The `bixd` 1.2.2 release corrects a technical flaw in the fee escalation
 engine which could cause some fee metrics to be calculated incorrectly. In some
 circumstances this can potentially cause the server to crash.
 
@@ -260,7 +260,7 @@ This release has no new features.
 
 ## Version 1.2.1
 
-The `rippled` 1.2.1 release introduces several fixes including a change in the
+The `bixd` 1.2.1 release introduces several fixes including a change in the
 information reported via the enhanced crawl functionality introduced in the
 1.2.0 release, a fix for a potential race condition when processing a status
 change message for a peer, and for a technical flaw that could cause a server
@@ -283,10 +283,10 @@ This release has no new features.
 
 ## Version 1.2.0
 
-The `rippled` 1.2.0 release introduces the MultisignReserve Amendment, which
+The `bixd` 1.2.0 release introduces the MultisignReserve Amendment, which
 reduces the reserve requirement associated with signer lists. This release also
 includes incremental improvements to the code that handles offers. Furthermore,
-`rippled` now also has the ability to automatically detect transaction
+`bixd` now also has the ability to automatically detect transaction
 censorship attempts and issue warnings of increasing severity for transactions
 that should have been included in a closed ledger after several rounds of
 consensus.
@@ -318,7 +318,7 @@ consensus.
 
 ## Version 1.1.2
 
-The `rippled` 1.1.2 release introduces a fix for an issue that could have
+The `bixd` 1.1.2 release introduces a fix for an issue that could have
 prevented cluster peers from successfully bypassing connection limits when
 connecting to other servers on the same cluster. Additionally, it improves
 logic used to determine what the preferred ledger is during suboptimal
@@ -335,7 +335,7 @@ This release has no new features.
 
 ## Version 1.1.1
 
-The `rippled` 1.1.1 release adds support for redirections when retrieving
+The `bixd` 1.1.1 release adds support for redirections when retrieving
 validator lists and changes the way that validators with an expired list
 behave. Additionally, informational commands return more useful information
 to allow server operators to determine the state of their server
@@ -353,7 +353,7 @@ to allow server operators to determine the state of their server
 
 ## Version 1.1.0
 
-The `rippled` 1.1.0 release release includes the `DepositPreAuth` amendment, which combined with the previously released `DepositAuth` amendment, allows users to pre-authorize incoming transactions to accounts, by whitelisting sender addresses. The 1.1.0 release also includes incremental improvements to several previously released features (`fix1515` amendment), deprecates support for the `sign` and `sign_for` commands from the rippled API and improves invariant checking for enhanced security.
+The `bixd` 1.1.0 release release includes the `DepositPreAuth` amendment, which combined with the previously released `DepositAuth` amendment, allows users to pre-authorize incoming transactions to accounts, by whitelisting sender addresses. The 1.1.0 release also includes incremental improvements to several previously released features (`fix1515` amendment), deprecates support for the `sign` and `sign_for` commands from the bixd API and improves invariant checking for enhanced security.
 
 Ripple recommends that all server operators upgrade to XRP Ledger version 1.1.0 by Thursday, 2018-09-27, to ensure service continuity.
 
@@ -391,7 +391,7 @@ Ripple recommends that all server operators upgrade to XRP Ledger version 1.1.0 
 
 ## Version 1.0.0.
 
-The `rippled` 1.0.0 release includes incremental improvements to several previously released features.
+The `bixd` 1.0.0 release includes incremental improvements to several previously released features.
 
 **New and Updated Features**
 
@@ -407,7 +407,7 @@ The `rippled` 1.0.0 release includes incremental improvements to several previou
 
 ## Version 0.90.1
 
-The `rippled` 0.90.1 release includes fixes for issues reported by external security researchers. These issues, when exploited, could cause a rippled instance to restart or, in some circumstances, stop executing. While these issues can result in a denial of service attack, none affect the integrity of the XRP Ledger and no user funds, including XRP, are at risk.
+The `bixd` 0.90.1 release includes fixes for issues reported by external security researchers. These issues, when exploited, could cause a bixd instance to restart or, in some circumstances, stop executing. While these issues can result in a denial of service attack, none affect the integrity of the XRP Ledger and no user funds, including XRP, are at risk.
 
 **New and Updated Features**
 
@@ -427,53 +427,53 @@ This release has no new features.
 
 ## Version 0.90.0
 
-The `rippled` 0.90.0 release introduces several features and enhancements that improve the reliability, scalability and security of the XRP Ledger.
+The `bixd` 0.90.0 release introduces several features and enhancements that improve the reliability, scalability and security of the XRP Ledger.
 
 Highlights of this release include:
 
 - The `DepositAuth` amendment, which lets an account strictly reject any incoming money from transactions sent by other accounts.
 - The `Checks` amendment, which allows users to create deferred payments that can be cancelled or cashed by their intended recipients.
-- **History Sharding**, which allows `rippled` servers to distribute historical ledger data if they agree to dedicate storage for segments of ledger history.
+- **History Sharding**, which allows `bixd` servers to distribute historical ledger data if they agree to dedicate storage for segments of ledger history.
 - New **Preferred Ledger by Branch** semantics which improve the logic that allow a server to decide which ledger it should base future ledgers on when there are multiple candidates.
 
 **New and Updated Features**
 
-- Add support for Deposit Authorization account root flag ([#2239](https://github.com/ripple/rippled/issues/2239))
-- Implement history shards ([#2258](https://github.com/ripple/rippled/issues/2258))
-- Preferred ledger by branch ([#2300](https://github.com/ripple/rippled/issues/2300))
-- Redesign Consensus Simulation Framework ([#2209](https://github.com/ripple/rippled/issues/2209))
-- Tune for higher transaction processing ([#2294](https://github.com/ripple/rippled/issues/2294))
-- Optimize queries for `account_tx` to work around SQLite query planner ([#2312](https://github.com/ripple/rippled/issues/2312))
-- Allow `Journal` to be copied/moved ([#2292](https://github.com/ripple/rippled/issues/2292))
-- Cleanly report invalid `[server]` settings ([#2305](https://github.com/ripple/rippled/issues/2305))
-- Improve log scrubbing ([#2358](https://github.com/ripple/rippled/issues/2358))
-- Update `rippled-example.cfg` ([#2307](https://github.com/ripple/rippled/issues/2307))
-- Force json commands to be objects ([#2319](https://github.com/ripple/rippled/issues/2319))
-- Fix cmake clang build for sanitizers ([#2325](https://github.com/ripple/rippled/issues/2325))
-- Allow `account_objects` RPC to filter by “check” ([#2356](https://github.com/ripple/rippled/issues/2356))
-- Limit nesting of json commands ([#2326](https://github.com/ripple/rippled/issues/2326))
-- Unit test that `sign_for` returns a correct hash ([#2333](https://github.com/ripple/rippled/issues/2333))
-- Update Visual Studio build instructions ([#2355](https://github.com/ripple/rippled/issues/2355))
-- Force boost static linking for MacOS builds ([#2334](https://github.com/ripple/rippled/issues/2334))
-- Update MacOS build instructions ([#2342](https://github.com/ripple/rippled/issues/2342))
-- Add dev docs generation to Jenkins ([#2343](https://github.com/ripple/rippled/issues/2343))
-- Poll if process is still alive in Test.py ([#2290](https://github.com/ripple/rippled/issues/2290))
-- Remove unused `beast::currentTimeMillis()` ([#2345](https://github.com/ripple/rippled/issues/2345))
+- Add support for Deposit Authorization account root flag ([#2239](https://github.com/ripple/bixd/issues/2239))
+- Implement history shards ([#2258](https://github.com/ripple/bixd/issues/2258))
+- Preferred ledger by branch ([#2300](https://github.com/ripple/bixd/issues/2300))
+- Redesign Consensus Simulation Framework ([#2209](https://github.com/ripple/bixd/issues/2209))
+- Tune for higher transaction processing ([#2294](https://github.com/ripple/bixd/issues/2294))
+- Optimize queries for `account_tx` to work around SQLite query planner ([#2312](https://github.com/ripple/bixd/issues/2312))
+- Allow `Journal` to be copied/moved ([#2292](https://github.com/ripple/bixd/issues/2292))
+- Cleanly report invalid `[server]` settings ([#2305](https://github.com/ripple/bixd/issues/2305))
+- Improve log scrubbing ([#2358](https://github.com/ripple/bixd/issues/2358))
+- Update `bixd-example.cfg` ([#2307](https://github.com/ripple/bixd/issues/2307))
+- Force json commands to be objects ([#2319](https://github.com/ripple/bixd/issues/2319))
+- Fix cmake clang build for sanitizers ([#2325](https://github.com/ripple/bixd/issues/2325))
+- Allow `account_objects` RPC to filter by “check” ([#2356](https://github.com/ripple/bixd/issues/2356))
+- Limit nesting of json commands ([#2326](https://github.com/ripple/bixd/issues/2326))
+- Unit test that `sign_for` returns a correct hash ([#2333](https://github.com/ripple/bixd/issues/2333))
+- Update Visual Studio build instructions ([#2355](https://github.com/ripple/bixd/issues/2355))
+- Force boost static linking for MacOS builds ([#2334](https://github.com/ripple/bixd/issues/2334))
+- Update MacOS build instructions ([#2342](https://github.com/ripple/bixd/issues/2342))
+- Add dev docs generation to Jenkins ([#2343](https://github.com/ripple/bixd/issues/2343))
+- Poll if process is still alive in Test.py ([#2290](https://github.com/ripple/bixd/issues/2290))
+- Remove unused `beast::currentTimeMillis()` ([#2345](https://github.com/ripple/bixd/issues/2345))
 
 
 **Bug Fixes**
-- Improve error message on mistyped command ([#2283](https://github.com/ripple/rippled/issues/2283))
-- Add missing includes ([#2368](https://github.com/ripple/rippled/issues/2368))
-- Link boost statically only when requested ([#2291](https://github.com/ripple/rippled/issues/2291))
-- Unit test logging fixes ([#2293](https://github.com/ripple/rippled/issues/2293))
-- Fix Jenkins pipeline for branches ([#2289](https://github.com/ripple/rippled/issues/2289))
-- Avoid AppVeyor stack overflow ([#2344](https://github.com/ripple/rippled/issues/2344))
-- Reduce noise in log ([#2352](https://github.com/ripple/rippled/issues/2352))
+- Improve error message on mistyped command ([#2283](https://github.com/ripple/bixd/issues/2283))
+- Add missing includes ([#2368](https://github.com/ripple/bixd/issues/2368))
+- Link boost statically only when requested ([#2291](https://github.com/ripple/bixd/issues/2291))
+- Unit test logging fixes ([#2293](https://github.com/ripple/bixd/issues/2293))
+- Fix Jenkins pipeline for branches ([#2289](https://github.com/ripple/bixd/issues/2289))
+- Avoid AppVeyor stack overflow ([#2344](https://github.com/ripple/bixd/issues/2344))
+- Reduce noise in log ([#2352](https://github.com/ripple/bixd/issues/2352))
 
 
 ## Version 0.81.0
 
-The `rippled` 0.81.0 release introduces changes that improve the scalability of the XRP Ledger and transitions the recommended validator configuration to a new hosted site, as described in Ripple's [Decentralization Strategy Update](https://ripple.com/dev-blog/decentralization-strategy-update/) post.
+The `bixd` 0.81.0 release introduces changes that improve the scalability of the XRP Ledger and transitions the recommended validator configuration to a new hosted site, as described in Ripple's [Decentralization Strategy Update](https://ripple.com/dev-blog/decentralization-strategy-update/) post.
 
 **New and Updated Features**
 
@@ -482,12 +482,12 @@ The `rippled` 0.81.0 release introduces changes that improve the scalability of 
 
 **Bug Fixes**
 
-- Optimize queries for account_tx to work around SQLite query planner ([#2312](https://github.com/ripple/rippled/issues/2312))
+- Optimize queries for account_tx to work around SQLite query planner ([#2312](https://github.com/ripple/bixd/issues/2312))
 
 
 ## Version 0.80.2
 
-The `rippled` 0.80.2 release introduces changes that improve the scalability of the XRP Ledger.
+The `bixd` 0.80.2 release introduces changes that improve the scalability of the XRP Ledger.
 
 **New and Updated Features**
 
@@ -497,30 +497,30 @@ This release has no new features.
 
 - Do not dispatch a transaction received from a peer for processing if it has already been dispatched within the past ten seconds.
 - Increase the number of transaction handlers that can be in flight in the job queue and decrease the relative cost for peers to share transaction and ledger data.
-- Make better use of resources by adjusting the number of threads we initialize, by reverting commit [#68b8ffd](https://github.com/ripple/rippled/commit/68b8ffdb638d07937f841f7217edeb25efdb3b5d).
+- Make better use of resources by adjusting the number of threads we initialize, by reverting commit [#68b8ffd](https://github.com/ripple/bixd/commit/68b8ffdb638d07937f841f7217edeb25efdb3b5d).
 
 ## Version 0.80.1
 
-The `rippled` 0.80.1 release provides several enhancements in support of published validator lists and corrects several bugs.
+The `bixd` 0.80.1 release provides several enhancements in support of published validator lists and corrects several bugs.
 
 **New and Updated Features**
 
-- Allow including validator manifests in published list ([#2278](https://github.com/ripple/rippled/issues/2278))
-- Add validator list RPC commands ([#2242](https://github.com/ripple/rippled/issues/2242))
-- Support [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) when querying published list sites and use Windows system root certificates ([#2275](https://github.com/ripple/rippled/issues/2275))
-- Grow TxQ expected size quickly, shrink slowly ([#2235](https://github.com/ripple/rippled/issues/2235))
+- Allow including validator manifests in published list ([#2278](https://github.com/ripple/bixd/issues/2278))
+- Add validator list RPC commands ([#2242](https://github.com/ripple/bixd/issues/2242))
+- Support [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) when querying published list sites and use Windows system root certificates ([#2275](https://github.com/ripple/bixd/issues/2275))
+- Grow TxQ expected size quickly, shrink slowly ([#2235](https://github.com/ripple/bixd/issues/2235))
 
 **Bug Fixes**
 
-- Make consensus quorum unreachable if validator list expires ([#2240](https://github.com/ripple/rippled/issues/2240))
-- Properly use ledger hash to break ties when determing working ledger for consensus ([#2257](https://github.com/ripple/rippled/issues/2257))
-- Explictly use std::deque for missing node handler in SHAMap code ([#2252](https://github.com/ripple/rippled/issues/2252))
-- Verify validator token manifest matches private key ([#2268](https://github.com/ripple/rippled/issues/2268))
+- Make consensus quorum unreachable if validator list expires ([#2240](https://github.com/ripple/bixd/issues/2240))
+- Properly use ledger hash to break ties when determing working ledger for consensus ([#2257](https://github.com/ripple/bixd/issues/2257))
+- Explictly use std::deque for missing node handler in SHAMap code ([#2252](https://github.com/ripple/bixd/issues/2252))
+- Verify validator token manifest matches private key ([#2268](https://github.com/ripple/bixd/issues/2268))
 
 
 ## Version 0.80.0
 
-The `rippled` 0.80.0 release introduces several enhancements that improve the reliability, scalability and security of the XRP Ledger.
+The `bixd` 0.80.0 release introduces several enhancements that improve the reliability, scalability and security of the XRP Ledger.
 
 Highlights of this release include:
 
@@ -532,22 +532,22 @@ Highlights of this release include:
 
 **New and Updated Features**
 
-- Improve directory insertion and deletion ([#2165](https://github.com/ripple/rippled/issues/2165))
-- Move consensus thread safety logic from the generic implementation in Consensus into the RCL adapted version RCLConsensus ([#2106](https://github.com/ripple/rippled/issues/2106))
-- Refactor Validations class into a generic version that can be adapted ([#2084](https://github.com/ripple/rippled/issues/2084))
-- Make minimum quorum Byzantine fault tolerant ([#2093](https://github.com/ripple/rippled/issues/2093))
-- Make amendment blocked state thread-safe and simplify a constructor ([#2207](https://github.com/ripple/rippled/issues/2207))
-- Use ledger hash to break ties ([#2169](https://github.com/ripple/rippled/issues/2169))
-- Refactor RangeSet ([#2113](https://github.com/ripple/rippled/issues/2113))
+- Improve directory insertion and deletion ([#2165](https://github.com/ripple/bixd/issues/2165))
+- Move consensus thread safety logic from the generic implementation in Consensus into the RCL adapted version RCLConsensus ([#2106](https://github.com/ripple/bixd/issues/2106))
+- Refactor Validations class into a generic version that can be adapted ([#2084](https://github.com/ripple/bixd/issues/2084))
+- Make minimum quorum Byzantine fault tolerant ([#2093](https://github.com/ripple/bixd/issues/2093))
+- Make amendment blocked state thread-safe and simplify a constructor ([#2207](https://github.com/ripple/bixd/issues/2207))
+- Use ledger hash to break ties ([#2169](https://github.com/ripple/bixd/issues/2169))
+- Refactor RangeSet ([#2113](https://github.com/ripple/bixd/issues/2113))
 
 **Bug Fixes**
 
-- Fix an issue where `setAmendmentBlocked` is only called when processing the `EnableAmendment` transaction for the amendment ([#2137](https://github.com/ripple/rippled/issues/2137))
-- Track escrow in recipient's owner directory ([#2212](https://github.com/ripple/rippled/issues/2212))
+- Fix an issue where `setAmendmentBlocked` is only called when processing the `EnableAmendment` transaction for the amendment ([#2137](https://github.com/ripple/bixd/issues/2137))
+- Track escrow in recipient's owner directory ([#2212](https://github.com/ripple/bixd/issues/2212))
 
 ## Version 0.70.2
 
-The `rippled` 0.70.2 release corrects an emergent behavior which causes large numbers of transactions to get
+The `bixd` 0.70.2 release corrects an emergent behavior which causes large numbers of transactions to get
 stuck in different nodes' open ledgers without being passed on to validators, resulting in a spike in the open
 ledger fee on those nodes.
 
@@ -557,13 +557,13 @@ This release has no new features.
 
 **Bug Fixes**
 
-- Recent fee rises and TxQ issues ([#2215](https://github.com/ripple/rippled/issues/2215))
+- Recent fee rises and TxQ issues ([#2215](https://github.com/ripple/bixd/issues/2215))
 
 
 ## Version 0.70.1
 
-The `rippled` 0.70.1 release corrects a technical flaw in the newly refactored consensus code that could cause a node to get stuck in consensus due to stale votes from a
-peer, and allows compiling `rippled` under the 1.1.x releases of OpenSSL.
+The `bixd` 0.70.1 release corrects a technical flaw in the newly refactored consensus code that could cause a node to get stuck in consensus due to stale votes from a
+peer, and allows compiling `bixd` under the 1.1.x releases of OpenSSL.
 
 **New and Updated Features**
 
@@ -571,14 +571,14 @@ This release has no new features.
 
 **Bug Fixes**
 
-- Allow compiling against OpenSSL 1.1.0 ([#2151](https://github.com/ripple/rippled/pull/2151))
-- Log invariant check messages at "fatal" level ([2154](https://github.com/ripple/rippled/pull/2154))
-- Fix the consensus code to update all disputed transactions after a node changes a position ([2156](https://github.com/ripple/rippled/pull/2156))
+- Allow compiling against OpenSSL 1.1.0 ([#2151](https://github.com/ripple/bixd/pull/2151))
+- Log invariant check messages at "fatal" level ([2154](https://github.com/ripple/bixd/pull/2154))
+- Fix the consensus code to update all disputed transactions after a node changes a position ([2156](https://github.com/ripple/bixd/pull/2156))
 
 
 ## Version 0.70.0
 
-The `rippled` 0.70.0 release introduces several enhancements that improve the reliability, scalability and security of the network.
+The `bixd` 0.70.0 release introduces several enhancements that improve the reliability, scalability and security of the network.
 
 Highlights of this release include:
 
@@ -615,7 +615,7 @@ Highlights of this release include:
 
 ## Version 0.60.3
 
-The `rippled` 0.60.3 release helps to increase the stability of the network under heavy load.
+The `bixd` 0.60.3 release helps to increase the stability of the network under heavy load.
 
 **New and Updated Features**
 
@@ -623,11 +623,11 @@ This release has no new features.
 
 **Bug Fixes**
 
-Server overlay improvements ([#2110](https://github.com/ripple/rippled/pull/2011))
+Server overlay improvements ([#2110](https://github.com/ripple/bixd/pull/2011))
 
 ## Version 0.60.2
 
-The `rippled` 0.60.2 release further strengthens handling of cases associated with a previously patched exploit, in which NoRipple flags were being bypassed by using offers.
+The `bixd` 0.60.2 release further strengthens handling of cases associated with a previously patched exploit, in which NoRipple flags were being bypassed by using offers.
 
 **New and Updated Features**
 
@@ -635,11 +635,11 @@ This release has no new features.
 
 **Bug Fixes**
 
-Prevent the ability to bypass the `NoRipple` flag using offers ([#7cd4d78](https://github.com/ripple/rippled/commit/4ff40d4954dfaa237c8b708c2126cb39566776da))
+Prevent the ability to bypass the `NoRipple` flag using offers ([#7cd4d78](https://github.com/ripple/bixd/commit/4ff40d4954dfaa237c8b708c2126cb39566776da))
 
 ## Version 0.60.1
 
-The `rippled` 0.60.1 release corrects a technical flaw that resulted from using 32-bit space identifiers instead of the protocol-defined 16-bit values for Escrow and Payment Channel ledger entries. rippled version 0.60.1 also fixes a problem where the WebSocket timeout timer would not be cancelled when certain errors occurred during subscription streams. Ripple requires upgrading to rippled version 0.60.1 immediately.
+The `bixd` 0.60.1 release corrects a technical flaw that resulted from using 32-bit space identifiers instead of the protocol-defined 16-bit values for Escrow and Payment Channel ledger entries. bixd version 0.60.1 also fixes a problem where the WebSocket timeout timer would not be cancelled when certain errors occurred during subscription streams. Ripple requires upgrading to bixd version 0.60.1 immediately.
 
 **New and Updated Feature**
 
@@ -652,12 +652,12 @@ Fix WebSocket timeout timer issues.
 
 ## Version 0.60.0
 
-The `rippled` 0.60.0 release introduces several enhancements that improve the reliability and scalability of the Ripple Consensus Ledger (RCL), including features that add ledger interoperability by improving Interledger Protocol compatibility. Ripple recommends that all server operators upgrade to version 0.60.0 by Thursday, 2017-03-30, for service continuity.
+The `bixd` 0.60.0 release introduces several enhancements that improve the reliability and scalability of the Ripple Consensus Ledger (RCL), including features that add ledger interoperability by improving Interledger Protocol compatibility. Ripple recommends that all server operators upgrade to version 0.60.0 by Thursday, 2017-03-30, for service continuity.
 
 Highlights of this release include:
 
 - `Escrow` (previously called `SusPay`) which permits users to cryptographically escrow XRP on RCL with an expiration date, and optionally a hashlock crypto-condition. Ripple expects Escrow to be enabled via an Amendment named [`Escrow`](https://ripple.com/build/amendments/#escrow) on Thursday, 2017-03-30. See below for details.
-- Dynamic UNL Lite, which allows `rippled` to automatically adjust which validators it trusts based on recommended lists from trusted publishers.
+- Dynamic UNL Lite, which allows `bixd` to automatically adjust which validators it trusts based on recommended lists from trusted publishers.
 
 **New and Updated Features**
 
@@ -696,7 +696,7 @@ Highlights of this release include:
 
 ## Version 0.50.3
 
-The `rippled` 0.50.3 release corrects a reported exploit that would allow a combination of trust lines and order books in a payment path to bypass the blocking effect of the [`NoRipple`](https://ripple.com/build/understanding-the-noripple-flag/) flag. Ripple recommends that all server operators immediately upgrade to version 0.50.3.
+The `bixd` 0.50.3 release corrects a reported exploit that would allow a combination of trust lines and order books in a payment path to bypass the blocking effect of the [`NoRipple`](https://ripple.com/build/understanding-the-noripple-flag/) flag. Ripple recommends that all server operators immediately upgrade to version 0.50.3.
 
 **New and Updated Features**
 
@@ -709,7 +709,7 @@ Correct a reported exploit that would allow a combination of trust lines and ord
 
 ## Version 0.50.2
 
-The `rippled` 0.50.2 release adjusts the default TLS cipher list and corrects a flaw that would not allow an SSL handshake to properly complete if the port was configured using the `wss` keyword. Ripple recommends upgrading to 0.50.2 only if server operators are running rippled servers that accept client connections over TLS.
+The `bixd` 0.50.2 release adjusts the default TLS cipher list and corrects a flaw that would not allow an SSL handshake to properly complete if the port was configured using the `wss` keyword. Ripple recommends upgrading to 0.50.2 only if server operators are running bixd servers that accept client connections over TLS.
 
 **New and Updated Features**
 
@@ -722,9 +722,9 @@ Adjust the default cipher list and correct a flaw that would not allow an SSL ha
 
 ## Version 0.50.0
 
-The `rippled` 0.50.0 release includes TickSize, which allows gateways to set a "tick size" for assets they issue to help promote faster price discovery and deeper liquidity, as well as reduce transaction spam and ledger churn on RCL. Ripple expects TickSize to be enabled via an Amendment called TickSize on Tuesday, 2017-02-21.
+The `bixd` 0.50.0 release includes TickSize, which allows gateways to set a "tick size" for assets they issue to help promote faster price discovery and deeper liquidity, as well as reduce transaction spam and ledger churn on RCL. Ripple expects TickSize to be enabled via an Amendment called TickSize on Tuesday, 2017-02-21.
 
-You can [update to the new version](https://ripple.com/build/rippled-setup/#updating-rippled) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/Rippled_build_instructions).
+You can [update to the new version](https://ripple.com/build/bixd-setup/#updating-bixd) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/bixd_build_instructions).
 
 **New and Updated Features**
 
@@ -754,7 +754,7 @@ We also expect larger tick sizes to benefit market makers in the following ways:
 
 **Hardened TLS configuration**
 
-This release updates the default TLS configuration for rippled. The new release supports only 2048-bit DH parameters and defines a new default set of modern ciphers to use, removing support for ciphers and hash functions that are no longer considered secure.
+This release updates the default TLS configuration for bixd. The new release supports only 2048-bit DH parameters and defines a new default set of modern ciphers to use, removing support for ciphers and hash functions that are no longer considered secure.
 
 Server administrators who wish to have different settings can configure custom global and per-port cipher suites in the configuration file using the `ssl_ciphers` directive.
 
@@ -806,14 +806,14 @@ Validator's manifest not forwarded beyond directly connected peers (#1919)
 
 We expect the previously announced Suspended Payments feature, which introduces new transaction types to the Ripple protocol that will permit users to cryptographically escrow XRP on RCL, to be enabled via the [SusPay](https://ripple.com/build/amendments/#suspay) Amendment on Tuesday, 2017-02-21.
 
-Also, we expect support for crypto-conditions, which are signature-like structures that can be used with suspended payments to support ILP integration, to be included in the next rippled release scheduled for March.
+Also, we expect support for crypto-conditions, which are signature-like structures that can be used with suspended payments to support ILP integration, to be included in the next bixd release scheduled for March.
 
-Lastly, we do not have an update on the previously announced changes to the hash tree structure that rippled uses to represent a ledger, called [SHAMapV2](https://ripple.com/build/amendments/#shamapv2). At the time of activation, this amendment will require brief scheduled allowable unavailability while the changes to the hash tree structure are computed by the network. We will keep the community updated as we progress towards this date (TBA).
+Lastly, we do not have an update on the previously announced changes to the hash tree structure that bixd uses to represent a ledger, called [SHAMapV2](https://ripple.com/build/amendments/#shamapv2). At the time of activation, this amendment will require brief scheduled allowable unavailability while the changes to the hash tree structure are computed by the network. We will keep the community updated as we progress towards this date (TBA).
 
 
 ## Version 0.40.1
 
-The `rippled` 0.40.1 release  increases SQLite database limits in all rippled servers. Ripple recommends upgrading to 0.40.1 only if server operators are running rippled servers with full-history of the ledger. There are no new or updated features in the 0.40.1 release.
+The `bixd` 0.40.1 release  increases SQLite database limits in all bixd servers. Ripple recommends upgrading to 0.40.1 only if server operators are running bixd servers with full-history of the ledger. There are no new or updated features in the 0.40.1 release.
 
 You can update to the new version on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please compile the new version from source.
 
@@ -827,13 +827,13 @@ Increase SQLite database limits to prevent full-history servers from crashing wh
 
 ## Version 0.40.0
 
-The `rippled` 0.40.0 release includes Suspended Payments, a new transaction type on the Ripple network that functions similar to an escrow service, which permits users cryptographically escrow XRP on RCL with an expiration date. Ripple expects Suspended Payments to be enabled via an Amendment named [SusPay](https://ripple.com/build/amendments/#suspay) on Tuesday, 2017-01-17.
+The `bixd` 0.40.0 release includes Suspended Payments, a new transaction type on the Ripple network that functions similar to an escrow service, which permits users cryptographically escrow XRP on RCL with an expiration date. Ripple expects Suspended Payments to be enabled via an Amendment named [SusPay](https://ripple.com/build/amendments/#suspay) on Tuesday, 2017-01-17.
 
 You can update to the new version on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please compile the new version from source.
 
 **New and Updated Features**
 
-Previously, Ripple announced the introduction of Payment Channels during the release of rippled version 0.33.0, which permit scalable, off-ledger checkpoints of high volume, low value payments flowing in a single direction. This was the first step in a multi-phase effort to make RCL more scalable and to support Interledger Protocol (ILP). Ripple expects Payment Channels to be enabled via an Amendment called [PayChan](https://ripple.com/build/amendments/#paychan) on a future date to be determined.
+Previously, Ripple announced the introduction of Payment Channels during the release of bixd version 0.33.0, which permit scalable, off-ledger checkpoints of high volume, low value payments flowing in a single direction. This was the first step in a multi-phase effort to make RCL more scalable and to support Interledger Protocol (ILP). Ripple expects Payment Channels to be enabled via an Amendment called [PayChan](https://ripple.com/build/amendments/#paychan) on a future date to be determined.
 
 In the second phase towards making RCL more scalable and compatible with ILP, Ripple is introducing Suspended Payments, a new transaction type on the Ripple network that functions similar to an escrow service, which permits users to cryptographically escrow XRP on RCL with an expiration date. Ripple expects Suspended Payments to be enabled via an Amendment named [SusPay](https://ripple.com/build/amendments/#suspay) on Tuesday, 2017-01-17.
 
@@ -841,7 +841,7 @@ A Suspended Payment can be created, which deducts the funds from the sending acc
 
 In the third phase towards making RCL more scalable and compatible with ILP, Ripple plans to introduce additional library support for crypto-conditions, which are distributable event descriptions written in a standard format that describe how to recognize a fulfillment message without saying exactly what the fulfillment is. Fulfillments are cryptographically verifiable messages that prove an event occurred. If you transmit a fulfillment, then everyone who has the condition can agree that the condition has been met. Fulfillment requires the submission of a signature that matches the condition (message hash and public key). This format supports multiple algorithms, including different hash functions and cryptographic signing schemes. Crypto-conditions can be nested in multiple levels, with each level possibly having multiple signatures.
 
-Lastly, we do not have an update on the previously announced changes to the hash tree structure that rippled uses to represent a ledger, called [SHAMapV2](https://ripple.com/build/amendments/#shamapv2). This will require brief scheduled allowable downtime while the changes to the hash tree structure are propagated by the network. We will keep the community updated as we progress towards this date (TBA).
+Lastly, we do not have an update on the previously announced changes to the hash tree structure that bixd uses to represent a ledger, called [SHAMapV2](https://ripple.com/build/amendments/#shamapv2). This will require brief scheduled allowable downtime while the changes to the hash tree structure are propagated by the network. We will keep the community updated as we progress towards this date (TBA).
 
 Consensus refactor (#1874)
 
@@ -856,9 +856,9 @@ Correctly parse multi-buffer JSON messages (#1862)
 
 ## Version 0.33.0
 
-The `rippled` 0.33.0 release includes an improved version of the payment code, which we expect to be activated via Amendment on Wednesday, 2016-10-20 with the name [Flow](https://ripple.com/build/amendments/#flow). We are also introducing XRP Payment Channels, a new structure in the ledger designed to support [Interledger Protocol](https://interledger.org/) trust lines as balances get substantial, which we expect to be activated via Amendment on a future date (TBA) with the name [PayChan](https://ripple.com/build/amendments/#paychan). Lastly, we will be introducing changes to the hash tree structure that rippled uses to represent a ledger, which we expect to be available via Amendment on a future date (TBA) with the name [SHAMapV2](https://ripple.com/build/amendments/#shamapv2).
+The `bixd` 0.33.0 release includes an improved version of the payment code, which we expect to be activated via Amendment on Wednesday, 2016-10-20 with the name [Flow](https://ripple.com/build/amendments/#flow). We are also introducing XRP Payment Channels, a new structure in the ledger designed to support [Interledger Protocol](https://interledger.org/) trust lines as balances get substantial, which we expect to be activated via Amendment on a future date (TBA) with the name [PayChan](https://ripple.com/build/amendments/#paychan). Lastly, we will be introducing changes to the hash tree structure that bixd uses to represent a ledger, which we expect to be available via Amendment on a future date (TBA) with the name [SHAMapV2](https://ripple.com/build/amendments/#shamapv2).
 
-You can [update to the new version](https://ripple.com/build/rippled-setup/#updating-rippled) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/Rippled_build_instructions).
+You can [update to the new version](https://ripple.com/build/bixd-setup/#updating-bixd) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/bixd_build_instructions).
 
 ** New and Updated Features **
 
@@ -866,7 +866,7 @@ A fixed version of the new payment processing engine, which we initially announc
 
 The Flow code may occasionally produce slightly different results than the old payment processing engine due to the effects of floating point rounding.
 
-We will be introducing changes to the hash tree structure that rippled uses to represent a ledger, which we expect to be activated via Amendment on a future date (TBA) with the name [SHAMapV2](https://ripple.com/build/amendments/#shamapv2). The new structure is more compact and efficient than the previous version. This affects how ledger hashes are calculated, but has no other user-facing consequences. The activation of the SHAMapV2 amendment will require brief scheduled allowable downtime, while the changes to the hash tree structure are propagated by the network. We will keep the community updated as we progress towards this date (TBA).
+We will be introducing changes to the hash tree structure that bixd uses to represent a ledger, which we expect to be activated via Amendment on a future date (TBA) with the name [SHAMapV2](https://ripple.com/build/amendments/#shamapv2). The new structure is more compact and efficient than the previous version. This affects how ledger hashes are calculated, but has no other user-facing consequences. The activation of the SHAMapV2 amendment will require brief scheduled allowable downtime, while the changes to the hash tree structure are propagated by the network. We will keep the community updated as we progress towards this date (TBA).
 
 In an effort to make RCL more scalable and to support Interledger Protocol (ILP) trust lines as balances get more substantial, we’re introducing XRP Payment Channels, a new structure in the ledger, which we expect to be available via Amendment on a future date (TBA) with the name [PayChan](https://ripple.com/build/amendments/#paychan).
 
@@ -874,7 +874,7 @@ XRP Payment Channels permit scalable, intermittent, off-ledger settlement of ILP
 
 The initial concept behind payment channels was discussed as early as 2011 and the first implementation was done by Mike Hearn in bitcoinj. Recent work being done by Lightning Network has showcased examples of the many use cases for payment channels. The introduction of XRP Payment Channels allows for a more efficient integration between RCL and ILP to further support enterprise use cases for high volume payments.
 
-Added `getInfoRippled.sh` support script to gather health check for rippled servers [RIPD-1284]
+Added `getInfobixd.sh` support script to gather health check for bixd servers [RIPD-1284]
 
 The `account_info` command can now return information about queued transactions - [RIPD-1205]
 
@@ -905,9 +905,9 @@ Add HTTP status page for new websocket implementation [#1855]
 
 ## Version 0.32.1
 
-The `rippled` 0.32.1 release includes an improved version of the payment code, which we expect to be available via Amendment on Wednesday, 2016-08-24 with the name FlowV2, and a completely new implementation of the WebSocket protocol for serving clients.
+The `bixd` 0.32.1 release includes an improved version of the payment code, which we expect to be available via Amendment on Wednesday, 2016-08-24 with the name FlowV2, and a completely new implementation of the WebSocket protocol for serving clients.
 
-You can [update to the new version](https://ripple.com/build/rippled-setup/#updating-rippled) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/Rippled_build_instructions).
+You can [update to the new version](https://ripple.com/build/bixd-setup/#updating-bixd) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/bixd_build_instructions).
 
 **New and Updated Features**
 
@@ -917,14 +917,14 @@ The FlowV2 code may occasionally produce slightly different results than the old
 
 **Beast WebSocket**
 
-A completely new implementation of the WebSocket protocol for serving clients is available as a configurable option for `rippled` administrators. To enable this new implementation, change the “protocol” field in `rippled.cfg` from “ws” to “ws2” (or from “wss” to “wss2” for Secure WebSockets), as illustrated in this example:
+A completely new implementation of the WebSocket protocol for serving clients is available as a configurable option for `bixd` administrators. To enable this new implementation, change the “protocol” field in `bixd.cfg` from “ws” to “ws2” (or from “wss” to “wss2” for Secure WebSockets), as illustrated in this example:
 
     [port_ws_public]
     port = 5006
     ip = 0.0.0.0
     protocol = wss2
 
-The new implementation paves the way for increased reliability and future performance when submitting commands over WebSocket. The behavior and syntax of commands should be identical to the previous implementation. Please report any issues to support@ripple.com. A future version of rippled will remove the old WebSocket implementation, and use only the new one.
+The new implementation paves the way for increased reliability and future performance when submitting commands over WebSocket. The behavior and syntax of commands should be identical to the previous implementation. Please report any issues to support@ripple.com. A future version of bixd will remove the old WebSocket implementation, and use only the new one.
 
 **Bug fixes**
 
@@ -942,7 +942,7 @@ Autofilling a transaction fee (sign / submit) with the experimental `x-queue-oka
 
 ## Version 0.32.0
 
-The `rippled` 0.32.0 release improves transaction queue which now supports batching and can hold up to 10 transactions per account, allowing users to queue multiple transactions for processing when the network load is high. Additionally, the `server_info` and `server_state` commands now include information on transaction cost multipliers and the fee command is available to unprivileged users. We advise rippled operators to upgrade immediately.
+The `bixd` 0.32.0 release improves transaction queue which now supports batching and can hold up to 10 transactions per account, allowing users to queue multiple transactions for processing when the network load is high. Additionally, the `server_info` and `server_state` commands now include information on transaction cost multipliers and the fee command is available to unprivileged users. We advise bixd operators to upgrade immediately.
 
 You can update to the new version on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please compile the new version from source.
 
@@ -953,7 +953,7 @@ You can update to the new version on Red Hat Enterprise Linux 7 or CentOS 7 usin
 - New implementation of payment processing engine. This implementation is not yet enabled by default.
 - Include amendments in validations subscription
 - Add C++17 compatibility
-- New WebSocket server implementation with Beast.WebSocket library. The new library offers a stable, high-performance websocket server implementation. To take advantage of this implementation, change websocket protocol under rippled.cfg from wss and ws to wss2 and ws2 under `[port_wss_admin]` and `[port_ws_public]` stanzas:
+- New WebSocket server implementation with Beast.WebSocket library. The new library offers a stable, high-performance websocket server implementation. To take advantage of this implementation, change websocket protocol under bixd.cfg from wss and ws to wss2 and ws2 under `[port_wss_admin]` and `[port_ws_public]` stanzas:
 ```
      [port_wss_admin]
      port = 51237
@@ -995,9 +995,9 @@ You can update to the new version on Red Hat Enterprise Linux 7 or CentOS 7 usin
 
 ## Version 0.31.2
 
-The `rippled` 0.31.2 release corrects issues with the fee escalation algorithm. We advise `rippled` operators to upgrade immediately.
+The `bixd` 0.31.2 release corrects issues with the fee escalation algorithm. We advise `bixd` operators to upgrade immediately.
 
-You can [update to the new version](https://ripple.com/build/rippled-setup/#updating-rippled) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/Rippled_build_instructions).
+You can [update to the new version](https://ripple.com/build/bixd-setup/#updating-bixd) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/bixd_build_instructions).
 
 **New and Updated Features**
 
@@ -1012,9 +1012,9 @@ This release has no new features.
 
 ## Version 0.31.1
 
-The `rippled` 0.31.1 release contains one important bug fix. We advise `rippled` operators to upgrade immediately.
+The `bixd` 0.31.1 release contains one important bug fix. We advise `bixd` operators to upgrade immediately.
 
-You can [update to the new version](https://ripple.com/build/rippled-setup/#updating-rippled) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/Rippled_build_instructions).
+You can [update to the new version](https://ripple.com/build/bixd-setup/#updating-bixd) on Red Hat Enterprise Linux 7 or CentOS 7 using yum. For other platforms, please [compile the new version from source](https://wiki.ripple.com/bixd_build_instructions).
 
 **New and Updated Features**
 
@@ -1022,19 +1022,19 @@ This release has no new features.
 
 **Bug Fixes**
 
-`rippled` 0.31.1 contains the following fix:
+`bixd` 0.31.1 contains the following fix:
 
-- Correctly handle ledger validations with no `LedgerSequence` field. Previous versions of `rippled` incorrectly assumed that the optional validation field would always be included. Current versions of the software always include the field, and gracefully handle its absence.
+- Correctly handle ledger validations with no `LedgerSequence` field. Previous versions of `bixd` incorrectly assumed that the optional validation field would always be included. Current versions of the software always include the field, and gracefully handle its absence.
 
 
 
 ## Version 0.31.0
 
-`rippled` 0.31.0 has been released.
+`bixd` 0.31.0 has been released.
 
-You can [update to the new version](https://ripple.com/build/rippled-setup/#updating-rippled) on Red Hat Enterprise Linux 7 or CentOS 7 using yum.
+You can [update to the new version](https://ripple.com/build/bixd-setup/#updating-bixd) on Red Hat Enterprise Linux 7 or CentOS 7 using yum.
 
-For other platforms, please [compile the new version from source](https://wiki.ripple.com/Rippled_build_instructions). Use the `git log` command to confirm you have the correct source tree. The first log entry should be the change setting the version:
+For other platforms, please [compile the new version from source](https://wiki.ripple.com/bixd_build_instructions). Use the `git log` command to confirm you have the correct source tree. The first log entry should be the change setting the version:
 
 
      commit a5d58566386fd86ae4c816c82085fe242b255d2c
@@ -1048,11 +1048,11 @@ For other platforms, please [compile the new version from source](https://wiki.r
 
 Please expect a one-time delay when starting 0.31.0 while certain database indices are being built or rebuilt. The delay can be up to five minutes, during which CPU will spike and the server will appear unresponsive (no response to RPC, etc.).
 
-Additionally, `rippled` 0.31.0 now checks at start-up time that it has sufficient open file descriptors available, and shuts down with an error message if it does not. Previous versions of `rippled` could run out of file descriptors unexpectedly during operation. If you get a file-descriptor error message, increase the number of file descriptors available to `rippled` (for example, editing `/etc/security/limits.conf`) and restart.
+Additionally, `bixd` 0.31.0 now checks at start-up time that it has sufficient open file descriptors available, and shuts down with an error message if it does not. Previous versions of `bixd` could run out of file descriptors unexpectedly during operation. If you get a file-descriptor error message, increase the number of file descriptors available to `bixd` (for example, editing `/etc/security/limits.conf`) and restart.
 
 **New and Updated Features**
 
-`rippled` 0.31.0 has the following new or updated features:
+`bixd` 0.31.0 has the following new or updated features:
 
 - (New) [**Amendments**](https://ripple.com/build/amendments/) - A consensus-based system for introducing changes to transaction processing.
 - (New) [**Multi-Signing**](https://ripple.com/build/transactions/#multi-signing) - (To be enabled as an amendment) Allow transactions to be authorized by a list of signatures. (RIPD-182)
@@ -1062,7 +1062,7 @@ Additionally, `rippled` 0.31.0 now checks at start-up time that it has sufficien
 
 **Closed Issues**
 
-`rippled` 0.31.0 has the following fixes and improvements:
+`bixd` 0.31.0 has the following fixes and improvements:
 
 - Improve held transaction submission
 - Update SQLite from 3.8.11.1 to 3.11.0
@@ -1086,7 +1086,7 @@ Additionally, `rippled` 0.31.0 now checks at start-up time that it has sufficien
 
 ## Version 0.30.1
 
-rippled 0.30.1 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.30.1>
+bixd 0.30.1 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.30.1>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1096,15 +1096,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
        Set version to 0.30.1
 
-This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.30.1) for more detailed information.
+This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.30.1) for more detailed information.
 
 **Release Overview**
 
-The rippled team is proud to release rippled version 0.30.1. This version contains a several minor new features as well as significant improvements to the consensus algorithm that make it work faster and with more consistency. In the time we have been testing the new release on our validators, these changes have led to increased agreement and shorter close times between ledger versions, for approximately 40% more ledgers validated per day.
+The bixd team is proud to release bixd version 0.30.1. This version contains a several minor new features as well as significant improvements to the consensus algorithm that make it work faster and with more consistency. In the time we have been testing the new release on our validators, these changes have led to increased agreement and shorter close times between ledger versions, for approximately 40% more ledgers validated per day.
 
 **New Features**
 
--   Secure gateway: configured IPs can forward identifying user data in HTTP headers, including user name and origin IP. If the user name exists, then resource limits are lifted for that session. See rippled-example.cfg for more information.
+-   Secure gateway: configured IPs can forward identifying user data in HTTP headers, including user name and origin IP. If the user name exists, then resource limits are lifted for that session. See bixd-example.cfg for more information.
 -   Allow fractional fee multipliers (RIPD-626)
 -   Add “expiration” to account\_offers (RIPD-1049)
 -   Add “owner\_funds” to “transactions” array in RPC ledger (RIPD-1050)
@@ -1112,7 +1112,7 @@ The rippled team is proud to release rippled version 0.30.1. This version contai
 -   Add server uptime in server\_info
 -   Allow multiple incoming connections from the same IP
 -   Report connection uptime in peer command (RIPD-927)
--   Permit pathfinding to be disabled by setting \[path\_search\_max\] to 0 in rippled.cfg file (RIPD-271)
+-   Permit pathfinding to be disabled by setting \[path\_search\_max\] to 0 in bixd.cfg file (RIPD-271)
 -   Add subscription to peer status changes (RIPD-579)
 
 **Improvements**
@@ -1159,7 +1159,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.30.0
 
-rippled 0.30.0 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.30.0>
+bixd 0.30.0 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.30.0>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1169,17 +1169,17 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.30.0
 
-This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.30.0) for more detailed information.
+This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.30.0) for more detailed information.
 
 **Release Overview**
 
-As part of Ripple Labs’ ongoing commitment toward protocol security, the rippled team would like to release rippled 0.30.0.
+As part of Ripple Labs’ ongoing commitment toward protocol security, the bixd team would like to release bixd 0.30.0.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**`grep '^processor' /proc/cpuinfo | wc -l`**), you can use them to assist in the build process by compiling with the command **`scons -j[number of CPUs - 1]`**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**`grep '^processor' /proc/cpuinfo | wc -l`**), you can use them to assist in the build process by compiling with the command **`scons -j[number of CPUs - 1]`**.
 
 **New Features**
 
@@ -1202,8 +1202,8 @@ While it may be possible to compile rippled on (virtual) machines with 4GB of RA
 
 **Development-Related Updates**
 
--   Transitional support for gcc 5.2: to enable support define the environmental variable `RIPPLED_OLD_GCC_ABI`=1
--   Transitional support for C++ 14: to enable support define the environment variable `RIPPLED_USE_CPP_14`=1
+-   Transitional support for gcc 5.2: to enable support define the environmental variable `bixd_OLD_GCC_ABI`=1
+-   Transitional support for C++ 14: to enable support define the environment variable `bixd_USE_CPP_14`=1
 -   Visual Studio 2015 support
 -   Updates to integration tests
 -   Add uptime to crawl data ([RIPD-997](https://ripplelabs.atlassian.net/browse/RIPD-997))
@@ -1226,7 +1226,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.29.0
 
-rippled 0.29.0 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/commits/0.29.0>
+bixd 0.29.0 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/commits/0.29.0>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1236,17 +1236,17 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.29.0
 
-This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.29.0) for more detailed information.
+This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.29.0) for more detailed information.
 
 **Release Overview**
 
-As part of Ripple Labs’ ongoing commitment toward protocol security, the rippled team would like to announce rippled release 0.29.0.
+As part of Ripple Labs’ ongoing commitment toward protocol security, the bixd team would like to announce bixd release 0.29.0.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
 **New Features**
 
@@ -1265,7 +1265,7 @@ While it may be possible to compile rippled on (virtual) machines with 4GB of RA
 **Improvements**
 
 -   Add “quality” field to account\_offers API response: quality is defined as the exchange rate, the ratio taker\_pays divided by taker\_gets.
--   Add [full\_reply](https://ripple.com/build/rippled-apis/#path-find-create) field to path\_find API response: full\_reply is defined as true/false value depending on the completed depth of pathfinding search ([RIPD-894](https://ripplelabs.atlassian.net/browse/RIPD-894)).
+-   Add [full\_reply](https://ripple.com/build/bixd-apis/#path-find-create) field to path\_find API response: full\_reply is defined as true/false value depending on the completed depth of pathfinding search ([RIPD-894](https://ripplelabs.atlassian.net/browse/RIPD-894)).
 -   Add [DeliverMin](https://ripple.com/build/transactions/#payment) transaction field ([RIPD-930](https://ripplelabs.atlassian.net/browse/RIPD-930)). **Activates August 17, 2015**.
 
 **Development-Related Updates**
@@ -1293,7 +1293,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.28.2
 
-rippled 0.28.2 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/commits/release>
+bixd 0.28.2 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/commits/release>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1303,27 +1303,27 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.28.2
 
-This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/release) for more detailed information.
+This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/release) for more detailed information.
 
 **Release Overview**
 
-As part of Ripple Labs’ ongoing commitment toward protocol security, the rippled team would like to announce rippled release 0.28.2. **This release is necessary for compatibility with OpenSSL v.1.0.1n and later.**
+As part of Ripple Labs’ ongoing commitment toward protocol security, the bixd team would like to announce bixd release 0.28.2. **This release is necessary for compatibility with OpenSSL v.1.0.1n and later.**
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
-**rippled.cfg Updates**
+**bixd.cfg Updates**
 
 For \[ips\] stanza, a port must be specified for each listed IP address with the space between IP address and port, ex.: `r.ripple.com` `51235` ([RIPD-893](https://ripplelabs.atlassian.net/browse/RIPD-893))
 
 **New Features**
 
--   New API: [gateway\_balances](https://ripple.com/build/rippled-apis/#gateway-balances) to get a gateway's hot wallet balances and total obligations.
+-   New API: [gateway\_balances](https://ripple.com/build/bixd-apis/#gateway-balances) to get a gateway's hot wallet balances and total obligations.
 
 **Deprecated features**
 
@@ -1360,7 +1360,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.28.1
 
-rippled 0.28.1 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.28.1>
+bixd 0.28.1 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.28.1>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1370,20 +1370,20 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.28.1
 
-This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.28.1) for more detailed information.
+This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.28.1) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **New Features**
 
 -   Filtering for Account Objects ([RIPD-868](https://ripplelabs.atlassian.net/browse/RIPD-868)).
--   Track rippled server peers latency ([RIPD-879](https://ripplelabs.atlassian.net/browse/RIPD-879)).
+-   Track bixd server peers latency ([RIPD-879](https://ripplelabs.atlassian.net/browse/RIPD-879)).
 
 **Bug fixes**
 
@@ -1426,7 +1426,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.28.0
 
-rippled 0.28.0 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.28.0>
+bixd 0.28.0 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.28.0>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1436,29 +1436,29 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.28.0
 
-This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.28.0) for more detailed information.
+This release incorporates a number of important features, bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.28.0) for more detailed information.
 
 **Release Overview**
 
-As part of Ripple Labs’ ongoing commitment toward improving the protocol, the rippled team is excited to announce **autobridging** — a feature that allows XRP to serve as a bridge currency. Autobridging enhances utility and has the potential to expose more of the network to liquidity and improve prices. For more information please refer to the [autobridging blog post](https://ripple.com/uncategorized/introducing-offer-autobridging/).
+As part of Ripple Labs’ ongoing commitment toward improving the protocol, the bixd team is excited to announce **autobridging** — a feature that allows XRP to serve as a bridge currency. Autobridging enhances utility and has the potential to expose more of the network to liquidity and improve prices. For more information please refer to the [autobridging blog post](https://ripple.com/uncategorized/introducing-offer-autobridging/).
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
-**Important rippled.cfg update**
+**Important bixd.cfg update**
 
-With rippled version 0.28, the rippled.cfg file must be changed according to these instructions:
+With bixd version 0.28, the bixd.cfg file must be changed according to these instructions:
 
 -   Change any entries that say
 
 `admin` `=` `allow` to `admin` `=` <IP address>
 
--   For most installations, 127.0.0.1 will preserve current behavior. 0.0.0.0 may be specified to indicate "any IP" but cannot be combined with other IP addresses. Use of 0.0.0.0 may introduce severe security risks and is not recommended. See docs/rippled-example.cfg for more information.
+-   For most installations, 127.0.0.1 will preserve current behavior. 0.0.0.0 may be specified to indicate "any IP" but cannot be combined with other IP addresses. Use of 0.0.0.0 may introduce severe security risks and is not recommended. See docs/bixd-example.cfg for more information.
 
 **More Strict Requirements on MemoType**
 
@@ -1467,7 +1467,7 @@ The requirements on the contents of the MemoType field, if present, are more str
 **New Features**
 
 -   Autobridging implementation ([RIPD-423](https://ripplelabs.atlassian.net/browse/RIPD-423)). **This feature will be turned on May 12, 2015**.
--   Combine history\_ledger\_index and online\_delete settings in rippled.cfg ([RIPD-774](https://ripplelabs.atlassian.net/browse/RIPD-774)).
+-   Combine history\_ledger\_index and online\_delete settings in bixd.cfg ([RIPD-774](https://ripplelabs.atlassian.net/browse/RIPD-774)).
 -   Claim a fee when a required destination tag is not specified ([RIPD-574](https://ripplelabs.atlassian.net/browse/RIPD-574)).
 -   Require the master key when disabling the use of the master key or when enabling 'no freeze' ([RIPD-666](https://ripplelabs.atlassian.net/browse/RIPD-666)).
 -   Change the port setting admin to accept allowable admin IP addresses ([RIPD-820](https://ripplelabs.atlassian.net/browse/RIPD-820)):
@@ -1514,7 +1514,7 @@ The requirements on the contents of the MemoType field, if present, are more str
 -   Track and report peer load.
 -   Builds/Test.py will build and test by one or more scons targets.
 -   Support a --noserver command line option in tests:
--   Run npm/integration tests without launching rippled, using a running instance of rippled (possibly in a debugger) instead.
+-   Run npm/integration tests without launching bixd, using a running instance of bixd (possibly in a debugger) instead.
 -   Works for npm test and mocha.
 -   Display human readable SSL error codes.
 -   Better transaction analysis ([RIPD-755](https://ripplelabs.atlassian.net/browse/RIPD-755)).
@@ -1537,7 +1537,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.27.4
 
-rippled 0.27.4 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.27.4>
+bixd 0.27.4 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.27.4>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1547,15 +1547,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.27.4
 
-This release includes one new feature. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.27.4) for more detailed information.
+This release includes one new feature. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.27.4) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **Bug Fixes**
 
@@ -1579,7 +1579,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.27.3-sp2
 
-rippled 0.27.3-sp2 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.27.3-sp2>
+bixd 0.27.3-sp2 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.27.3-sp2>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1589,15 +1589,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.27.3-sp2
 
-This release includes one new feature. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.27.3-sp2) for more detailed information.
+This release includes one new feature. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.27.3-sp2) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **New Features**
 
@@ -1621,7 +1621,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.27.3-sp1
 
-rippled 0.27.3-sp1 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.27.3-sp1>
+bixd 0.27.3-sp1 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.27.3-sp1>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1631,15 +1631,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
        Set version to 0.27.3-sp1
 
-This release includes one new feature. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.27.3-sp1) for more detailed information.
+This release includes one new feature. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.27.3-sp1) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **New Features**
 
@@ -1661,7 +1661,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.27.3
 
-rippled 0.27.3 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.27.3>
+bixd 0.27.3 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.27.3>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1671,15 +1671,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.27.3
 
-This release includes one new feature. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.27.3) for more detailed information.
+This release includes one new feature. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.27.3) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **New Features**
 
@@ -1701,7 +1701,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.27.2
 
-rippled 0.27.2 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.27.2>
+bixd 0.27.2 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.27.2>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1711,21 +1711,21 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
        Set version to 0.27.2
 
-This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.27.2) for more detailed information.
+This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.27.2) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **New Features**
 
--   NuDB backend option: high performance key/value database optimized for rippled (set “type=nudb” in .cfg).
+-   NuDB backend option: high performance key/value database optimized for bixd (set “type=nudb” in .cfg).
     -   Either import RockdDB to NuDB using import tool, or
-    -   Start fresh with NuDB but delete SQLite databases if rippled ran previously with RocksDB:
+    -   Start fresh with NuDB but delete SQLite databases if bixd ran previously with RocksDB:
 
      rm [database_path]/transaction.* [database_path]/ledger.*
 
@@ -1753,7 +1753,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.27.1
 
-rippled 0.27.1 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.27.1>
+bixd 0.27.1 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.27.1>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1763,15 +1763,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
        Set version to 0.27.1
 
-This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.27.1) for more detailed information.
+This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.27.1) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **New Features**
 
@@ -1790,7 +1790,7 @@ The minimum supported version of Boost is v1.57.0. You **must** upgrade to this 
 
 **Experimental**
 
--   Add /crawl cgi request feature to peer protocol ([RIPD-729](https://ripplelabs.atlassian.net/browse/RIPD-729)): adds support for a cgi /crawl request, issued over HTTPS to the configured peer protocol port. The response to the request is a JSON object containing the node public key, type, and IP address of each directly connected neighbor. The IP address is suppressed unless the neighbor has requested its address to be revealed by adding "Crawl: public" to its HTTP headers. This field is currently set by the peer\_private option in the rippled.cfg file.
+-   Add /crawl cgi request feature to peer protocol ([RIPD-729](https://ripplelabs.atlassian.net/browse/RIPD-729)): adds support for a cgi /crawl request, issued over HTTPS to the configured peer protocol port. The response to the request is a JSON object containing the node public key, type, and IP address of each directly connected neighbor. The IP address is suppressed unless the neighbor has requested its address to be revealed by adding "Crawl: public" to its HTTP headers. This field is currently set by the peer\_private option in the bixd.cfg file.
 
 **Assistance**
 
@@ -1808,7 +1808,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.27.0
 
-rippled 0.27.0 has been released. The commit can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.27.0>
+bixd 0.27.0 has been released. The commit can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.27.0>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1818,33 +1818,33 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.27.0
 
-This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.27.0) for more detailed information.
+This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.27.0) for more detailed information.
 
 **Release Overview**
 
-The rippled team is proud to release rippled 0.27.0. This new version includes many exciting features that will appeal to our users. The team continues to work on stability, scalability, and performance.
+The bixd team is proud to release bixd 0.27.0. This new version includes many exciting features that will appeal to our users. The team continues to work on stability, scalability, and performance.
 
-The first feature is Online Delete. This feature allows rippled to maintain it’s database of previous ledgers within a fixed amount of disk space. It does this while allowing rippled to stay online and maintain an administrator specify minimum number of ledgers. This means administrators with limited disk space will no longer need to manage disk space by periodically manually removing the database. Also, with the previously existing backend databases performance would gradually degrade as the database grew in size. In particular, rippled would perform poorly whenever the backend database performed ever growing compaction operations. By limiting rippled to less history, compaction is less resource intensive and systems with less disk performance can now run rippled.
+The first feature is Online Delete. This feature allows bixd to maintain it’s database of previous ledgers within a fixed amount of disk space. It does this while allowing bixd to stay online and maintain an administrator specify minimum number of ledgers. This means administrators with limited disk space will no longer need to manage disk space by periodically manually removing the database. Also, with the previously existing backend databases performance would gradually degrade as the database grew in size. In particular, bixd would perform poorly whenever the backend database performed ever growing compaction operations. By limiting bixd to less history, compaction is less resource intensive and systems with less disk performance can now run bixd.
 
-Additionally, we are very excited to include Universal Port. This feature allows rippled's listening port to handshake in multiple protocols. For example, a single listening port can be configured to receive incoming peer connections, incoming RPC commands over HTTP, and incoming RPC commands over HTTPS at the same time. Or, a single port can receive both Websockets and Secure Websockets clients at the same.
+Additionally, we are very excited to include Universal Port. This feature allows bixd's listening port to handshake in multiple protocols. For example, a single listening port can be configured to receive incoming peer connections, incoming RPC commands over HTTP, and incoming RPC commands over HTTPS at the same time. Or, a single port can receive both Websockets and Secure Websockets clients at the same.
 
-Finally, a new, experimental backend database, NuDB, has been added. This database was developed by Ripple Labs to take advantage of rippled’s specific data usage profile and performs much better than previous databases. Significantly, this database does not degrade in performance as the database grows. Very excitingly, this database works on OS X and Windows. This allows rippled to use these platforms for the first time.
+Finally, a new, experimental backend database, NuDB, has been added. This database was developed by Ripple Labs to take advantage of bixd’s specific data usage profile and performs much better than previous databases. Significantly, this database does not degrade in performance as the database grows. Very excitingly, this database works on OS X and Windows. This allows bixd to use these platforms for the first time.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.57.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
-**Important rippled.cfg Update**
+**Important bixd.cfg Update**
 
-**The format of the configuration file has changed. If upgrading from a previous version of rippled, please see the migration instructions below.**
+**The format of the configuration file has changed. If upgrading from a previous version of bixd, please see the migration instructions below.**
 
 **New Features**
 
--   SHAMapStore Online Delete ([RIPD-415](https://ripplelabs.atlassian.net/browse/RIPD-415)): Makes rippled configurable to support deletion of all data in its key-value store (nodestore) and ledger and transaction SQLite databases based on validated ledger sequence numbers. See doc/rippled-example.cfg for configuration setup.
+-   SHAMapStore Online Delete ([RIPD-415](https://ripplelabs.atlassian.net/browse/RIPD-415)): Makes bixd configurable to support deletion of all data in its key-value store (nodestore) and ledger and transaction SQLite databases based on validated ledger sequence numbers. See doc/bixd-example.cfg for configuration setup.
 -   [Universal Port](https://forum.ripple.com/viewtopic.php?f=2&t=8313&p=57969). See necessary config changes below.
 -   Config "ledger\_history\_index" option ([RIPD-559](https://ripplelabs.atlassian.net/browse/RIPD-559))
 
@@ -1868,17 +1868,17 @@ The minimum supported version of Boost is v1.57.0. You **must** upgrade to this 
 -   Build dependency on Boost 1.57.0
 -   Support a "no\_server" flag in test config
 -   API for improved Unit Testing ([RIPD-432](https://ripplelabs.atlassian.net/browse/RIPD-432))
--   Option to specify rippled path on command line (--rippled=\<absolute or relative path\>)
+-   Option to specify bixd path on command line (--bixd=\<absolute or relative path\>)
 
 **Experimental**
 
--   NuDB backend option: high performance key/value database optimized for rippled (set “type=nudb” in .cfg)
+-   NuDB backend option: high performance key/value database optimized for bixd (set “type=nudb” in .cfg)
 
 **Migration Instructions**
 
-With rippled version 0.27.0, the rippled.cfg file must be changed according to these instructions:
+With bixd version 0.27.0, the bixd.cfg file must be changed according to these instructions:
 
--   Add new stanza - `[server]`. This section will contain a list of port names and key/value pairs. A port name must start with a letter and contain only letters and numbers. The name is not case-sensitive. For each name in this list, rippled will look for a configuration file section with the same name and use it to create a listening port. To simplify migration, you can use port names from your previous version of rippled.cfg (see Section 1. Server for detailed explanation in doc/rippled-example.cfg). For example:
+-   Add new stanza - `[server]`. This section will contain a list of port names and key/value pairs. A port name must start with a letter and contain only letters and numbers. The name is not case-sensitive. For each name in this list, bixd will look for a configuration file section with the same name and use it to create a listening port. To simplify migration, you can use port names from your previous version of bixd.cfg (see Section 1. Server for detailed explanation in doc/bixd-example.cfg). For example:
 
          [server]
          rpc_port
@@ -1907,18 +1907,18 @@ With rippled version 0.27.0, the rippled.cfg file must be changed according to t
          admin = allow
          protocol = wss
 
--   Remove current `[rpc_port],` `[rpc_ip],` `[rpc_allow_remote],` `[rpc_ssl_key],` `[rpc_ssl_cert],` `and` `[rpc_ssl_chain],` `[peer_port],` `[peer_ip],` `[websocket_port],` `[websocket_ip]` settings from rippled.cfg
+-   Remove current `[rpc_port],` `[rpc_ip],` `[rpc_allow_remote],` `[rpc_ssl_key],` `[rpc_ssl_cert],` `and` `[rpc_ssl_chain],` `[peer_port],` `[peer_ip],` `[websocket_port],` `[websocket_ip]` settings from bixd.cfg
 
--   If you allow untrusted websocket connections to your rippled, add `[websocket_public_port]` stanza under `[server]` section and replace websocket public settings with `[websocket_public_port]` section:
+-   If you allow untrusted websocket connections to your bixd, add `[websocket_public_port]` stanza under `[server]` section and replace websocket public settings with `[websocket_public_port]` section:
 
          [websocket_public_port]
          port = <your current [websocket_public_port], usually 5005>
          ip = <your current [websocket_public_ip], usually 127.0.0.1>
          protocol = ws ← make sure this is ws, not wss`
 
--   Remove `[websocket_public_port],` `[websocket_public_ip],` `[websocket_ssl_key],` `[websocket_ssl_cert],` `[websocket_ssl_chain]` settings from rippled.cfg
+-   Remove `[websocket_public_port],` `[websocket_public_ip],` `[websocket_ssl_key],` `[websocket_ssl_cert],` `[websocket_ssl_chain]` settings from bixd.cfg
 -   Disable `[ssl_verify]` section by setting it to 0
--   Migrate the remaining configurations without changes. To enable online delete feature, check Section 6. Database in doc/rippled-example.cfg
+-   Migrate the remaining configurations without changes. To enable online delete feature, check Section 6. Database in doc/bixd-example.cfg
 
 **Integration Notes**
 
@@ -1956,7 +1956,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.26.4
 
-rippled 0.26.4 has been released. The repository tag is *0.26.4* and can be found on GitHub at: <https://github.com/ripple/rippled/commits/0.26.4>
+bixd 0.26.4 has been released. The repository tag is *0.26.4* and can be found on GitHub at: <https://github.com/ripple/bixd/commits/0.26.4>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -1966,19 +1966,19 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.26.4
 
-This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.26.4) for more detailed information.
+This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.26.4) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **Important JSON-RPC Update**
 
-With rippled version 0.26.4, the [rippled.cfg](https://github.com/ripple/rippled/blob/0.26.4/doc/rippled-example.cfg) file must set the ssl\_verify property to 0. Without this update, JSON-RPC API calls may not work.
+With bixd version 0.26.4, the [bixd.cfg](https://github.com/ripple/bixd/blob/0.26.4/doc/bixd-example.cfg) file must set the ssl\_verify property to 0. Without this update, JSON-RPC API calls may not work.
 
 **New Features**
 
@@ -1990,14 +1990,14 @@ With rippled version 0.26.4, the [rippled.cfg](https://github.com/ripple/rippled
 -   Add --quorum argument for server start ([RIPD-563](https://ripplelabs.atlassian.net/browse/RIPD-563))
 -   Add account\_offers paging ([RIPD-344](https://ripplelabs.atlassian.net/browse/RIPD-344))
 -   Add account\_lines paging ([RIPD-343](https://ripplelabs.atlassian.net/browse/RIPD-343))
--   Ability to configure network fee in rippled.cfg file ([RIPD-564](https://ripplelabs.atlassian.net/browse/RIPD-564))
+-   Ability to configure network fee in bixd.cfg file ([RIPD-564](https://ripplelabs.atlassian.net/browse/RIPD-564))
 
 **Bug Fixes**
 
 -   Fix OS X version parsing/error related to OS X 10.10 update
 -   Fix incorrect address in connectivity check report
 -   Fix page sizes for ledger\_data ([RIPD-249](https://ripplelabs.atlassian.net/browse/RIPD-249))
--   Make log partitions case-insensitive in rippled.cfg
+-   Make log partitions case-insensitive in bixd.cfg
 
 **Improvements**
 
@@ -2006,7 +2006,7 @@ With rippled version 0.26.4, the [rippled.cfg](https://github.com/ripple/rippled
     -   Improve client performance for JSON responses ([RIPD-439](https://ripplelabs.atlassian.net/browse/RIPD-439))
 -   Other
     -   Remove PROXY handshake feature
-    -   Change to rippled.cfg to support sections containing both key/value pairs and a list of values
+    -   Change to bixd.cfg to support sections containing both key/value pairs and a list of values
     -   Return descriptive error message for memo validation ([RIPD-591](https://ripplelabs.atlassian.net/browse/RIPD-591))
     -   Changes to enforce JSON-RPC 2.0 error format
     -   Optimize account\_lines and account\_offers ([RIPD-587](https://ripplelabs.atlassian.net/browse/RIPD-587))
@@ -2038,7 +2038,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.26.3-sp1
 
-rippled 0.26.3-sp1 has been released. The repository tag is *0.26.3-sp1* and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.26.3-sp1>
+bixd 0.26.3-sp1 has been released. The repository tag is *0.26.3-sp1* and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.26.3-sp1>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -2048,15 +2048,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.26.3-sp1
 
-This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.26.3-sp1) for more detailed information.
+This release incorporates a number of important bugfixes and functional improvements. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.26.3-sp1) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **New Features**
 
@@ -2107,7 +2107,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.26.2
 
-rippled 0.26.2 has been released. The repository tag is *0.26.2* and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.26.2>
+bixd 0.26.2 has been released. The repository tag is *0.26.2* and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.26.2>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -2117,15 +2117,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
         Set version to 0.26.2
 
-This release incorporates a small number of important bugfixes. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.26.2) for more detailed information.
+This release incorporates a small number of important bugfixes. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.26.2) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **New Features**
 
@@ -2156,7 +2156,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.26.1
 
-rippled v0.26.1 has been released. The repository tag is **0.26.1** and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.26.1>
+bixd v0.26.1 has been released. The repository tag is **0.26.1** and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.26.1>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -2166,15 +2166,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.26.1
 
-This release incorporates a small number of important bugfixes. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/0.26.1) for more detailed information.
+This release incorporates a small number of important bugfixes. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/0.26.1) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **Bug Fixes**
 
@@ -2193,7 +2193,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.26.0
 
-rippled v0.26.0 has been released. The repository tag is **0.26.0** and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.26.0>
+bixd v0.26.0 has been released. The repository tag is **0.26.0** and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.26.0>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -2203,15 +2203,15 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.26.0
 
-This release incorporates a significant number of improvements and important bugfixes. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/develop) for more detailed information.
+This release incorporates a significant number of improvements and important bugfixes. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/develop) for more detailed information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend compiling on (virtual) machines with 8GB of RAM or more. If your build machine has more than one CPU (**\`grep '^processor' /proc/cpuinfo | wc -l\`**), you can use them to assist in the build process by compiling with the command **scons -j\[number of CPUs - 1\]**.
 
-The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of rippled. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
+The minimum supported version of Boost is v1.55.0. You **must** upgrade to this release or later to successfully compile this release of bixd. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
 **Improvements**
 
@@ -2221,8 +2221,8 @@ The minimum supported version of Boost is v1.55.0. You **must** upgrade to this 
 -   Improve transaction fee and execution logic ([RIPD-323](https://ripplelabs.atlassian.net/browse/RIPD-323)).
 -   Implemented finding of 'sabfd' paths ([RIPD-335](https://ripplelabs.atlassian.net/browse/RIPD-335)).
 -   Imposed a local limit on paths lengths ([RIPD-350](https://ripplelabs.atlassian.net/browse/RIPD-350)).
--   Documented [ledger entries](https://github.com/ripple/rippled/blob/develop/src/ripple/module/app/ledger/README.md) ([RIPD-361](https://ripplelabs.atlassian.net/browse/RIPD-361)).
--   Documented [SHAMap](https://github.com/ripple/rippled/blob/develop/src/ripple/module/app/shamap/README.md).
+-   Documented [ledger entries](https://github.com/ripple/bixd/blob/develop/src/ripple/module/app/ledger/README.md) ([RIPD-361](https://ripplelabs.atlassian.net/browse/RIPD-361)).
+-   Documented [SHAMap](https://github.com/ripple/bixd/blob/develop/src/ripple/module/app/shamap/README.md).
 
 **Bug Fixes**
 
@@ -2246,7 +2246,7 @@ For more information or assistance, the following resources will be of use:
 
 ## Version 0.25.2
 
-rippled v0.25.2 has been released. The repository tag is **0.25.2** and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.25.2>
+bixd v0.25.2 has been released. The repository tag is **0.25.2** and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.25.2>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -2256,13 +2256,13 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.25.2
 
-This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/develop) for more information.
+This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/develop) for more information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
-While it may be possible to compile rippled on (virtual) machines with 4GB of RAM, we recommend build machines with 8GB of RAM.
+While it may be possible to compile bixd on (virtual) machines with 4GB of RAM, we recommend build machines with 8GB of RAM.
 
 The minimum supported version of Boost is v1.55. You **must** upgrade to this release or later to successfully compile this release. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Install_Boost) if you have not upgraded already.
 
@@ -2270,7 +2270,7 @@ The minimum supported version of Boost is v1.55. You **must** upgrade to this re
 
 -   CPU utilization for certain operations has been optimized.
 -   Improve serialization of public ledger blocks.
--   rippled now takes much less time to compile.
+-   bixd now takes much less time to compile.
 -   Additional pathfinding heuristic: increases liquidity in some cases.
 
 **Bug Fixes**
@@ -2283,7 +2283,7 @@ The minimum supported version of Boost is v1.55. You **must** upgrade to this re
 
 ## Version 0.25.1
 
-`rippled` v0.25.1 has been released. The repository tag is `0.25.1` and can be found on GitHub at: https://github.com/ripple/rippled/tree/0.25.1
+`bixd` v0.25.1 has been released. The repository tag is `0.25.1` and can be found on GitHub at: https://github.com/ripple/bixd/tree/0.25.1
 
 Prior to building, please confirm you have the correct source tree with the `git log` command. The first log entry should be the change setting the version:
 
@@ -2293,11 +2293,11 @@ Prior to building, please confirm you have the correct source tree with the `git
 
          Set version to 0.25.1
 
-This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines.  Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/develop) for more information.
+This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines.  Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/develop) for more information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8.  Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8.  Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
 A minimum of 4GB of RAM are required to successfully compile this release.
 
@@ -2305,7 +2305,7 @@ The minimum supported version of Boost is v1.55.  You **must** upgrade to this r
 
 **Major Features**
 
-* Option to compress the NodeStore db. More speed, less space. See [`rippled-example.cfg`](https://github.com/ripple/rippled/blob/0.25.1/doc/rippled-example.cfg#L691)
+* Option to compress the NodeStore db. More speed, less space. See [`bixd-example.cfg`](https://github.com/ripple/bixd/blob/0.25.1/doc/bixd-example.cfg#L691)
 
 **Improvements**
 
@@ -2315,7 +2315,7 @@ The minimum supported version of Boost is v1.55.  You **must** upgrade to this r
 * Improved handling of modified ledger nodes.
 * Improved performance of JSON document generator.
 * Made strConcat operate in O(n) time for greater efficiency.
-* Added some new configuration options to doc/rippled-example.cfg
+* Added some new configuration options to doc/bixd-example.cfg
 
 **Bug Fixes**
 
@@ -2330,7 +2330,7 @@ The minimum supported version of Boost is v1.55.  You **must** upgrade to this r
 
 ## Version 0.25.0
 
-rippled version 0.25.0 has been released. The repository tag is **0.25.0** and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.25.0>
+bixd version 0.25.0 has been released. The repository tag is **0.25.0** and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.25.0>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -2340,11 +2340,11 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.25.0
 
-This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/develop) for more information.
+This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/develop) for more information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
 A minimum of 4GB of RAM are required to successfully compile this release.
 
@@ -2352,7 +2352,7 @@ The minimum supported version of Boost is v1.55. You **must** upgrade to this re
 
 **Major Features**
 
--   Option to compress the NodeStore db. More speed, less space. See [`rippled-example.cfg`](https://github.com/ripple/rippled/blob/0.25.0/doc/rippled-example.cfg#L691)
+-   Option to compress the NodeStore db. More speed, less space. See [`bixd-example.cfg`](https://github.com/ripple/bixd/blob/0.25.0/doc/bixd-example.cfg#L691)
 
 **Improvements**
 
@@ -2375,7 +2375,7 @@ The minimum supported version of Boost is v1.55. You **must** upgrade to this re
 
 ## Version 0.24.0
 
-rippled version 0.24.0 has been released. The repository tag is **0.24.0** and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.24.0>
+bixd version 0.24.0 has been released. The repository tag is **0.24.0** and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.24.0>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -2385,11 +2385,11 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.24.0
 
-This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/develop) for more information.
+This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/develop) for more information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
 A minimum of 4GB of RAM are required to successfully compile this release.
 
@@ -2404,7 +2404,7 @@ The minimum supported version of Boost is v1.55. You **must** upgrade to this re
 **Bug Fixes**
 
 -   Fix AccountSet for canonical transactions.
--   The RPC [sign](https://ripple.com/build/rippled-apis/#sign) command will now sign with either an account's master or regular secret key.
+-   The RPC [sign](https://ripple.com/build/bixd-apis/#sign) command will now sign with either an account's master or regular secret key.
 -   Fixed out-of-order network initialization.
 -   Improved efficiency of pathfinding for transactions.
 -   Reworked timing of ledger validation and related operations to fix race condition against the network.
@@ -2415,7 +2415,7 @@ The minimum supported version of Boost is v1.55. You **must** upgrade to this re
 
 ## Version 0.23.0
 
-rippled version 0.23.0 has been released. The repository tag is **0.23.0** and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.23.0>
+bixd version 0.23.0 has been released. The repository tag is **0.23.0** and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.23.0>
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
@@ -2425,11 +2425,11 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
          Set version to 0.23.0
 
-This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/develop) for more information.
+This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/develop) for more information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
 A minimum of 4GB of RAM are required to successfully compile this release.
 
@@ -2466,17 +2466,17 @@ The minimum supported version of Boost is v1.55. You **must** upgrade to this re
 
 ## Version 0.22.0
 
-rippled version 0.22.0 has been released. This release is currently the tip of the **develop/** branch and can be found on GitHub at: <https://github.com/ripple/rippled/tree/develop> The tag is **0.22.0** and can be found on GitHub at: <https://github.com/ripple/rippled/tree/0.22.0>
+bixd version 0.22.0 has been released. This release is currently the tip of the **develop/** branch and can be found on GitHub at: <https://github.com/ripple/bixd/tree/develop> The tag is **0.22.0** and can be found on GitHub at: <https://github.com/ripple/bixd/tree/0.22.0>
 
 **This is a critical release affecting transaction processing. All partners should update immediately.**
 
 Prior to building, please confirm you have the correct source tree with the **git log** command. The first log entry should be the change setting the version:
 
-This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/rippled/commits/develop) for more information.
+This release incorporates significant improvements which may not warrant separate entries but are incorporated into the feature changes as summary lines. Please refer to the [Git commit history](https://github.com/ripple/bixd/commits/develop) for more information.
 
 **Toolchain support**
 
-The minimum supported version of GCC used to compile rippled is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
+The minimum supported version of GCC used to compile bixd is v4.8. Please follow [these instructions](https://wiki.ripple.com/Ubuntu_build_instructions#Ubuntu_versions_older_than_13.10_:_Install_gcc_4.8) if you have not upgraded already.
 
 A minimum of 4GB of RAM are required to successfully compile this release.
 
@@ -2531,7 +2531,7 @@ The minimum supported version of libBOOST is v1.55. You **must** upgrade to this
 
 ## Version 0.21.0
 
-rippled version 0.21.0 has been released. This release is currently the tip of the **develop/** branch and can be found on GitHub at [1](https://github.com/ripple/rippled/tree/develop). The tag is **0.21.0-rc2** and can be found on GitHub at [2](https://github.com/ripple/rippled/tree/0.21.0-rc2).
+bixd version 0.21.0 has been released. This release is currently the tip of the **develop/** branch and can be found on GitHub at [1](https://github.com/ripple/bixd/tree/develop). The tag is **0.21.0-rc2** and can be found on GitHub at [2](https://github.com/ripple/bixd/tree/0.21.0-rc2).
 
 **This is a critical release. All partners should update immediately.**
 
@@ -2553,7 +2553,7 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
 **Toolchain support**
 
-As with the previous release, the minimum supported version of GCC used to compile rippled is v4.8.
+As with the previous release, the minimum supported version of GCC used to compile bixd is v4.8.
 
 **Significant Changes**
 
@@ -2579,7 +2579,7 @@ RC2 fixed a bug that caused crashes in order processing and a bug in parsing ord
 
 **Notice**
 
-If you are upgrading from version 0.12 or earlier of rippled, these next sections apply to you because the format of the *rippled.cfg* file changed around that time. If you have upgraded since that time and you have applied the configuration file fixes, you can safely ignore them.
+If you are upgrading from version 0.12 or earlier of bixd, these next sections apply to you because the format of the *bixd.cfg* file changed around that time. If you have upgraded since that time and you have applied the configuration file fixes, you can safely ignore them.
 
 **Validators**
 
@@ -2592,7 +2592,7 @@ Ripple Labs is now running five validators. You can use this template for your *
      n9LeQeDcLDMZKjx1TZtrXoLBLo5q1bR1sUQrWG7tEADFU6R27UBp    RIP4
      n9KF6RpvktjNs2MDBkmxpJbup4BKrKeMKDXPhaXkq7cKTwLmWkFr    RIP5
 
-You should also raise your quorum to at least three by putting the following in your *rippled.cfg* file:
+You should also raise your quorum to at least three by putting the following in your *bixd.cfg* file:
 
      [validation_quorum]
      3
@@ -2601,7 +2601,7 @@ If you are a validator, you should set your quorum to at least four.
 
 **IPs**
 
-A list of Ripple Labs server IP addresses can be found by resolving **r.ripple.com**. You can also add this to your *rippled.cfg* file to ensure you always have several peer connections to Ripple Labs servers:
+A list of Ripple Labs server IP addresses can be found by resolving **r.ripple.com**. You can also add this to your *bixd.cfg* file to ensure you always have several peer connections to Ripple Labs servers:
 
      [ips]
      184.73.226.101 51235
@@ -2615,11 +2615,11 @@ A list of Ripple Labs server IP addresses can be found by resolving **r.ripple.c
 
 RocksDB is based on LevelDB with improvements from Facebook and the community. Preliminary tests show that it stalls less often than HyperLevelDB for our use cases.
 
-If you are switching over from an existing back end, you have two options. You can remove your old database and let rippled recreate it as it re-syncs, or you can import your old database into the new one.
+If you are switching over from an existing back end, you have two options. You can remove your old database and let bixd recreate it as it re-syncs, or you can import your old database into the new one.
 
-To remove your old database, make sure the server is shut down (\`rippled stop\`). Remove the *db/ledger.db* and *db/transaction.db* files. Remove all the files in your back end store directory (*db/hashnode* by default). Then change your configuration file to use the RocksDB back end and restart.
+To remove your old database, make sure the server is shut down (\`bixd stop\`). Remove the *db/ledger.db* and *db/transaction.db* files. Remove all the files in your back end store directory (*db/hashnode* by default). Then change your configuration file to use the RocksDB back end and restart.
 
-To import your old database, start by shutting the server down. Then modify the configuration file by renaming your *\[node\_db\]* stanza to *\[import\_db\]*. Create a new *\[node\_db\]* stanza and specify a RocksDB back end with a different directory. Start the server with the command **rippled --import**. When the import finishes gracefully stop the server (\`rippled stop\`). Please wait for rippled to stop on its own because it can take several minutes for it to shut down after an import. Remove the old database, put the new database into place, remove the *\[import\_db\]* section, change the *\[node\_db\]* section to refer to the final location, and restart the server.
+To import your old database, start by shutting the server down. Then modify the configuration file by renaming your *\[node\_db\]* stanza to *\[import\_db\]*. Create a new *\[node\_db\]* stanza and specify a RocksDB back end with a different directory. Start the server with the command **bixd --import**. When the import finishes gracefully stop the server (\`bixd stop\`). Please wait for bixd to stop on its own because it can take several minutes for it to shut down after an import. Remove the old database, put the new database into place, remove the *\[import\_db\]* section, change the *\[node\_db\]* section to refer to the final location, and restart the server.
 
 The recommended RocksDB configuration is:
 
@@ -2643,7 +2643,7 @@ You need to configure the [NodeBackEnd](https://wiki.ripple.com/NodeBackEnd) tha
 
 ## Version 0.20.1
 
-rippled version 0.20.1 has been released. This release is currently the tip of the [develop](https://github.com/ripple/rippled/tree/develop) branch and the tag is [0.20.1](https://github.com/ripple/rippled/tree/0.20.1).
+bixd version 0.20.1 has been released. This release is currently the tip of the [develop](https://github.com/ripple/bixd/tree/develop) branch and the tag is [0.20.1](https://github.com/ripple/bixd/tree/0.20.1).
 
 **This is a critical release. All partners should update immediately.**
 
@@ -2657,19 +2657,19 @@ Prior to building, please confirm you have the correct source tree with the **gi
 
 **Major Partner Issues Fixed**
 
--   rippled will crash randomly.
-    -   Entries in the three parts of the order book are missing or do not match. In such a case, rippled will crash.
+-   bixd will crash randomly.
+    -   Entries in the three parts of the order book are missing or do not match. In such a case, bixd will crash.
 -   Server loses sync randomly.
-    -   This is due to rippled restarting after it crashes. That the server restarted is not obvious and appears to be something else.
+    -   This is due to bixd restarting after it crashes. That the server restarted is not obvious and appears to be something else.
 -   Server goes 'offline' randomly.
-    -   This is due to rippled restarting after it crashes. That the server restarted is not obvious and appears to be something else.
+    -   This is due to bixd restarting after it crashes. That the server restarted is not obvious and appears to be something else.
 -   **complete\_ledgers** part of **server\_info** output says "None".
-    -   This is due to rippled restarting and reconstructing the ledger after it crashes.
-    -   If the node back end is corrupted or has been moved without being renamed in rippled.cfg, this can cause rippled to crash and restart.
+    -   This is due to bixd restarting and reconstructing the ledger after it crashes.
+    -   If the node back end is corrupted or has been moved without being renamed in bixd.cfg, this can cause bixd to crash and restart.
 
 **Toolchain support**
 
-Starting with this release, the minimum supported version of GCC used to compile rippled is v4.8.
+Starting with this release, the minimum supported version of GCC used to compile bixd is v4.8.
 
 **Significant Changes**
 
@@ -2689,8 +2689,8 @@ Starting with this release, the minimum supported version of GCC used to compile
 -   Refactored codebase to make it C++11 compliant.
 -   Multiple fixes to ledger acquisition, cleanup, and logging.
 -   Made multiple improvements to WebSockets server.
--   Added Debian-style initscript (doc/rippled.init).
--   Updated default config file (doc/rippled-example.cfg) to reflect best practices.
+-   Added Debian-style initscript (doc/bixd.init).
+-   Updated default config file (doc/bixd-example.cfg) to reflect best practices.
 -   Made changes to SHAMapTreeNode and visitLeavesInternal to conserve memory.
 -   Implemented new fee schedule:
     -   Transaction fee: 10 drops
@@ -2703,7 +2703,7 @@ Starting with this release, the minimum supported version of GCC used to compile
 
 **Notice**
 
-If you are upgrading from version 0.12 or earlier of rippled, these next sections apply to you because the format of the *rippled.cfg* file changed around that time. If you have upgraded since that time and you have applied the configuration file fixes, you can safely ignore them.
+If you are upgrading from version 0.12 or earlier of bixd, these next sections apply to you because the format of the *bixd.cfg* file changed around that time. If you have upgraded since that time and you have applied the configuration file fixes, you can safely ignore them.
 
 **Validators**
 
@@ -2716,7 +2716,7 @@ Ripple Labs is now running five validators. You can use this template for your *
     n9LeQeDcLDMZKjx1TZtrXoLBLo5q1bR1sUQrWG7tEADFU6R27UBp    RIP4
     n9KF6RpvktjNs2MDBkmxpJbup4BKrKeMKDXPhaXkq7cKTwLmWkFr    RIP5
 
-You should also raise your quorum to at least three by putting the following in your *rippled.cfg* file:
+You should also raise your quorum to at least three by putting the following in your *bixd.cfg* file:
 
     [validation_quorum]
     3
@@ -2725,7 +2725,7 @@ If you are a validator, you should set your quorum to at least four.
 
 **IPs**
 
-A list of Ripple Labs server IP addresses can be found by resolving **r.ripple.com**. You can also add this to your *rippled.cfg* file to ensure you always have several peer connections to Ripple Labs servers:
+A list of Ripple Labs server IP addresses can be found by resolving **r.ripple.com**. You can also add this to your *bixd.cfg* file to ensure you always have several peer connections to Ripple Labs servers:
 
     [ips]
     54.225.112.220 51235
@@ -2739,11 +2739,11 @@ A list of Ripple Labs server IP addresses can be found by resolving **r.ripple.c
 
 RocksDB is based on LevelDB with improvements from Facebook and the community. Preliminary tests show that it stalls less often than HyperLevelDB for our use cases.
 
-If you are switching over from an existing back end, you have two options. You can remove your old database and let rippled recreate it as it re-syncs, or you can import your old database into the new one.
+If you are switching over from an existing back end, you have two options. You can remove your old database and let bixd recreate it as it re-syncs, or you can import your old database into the new one.
 
-To remove your old database, make sure the server is shut down (`rippled stop`). Remove the *db/ledger.db* and *db/transaction.db* files. Remove all the files in your back end store directory (*db/hashnode* by default). Then change your configuration file to use the RocksDB back end and restart.
+To remove your old database, make sure the server is shut down (`bixd stop`). Remove the *db/ledger.db* and *db/transaction.db* files. Remove all the files in your back end store directory (*db/hashnode* by default). Then change your configuration file to use the RocksDB back end and restart.
 
-To import your old database, start by shutting the server down. Then modify the configuration file by renaming your *\[node\_db\]* stanza to *\[import\_db\]*. Create a new *\[node\_db\]* stanza and specify a RocksDB back end with a different directory. Start the server with the command **rippled --import**. When the import finishes gracefully stop the server (`rippled stop`). Please wait for rippled to stop on its own because it can take several minutes for it to shut down after an import. Remove the old database, put the new database into place, remove the *\[import\_db\]* section, change the *\[node\_db\]* section to refer to the final location, and restart the server.
+To import your old database, start by shutting the server down. Then modify the configuration file by renaming your *\[node\_db\]* stanza to *\[import\_db\]*. Create a new *\[node\_db\]* stanza and specify a RocksDB back end with a different directory. Start the server with the command **bixd --import**. When the import finishes gracefully stop the server (`bixd stop`). Please wait for bixd to stop on its own because it can take several minutes for it to shut down after an import. Remove the old database, put the new database into place, remove the *\[import\_db\]* section, change the *\[node\_db\]* section to refer to the final location, and restart the server.
 
 The recommended RocksDB configuration is:
 
@@ -2767,7 +2767,7 @@ You need to configure the [NodeBackEnd](https://wiki.ripple.com/NodeBackEnd) tha
 
 ## Version 0.19
 
-rippled version 0.19 has now been released. This release is currently the tip of the [release](https://github.com/ripple/rippled/tree/release) branch and the tag is [0.19.0](https://github.com/ripple/rippled/tree/0.19.0).
+bixd version 0.19 has now been released. This release is currently the tip of the [release](https://github.com/ripple/bixd/tree/release) branch and the tag is [0.19.0](https://github.com/ripple/bixd/tree/0.19.0).
 
 Prior to building, please confirm you have the correct source tree with the `git log` command. The first log entry should be the change setting the version:
 
@@ -2796,7 +2796,7 @@ Ripple Labs is now running five validators. You can use this template for your `
     n9LeQeDcLDMZKjx1TZtrXoLBLo5q1bR1sUQrWG7tEADFU6R27UBp    RIP4
     n9KF6RpvktjNs2MDBkmxpJbup4BKrKeMKDXPhaXkq7cKTwLmWkFr    RIP5
 
-You should also raise your quorum to at least three by putting the following in your `rippled.cfg` file:
+You should also raise your quorum to at least three by putting the following in your `bixd.cfg` file:
 
     [validation_quorum]
     3
@@ -2805,7 +2805,7 @@ If you are a validator, you should set your quorum to at least four.
 
 **IPs**
 
-A list of Ripple Labs server IP addresses can be found by resolving `r.ripple.com`. You can also add this to your `rippled.cfg` file to ensure you always have several peer connections to Ripple Labs servers:
+A list of Ripple Labs server IP addresses can be found by resolving `r.ripple.com`. You can also add this to your `bixd.cfg` file to ensure you always have several peer connections to Ripple Labs servers:
 
     [ips]
     54.225.112.220 51235
@@ -2823,7 +2823,7 @@ If you are switching over from an existing back end, you have two choices. You c
 
 To remove your old database, make sure the server is shutdown. Remove the `db/ledger.db` and `db/transaction.db` files. Remove all the files in your back end store directory, `db/hashnode` by default. Then you can change your configuration file to use the RocksDB back end and restart.
 
-To import your old database, start by shutting the server down. Then modify the configuration file by renaming your `[node_db]` portion to `[import_db]`. Create a new `[node_db]` section specify a RocksDB back end and a different directory. Start the server with `rippled --import`. When the import finishes, stop the server (it can take several minutes to shut down after an import), remove the old database, put the new database into place, remove the `[import_db]` section, change the `[node_db]` section to refer to the final location, and restart the server.
+To import your old database, start by shutting the server down. Then modify the configuration file by renaming your `[node_db]` portion to `[import_db]`. Create a new `[node_db]` section specify a RocksDB back end and a different directory. Start the server with `bixd --import`. When the import finishes, stop the server (it can take several minutes to shut down after an import), remove the old database, put the new database into place, remove the `[import_db]` section, change the `[node_db]` section to refer to the final location, and restart the server.
 
 The recommended RocksDB configuration is:
 
@@ -2847,7 +2847,7 @@ You need to configure the [NodeBackEnd](https://wiki.ripple.com/NodeBackEnd) tha
 
 ## Version 0.16
 
-rippled version 0.16 has now been released. This release is currently the tip of the [master](https://github.com/ripple/rippled/tree/master) branch and the tag is [v0.16.0](https://github.com/ripple/rippled/tree/v0.16.0).
+bixd version 0.16 has now been released. This release is currently the tip of the [master](https://github.com/ripple/bixd/tree/master) branch and the tag is [v0.16.0](https://github.com/ripple/bixd/tree/v0.16.0).
 
 Prior to building, please confirm you have the correct source tree with the `git log` command. The first log entry should be the change setting the version:
 
@@ -2864,7 +2864,7 @@ Prior to building, please confirm you have the correct source tree with the `git
 -   Ledger speed improvements
 -   Reduced memory consumption
 -   Improved server stability
--   rippled no longer throws and exception on exiting
+-   bixd no longer throws and exception on exiting
 -   Better error reporting
 -   Ripple-lib tests have been ported to use the Mocha testing framework
 
@@ -2879,7 +2879,7 @@ Ripple Labs is now running five validators. You can use this template for your `
     n9LeQeDcLDMZKjx1TZtrXoLBLo5q1bR1sUQrWG7tEADFU6R27UBp    RIP4
     n9KF6RpvktjNs2MDBkmxpJbup4BKrKeMKDXPhaXkq7cKTwLmWkFr    RIP5
 
-You should also raise your quorum to at least three by putting the following in your `rippled.cfg` file:
+You should also raise your quorum to at least three by putting the following in your `bixd.cfg` file:
 
     [validation_quorum]
     3
@@ -2888,7 +2888,7 @@ If you are a validator, you should set your quorum to at least four.
 
 **IPs**
 
-A list of Ripple Labs server IP addresses can be found by resolving `r.ripple.com`. You can also add this to your `rippled.cfg` file to ensure you always have several peer connections to Ripple Labs servers:
+A list of Ripple Labs server IP addresses can be found by resolving `r.ripple.com`. You can also add this to your `bixd.cfg` file to ensure you always have several peer connections to Ripple Labs servers:
 
     [ips]
     54.225.112.220 51235
@@ -2919,7 +2919,7 @@ None known
 
 ## Version 0.14
 
-rippled version 0.14 has now been released. This release is currently the tip of the [master](https://github.com/ripple/rippled/tree/master) branch and the tag is [v0.12.0](https://github.com/ripple/rippled/tree/v0.14.0).
+bixd version 0.14 has now been released. This release is currently the tip of the [master](https://github.com/ripple/bixd/tree/master) branch and the tag is [v0.12.0](https://github.com/ripple/bixd/tree/v0.14.0).
 
 Prior to building, please confirm you have the correct source tree with the `git log` command. The first log entry should be the change setting the version:
 
@@ -2936,7 +2936,7 @@ Prior to building, please confirm you have the correct source tree with the `git
 -   Ledger speed improvements
 -   Reduced memory consumption
 -   Improved server stability
--   rippled no longer throws and exception on exiting
+-   bixd no longer throws and exception on exiting
 -   Better error reporting
 -   Ripple-lib tests have been ported to use the Mocha testing framework
 
@@ -2951,7 +2951,7 @@ Ripple Labs is now running five validators. You can use this template for your `
     n9LeQeDcLDMZKjx1TZtrXoLBLo5q1bR1sUQrWG7tEADFU6R27UBp    RIP4
     n9KF6RpvktjNs2MDBkmxpJbup4BKrKeMKDXPhaXkq7cKTwLmWkFr    RIP5
 
-You should also raise your quorum to at least three by putting the following in your `rippled.cfg` file:
+You should also raise your quorum to at least three by putting the following in your `bixd.cfg` file:
 
     [validation_quorum]
     3
@@ -2960,7 +2960,7 @@ If you are a validator, you should set your quorum to at least four.
 
 **IPs**
 
-A list of Ripple Labs server IP addresses can be found by resolving `r.ripple.com`. You can also add this to your `rippled.cfg` file to ensure you always have several peer connections to Ripple Labs servers:
+A list of Ripple Labs server IP addresses can be found by resolving `r.ripple.com`. You can also add this to your `bixd.cfg` file to ensure you always have several peer connections to Ripple Labs servers:
 
     [ips]
     54.225.112.220 51235
@@ -2991,7 +2991,7 @@ None known
 
 ## Version 0.12
 
-rippled version 0.12 has now been released. This release is currently the tip of the [master branch](https://github.com/ripple/rippled/tree/master) and can be found on GitHub. The tag is [v0.12.0](https://github.com/ripple/rippled/tree/v0.12.0).
+bixd version 0.12 has now been released. This release is currently the tip of the [master branch](https://github.com/ripple/bixd/tree/master) and can be found on GitHub. The tag is [v0.12.0](https://github.com/ripple/bixd/tree/v0.12.0).
 
 Prior to building, please confirm you have the correct source tree with the `git log` command. The first log entry should be the change setting the version:
 
@@ -3005,7 +3005,7 @@ Prior to building, please confirm you have the correct source tree with the `git
 
 -   Server Showing "Offline"
 
-This issue was caused by LevelDB periodically compacting its internal data structure. While compacting, rippled's processing would stall causing the node to lose sync with the rest of the network. This issue was solved by switching from LevelDB to HyperLevelDB. rippled operators will need to change their ripple.cfg file. See below for configuration details.
+This issue was caused by LevelDB periodically compacting its internal data structure. While compacting, bixd's processing would stall causing the node to lose sync with the rest of the network. This issue was solved by switching from LevelDB to HyperLevelDB. bixd operators will need to change their ripple.cfg file. See below for configuration details.
 
 -   Premature Validation of Transactions
 
@@ -3013,7 +3013,7 @@ On rare occasions, a transaction would show as locally validated before the full
 
 -   Missing Ledgers
 
-Occasionally, some rippled servers would fail to fetch all ledgers. This left gaps in the local history and caused some API calls to report incomplete results. The ledger fetch code was rewritten to both prevent this and to repair any existing gaps.
+Occasionally, some bixd servers would fail to fetch all ledgers. This left gaps in the local history and caused some API calls to report incomplete results. The ledger fetch code was rewritten to both prevent this and to repair any existing gaps.
 
 **Significant Changes**
 
@@ -3051,7 +3051,7 @@ Ripple Labs is now running five validators. You can use this template for your `
     n9KiYM9CgngLvtRCQHZwgC2gjpdaZcCcbt3VboxiNFcKuwFVujzS     RL4
     n9LdgEtkmGB9E2h3K4Vp7iGUaKuq23Zr32ehxiU8FWY7xoxbWTSA     RL5
 
-You should also raise your quorum to at least three by putting the following in your `rippled.cfg` file:
+You should also raise your quorum to at least three by putting the following in your `bixd.cfg` file:
 
     [validation_quorum]
     3
@@ -3060,7 +3060,7 @@ If you are a validator, you should set your quorum to at least four.
 
 **IPs**
 
-A list of Ripple Labs server IP addresses can be found by resolving `r.ripple.com`. You can also add this to your `rippled.cfg` file to ensure you always have several peer connections to Ripple Labs servers:
+A list of Ripple Labs server IP addresses can be found by resolving `r.ripple.com`. You can also add this to your `bixd.cfg` file to ensure you always have several peer connections to Ripple Labs servers:
 
     [ips]
     54.225.112.220 51235

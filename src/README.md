@@ -18,7 +18,7 @@ Source folders:
 |:----------------|:---------------------------------------------|:------------|
 | `beast`         | N/A                                          | legacy utility code that was formerly associated with boost::beast
 | `ed25519-donna` | https://github.com/floodyberry/ed25519-donna | [Ed25519](http://ed25519.cr.yp.to/) digital signatures |
-| `ripple`        | N/A                                          | **Core source code for `rippled`** |
+| `ripple`        | N/A                                          | **Core source code for `bixd`** |
 | `secp256k1`     | https://github.com/bitcoin-core/secp256k1    | ECDSA digital signatures using the **secp256k1** curve |
 | `test`          | N/A                                          | **Unit tests for `bixd`** |
 

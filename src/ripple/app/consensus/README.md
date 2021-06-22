@@ -8,6 +8,6 @@ rippled-specific instance of consensus.
   * `RCLCxTxSet` adapts a `SHAMap` to represent a set of transactions.
   * `RCLCxLedger` adapts a `Ledger`.
   * `RCLConsensus` is implements the requirements of the generic 
-    `Consensus` class by connecting to the rest of the `rippled`
+    `Consensus` class by connecting to the rest of the `bixd`
     application. 
 

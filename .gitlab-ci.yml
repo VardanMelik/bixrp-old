@@ -18,7 +18,7 @@
   tags:
     - linux
     - c5.2xlarge
-  image: thejohnfreeman/rippled-build-ubuntu:4b73694e07f0
+  image: thejohnfreeman/bixd-build-ubuntu:4b73694e07f0
   script:
     - bin/ci/build.sh
     - bin/ci/test.sh

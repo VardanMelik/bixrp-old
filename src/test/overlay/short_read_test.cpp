@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of rippled: https://github.com/ripple/rippled
+    This file is part of bixd
 
     Copyright 2014 Ripple Labs Inc.
     Permission to use, copy, modify, and/or distribute this software for any
