@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TEST_ABSTRACTCLIENT_H_INCLUDED
-#define RIPPLE_TEST_ABSTRACTCLIENT_H_INCLUDED
+#ifndef BIXD_TEST_ABSTRACTCLIENT_H_INCLUDED
+#define BIXD_TEST_ABSTRACTCLIENT_H_INCLUDED
 
-#include <ripple/json/json_value.h>
+#include <bixd/json/json_value.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
-/* Abstract Ripple Client interface.
+/* Abstract bixd Client interface.
 
    This abstracts the transport layer, allowing
-   commands to be submitted to a rippled server.
+   commands to be submitted to a bixd server.
 */
 class AbstractClient
 {
@@ -59,6 +59,6 @@ public:
 };
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

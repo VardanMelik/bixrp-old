@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,28 +17,28 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/core/Pg.h>
-#include <ripple/core/SociDB.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/Role.h>
-#include <ripple/rpc/Status.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/core/Pg.h>
+#include <bixd/core/SociDB.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/Role.h>
+#include <bixd/rpc/Status.h>
 #include <boost/format.hpp>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doTxHistoryReporting(RPC::JsonContext& context)
 {
     Json::Value ret;
-#ifdef RIPPLED_REPORTING
+#ifdef BIXD_REPORTING
     if (!context.app.config().reporting())
     {
         assert(false);
@@ -207,4 +207,4 @@ doTxHistory(RPC::JsonContext& context)
     return obj;
 }
 
-}  // namespace ripple
+}  // namespace bixd

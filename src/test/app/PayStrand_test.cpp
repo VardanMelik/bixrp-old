@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
     copyright notice and this permission notice appear in all copies.
@@ -15,21 +15,21 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/Flow.h>
-#include <ripple/app/paths/RippleCalc.h>
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/ApplyViewImpl.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/ledger/Sandbox.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/paths/Flow.h>
+#include <bixd/app/paths/bixdCalc.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/ApplyViewImpl.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/ledger/Sandbox.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 #include <test/jtx/PathSet.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 struct DirectStepInfo
@@ -44,7 +44,7 @@ struct BIXRPEndpointStepInfo
     AccountID acc;
 };
 
-enum class TrustFlag { freeze, auth, noripple };
+enum class TrustFlag { freeze, auth, nobixd };
 
 /*constexpr*/ std::uint32_t
 trustFlag(TrustFlag f, bool useHigh)
@@ -59,10 +59,10 @@ trustFlag(TrustFlag f, bool useHigh)
             if (useHigh)
                 return lsfHighAuth;
             return lsfLowAuth;
-        case TrustFlag::noripple:
+        case TrustFlag::nobixd:
             if (useHigh)
-                return lsfHighNoRipple;
-            return lsfLowNoRipple;
+                return lsfHighNoBixd;
+            return lsfLowNoBixd;
     }
     return 0;  // Silence warning about end of non-void function
 }
@@ -101,7 +101,7 @@ equal(std::unique_ptr<Step> const& s1, BIXRPEndpointStepInfo const& bixrpsi)
 }
 
 bool
-equal(std::unique_ptr<Step> const& s1, ripple::Book const& bsi)
+equal(std::unique_ptr<Step> const& s1, bixd::Book const& bsi)
 {
     if (!s1)
         return false;
@@ -335,7 +335,7 @@ public:
 struct ExistingElementPool
 {
     std::vector<jtx::Account> accounts;
-    std::vector<ripple::Currency> currencies;
+    std::vector<bixd::Currency> currencies;
     std::vector<std::string> currencyNames;
 
     jtx::Account
@@ -345,7 +345,7 @@ struct ExistingElementPool
         return accounts[id];
     }
 
-    ripple::Currency
+    bixd::Currency
     getCurrency(size_t id)
     {
         assert(id < currencies.size());
@@ -519,13 +519,13 @@ struct ExistingElementPool
     {
         std::vector<std::tuple<STAmount, STAmount, AccountID, AccountID>> diffs;
 
-        auto bixrpBalance = [](ReadView const& v, ripple::Keylet const& k) {
+        auto bixrpBalance = [](ReadView const& v, bixd::Keylet const& k) {
             auto const sle = v.read(k);
             if (!sle)
                 return STAmount{};
             return (*sle)[sfBalance];
         };
-        auto lineBalance = [](ReadView const& v, ripple::Keylet const& k) {
+        auto lineBalance = [](ReadView const& v, bixd::Keylet const& k) {
             auto const sle = v.read(k);
             if (!sle)
                 return STAmount{};
@@ -569,7 +569,7 @@ struct ExistingElementPool
         return getAccount(nextAvailAccount++);
     }
 
-    ripple::Currency
+    bixd::Currency
     getAvailCurrency()
     {
         return getCurrency(nextAvailCurrency++);
@@ -654,7 +654,7 @@ struct PayStrand_test : public beast::unit_test::suite
         auto const usdC = USD.currency;
 
         using D = DirectStepInfo;
-        using B = ripple::Book;
+        using B = bixd::Book;
         using BIXRPS = BIXRPEndpointStepInfo;
 
         auto test = [&, this](
@@ -927,16 +927,16 @@ struct PayStrand_test : public beast::unit_test::suite
             env(pay(alice, carol, USD(100)),
                 path(~USD, ~EUR, ~USD),
                 sendmax(BIXRP(200)),
-                txflags(tfNoRippleDirect),
+                txflags(tfNoBixdDirect),
                 ter(temBAD_PATH_LOOP));
         }
 
         {
             Env env(*this, features);
-            env.fund(BIXRP(10000), alice, bob, noripple(gw));
+            env.fund(BIXRP(10000), alice, bob, nobixd(gw));
             env.trust(USD(1000), alice, bob);
             env(pay(gw, alice, USD(100)));
-            test(env, USD, boost::none, STPath(), terNO_RIPPLE);
+            test(env, USD, boost::none, STPath(), terNO_BIXD);
         }
 
         {
@@ -1093,7 +1093,7 @@ struct PayStrand_test : public beast::unit_test::suite
             env(pay(alice, alice, EUR(1)),
                 json(paths.json()),
                 sendmax(BIXRP(10)),
-                txflags(tfNoRippleDirect | tfPartialPayment),
+                txflags(tfNoBixdDirect | tfPartialPayment),
                 ter(temBAD_PATH));
         }
 
@@ -1111,7 +1111,7 @@ struct PayStrand_test : public beast::unit_test::suite
             // payment path: BIXRP -> BIXRP/USD -> USD/BIXRP
             env(pay(alice, carol, BIXRP(100)),
                 path(~USD, ~BIXRP),
-                txflags(tfNoRippleDirect),
+                txflags(tfNoBixdDirect),
                 ter(temBAD_SEND_BIXRP_PATHS));
         }
 
@@ -1130,7 +1130,7 @@ struct PayStrand_test : public beast::unit_test::suite
             env(pay(alice, carol, BIXRP(100)),
                 path(~USD, ~BIXRP),
                 sendmax(BIXRP(200)),
-                txflags(tfNoRippleDirect),
+                txflags(tfNoBixdDirect),
                 ter(temBAD_SEND_BIXRP_MAX));
         }
     }
@@ -1165,7 +1165,7 @@ struct PayStrand_test : public beast::unit_test::suite
             env(pay(alice, carol, USD(100)),
                 sendmax(USD(100)),
                 path(~BIXRP, ~USD),
-                txflags(tfNoRippleDirect),
+                txflags(tfNoBixdDirect),
                 ter(temBAD_PATH_LOOP));
         }
         {
@@ -1188,7 +1188,7 @@ struct PayStrand_test : public beast::unit_test::suite
             env(pay(alice, carol, CNY(100)),
                 sendmax(BIXRP(100)),
                 path(~USD, ~EUR, ~USD, ~CNY),
-                txflags(tfNoRippleDirect),
+                txflags(tfNoBixdDirect),
                 ter(temBAD_PATH_LOOP));
         }
     }
@@ -1213,13 +1213,13 @@ struct PayStrand_test : public beast::unit_test::suite
         AccountID const srcAcc = alice.id();
         AccountID dstAcc = bob.id();
         STPathSet pathSet;
-        ::ripple::path::RippleCalc::Input inputs;
+        ::bixd::path::BixdCalc::Input inputs;
         inputs.defaultPathsAllowed = true;
         try
         {
             PaymentSandbox sb{env.current().get(), tapNONE};
             {
-                auto const r = ::ripple::path::RippleCalc::rippleCalculate(
+                auto const r = ::bixd::path::BixdCalc::bixdCalculate(
                     sb,
                     sendMax,
                     deliver,
@@ -1231,7 +1231,7 @@ struct PayStrand_test : public beast::unit_test::suite
                 BEAST_EXPECT(r.result() == temBAD_PATH);
             }
             {
-                auto const r = ::ripple::path::RippleCalc::rippleCalculate(
+                auto const r = ::bixd::path::BixdCalc::bixdCalculate(
                     sb,
                     sendMax,
                     deliver,
@@ -1243,7 +1243,7 @@ struct PayStrand_test : public beast::unit_test::suite
                 BEAST_EXPECT(r.result() == temBAD_PATH);
             }
             {
-                auto const r = ::ripple::path::RippleCalc::rippleCalculate(
+                auto const r = ::bixd::path::BixdCalc::bixdCalculate(
                     sb,
                     noAccountAmount,
                     deliver,
@@ -1255,7 +1255,7 @@ struct PayStrand_test : public beast::unit_test::suite
                 BEAST_EXPECT(r.result() == temBAD_PATH);
             }
             {
-                auto const r = ::ripple::path::RippleCalc::rippleCalculate(
+                auto const r = ::bixd::path::BixdCalc::bixdCalculate(
                     sb,
                     sendMax,
                     noAccountAmount,
@@ -1291,7 +1291,7 @@ struct PayStrand_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(PayStrand, app, ripple);
+BEAST_DEFINE_TESTSUITE(PayStrand, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

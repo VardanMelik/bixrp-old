@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/Flow.h>
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/basics/contract.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/ApplyViewImpl.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/ledger/Sandbox.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/paths/Flow.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/ApplyViewImpl.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/ledger/Sandbox.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 #include <test/jtx/PathSet.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 bool
-getNoRippleFlag(
+getNoBixdFlag(
     jtx::Env const& env,
     jtx::Account const& src,
     jtx::Account const& dst,
@@ -42,7 +42,7 @@ getNoRippleFlag(
     if (auto sle = env.le(keylet::line(src, dst, cur)))
     {
         auto const flag =
-            (src.id() > dst.id()) ? lsfHighNoRipple : lsfLowNoRipple;
+            (src.id() > dst.id()) ? lsfHighNoBixd : lsfLowNoBixd;
         return sle->isFlag(flag);
     }
     Throw<std::runtime_error>("No line in getTrustFlag");
@@ -139,7 +139,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, dan, USDC(5)),
                 path(bob, carol),
                 sendmax(USDA(6)),
-                txflags(tfNoRippleDirect));
+                txflags(tfNoBixdDirect));
             env.require(balance(dan, USDC(5)));
             env.require(balance(alice, USDB(0.5)));
         }
@@ -157,7 +157,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, dan, USDC(5)),
                 path(bob, carol),
                 sendmax(USDA(6)),
-                txflags(tfNoRippleDirect));
+                txflags(tfNoBixdDirect));
             env.require(balance(dan, USDC(5)));
             env.require(balance(bob, USDA(5)));
         }
@@ -179,7 +179,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, erin, USDD(5)),
                 path(carol, dan),
                 path(bob, dan),
-                txflags(tfNoRippleDirect));
+                txflags(tfNoBixdDirect));
 
             env.require(balance(erin, USDD(5)));
             env.require(balance(dan, USDB(5)));
@@ -236,7 +236,7 @@ struct Flow_test : public beast::unit_test::suite
                 env(pay(dan, carol, USDA(10)),
                     path(bob),
                     sendmax(USDD(100)),
-                    txflags(tfNoRippleDirect));
+                    txflags(tfNoBixdDirect));
                 env.require(balance(bob, USDA(90)));
                 if (bobAliceQOut > bobDanQIn)
                     env.require(balance(
@@ -529,7 +529,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, carol, EUR(1)),
                 path(~BIXRP, ~EUR),
                 sendmax(USD(0.4)),
-                txflags(tfNoRippleDirect | tfPartialPayment));
+                txflags(tfNoBixdDirect | tfPartialPayment));
 
             env.require(balance(carol, EUR(1)));
             env.require(balance(bob, USD(0.4)));
@@ -660,7 +660,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, carol, EUR(50)),
                 path(bob, gw, ~EUR),
                 sendmax(USDA(60)),
-                txflags(tfNoRippleDirect));
+                txflags(tfNoBixdDirect));
             env.require(
                 balance(bob, USD(-10)),
                 balance(bob, USDA(60)),
@@ -735,7 +735,7 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(alice, carol, USD(1000000)),
             path(~BIXRP, ~USD),
             sendmax(EUR(500)),
-            txflags(tfNoRippleDirect | tfPartialPayment));
+            txflags(tfNoBixdDirect | tfPartialPayment));
 
         auto const carolUSD = env.balance(carol, USD).value();
         BEAST_EXPECT(carolUSD > USD(0) && carolUSD < USD(50));
@@ -770,7 +770,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, carol, USD(100)),
                 path(~USD),
                 sendmax(BIXRP(100)),
-                txflags(tfNoRippleDirect | tfPartialPayment | tfLimitQuality));
+                txflags(tfNoBixdDirect | tfPartialPayment | tfLimitQuality));
 
             env.require(balance(carol, USD(50)));
         }
@@ -971,7 +971,7 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(alice, alice, toSend),
             path(~USD),
             sendmax(BIXRP(20000)),
-            txflags(tfPartialPayment | tfNoRippleDirect));
+            txflags(tfPartialPayment | tfNoBixdDirect));
     }
 
     void
@@ -1011,7 +1011,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, bob, tinyAmt1),
                 path(~USD),
                 sendmax(drops(9000000000)),
-                txflags(tfNoRippleDirect));
+                txflags(tfNoBixdDirect));
 
             BEAST_EXPECT(!isOffer(env, gw, BIXRP(0), USD(0)));
         }
@@ -1048,7 +1048,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, bob, drops(9000000000)),
                 path(~BIXRP),
                 sendmax(USD(1)),
-                txflags(tfNoRippleDirect));
+                txflags(tfNoBixdDirect));
 
             BEAST_EXPECT(!isOffer(env, gw, USD(0), BIXRP(0)));
         }
@@ -1073,7 +1073,7 @@ struct Flow_test : public beast::unit_test::suite
         env(trust(alice, USD(100)));
         env.close();
 
-        BEAST_EXPECT(!getNoRippleFlag(env, gw, alice, usdC));
+        BEAST_EXPECT(!getNoBixdFlag(env, gw, alice, usdC));
 
         env(pay(
             gw,
@@ -1113,7 +1113,7 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(alice, bob, BIXRP(10000)),
             path(~BIXRP),
             sendmax(USD(100)),
-            txflags(tfPartialPayment | tfNoRippleDirect));
+            txflags(tfPartialPayment | tfNoBixdDirect));
     }
 
     void
@@ -1128,13 +1128,13 @@ struct Flow_test : public beast::unit_test::suite
         auto const carol = Account("carol");
         auto const gw = Account("gw");
 
-        env.fund(BIXRP(100000000), alice, noripple(bob), carol, gw);
+        env.fund(BIXRP(100000000), alice, nobixd(bob), carol, gw);
         env.trust(gw["USD"](10000), alice, carol);
-        env(trust(bob, gw["USD"](10000), tfSetNoRipple));
+        env(trust(bob, gw["USD"](10000), tfSetNoBixd));
         env.trust(gw["USD"](10000), bob);
         env.close();
 
-        // set no ripple between bob and the gateway
+        // set no bixd between bob and the gateway
 
         env(pay(gw, alice, gw["USD"](1000)));
         env.close();
@@ -1145,7 +1145,7 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(alice, alice, BIXRP(1)),
             path(gw, bob, ~BIXRP),
             sendmax(gw["USD"](1000)),
-            txflags(tfNoRippleDirect),
+            txflags(tfNoBixdDirect),
             ter(tecPATH_DRY));
         env.close();
 
@@ -1158,7 +1158,7 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(carol, carol, gw["USD"](1000)),
             path(~bob["USD"], gw),
             sendmax(BIXRP(100000)),
-            txflags(tfNoRippleDirect),
+            txflags(tfNoBixdDirect),
             ter(tecPATH_DRY));
         env.close();
 
@@ -1174,7 +1174,7 @@ struct Flow_test : public beast::unit_test::suite
         Env env(*this);
 
         // pay alice -> bixrp -> USD/bob -> bob -> gw -> alice
-        // set no ripple on bob's side of the bob/gw trust line
+        // set no bixd on bob's side of the bob/gw trust line
         // carol has the bob/USD and makes an offer, bob has USD/gw
 
         auto const alice = Account("alice");
@@ -1186,7 +1186,7 @@ struct Flow_test : public beast::unit_test::suite
         env.fund(BIXRP(100000000), alice, bob, carol, gw);
         env.close();
         env.trust(USD(10000), alice, carol);
-        env(trust(bob, USD(10000), tfSetNoRipple));
+        env(trust(bob, USD(10000), tfSetNoBixd));
         env.trust(USD(10000), bob);
         env.trust(bob["USD"](10000), carol);
         env.close();
@@ -1201,7 +1201,7 @@ struct Flow_test : public beast::unit_test::suite
         env(pay(alice, alice, USD(1000)),
             path(~bob["USD"], bob, gw),
             sendmax(BIXRP(1)),
-            txflags(tfNoRippleDirect),
+            txflags(tfNoBixdDirect),
             ter(tecPATH_DRY));
         env.close();
     }
@@ -1299,7 +1299,7 @@ struct Flow_test : public beast::unit_test::suite
                 env(pay(alice, bob, EUR(1)),
                     path(~USD, ~BIXRP, ~EUR),
                     sendmax(BIXRP(1)),
-                    txflags(tfNoRippleDirect),
+                    txflags(tfNoBixdDirect),
                     ter(expectedTer));
             }
             pass();
@@ -1321,7 +1321,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, bob, BIXRP(1)),
                 path(~BIXRP, ~USD, ~BIXRP),
                 sendmax(EUR(1)),
-                txflags(tfNoRippleDirect),
+                txflags(tfNoBixdDirect),
                 ter(temBAD_PATH_LOOP));
         }
         {
@@ -1349,7 +1349,7 @@ struct Flow_test : public beast::unit_test::suite
             env(pay(alice, bob, JPY(1)),
                 path(~BIXRP, ~EUR, ~BIXRP, ~JPY),
                 sendmax(USD(1)),
-                txflags(tfNoRippleDirect),
+                txflags(tfNoBixdDirect),
                 ter(temBAD_PATH_LOOP));
         }
     }
@@ -1437,8 +1437,8 @@ struct Flow_manual_test : public Flow_test
     }
 };
 
-BEAST_DEFINE_TESTSUITE_PRIO(Flow, app, ripple, 2);
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(Flow_manual, app, ripple, 4);
+BEAST_DEFINE_TESTSUITE_PRIO(Flow, app, bixd, 2);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(Flow_manual, app, bixd, 4);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

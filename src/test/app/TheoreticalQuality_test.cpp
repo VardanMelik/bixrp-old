@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,24 +17,24 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/Flow.h>
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/app/paths/impl/StrandFlow.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/random.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/ApplyViewImpl.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/ledger/Sandbox.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/paths/Flow.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/app/paths/impl/StrandFlow.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/random.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/ApplyViewImpl.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/ledger/Sandbox.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 #include <test/jtx/PathSet.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
-struct RippleCalcTestParams
+struct BixdCalcTestParams
 {
     AccountID srcAccount;
     AccountID dstAccount;
@@ -44,7 +44,7 @@ struct RippleCalcTestParams
 
     STPathSet paths;
 
-    explicit RippleCalcTestParams(Json::Value const& jv)
+    explicit BixdCalcTestParams(Json::Value const& jv)
         : srcAccount{*parseBase58<AccountID>(jv[jss::Account].asString())}
         , dstAccount{*parseBase58<AccountID>(jv[jss::Destination].asString())}
         , dstAmt{amountFromJson(sfAmount, jv[jss::Amount])}
@@ -240,7 +240,7 @@ class TheoreticalQuality_test : public beast::unit_test::suite
 
     void
     testCase(
-        RippleCalcTestParams const& rcp,
+        BixdCalcTestParams const& rcp,
         std::shared_ptr<ReadView const> closed,
         boost::optional<Quality> const& expectedQ = {})
     {
@@ -394,10 +394,10 @@ public:
 
             // Accounts are set up, make the payment
             IOU const iou{accounts.back(), currency};
-            RippleCalcTestParams rcp{env.json(
+            BixdCalcTestParams rcp{env.json(
                 pay(accounts.front(), accounts.back(), iou(paymentAmount)),
                 accountsPath,
-                txflags(tfNoRippleDirect))};
+                txflags(tfNoBixdDirect))};
 
             testCase(rcp, env.closed());
         }
@@ -480,11 +480,11 @@ public:
             // Accounts are set up, make the payment
             IOU const srcIOU{bob, usdCurrency};
             IOU const dstIOU{carol, eurCurrency};
-            RippleCalcTestParams rcp{env.json(
+            BixdCalcTestParams rcp{env.json(
                 pay(alice, dan, dstIOU(paymentAmount)),
                 sendmax(srcIOU(100 * paymentAmount)),
                 bookPath,
-                txflags(tfNoRippleDirect))};
+                txflags(tfNoBixdDirect))};
 
             testCase(rcp, env.closed());
         }
@@ -549,7 +549,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(TheoreticalQuality, app, ripple);
+BEAST_DEFINE_TESTSUITE(TheoreticalQuality, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

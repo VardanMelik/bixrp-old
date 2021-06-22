@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/OpenLedger.h>
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/ledger/View.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/AccountID.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/DeliveredAmount.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/OpenLedger.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/ledger/View.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/AccountID.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/DeliveredAmount.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <boost/algorithm/string/case_conv.hpp>
 
-#include <ripple/rpc/impl/GRPCHelpers.h>
+#include <bixd/rpc/impl/GRPCHelpers.h>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 boost::optional<AccountID>
@@ -628,10 +628,10 @@ readLimitField(
 }
 
 boost::optional<Seed>
-parseRippleLibSeed(Json::Value const& value)
+parseBixdLibSeed(Json::Value const& value)
 {
-    // ripple-lib encodes seed used to generate an Ed25519 wallet in a
-    // non-standard way. While rippled never encode seeds that way, we
+    // bixd-lib encodes seed used to generate an Ed25519 wallet in a
+    // non-standard way. While bixd never encode seeds that way, we
     // try to detect such keys to avoid user confusion.
     if (!value.isString())
         return boost::none;
@@ -773,12 +773,12 @@ keypairForSignature(Json::Value const& params, Json::Value& error)
         }
     }
 
-    // ripple-lib encodes seed used to generate an Ed25519 wallet in a
+    // bixd-lib encodes seed used to generate an Ed25519 wallet in a
     // non-standard way. While we never encode seeds that way, we try
     // to detect such keys to avoid user confusion.
     if (secretType != jss::seed_hex.c_str())
     {
-        seed = RPC::parseRippleLibSeed(params[secretType]);
+        seed = RPC::parseBixdLibSeed(params[secretType]);
 
         if (seed)
         {
@@ -850,7 +850,7 @@ chooseLedgerEntryType(Json::Value const& params)
                  {jss::offer, ltOFFER},
                  {jss::payment_channel, ltPAYCHAN},
                  {jss::signer_list, ltSIGNER_LIST},
-                 {jss::state, ltRIPPLE_STATE},
+                 {jss::state, ltBIXD_STATE},
                  {jss::ticket, ltTICKET}}};
 
         auto const& p = params[jss::type];
@@ -904,4 +904,4 @@ getAPIVersionNumber(Json::Value const& jv)
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2015 Ripple Labs Inc.
+    Copyright (c) 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLED_RIPPLE_RPC_HANDLERS_WALLETPROPOSE_H
-#define RIPPLED_RIPPLE_RPC_HANDLERS_WALLETPROPOSE_H
+#ifndef BIXD_BIXD_RPC_HANDLERS_WALLETPROPOSE_H
+#define BIXD_BIXD_RPC_HANDLERS_WALLETPROPOSE_H
 
-#include <ripple/json/json_value.h>
+#include <bixd/json/json_value.h>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 walletPropose(Json::Value const& params);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

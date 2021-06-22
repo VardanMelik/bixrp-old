@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2017 Ripple Labs Inc.
+    Copyright 2017 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,15 +16,15 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#ifndef RIPPLE_TEST_TRUSTED_PUBLISHER_SERVER_H_INCLUDED
-#define RIPPLE_TEST_TRUSTED_PUBLISHER_SERVER_H_INCLUDED
+#ifndef BIXD_TEST_TRUSTED_PUBLISHER_SERVER_H_INCLUDED
+#define BIXD_TEST_TRUSTED_PUBLISHER_SERVER_H_INCLUDED
 
-#include <ripple/basics/base64.h>
-#include <ripple/basics/random.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Sign.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/random.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Sign.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio.hpp>
 #include <boost/asio/ip/tcp.hpp>
@@ -38,7 +38,7 @@
 #include <memory>
 #include <thread>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class TrustedPublisherServer
@@ -180,7 +180,7 @@ public:
         int sequence = 1)
         : sock_{ioc}
         , ep_{beast::IP::Address::from_string(
-                  ripple::test::getEnvLocalhostAddr()),
+                  bixd::test::getEnvLocalhostAddr()),
               // 0 means let OS pick the port based on what's available
               0}
         , acceptor_{ioc}
@@ -345,7 +345,7 @@ public:
         openssl genrsa -out ca.key 2048
         openssl req -new -x509 -nodes -days 10000 -key ca.key -out ca.crt \
             -subj "/C=US/ST=CA/L=Los
-     Angeles/O=rippled-unit-tests/CN=example.com" # generate private cert
+     Angeles/O=bixd-unit-tests/CN=example.com" # generate private cert
         openssl genrsa -out server.key 2048
         # Generate certificate signing request
         # since our unit tests can run in either ipv4 or ipv6 mode,
@@ -368,7 +368,7 @@ public:
         openssl req -new -key server.key -out server.csr \
             -config extras.cnf \
             -subj "/C=US/ST=California/L=San
-     Francisco/O=rippled-unit-tests/CN=127.0.0.1" \
+     Francisco/O=bixd-unit-tests/CN=127.0.0.1" \
 
         # Create public certificate by signing with our CA
         openssl x509 -req -days 10000 -in server.csr -CA ca.crt -CAkey ca.key
@@ -728,5 +728,5 @@ make_TrustedPublisherServer(
 }
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 #endif

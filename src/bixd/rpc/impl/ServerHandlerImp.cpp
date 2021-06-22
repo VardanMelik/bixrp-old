@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,31 +17,31 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/base64.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/make_SSLContext.h>
-#include <ripple/beast/net/IPAddressConversion.h>
-#include <ripple/beast/rfc2616.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/json/to_string.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/resource/ResourceManager.h>
-#include <ripple/rpc/RPCHandler.h>
-#include <ripple/rpc/Role.h>
-#include <ripple/rpc/ServerHandler.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/ServerHandlerImp.h>
-#include <ripple/rpc/impl/Tuning.h>
-#include <ripple/rpc/json_body.h>
-#include <ripple/server/Server.h>
-#include <ripple/server/SimpleWriter.h>
-#include <ripple/server/impl/JSONRPCUtil.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/make_SSLContext.h>
+#include <bixd/beast/net/IPAddressConversion.h>
+#include <bixd/beast/rfc2616.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/to_string.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/resource/ResourceManager.h>
+#include <bixd/rpc/RPCHandler.h>
+#include <bixd/rpc/Role.h>
+#include <bixd/rpc/ServerHandler.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/ServerHandlerImp.h>
+#include <bixd/rpc/impl/Tuning.h>
+#include <bixd/rpc/json_body.h>
+#include <bixd/server/Server.h>
+#include <bixd/server/SimpleWriter.h>
+#include <bixd/server/impl/JSONRPCUtil.h>
 #include <boost/algorithm/string.hpp>
 #include <boost/beast/http/fields.hpp>
 #include <boost/beast/http/string_body.hpp>
@@ -51,7 +51,7 @@
 #include <algorithm>
 #include <stdexcept>
 
-namespace ripple {
+namespace bixd {
 
 static bool
 isStatusRequest(http_request_type const& request)
@@ -408,8 +408,8 @@ ServerHandlerImp::processSession(
                 jr[jss::id] = jv[jss::id];
             if (jv.isMember(jss::jsonrpc))
                 jr[jss::jsonrpc] = jv[jss::jsonrpc];
-            if (jv.isMember(jss::ripplerpc))
-                jr[jss::ripplerpc] = jv[jss::ripplerpc];
+            if (jv.isMember(jss::bixdrpc))
+                jr[jss::bixdrpc] = jv[jss::bixdrpc];
             if (jv.isMember(jss::api_version))
                 jr[jss::api_version] = jv[jss::api_version];
 
@@ -501,8 +501,8 @@ ServerHandlerImp::processSession(
         jr[jss::id] = jv[jss::id];
     if (jv.isMember(jss::jsonrpc))
         jr[jss::jsonrpc] = jv[jss::jsonrpc];
-    if (jv.isMember(jss::ripplerpc))
-        jr[jss::ripplerpc] = jv[jss::ripplerpc];
+    if (jv.isMember(jss::bixdrpc))
+        jr[jss::bixdrpc] = jv[jss::bixdrpc];
     if (jv.isMember(jss::api_version))
         jr[jss::api_version] = jv[jss::api_version];
 
@@ -783,25 +783,25 @@ ServerHandlerImp::processRequest(
             params = jsonRPC;
         }
 
-        std::string ripplerpc = "1.0";
-        if (params.isMember(jss::ripplerpc))
+        std::string bixdrpc = "1.0";
+        if (params.isMember(jss::bixdrpc))
         {
-            if (!params[jss::ripplerpc].isString())
+            if (!params[jss::bixdrpc].isString())
             {
                 usage.charge(Resource::feeInvalidRPC);
                 if (!batch)
                 {
-                    HTTPReply(400, "ripplerpc is not a string", output, rpcJ);
+                    HTTPReply(400, "bixdrpc is not a string", output, rpcJ);
                     return;
                 }
 
                 Json::Value r = jsonRPC;
                 r[jss::error] = make_json_error(
-                    method_not_found, "ripplerpc is not a string");
+                    method_not_found, "bixdrpc is not a string");
                 reply.append(r);
                 continue;
             }
-            ripplerpc = params[jss::ripplerpc].asString();
+            bixdrpc = params[jss::bixdrpc].asString();
         }
 
         /**
@@ -843,7 +843,7 @@ ServerHandlerImp::processRequest(
             result[jss::warning] = jss::load;
 
         Json::Value r(Json::objectValue);
-        if (ripplerpc >= "2.0")
+        if (bixdrpc >= "2.0")
         {
             if (result.isMember(jss::error))
             {
@@ -896,8 +896,8 @@ ServerHandlerImp::processRequest(
 
         if (params.isMember(jss::jsonrpc))
             r[jss::jsonrpc] = params[jss::jsonrpc];
-        if (params.isMember(jss::ripplerpc))
-            r[jss::ripplerpc] = params[jss::ripplerpc];
+        if (params.isMember(jss::bixdrpc))
+            r[jss::bixdrpc] = params[jss::bixdrpc];
         if (params.isMember(jss::id))
             r[jss::id] = params[jss::id];
         if (batch)
@@ -954,8 +954,8 @@ ServerHandlerImp::statusResponse(http_request_type const& request) const
     {
         msg.result(boost::beast::http::status::ok);
         msg.body() = "<!DOCTYPE html><html><head><title>" + systemName() +
-            " Test page for rippled</title></head><body><h1>" + systemName() +
-            " Test</h1><p>This page shows rippled http(s) "
+            " Test page for bixd</title></head><body><h1>" + systemName() +
+            " Test</h1><p>This page shows bixd http(s) "
             "connectivity is working.</p></body></html>";
     }
     else
@@ -1179,4 +1179,4 @@ make_ServerHandler(
         app, parent, io_service, jobQueue, networkOPs, resourceManager, cm);
 }
 
-}  // namespace ripple
+}  // namespace bixd

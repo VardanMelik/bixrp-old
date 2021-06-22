@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/paths/PathRequests.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/LegacyPathFind.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/paths/PathRequests.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/LegacyPathFind.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 
-namespace ripple {
+namespace bixd {
 
 // This interface is deprecated.
 Json::Value
-doRipplePathFind(RPC::JsonContext& context)
+dobixdPathFind(RPC::JsonContext& context)
 {
     if (context.app.config().PATH_SEARCH_MAX == 0)
         return rpcError(rpcNOT_SUPPORTED);
@@ -61,11 +61,11 @@ doRipplePathFind(RPC::JsonContext& context)
         // be aware this code runs in a JobQueue::Coro, which is a coroutine.
         // And we may be flipping around between threads.  Here's an overview:
         //
-        // 1. We're running doRipplePathFind() due to a call to
-        //    ripple_path_find.  doRipplePathFind() is currently running
+        // 1. We're running dobixdPathFind() due to a call to
+        //    bixd_path_find.  dobixdPathFind() is currently running
         //    inside of a JobQueue::Coro using a JobQueue thread.
         //
-        // 2. doRipplePathFind's call to makeLegacyPathRequest() enqueues the
+        // 2. dobixdPathFind's call to makeLegacyPathRequest() enqueues the
         //    path-finding request.  That request will (probably) run at some
         //    indeterminate future time on a (probably different) JobQueue
         //    thread.
@@ -114,7 +114,7 @@ doRipplePathFind(RPC::JsonContext& context)
         // Both of these failure modes are hard to recreate in a unit test
         // because they are so dependent on inter-thread timing.  However
         // the failure modes can be observed by synchronously (inside the
-        // rippled source code) shutting down the application.  The code to
+        // bixd source code) shutting down the application.  The code to
         // do so looks like this:
         //
         //   context.app.signalStop();
@@ -173,4 +173,4 @@ doRipplePathFind(RPC::JsonContext& context)
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

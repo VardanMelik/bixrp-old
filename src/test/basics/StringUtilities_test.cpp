@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/ToString.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/ToString.h>
+#include <bixd/beast/unit_test.h>
 
-namespace ripple {
+namespace bixd {
 
 class StringUtilities_test : public beast::unit_test::suite
 {
@@ -47,7 +47,7 @@ public:
     {
         testcase("strUnHex");
 
-        testUnHexSuccess("526970706c6544", "RippleD");
+        testUnHexSuccess("526970706c6544", "BixdD");
         testUnHexSuccess("A", "\n");
         testUnHexSuccess("0A", "\n");
         testUnHexSuccess("D0A", "\r\n");
@@ -315,6 +315,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(StringUtilities, ripple_basics, ripple);
+BEAST_DEFINE_TESTSUITE(StringUtilities, bixd_basics, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

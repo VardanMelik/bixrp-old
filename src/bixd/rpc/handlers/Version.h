@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLED_RIPPLE_RPC_HANDLERS_VERSION_H
-#define RIPPLED_RIPPLE_RPC_HANDLERS_VERSION_H
+#ifndef BIXD_BIXD_RPC_HANDLERS_VERSION_H
+#define BIXD_BIXD_RPC_HANDLERS_VERSION_H
 
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 class VersionHandler
@@ -65,6 +65,6 @@ public:
 };
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

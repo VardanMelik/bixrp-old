@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
   This file is part of bixd
-  Copyright (c) 2012-2017 Ripple Labs Inc.
+  Copyright (c) 2012-2017 Bixd Labs Inc.
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Quality.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Quality.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 #include <test/jtx/PathSet.h>
 #include <test/jtx/WSClient.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class Offer_test : public beast::unit_test::suite
@@ -59,10 +59,10 @@ class Offer_test : public beast::unit_test::suite
     {
         Json::Value jvParams;
         jvParams[jss::ledger_index] = "current";
-        jvParams[jss::ripple_state][jss::currency] = currency;
-        jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-        jvParams[jss::ripple_state][jss::accounts].append(acct_a.human());
-        jvParams[jss::ripple_state][jss::accounts].append(acct_b.human());
+        jvParams[jss::bixd_state][jss::currency] = currency;
+        jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+        jvParams[jss::bixd_state][jss::accounts].append(acct_a.human());
+        jvParams[jss::bixd_state][jss::accounts].append(acct_b.human());
         return env.rpc(
             "json", "ledger_entry", to_string(jvParams))[jss::result];
     }
@@ -350,7 +350,7 @@ public:
         env(pay(alice, bob, USD(1)),
             path(~USD),
             sendmax(BIXRP(102)),
-            txflags(tfNoRippleDirect | tfPartialPayment));
+            txflags(tfNoBixdDirect | tfPartialPayment));
 
         env.require(offers(carol, 0), offers(dan, 1));
 
@@ -460,8 +460,8 @@ public:
             env.require(offers(bob, 1), offers(carol, 1));
 
             std::uint32_t const flags = partialPayment
-                ? (tfNoRippleDirect | tfPartialPayment)
-                : tfNoRippleDirect;
+                ? (tfNoBixdDirect | tfPartialPayment)
+                : tfNoBixdDirect;
 
             TER const expectedTer =
                 partialPayment ? TER{tesSUCCESS} : TER{tecPATH_PARTIAL};
@@ -623,8 +623,8 @@ public:
             env.require(offers(bob, 1), offers(carol, 1));
 
             std::uint32_t const flags = partialPayment
-                ? (tfNoRippleDirect | tfPartialPayment)
-                : tfNoRippleDirect;
+                ? (tfNoBixdDirect | tfPartialPayment)
+                : tfNoBixdDirect;
 
             TER const expectedTer =
                 partialPayment ? TER{tesSUCCESS} : TER{tecPATH_PARTIAL};
@@ -671,9 +671,9 @@ public:
     }
 
     void
-    testEnforceNoRipple(FeatureBitset features)
+    testEnforceNoBixd(FeatureBitset features)
     {
-        testcase("Enforce No Ripple");
+        testcase("Enforce No Bixd");
 
         using namespace jtx;
 
@@ -687,7 +687,7 @@ public:
         Account const dan{"dan"};
 
         {
-            // No ripple with an implied account step after an offer
+            // No bixd with an implied account step after an offer
             Env env{*this, features};
 
             auto const gw1 = Account{"gw1"};
@@ -695,11 +695,11 @@ public:
             auto const gw2 = Account{"gw2"};
             auto const USD2 = gw2["USD"];
 
-            env.fund(BIXRP(10000), alice, noripple(bob), carol, dan, gw1, gw2);
+            env.fund(BIXRP(10000), alice, nobixd(bob), carol, dan, gw1, gw2);
             env.trust(USD1(1000), alice, carol, dan);
-            env(trust(bob, USD1(1000), tfSetNoRipple));
+            env(trust(bob, USD1(1000), tfSetNoBixd));
             env.trust(USD2(1000), alice, carol, dan);
-            env(trust(bob, USD2(1000), tfSetNoRipple));
+            env(trust(bob, USD2(1000), tfSetNoBixd));
 
             env(pay(gw1, dan, USD1(50)));
             env(pay(gw1, bob, USD1(50)));
@@ -710,7 +710,7 @@ public:
             env(pay(alice, carol, USD2(50)),
                 path(~USD1, bob),
                 sendmax(BIXRP(50)),
-                txflags(tfNoRippleDirect),
+                txflags(tfNoBixdDirect),
                 ter(tecPATH_DRY));
         }
         {
@@ -735,7 +735,7 @@ public:
             env(pay(alice, carol, USD2(50)),
                 path(~USD1, bob),
                 sendmax(BIXRP(50)),
-                txflags(tfNoRippleDirect));
+                txflags(tfNoBixdDirect));
 
             env.require(balance(alice, bixrpMinusFee(env, 10000 - 50)));
             env.require(balance(bob, USD1(100)));
@@ -2279,7 +2279,7 @@ public:
             BEAST_EXPECT(
                 jrr.isMember(jss::jsonrpc) && jrr[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                jrr.isMember(jss::ripplerpc) && jrr[jss::ripplerpc] == "2.0");
+                jrr.isMember(jss::bixdrpc) && jrr[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(jrr.isMember(jss::id) && jrr[jss::id] == 5);
         }
 
@@ -5078,12 +5078,12 @@ public:
     void
     testRCSmoketest(FeatureBitset features)
     {
-        testcase("RippleConnect Smoketest payment flow");
+        testcase("BixdConnect Smoketest payment flow");
         using namespace jtx;
 
         Env env{*this, features};
 
-        // This test mimics the payment flow used in the Ripple Connect
+        // This test mimics the payment flow used in the Bixd Connect
         // smoke test.  The players:
         //   A USD gateway with hot and cold wallets
         //   A EUR gateway with hot and cold walllets
@@ -5103,20 +5103,20 @@ public:
         env.fund(BIXRP(100000), hotUS, coldUS, hotEU, coldEU, mm);
         env.close();
 
-        // Cold wallets require trust but will ripple by default
+        // Cold wallets require trust but will bixd by default
         for (auto const& cold : {coldUS, coldEU})
         {
             env(fset(cold, asfRequireAuth));
-            env(fset(cold, asfDefaultRipple));
+            env(fset(cold, asfDefaultBixd));
         }
         env.close();
 
         // Each hot wallet trusts the related cold wallet for a large amount
-        env(trust(hotUS, USD(10000000)), txflags(tfSetNoRipple));
-        env(trust(hotEU, EUR(10000000)), txflags(tfSetNoRipple));
+        env(trust(hotUS, USD(10000000)), txflags(tfSetNoBixd));
+        env(trust(hotEU, EUR(10000000)), txflags(tfSetNoBixd));
         // Market maker trusts both cold wallets for a large amount
-        env(trust(mm, USD(10000000)), txflags(tfSetNoRipple));
-        env(trust(mm, EUR(10000000)), txflags(tfSetNoRipple));
+        env(trust(mm, USD(10000000)), txflags(tfSetNoBixd));
+        env(trust(mm, EUR(10000000)), txflags(tfSetNoBixd));
         env.close();
 
         // Gateways authorize the trustlines of hot and market maker
@@ -5153,7 +5153,7 @@ public:
             jvParams[jss::source_account] = hotUS.human();
 
             Json::Value const jrr{env.rpc(
-                "json", "ripple_path_find", to_string(jvParams))[jss::result]};
+                "json", "bixd_path_find", to_string(jvParams))[jss::result]};
 
             BEAST_EXPECT(jrr[jss::status] == "success");
             BEAST_EXPECT(
@@ -5260,7 +5260,7 @@ public:
 
         Env env{*this, features};
 
-        env.fund(BIXRP(10000), alice, becky, carol, noripple(gw));
+        env.fund(BIXRP(10000), alice, becky, carol, nobixd(gw));
         env.trust(USD(1000), becky);
         env(pay(gw, becky, USD(5)));
         env.close();
@@ -5721,7 +5721,7 @@ public:
         testRmFundedOffer(features);
         testTinyPayment(features);
         testBIXRPTinyPayment(features);
-        testEnforceNoRipple(features);
+        testEnforceNoBixd(features);
         testInsufficientReserve(features);
         testFillModes(features);
         testMalformed(features);
@@ -5815,8 +5815,8 @@ class Offer_manual_test : public Offer_test
     }
 };
 
-BEAST_DEFINE_TESTSUITE_PRIO(Offer, tx, ripple, 4);
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(Offer_manual, tx, ripple, 20);
+BEAST_DEFINE_TESTSUITE_PRIO(Offer, tx, bixd, 4);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(Offer_manual, tx, bixd, 20);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

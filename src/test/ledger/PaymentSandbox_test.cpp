@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
   This file is part of bixd
-  Copyright (c) 2012-2015 Ripple Labs Inc.
+  Copyright (c) 2012-2015 bixd Labs Inc.
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/ledger/ApplyViewImpl.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/AmountConversions.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/ledger/ApplyViewImpl.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/AmountConversions.h>
+#include <bixd/protocol/Feature.h>
 #include <test/jtx/PathSet.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class PaymentSandbox_test : public beast::unit_test::suite
@@ -86,7 +86,7 @@ class PaymentSandbox_test : public beast::unit_test::suite
 
         env(pay(snd, rcv, any(USD_gw1(4))),
             json(paths.json()),
-            txflags(tfNoRippleDirect | tfPartialPayment));
+            txflags(tfNoBixdDirect | tfPartialPayment));
 
         env.require(balance("rcv", USD_gw1(0)));
         env.require(balance("rcv", USD_gw2(2)));
@@ -144,20 +144,20 @@ class PaymentSandbox_test : public beast::unit_test::suite
         }
 
         {
-            // rippleCredit, no deferredCredits
+            // bixdCredit, no deferredCredits
             ApplyViewImpl av(&*env.current(), tapNONE);
 
             auto const iss = USD_gw1.issue();
             auto const startingAmount = accountHolds(
                 av, alice, iss.currency, iss.account, fhIGNORE_FREEZE, j);
 
-            rippleCredit(av, gw1, alice, toCredit, true, j);
+            bixdCredit(av, gw1, alice, toCredit, true, j);
             BEAST_EXPECT(
                 accountHolds(
                     av, alice, iss.currency, iss.account, fhIGNORE_FREEZE, j) ==
                 startingAmount + toCredit);
 
-            rippleCredit(av, alice, gw1, toDebit, true, j);
+            bixdCredit(av, alice, gw1, toDebit, true, j);
             BEAST_EXPECT(
                 accountHolds(
                     av, alice, iss.currency, iss.account, fhIGNORE_FREEZE, j) ==
@@ -193,7 +193,7 @@ class PaymentSandbox_test : public beast::unit_test::suite
         }
 
         {
-            // rippleCredit, w/ deferredCredits
+            // bixdCredit, w/ deferredCredits
             ApplyViewImpl av(&*env.current(), tapNONE);
             PaymentSandbox pv(&av);
 
@@ -201,7 +201,7 @@ class PaymentSandbox_test : public beast::unit_test::suite
             auto const startingAmount = accountHolds(
                 pv, alice, iss.currency, iss.account, fhIGNORE_FREEZE, j);
 
-            rippleCredit(pv, gw1, alice, toCredit, true, j);
+            bixdCredit(pv, gw1, alice, toCredit, true, j);
             BEAST_EXPECT(
                 accountHolds(
                     pv, alice, iss.currency, iss.account, fhIGNORE_FREEZE, j) ==
@@ -426,7 +426,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(PaymentSandbox, ledger, ripple);
+BEAST_DEFINE_TESTSUITE(PaymentSandbox, ledger, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

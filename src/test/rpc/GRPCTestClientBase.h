@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 Bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLED_GRPCTESTCLIENTBASE_H
-#define RIPPLED_GRPCTESTCLIENTBASE_H
+#ifndef BIXD_GRPCTESTCLIENTBASE_H
+#define BIXD_GRPCTESTCLIENTBASE_H
 
 #include <org/xrpl/rpc/v1/xrp_ledger.grpc.pb.h>
 #include <test/jtx/envconfig.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 struct GRPCTestClientBase
@@ -45,5 +45,5 @@ struct GRPCTestClientBase
 };
 
 }  // namespace test
-}  // namespace ripple
-#endif  // RIPPLED_GRPCTESTCLIENTBASE_H
+}  // namespace bixd
+#endif  // BIXD_GRPCTESTCLIENTBASE_H
