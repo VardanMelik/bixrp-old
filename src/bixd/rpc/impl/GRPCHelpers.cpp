@@ -1448,7 +1448,7 @@ convert(org::xrpl::rpc::v1::Offer& to, STObject const& from)
 }
 
 void
-convert(org::xrpl::rpc::v1::RippleState& to, STObject const& from)
+convert(org::xrpl::rpc::v1::BixdState& to, STObject const& from)
 {
     populateBalance(to, from);
 
@@ -1599,7 +1599,7 @@ convert(T& to, STObject& from, std::uint16_t type)
             RPC::convert(*to.mutable_directory_node(), from);
             break;
         case ltBIXD_STATE:
-            RPC::convert(*to.mutable_ripple_state(), from);
+            RPC::convert(*to.mutable_bixd_state(), from);
             break;
         case ltSIGNER_LIST:
             RPC::convert(*to.mutable_signer_list(), from);

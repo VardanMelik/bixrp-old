@@ -21,7 +21,7 @@
 #define BIXD_APP_PATHS_BIXDLINECACHE_H_INCLUDED
 
 #include <bixd/app/ledger/Ledger.h>
-#include <bixd/app/paths/RippleState.h>
+#include <bixd/app/paths/BixdState.h>
 #include <bixd/basics/hardened_hash.h>
 #include <cstddef>
 #include <memory>
@@ -31,10 +31,10 @@
 namespace bixd {
 
 // Used by Pathfinder
-class RippleLineCache
+class BixdLineCache
 {
 public:
-    explicit RippleLineCache(std::shared_ptr<ReadView const> const& l);
+    explicit BixdLineCache(std::shared_ptr<ReadView const> const& l);
 
     std::shared_ptr<ReadView const> const&
     getLedger() const
@@ -42,8 +42,8 @@ public:
         return mLedger;
     }
 
-    std::vector<RippleState::pointer> const&
-    getRippleLines(AccountID const& accountID);
+    std::vector<BixdState::pointer> const&
+    getBixdLines(AccountID const& accountID);
 
 private:
     std::mutex mLock;
@@ -90,7 +90,7 @@ private:
         };
     };
 
-    hash_map<AccountKey, std::vector<RippleState::pointer>, AccountKey::Hash>
+    hash_map<AccountKey, std::vector<BixdState::pointer>, AccountKey::Hash>
         lines_;
 };
 

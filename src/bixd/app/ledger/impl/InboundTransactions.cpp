@@ -24,7 +24,7 @@
 #include <bixd/app/misc/NetworkOPs.h>
 #include <bixd/basics/Log.h>
 #include <bixd/core/JobQueue.h>
-#include <bixd/protocol/RippleLedgerHash.h>
+#include <bixd/protocol/BixdLedgerHash.h>
 #include <bixd/resource/Fees.h>
 #include <memory>
 #include <mutex>

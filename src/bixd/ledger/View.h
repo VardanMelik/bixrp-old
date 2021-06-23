@@ -276,7 +276,7 @@ trustCreate(
     uint256 const& uIndex,      // --> bixd state entry
     SLE::ref sleAccount,        // --> the account being set.
     const bool bAuth,           // --> authorize account.
-    const bool bNoRipple,       // --> others cannot bixd through
+    const bool bNoBixd,       // --> others cannot bixd through
     const bool bFreeze,         // --> funds cannot leave
     STAmount const& saBalance,  // --> balance of account being set.
                                 // Issuer should be noAccount()
@@ -289,7 +289,7 @@ trustCreate(
 [[nodiscard]] TER
 trustDelete(
     ApplyView& view,
-    std::shared_ptr<SLE> const& sleRippleState,
+    std::shared_ptr<SLE> const& sleBixdState,
     AccountID const& uLowAccountID,
     AccountID const& uHighAccountID,
     beast::Journal j);
@@ -316,7 +316,7 @@ offerDelete(ApplyView& view, std::shared_ptr<SLE> const& sle, beast::Journal j);
 // --> bCheckIssuer : normally require issuer to be involved.
 // [[nodiscard]] // nodiscard commented out so DirectStep.cpp compiles.
 TER
-rippleCredit(
+bixdCredit(
     ApplyView& view,
     AccountID const& uSenderID,
     AccountID const& uReceiverID,

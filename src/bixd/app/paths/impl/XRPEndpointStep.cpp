@@ -23,7 +23,7 @@
 #include <bixd/app/paths/impl/Steps.h>
 #include <bixd/basics/IOUAmount.h>
 #include <bixd/basics/Log.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/ledger/PaymentSandbox.h>
 #include <bixd/protocol/Feature.h>
 #include <bixd/protocol/Quality.h>

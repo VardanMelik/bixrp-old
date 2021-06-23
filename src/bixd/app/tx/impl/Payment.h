@@ -20,7 +20,7 @@
 #ifndef BIXD_TX_PAYMENT_H_INCLUDED
 #define BIXD_TX_PAYMENT_H_INCLUDED
 
-#include <bixd/app/paths/RippleCalc.h>
+#include <bixd/app/paths/BixdCalc.h>
 #include <bixd/app/tx/impl/Transactor.h>
 #include <bixd/basics/Log.h>
 #include <bixd/protocol/TxFlags.h>

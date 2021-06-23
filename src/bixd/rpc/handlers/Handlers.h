@@ -89,7 +89,7 @@ doLogRotate(RPC::JsonContext&);
 Json::Value
 doManifest(RPC::JsonContext&);
 Json::Value
-doNoRippleCheck(RPC::JsonContext&);
+doNoBixdCheck(RPC::JsonContext&);
 Json::Value
 doOwnerInfo(RPC::JsonContext&);
 Json::Value
@@ -113,7 +113,7 @@ doPeerReservationsDel(RPC::JsonContext&);
 Json::Value
 doPeerReservationsList(RPC::JsonContext&);
 Json::Value
-doRipplePathFind(RPC::JsonContext&);
+doBixdPathFind(RPC::JsonContext&);
 Json::Value
 doServerInfo(RPC::JsonContext&);  // for humans
 Json::Value

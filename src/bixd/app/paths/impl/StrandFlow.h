@@ -28,7 +28,7 @@
 #include <bixd/app/paths/impl/Steps.h>
 #include <bixd/basics/IOUAmount.h>
 #include <bixd/basics/Log.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/protocol/Feature.h>
 
 #include <boost/container/flat_set.hpp>

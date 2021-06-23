@@ -687,6 +687,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(STAmount, ripple_data, bixd);
+BEAST_DEFINE_TESTSUITE(STAmount, bixd_data, bixd);
 
 }  // namespace bixd

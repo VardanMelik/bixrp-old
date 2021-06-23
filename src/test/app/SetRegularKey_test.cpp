@@ -106,7 +106,7 @@ public:
     {
         using namespace test::jtx;
 
-        // See https://ripplelabs.atlassian.net/browse/RIPD-1721.
+        // See https://bixdlabs.atlassian.net/browse/RIPD-1721.
         testcase(
             "Set regular key to master key (before fixMasterKeyAsRegularKey)");
         Env env{*this, supported_amendments() - fixMasterKeyAsRegularKey};

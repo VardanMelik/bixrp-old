@@ -18,7 +18,7 @@
 //==============================================================================
 
 #include <bixd/app/main/Application.h>
-#include <bixd/app/paths/RippleState.h>
+#include <bixd/app/paths/BixdState.h>
 #include <bixd/ledger/ReadView.h>
 #include <bixd/net/RPCErr.h>
 #include <bixd/protocol/ErrorCodes.h>
@@ -32,14 +32,14 @@ namespace bixd {
 
 struct VisitData
 {
-    std::vector<RippleState::pointer> items;
+    std::vector<BixdState::pointer> items;
     AccountID const& accountID;
     bool hasPeer;
     AccountID const& raPeerAccount;
 };
 
 void
-addLine(Json::Value& jsonLines, RippleState const& line)
+addLine(Json::Value& jsonLines, BixdState const& line)
 {
     STAmount const& saBalance(line.getBalance());
     STAmount const& saLimit(line.getLimit());
@@ -62,10 +62,10 @@ addLine(Json::Value& jsonLines, RippleState const& line)
         jPeer[jss::authorized] = true;
     if (line.getAuthPeer())
         jPeer[jss::peer_authorized] = true;
-    if (line.getNoRipple() || !line.getDefaultRipple())
-        jPeer[jss::no_ripple] = line.getNoRipple();
-    if (line.getNoRipplePeer() || !line.getDefaultRipple())
-        jPeer[jss::no_ripple_peer] = line.getNoRipplePeer();
+    if (line.getNoBixd() || !line.getDefaultBixd())
+        jPeer[jss::no_bixd] = line.getNoBixd();
+    if (line.getNoBixdPeer() || !line.getDefaultBixd())
+        jPeer[jss::no_bixd_peer] = line.getNoBixdPeer();
     if (line.getFreeze())
         jPeer[jss::freeze] = true;
     if (line.getFreezePeer())
@@ -155,7 +155,7 @@ doAccountLines(RPC::JsonContext& context)
             return rpcError(rpcINVALID_PARAMS);
 
         // Caller provided the first line (startAfter), add it as first result
-        auto const line = RippleState::makeItem(accountID, sleLine);
+        auto const line = BixdState::makeItem(accountID, sleLine);
         if (line == nullptr)
             return rpcError(rpcINVALID_PARAMS);
 
@@ -178,7 +178,7 @@ doAccountLines(RPC::JsonContext& context)
                 reserve,
                 [&visitData](std::shared_ptr<SLE const> const& sleCur) {
                     auto const line =
-                        RippleState::makeItem(visitData.accountID, sleCur);
+                        BixdState::makeItem(visitData.accountID, sleCur);
                     if (line != nullptr &&
                         (!visitData.hasPeer ||
                          visitData.raPeerAccount == line->getAccountIDPeer()))
@@ -198,7 +198,7 @@ doAccountLines(RPC::JsonContext& context)
     {
         result[jss::limit] = limit;
 
-        RippleState::pointer line(visitData.items.back());
+        BixdState::pointer line(visitData.items.back());
         result[jss::marker] = to_string(line->key());
         visitData.items.pop_back();
     }

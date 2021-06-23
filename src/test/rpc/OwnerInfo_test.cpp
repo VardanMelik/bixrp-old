@@ -114,9 +114,9 @@ class OwnerInfo_test : public beast::unit_test::suite
         }
 
         // accepted ledger entry
-        if (!BEAST_EXPECT(result[jss::accepted].isMember(jss::ripple_lines)))
+        if (!BEAST_EXPECT(result[jss::accepted].isMember(jss::bixd_lines)))
             return;
-        auto lines = result[jss::accepted][jss::ripple_lines];
+        auto lines = result[jss::accepted][jss::bixd_lines];
         if (!BEAST_EXPECT(lines.isArray() && lines.size() == 2))
             return;
 
@@ -159,9 +159,9 @@ class OwnerInfo_test : public beast::unit_test::suite
             USD(1).value().getJson(JsonOptions::none));
 
         // current ledger entry
-        if (!BEAST_EXPECT(result[jss::current].isMember(jss::ripple_lines)))
+        if (!BEAST_EXPECT(result[jss::current].isMember(jss::bixd_lines)))
             return;
-        lines = result[jss::current][jss::ripple_lines];
+        lines = result[jss::current][jss::bixd_lines];
         if (!BEAST_EXPECT(lines.isArray() && lines.size() == 2))
             return;
 

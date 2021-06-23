@@ -19,7 +19,7 @@
 
 #include <bixd/app/tx/impl/PayChan.h>
 #include <bixd/basics/Log.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/basics/chrono.h>
 #include <bixd/ledger/ApplyView.h>
 #include <bixd/ledger/View.h>

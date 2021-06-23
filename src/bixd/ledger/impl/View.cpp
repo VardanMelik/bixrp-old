@@ -744,7 +744,7 @@ trustCreate(
     uint256 const& uIndex,      // --> bixd state entry
     SLE::ref sleAccount,        // --> the account being set.
     const bool bAuth,           // --> authorize account.
-    const bool bNoRipple,       // --> others cannot bixd through
+    const bool bNoBixd,       // --> others cannot bixd through
     const bool bFreeze,         // --> funds cannot leave
     STAmount const& saBalance,  // --> balance of account being set.
                                 // Issuer should be noAccount()
@@ -761,13 +761,13 @@ trustCreate(
     auto const& uLowAccountID = !bSrcHigh ? uSrcAccountID : uDstAccountID;
     auto const& uHighAccountID = bSrcHigh ? uSrcAccountID : uDstAccountID;
 
-    auto const sleRippleState = std::make_shared<SLE>(ltBIXD_STATE, uIndex);
-    view.insert(sleRippleState);
+    auto const sleBixdState = std::make_shared<SLE>(ltBIXD_STATE, uIndex);
+    view.insert(sleBixdState);
 
     auto lowNode = dirAdd(
         view,
         keylet::ownerDir(uLowAccountID),
-        sleRippleState->key(),
+        sleBixdState->key(),
         false,
         describeOwnerDir(uLowAccountID),
         j);
@@ -778,7 +778,7 @@ trustCreate(
     auto highNode = dirAdd(
         view,
         keylet::ownerDir(uHighAccountID),
-        sleRippleState->key(),
+        sleBixdState->key(),
         false,
         describeOwnerDir(uHighAccountID),
         j);
@@ -802,23 +802,23 @@ trustCreate(
         return tecNO_TARGET;
 
     // Remember deletion hints.
-    sleRippleState->setFieldU64(sfLowNode, *lowNode);
-    sleRippleState->setFieldU64(sfHighNode, *highNode);
+    sleBixdState->setFieldU64(sfLowNode, *lowNode);
+    sleBixdState->setFieldU64(sfHighNode, *highNode);
 
-    sleRippleState->setFieldAmount(
+    sleBixdState->setFieldAmount(
         bSetHigh ? sfHighLimit : sfLowLimit, saLimit);
-    sleRippleState->setFieldAmount(
+    sleBixdState->setFieldAmount(
         bSetHigh ? sfLowLimit : sfHighLimit,
         STAmount(
             {saBalance.getCurrency(),
              bSetDst ? uSrcAccountID : uDstAccountID}));
 
     if (uQualityIn)
-        sleRippleState->setFieldU32(
+        sleBixdState->setFieldU32(
             bSetHigh ? sfHighQualityIn : sfLowQualityIn, uQualityIn);
 
     if (uQualityOut)
-        sleRippleState->setFieldU32(
+        sleBixdState->setFieldU32(
             bSetHigh ? sfHighQualityOut : sfLowQualityOut, uQualityOut);
 
     std::uint32_t uFlags = bSetHigh ? lsfHighReserve : lsfLowReserve;
@@ -827,26 +827,26 @@ trustCreate(
     {
         uFlags |= (bSetHigh ? lsfHighAuth : lsfLowAuth);
     }
-    if (bNoRipple)
+    if (bNoBixd)
     {
-        uFlags |= (bSetHigh ? lsfHighNoRipple : lsfLowNoRipple);
+        uFlags |= (bSetHigh ? lsfHighNoBixd : lsfLowNoBixd);
     }
     if (bFreeze)
     {
         uFlags |= (!bSetHigh ? lsfLowFreeze : lsfHighFreeze);
     }
 
-    if ((slePeer->getFlags() & lsfDefaultRipple) == 0)
+    if ((slePeer->getFlags() & lsfDefaultBixd) == 0)
     {
         // The other side's default is no rippling
-        uFlags |= (bSetHigh ? lsfLowNoRipple : lsfHighNoRipple);
+        uFlags |= (bSetHigh ? lsfLowNoBixd : lsfHighNoBixd);
     }
 
-    sleRippleState->setFieldU32(sfFlags, uFlags);
+    sleBixdState->setFieldU32(sfFlags, uFlags);
     adjustOwnerCount(view, sleAccount, 1, j);
 
     // ONLY: Create bixd balance.
-    sleRippleState->setFieldAmount(
+    sleBixdState->setFieldAmount(
         sfBalance, bSetHigh ? -saBalance : saBalance);
 
     view.creditHook(
@@ -858,21 +858,21 @@ trustCreate(
 TER
 trustDelete(
     ApplyView& view,
-    std::shared_ptr<SLE> const& sleRippleState,
+    std::shared_ptr<SLE> const& sleBixdState,
     AccountID const& uLowAccountID,
     AccountID const& uHighAccountID,
     beast::Journal j)
 {
     // Detect legacy dirs.
-    std::uint64_t uLowNode = sleRippleState->getFieldU64(sfLowNode);
-    std::uint64_t uHighNode = sleRippleState->getFieldU64(sfHighNode);
+    std::uint64_t uLowNode = sleBixdState->getFieldU64(sfLowNode);
+    std::uint64_t uHighNode = sleBixdState->getFieldU64(sfHighNode);
 
     JLOG(j.trace()) << "trustDelete: Deleting bixd line: low";
 
     if (!view.dirRemove(
             keylet::ownerDir(uLowAccountID),
             uLowNode,
-            sleRippleState->key(),
+            sleBixdState->key(),
             false))
     {
         return tefBAD_LEDGER;
@@ -883,14 +883,14 @@ trustDelete(
     if (!view.dirRemove(
             keylet::ownerDir(uHighAccountID),
             uHighNode,
-            sleRippleState->key(),
+            sleBixdState->key(),
             false))
     {
         return tefBAD_LEDGER;
     }
 
     JLOG(j.trace()) << "trustDelete: Deleting bixd line: state";
-    view.erase(sleRippleState);
+    view.erase(sleBixdState);
 
     return tesSUCCESS;
 }
@@ -936,7 +936,7 @@ offerDelete(ApplyView& view, std::shared_ptr<SLE> const& sle, beast::Journal j)
 // - Create trust line if needed.
 // --> bCheckIssuer : normally require issuer to be involved.
 TER
-rippleCredit(
+bixdCredit(
     ApplyView& view,
     AccountID const& uSenderID,
     AccountID const& uReceiverID,
@@ -961,9 +961,9 @@ rippleCredit(
     assert(!isBIXRP(uReceiverID) && uReceiverID != noAccount());
 
     // If the line exists, modify it accordingly.
-    if (auto const sleRippleState = view.peek(index))
+    if (auto const sleBixdState = view.peek(index))
     {
-        STAmount saBalance = sleRippleState->getFieldAmount(sfBalance);
+        STAmount saBalance = sleBixdState->getFieldAmount(sfBalance);
 
         if (bSenderHigh)
             saBalance.negate();  // Put balance in sender terms.
@@ -974,13 +974,13 @@ rippleCredit(
 
         saBalance -= saAmount;
 
-        JLOG(j.trace()) << "rippleCredit: " << to_string(uSenderID) << " -> "
+        JLOG(j.trace()) << "bixdCredit: " << to_string(uSenderID) << " -> "
                         << to_string(uReceiverID)
                         << " : before=" << saBefore.getFullText()
                         << " amount=" << saAmount.getFullText()
                         << " after=" << saBalance.getFullText();
 
-        std::uint32_t const uFlags(sleRippleState->getFieldU32(sfFlags));
+        std::uint32_t const uFlags(sleBixdState->getFieldU32(sfFlags));
         bool bDelete = false;
 
         // FIXME This NEEDS to be cleaned up and simplified. It's impossible
@@ -993,18 +993,18 @@ rippleCredit(
             // Sender reserve is set.
             &&
             static_cast<bool>(
-                uFlags & (!bSenderHigh ? lsfLowNoRipple : lsfHighNoRipple)) !=
+                uFlags & (!bSenderHigh ? lsfLowNoBixd : lsfHighNoBixd)) !=
                 static_cast<bool>(
                     view.read(keylet::account(uSenderID))->getFlags() &
-                    lsfDefaultRipple) &&
+                    lsfDefaultBixd) &&
             !(uFlags & (!bSenderHigh ? lsfLowFreeze : lsfHighFreeze)) &&
-            !sleRippleState->getFieldAmount(
+            !sleBixdState->getFieldAmount(
                 !bSenderHigh ? sfLowLimit : sfHighLimit)
             // Sender trust limit is 0.
-            && !sleRippleState->getFieldU32(
+            && !sleBixdState->getFieldU32(
                    !bSenderHigh ? sfLowQualityIn : sfHighQualityIn)
             // Sender quality in is 0.
-            && !sleRippleState->getFieldU32(
+            && !sleBixdState->getFieldU32(
                    !bSenderHigh ? sfLowQualityOut : sfHighQualityOut))
         // Sender quality out is 0.
         {
@@ -1013,7 +1013,7 @@ rippleCredit(
                 view, view.peek(keylet::account(uSenderID)), -1, j);
 
             // Clear reserve flag.
-            sleRippleState->setFieldU32(
+            sleBixdState->setFieldU32(
                 sfFlags,
                 uFlags & (!bSenderHigh ? ~lsfLowReserve : ~lsfHighReserve));
 
@@ -1027,20 +1027,20 @@ rippleCredit(
             saBalance.negate();
 
         // Want to reflect balance to zero even if we are deleting line.
-        sleRippleState->setFieldAmount(sfBalance, saBalance);
+        sleBixdState->setFieldAmount(sfBalance, saBalance);
         // ONLY: Adjust bixd balance.
 
         if (bDelete)
         {
             return trustDelete(
                 view,
-                sleRippleState,
+                sleBixdState,
                 bSenderHigh ? uReceiverID : uSenderID,
                 !bSenderHigh ? uReceiverID : uSenderID,
                 j);
         }
 
-        view.update(sleRippleState);
+        view.update(sleBixdState);
         return tesSUCCESS;
     }
 
@@ -1049,7 +1049,7 @@ rippleCredit(
 
     saBalance.setIssuer(noAccount());
 
-    JLOG(j.debug()) << "rippleCredit: "
+    JLOG(j.debug()) << "bixdCredit: "
                        "create line: "
                     << to_string(uSenderID) << " -> " << to_string(uReceiverID)
                     << " : " << saAmount.getFullText();
@@ -1058,7 +1058,7 @@ rippleCredit(
     if (!sleAccount)
         return tefINTERNAL;
 
-    bool const noRipple = (sleAccount->getFlags() & lsfDefaultRipple) == 0;
+    bool const noBixd = (sleAccount->getFlags() & lsfDefaultBixd) == 0;
 
     return trustCreate(
         view,
@@ -1068,7 +1068,7 @@ rippleCredit(
         index.key,
         sleAccount,
         false,
-        noRipple,
+        noBixd,
         false,
         saBalance,
         saReceiverLimit,
@@ -1081,7 +1081,7 @@ rippleCredit(
 // --> saAmount: Amount/currency/issuer to deliver to receiver.
 // <-- saActual: Amount actually cost.  Sender pays fees.
 static TER
-rippleSend(
+bixdSend(
     ApplyView& view,
     AccountID const& uSenderID,
     AccountID const& uReceiverID,
@@ -1098,7 +1098,7 @@ rippleSend(
     {
         // Direct send: redeeming IOUs and/or sending own IOUs.
         auto const ter =
-            rippleCredit(view, uSenderID, uReceiverID, saAmount, false, j);
+            bixdCredit(view, uSenderID, uReceiverID, saAmount, false, j);
         if (view.rules().enabled(featureDeletableAccounts) && ter != tesSUCCESS)
             return ter;
         saActual = saAmount;
@@ -1111,15 +1111,15 @@ rippleSend(
     // for any transfer fees:
     saActual = multiply(saAmount, transferRate(view, issuer));
 
-    JLOG(j.debug()) << "rippleSend> " << to_string(uSenderID) << " - > "
+    JLOG(j.debug()) << "bixdSend> " << to_string(uSenderID) << " - > "
                     << to_string(uReceiverID)
                     << " : deliver=" << saAmount.getFullText()
                     << " cost=" << saActual.getFullText();
 
-    TER terResult = rippleCredit(view, issuer, uReceiverID, saAmount, true, j);
+    TER terResult = bixdCredit(view, issuer, uReceiverID, saAmount, true, j);
 
     if (tesSUCCESS == terResult)
-        terResult = rippleCredit(view, uSenderID, issuer, saActual, true, j);
+        terResult = bixdCredit(view, uSenderID, issuer, saActual, true, j);
 
     return terResult;
 }
@@ -1148,7 +1148,7 @@ accountSend(
                         << to_string(uReceiverID) << " : "
                         << saAmount.getFullText();
 
-        return rippleSend(view, uSenderID, uReceiverID, saAmount, saActual, j);
+        return bixdSend(view, uSenderID, uReceiverID, saAmount, saActual, j);
     }
 
     /* BIXRP send which does not check reserve and can do pure adjustment.
@@ -1256,8 +1256,8 @@ updateTrustLine(
         && (flags & (!bSenderHigh ? lsfLowReserve : lsfHighReserve))
         // Sender reserve is set.
         && static_cast<bool>(
-               flags & (!bSenderHigh ? lsfLowNoRipple : lsfHighNoRipple)) !=
-            static_cast<bool>(sle->getFlags() & lsfDefaultRipple) &&
+               flags & (!bSenderHigh ? lsfLowNoBixd : lsfHighNoBixd)) !=
+            static_cast<bool>(sle->getFlags() & lsfDefaultBixd) &&
         !(flags & (!bSenderHigh ? lsfLowFreeze : lsfHighFreeze)) &&
         !state->getFieldAmount(!bSenderHigh ? sfLowLimit : sfHighLimit)
         // Sender trust limit is 0.
@@ -1360,7 +1360,7 @@ issueIOU(
     if (!receiverAccount)
         return tefINTERNAL;
 
-    bool noRipple = (receiverAccount->getFlags() & lsfDefaultRipple) == 0;
+    bool noBixd = (receiverAccount->getFlags() & lsfDefaultBixd) == 0;
 
     return trustCreate(
         view,
@@ -1370,7 +1370,7 @@ issueIOU(
         index.key,
         receiverAccount,
         false,
-        noRipple,
+        noBixd,
         false,
         final_balance,
         limit,

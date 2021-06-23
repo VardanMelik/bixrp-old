@@ -20,7 +20,7 @@
 #ifndef BIXD_PROTOCOL_SYSTEMPARAMETERS_H_INCLUDED
 #define BIXD_PROTOCOL_SYSTEMPARAMETERS_H_INCLUDED
 
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/basics/chrono.h>
 #include <cstdint>
 #include <string>

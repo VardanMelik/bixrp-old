@@ -444,7 +444,7 @@ class AccountTx_test : public beast::unit_test::suite
             {13, jss::SignerListSet,          {jss::SignerList},                                          {},                               {jss::AccountRoot, jss::DirectoryNode}},
             {14, jss::OfferCancel,            {},                                                         {jss::Offer, jss::DirectoryNode}, {jss::AccountRoot, jss::DirectoryNode}},
             {15, jss::OfferCreate,            {jss::Offer, jss::DirectoryNode},                           {},                               {jss::AccountRoot, jss::DirectoryNode}},
-            {16, jss::TrustSet,               {jss::RippleState, jss::DirectoryNode, jss::DirectoryNode}, {},                               {jss::AccountRoot, jss::AccountRoot}},
+            {16, jss::TrustSet,               {jss::BixdState, jss::DirectoryNode, jss::DirectoryNode}, {},                               {jss::AccountRoot, jss::AccountRoot}},
             {17, jss::SetRegularKey,          {},                                                         {},                               {jss::AccountRoot}},
             {18, jss::Payment,                {},                                                         {},                               {jss::AccountRoot, jss::AccountRoot}},
             {19, jss::AccountSet,             {},                                                         {},                               {jss::AccountRoot}},

@@ -198,7 +198,7 @@ struct base_uint_test : beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(base_uint, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(base_uint, bixd_basics, bixd);
 
 }  // namespace test
 }  // namespace bixd

@@ -246,32 +246,32 @@ public:
                 pass();
             }
         };
-        run(R"rippleConfig(
+        run(R"bixdConfig(
 [peers_in_max]
 100
-)rippleConfig");
-        run(R"rippleConfig(
+)bixdConfig");
+        run(R"bixdConfig(
 [peers_out_max]
 100
-)rippleConfig");
-        run(R"rippleConfig(
+)bixdConfig");
+        run(R"bixdConfig(
 [peers_in_max]
 100
 [peers_out_max]
 5
-)rippleConfig");
-        run(R"rippleConfig(
+)bixdConfig");
+        run(R"bixdConfig(
 [peers_in_max]
 1001
 [peers_out_max]
 10
-)rippleConfig");
-        run(R"rippleConfig(
+)bixdConfig");
+        run(R"bixdConfig(
 [peers_in_max]
 10
 [peers_out_max]
 1001
-)rippleConfig");
+)bixdConfig");
     }
 
     void

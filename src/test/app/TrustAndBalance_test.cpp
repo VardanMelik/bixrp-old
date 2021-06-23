@@ -37,10 +37,10 @@ class TrustAndBalance_test : public beast::unit_test::suite
     {
         Json::Value jvParams;
         jvParams[jss::ledger_index] = "current";
-        jvParams[jss::ripple_state][jss::currency] = currency;
-        jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-        jvParams[jss::ripple_state][jss::accounts].append(acct_a.human());
-        jvParams[jss::ripple_state][jss::accounts].append(acct_b.human());
+        jvParams[jss::bixd_state][jss::currency] = currency;
+        jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+        jvParams[jss::bixd_state][jss::accounts].append(acct_a.human());
+        jvParams[jss::bixd_state][jss::accounts].append(acct_b.human());
         return env.rpc(
             "json", "ledger_entry", to_string(jvParams))[jss::result];
     }
@@ -158,7 +158,7 @@ class TrustAndBalance_test : public beast::unit_test::suite
     }
 
     void
-    testDirectRipple(FeatureBitset features)
+    testDirectBixd(FeatureBitset features)
     {
         testcase("Direct Payment, bixd");
         using namespace test::jtx;
@@ -486,7 +486,7 @@ public:
 
         auto testWithFeatures = [this](FeatureBitset features) {
             testPayNonexistent(features);
-            testDirectRipple(features);
+            testDirectBixd(features);
             testWithTransferFee(false, false, features);
             testWithTransferFee(false, true, features);
             testWithTransferFee(true, false, features);

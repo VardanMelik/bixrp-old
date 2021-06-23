@@ -353,7 +353,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(feeunits, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(feeunits, bixd_basics, bixd);
 
 }  // namespace test
 }  // namespace bixd

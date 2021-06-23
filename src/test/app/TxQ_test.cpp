@@ -191,7 +191,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Create several accounts while the fee is cheap so they all apply.
-        env.fund(BIXRP(50000), noripple(alice, bob, charlie, daria));
+        env.fund(BIXRP(50000), nobixd(alice, bob, charlie, daria));
         checkMetrics(env, 0, boost::none, 4, 3, 256);
 
         // Alice - price starts exploding: held
@@ -213,7 +213,7 @@ public:
         //////////////////////////////////////////////////////////////
 
         // Make some more accounts. We'll need them later to abuse the queue.
-        env.fund(BIXRP(50000), noripple(elmo, fred, gwen, hank));
+        env.fund(BIXRP(50000), nobixd(elmo, fred, gwen, hank));
         checkMetrics(env, 0, 10, 6, 5, 256);
 
         // Now get a bunch of transactions held.
@@ -393,7 +393,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Fund alice and then fill the ledger.
-        env.fund(BIXRP(50000), noripple(alice));
+        env.fund(BIXRP(50000), nobixd(alice));
         env(noop(alice));
         env(noop(alice));
         env(noop(alice));
@@ -648,7 +648,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
         // Create accounts
-        env.fund(BIXRP(50000), noripple(alice, gw));
+        env.fund(BIXRP(50000), nobixd(alice, gw));
         checkMetrics(env, 0, boost::none, 2, 2, 256);
         env.close();
         checkMetrics(env, 0, 4, 0, 2, 256);
@@ -689,7 +689,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
         // Create several accounts while the fee is cheap so they all apply.
-        env.fund(BIXRP(50000), noripple(alice, bob, charlie));
+        env.fund(BIXRP(50000), nobixd(alice, bob, charlie));
         checkMetrics(env, 0, boost::none, 3, 2, 256);
 
         // Future transaction for Alice - fails
@@ -747,11 +747,11 @@ public:
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
         // Fund across several ledgers so the TxQ metrics stay restricted.
-        env.fund(BIXRP(1000), noripple(alice, bob));
+        env.fund(BIXRP(1000), nobixd(alice, bob));
         env.close(env.now() + 5s, 10000ms);
-        env.fund(BIXRP(1000), noripple(charlie, daria));
+        env.fund(BIXRP(1000), nobixd(charlie, daria));
         env.close(env.now() + 5s, 10000ms);
-        env.fund(BIXRP(1000), noripple(edgar, felicia));
+        env.fund(BIXRP(1000), nobixd(edgar, felicia));
         env.close(env.now() + 5s, 10000ms);
 
         checkMetrics(env, 0, boost::none, 0, 2, 256);
@@ -855,9 +855,9 @@ public:
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
         // Fund across several ledgers so the TxQ metrics stay restricted.
-        env.fund(BIXRP(1000), noripple(alice, bob));
+        env.fund(BIXRP(1000), nobixd(alice, bob));
         env.close(env.now() + 5s, 10000ms);
-        env.fund(BIXRP(1000), noripple(carol));
+        env.fund(BIXRP(1000), nobixd(carol));
         env.close(env.now() + 5s, 10000ms);
 
         // Fill the ledger
@@ -945,7 +945,7 @@ public:
         auto alice = Account("alice");
         auto bob = Account("bob");
 
-        env.fund(BIXRP(1000), noripple(alice));
+        env.fund(BIXRP(1000), nobixd(alice));
 
         // These types of checks are tested elsewhere, but
         // this verifies that TxQ handles the failures as
@@ -973,7 +973,7 @@ public:
 
         checkMetrics(env, 0, boost::none, 0, 2, 256);
 
-        env.fund(BIXRP(1000), noripple(alice, bob));
+        env.fund(BIXRP(1000), nobixd(alice, bob));
 
         checkMetrics(env, 0, boost::none, 2, 2, 256);
 
@@ -1036,8 +1036,8 @@ public:
         auto const initQueueMax = initFee(env, 3, 2, 10, 10, 200, 50);
 
         // Create several accounts while the fee is cheap so they all apply.
-        env.fund(drops(2000), noripple(alice));
-        env.fund(BIXRP(500000), noripple(bob, charlie, daria));
+        env.fund(drops(2000), nobixd(alice));
+        env.fund(BIXRP(500000), nobixd(bob, charlie, daria));
         checkMetrics(env, 0, initQueueMax, 4, 3, 256);
 
         // Alice - price starts exploding: held
@@ -1303,13 +1303,13 @@ public:
         checkMetrics(env, 0, boost::none, 0, 4, 256);
 
         // Create several accounts while the fee is cheap so they all apply.
-        env.fund(BIXRP(50000), noripple(alice, bob, charlie, daria));
+        env.fund(BIXRP(50000), nobixd(alice, bob, charlie, daria));
         checkMetrics(env, 0, boost::none, 4, 4, 256);
 
         env.close();
         checkMetrics(env, 0, 8, 0, 4, 256);
 
-        env.fund(BIXRP(50000), noripple(elmo, fred, gwen, hank));
+        env.fund(BIXRP(50000), nobixd(elmo, fred, gwen, hank));
         checkMetrics(env, 0, 8, 4, 4, 256);
 
         env.close();
@@ -1431,7 +1431,7 @@ public:
 
         checkMetrics(env, 0, boost::none, 0, 1, 256);
 
-        env.fund(BIXRP(50000), noripple(alice));
+        env.fund(BIXRP(50000), nobixd(alice));
         checkMetrics(env, 0, boost::none, 1, 1, 256);
 
         env(fset(alice, asfAccountTxnID));
@@ -1475,7 +1475,7 @@ public:
 
             checkMetrics(env, 0, boost::none, 0, 2, 256);
 
-            env.fund(BIXRP(50000), noripple(alice));
+            env.fund(BIXRP(50000), nobixd(alice));
             checkMetrics(env, 0, boost::none, 1, 2, 256);
 
             for (int i = 0; i < 10; ++i)
@@ -1577,8 +1577,8 @@ public:
 
         checkMetrics(env, 0, initQueueMax, 0, 3, 256);
 
-        env.fund(drops(5000), noripple(alice));
-        env.fund(BIXRP(50000), noripple(bob));
+        env.fund(drops(5000), nobixd(alice));
+        env.fund(BIXRP(50000), nobixd(bob));
         checkMetrics(env, 0, initQueueMax, 2, 3, 256);
         auto USD = bob["USD"];
 
@@ -1669,7 +1669,7 @@ public:
 
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
-        env.fund(BIXRP(50000), noripple(alice, bob));
+        env.fund(BIXRP(50000), nobixd(alice, bob));
         env.memoize(charlie);
         checkMetrics(env, 0, boost::none, 2, 3, 256);
         {
@@ -1799,7 +1799,7 @@ public:
 
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
-        env.fund(BIXRP(50000), noripple(alice, bob));
+        env.fund(BIXRP(50000), nobixd(alice, bob));
         env.memoize(charlie);
 
         checkMetrics(env, 0, boost::none, 2, 3, 256);
@@ -1972,7 +1972,7 @@ public:
 
         checkMetrics(env, 0, initQueueMax, 0, limit, 256);
 
-        env.fund(BIXRP(50000), noripple(alice, charlie), gw);
+        env.fund(BIXRP(50000), nobixd(alice, charlie), gw);
         checkMetrics(env, 0, initQueueMax, limit + 1, limit, 256);
 
         auto USD = gw["USD"];
@@ -2385,7 +2385,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Fund accounts while the fee is cheap so they all apply.
-        env.fund(BIXRP(50000), noripple(alice, bob, charlie));
+        env.fund(BIXRP(50000), nobixd(alice, bob, charlie));
         checkMetrics(env, 0, boost::none, 3, 3, 256);
 
         // Alice - no fee change yet
@@ -2555,7 +2555,7 @@ public:
         auto const alice = Account("alice");
         auto const bob = Account("bob");
 
-        env.fund(BIXRP(500000), noripple(alice, bob));
+        env.fund(BIXRP(500000), nobixd(alice, bob));
         checkMetrics(env, 0, boost::none, 2, 1, 256);
 
         auto const aliceSeq = env.seq(alice);
@@ -2649,7 +2649,7 @@ public:
         auto const alice = Account("alice");
         auto const bob = Account("bob");
 
-        env.fund(BIXRP(500000), noripple(alice, bob));
+        env.fund(BIXRP(500000), nobixd(alice, bob));
         checkMetrics(env, 0, boost::none, 2, 1, 256);
 
         auto const aliceSeq = env.seq(alice);
@@ -3478,7 +3478,7 @@ public:
             i{"i"};
 
         // Fund the first few accounts at non escalated fee
-        env.fund(BIXRP(50000), noripple(a, b, c, d));
+        env.fund(BIXRP(50000), nobixd(a, b, c, d));
         checkMetrics(env, 0, boost::none, 4, 3, 256);
 
         // First transaction establishes the messaging
@@ -3532,7 +3532,7 @@ public:
         checkMetrics(env, 0, 8, 0, 4, 256);
 
         // Fund then next few accounts at non escalated fee
-        env.fund(BIXRP(50000), noripple(e, f, g, h, i));
+        env.fund(BIXRP(50000), nobixd(e, f, g, h, i));
 
         // Extra transactions with low fee are queued
         auto queued = ter(terQUEUED);
@@ -3973,7 +3973,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Create account
-        env.fund(BIXRP(50000), noripple(alice));
+        env.fund(BIXRP(50000), nobixd(alice));
         checkMetrics(env, 0, boost::none, 1, 3, 256);
 
         fillQueue(env, alice);
@@ -4040,7 +4040,7 @@ public:
         checkMetrics(env, 0, boost::none, 0, 3, 256);
 
         // Create account
-        env.fund(BIXRP(50000), noripple(alice));
+        env.fund(BIXRP(50000), nobixd(alice));
         checkMetrics(env, 0, boost::none, 1, 3, 256);
 
         // Create tickets
@@ -4331,9 +4331,9 @@ public:
 
         Env env(*this, std::move(cfg));
 
-        // The noripple is to reduce the number of transactions required to
+        // The nobixd is to reduce the number of transactions required to
         // fund the accounts.  There is no rippling in this test.
-        env.fund(BIXRP(10000), noripple(alice, bob, carol, daria, ellie, fiona));
+        env.fund(BIXRP(10000), nobixd(alice, bob, carol, daria, ellie, fiona));
         env.close();
 
         // Get bob some tickets.
@@ -4536,9 +4536,9 @@ public:
 
         Env env(*this, std::move(cfg));
 
-        // The noripple is to reduce the number of transactions required to
+        // The nobixd is to reduce the number of transactions required to
         // fund the accounts.  There is no rippling in this test.
-        env.fund(BIXRP(100000), noripple(alice));
+        env.fund(BIXRP(100000), nobixd(alice));
         env.close();
 
         {

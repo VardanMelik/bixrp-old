@@ -20,7 +20,7 @@
 #ifndef BIXD_APP_PATHS_FLOW_H_INCLUDED
 #define BIXD_APP_PATHS_FLOW_H_INCLUDED
 
-#include <bixd/app/paths/RippleCalc.h>
+#include <bixd/app/paths/BixdCalc.h>
 #include <bixd/app/paths/impl/Steps.h>
 #include <bixd/protocol/Quality.h>
 
@@ -52,7 +52,7 @@ struct FlowDebugInfo;
   @param flowDebugInfo If non-null a pointer to FlowDebugInfo for debugging
   @return Actual amount in and out, and the result code
 */
-path::RippleCalc::Output
+path::BixdCalc::Output
 flow(
     PaymentSandbox& view,
     STAmount const& deliver,

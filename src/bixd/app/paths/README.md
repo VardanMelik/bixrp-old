@@ -100,7 +100,7 @@ If you can compute a path already yourself or know one, you don't need to do ste
   * finding paths (exactly "path finding")
   * filtering by liquidity.
     * take a selection of paths that should satisfy the transaction's conditions.
-    * This routine is called RippleCalc::rippleCalc.
+    * This routine is called BixdCalc::bixdCalc.
 
 2. Build a payment transaction containing the path set.
   * a path set is a group of paths that a transaction is supposed to use for liquidity
@@ -134,4 +134,4 @@ If you can compute a path already yourself or know one, you don't need to do ste
 3. Executing a payment
  * very little time, can't afford to do a search.
  * that's why we do the path building before the payment is due.
- * The routine used to compute liquidity and ledger change is also called RippleCalc::rippleCalc.
+ * The routine used to compute liquidity and ledger change is also called BixdCalc::bixdCalc.

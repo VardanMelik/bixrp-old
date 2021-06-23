@@ -131,7 +131,7 @@ Json::Value
 rpf(jtx::Account const& src, jtx::Account const& dst, std::uint32_t num_src)
 {
     Json::Value jv = Json::objectValue;
-    jv[jss::command] = "ripple_path_find";
+    jv[jss::command] = "bixd_path_find";
     jv[jss::source_account] = toBase58(src);
 
     if (num_src > 0)
@@ -231,7 +231,7 @@ public:
             {}};
 
         Json::Value params = Json::objectValue;
-        params[jss::command] = "ripple_path_find";
+        params[jss::command] = "bixd_path_find";
         params[jss::source_account] = toBase58(src);
         params[jss::destination_account] = toBase58(dst);
         params[jss::destination_amount] =
@@ -692,7 +692,7 @@ public:
     // alice --> carol --> dan --> bob
     // Balance of 100 USD Bob - Balance of 37 USD -> Rod
     void
-    issues_path_negative_ripple_client_issue_23_smaller()
+    issues_path_negative_bixd_client_issue_23_smaller()
     {
         testcase("path negative: bixd-client issue #23: smaller");
         using namespace jtx;
@@ -711,7 +711,7 @@ public:
     // alice -120 USD-> edward -25 USD-> bob
     // alice -25 USD-> carol -75 USD -> dan -100 USD-> bob
     void
-    issues_path_negative_ripple_client_issue_23_larger()
+    issues_path_negative_bixd_client_issue_23_larger()
     {
         testcase("path negative: bixd-client issue #23: larger");
         using namespace jtx;
@@ -805,7 +805,7 @@ public:
                 "HighNode" : "0",
                 "HighQualityIn" : 2000,
                 "HighQualityOut" : 1400000000,
-                "LedgerEntryType" : "RippleState",
+                "LedgerEntryType" : "BixdState",
                 "LowLimit" : {
                     "currency" : "USD",
                     "issuer" : "rG1QQv2nh2gr7RCZ1P8YYcBUKCCN633jCn",
@@ -848,7 +848,7 @@ public:
                     "value" : "1000"
                 },
                 "HighNode" : "0",
-                "LedgerEntryType" : "RippleState",
+                "LedgerEntryType" : "BixdState",
                 "LowLimit" : {
                     "currency" : "USD",
                     "issuer" : "rG1QQv2nh2gr7RCZ1P8YYcBUKCCN633jCn",
@@ -901,7 +901,7 @@ public:
                     "value" : "0"
                 },
                 "HighNode" : "0",
-                "LedgerEntryType" : "RippleState",
+                "LedgerEntryType" : "BixdState",
                 "LowLimit" :
                 {
                     "currency" : "USD",
@@ -1376,8 +1376,8 @@ public:
         alternative_paths_consume_best_transfer_first();
         alternative_paths_limit_returned_paths_to_best_quality();
         issues_path_negative_issue();
-        issues_path_negative_ripple_client_issue_23_smaller();
-        issues_path_negative_ripple_client_issue_23_larger();
+        issues_path_negative_bixd_client_issue_23_smaller();
+        issues_path_negative_bixd_client_issue_23_larger();
         via_offers_via_gateway();
         indirect_paths_path_find();
         quality_paths_quality_set_and_test();

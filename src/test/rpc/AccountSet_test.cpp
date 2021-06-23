@@ -38,7 +38,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(BIXRP(10000), noripple(alice));
+        env.fund(BIXRP(10000), nobixd(alice));
         // ask for the ledger entry - account root, to check its flags
         auto const jrr = env.le(alice);
         BEAST_EXPECT((*env.le(alice))[sfFlags] == 0u);
@@ -54,7 +54,7 @@ public:
 
         // Test without DepositAuth enabled initially.
         Env env(*this, supported_amendments() - featureDepositAuth);
-        env.fund(BIXRP(10000), noripple(alice));
+        env.fund(BIXRP(10000), nobixd(alice));
 
         // Give alice a regular key so she can legally set and clear
         // her asfDisableMaster flag.
@@ -111,7 +111,7 @@ public:
              asfDisallowBIXRP,
              asfGlobalFreeze,
              asfDisableMaster,
-             asfDefaultRipple});
+             asfDefaultBixd});
 
         // Enable featureDepositAuth and retest.
         env.enableFeature(featureDepositAuth);
@@ -122,7 +122,7 @@ public:
              asfDisallowBIXRP,
              asfGlobalFreeze,
              asfDisableMaster,
-             asfDefaultRipple,
+             asfDefaultBixd,
              asfDepositAuth});
     }
 
@@ -134,7 +134,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(BIXRP(10000), noripple(alice));
+        env.fund(BIXRP(10000), nobixd(alice));
 
         std::uint32_t const orig_flags = (*env.le(alice))[sfFlags];
 
@@ -157,7 +157,7 @@ public:
         using namespace test::jtx;
         Env env(*this);
         Account const alice("alice");
-        env.fund(BIXRP(10000), noripple(alice));
+        env.fund(BIXRP(10000), nobixd(alice));
         env.memoize("eric");
         env(regkey(alice, "eric"));
 

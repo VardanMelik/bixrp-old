@@ -21,7 +21,7 @@
 #define BIXD_PATH_IMPL_AMOUNTSPEC_H_INCLUDED
 
 #include <bixd/basics/IOUAmount.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/protocol/STAmount.h>
 
 namespace bixd {

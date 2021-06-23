@@ -326,17 +326,17 @@ SetAccount::doApply()
     }
 
     //
-    // DefaultRipple
+    // DefaultBixd
     //
-    if (uSetFlag == asfDefaultRipple)
+    if (uSetFlag == asfDefaultBixd)
     {
-        JLOG(j_.trace()) << "Set lsfDefaultRipple.";
-        uFlagsOut |= lsfDefaultRipple;
+        JLOG(j_.trace()) << "Set lsfDefaultBixd.";
+        uFlagsOut |= lsfDefaultBixd;
     }
-    else if (uClearFlag == asfDefaultRipple)
+    else if (uClearFlag == asfDefaultBixd)
     {
-        JLOG(j_.trace()) << "Clear lsfDefaultRipple.";
-        uFlagsOut &= ~lsfDefaultRipple;
+        JLOG(j_.trace()) << "Clear lsfDefaultBixd.";
+        uFlagsOut &= ~lsfDefaultBixd;
     }
 
     //

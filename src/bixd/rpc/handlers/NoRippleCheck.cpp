@@ -19,7 +19,7 @@
 
 #include <bixd/app/main/Application.h>
 #include <bixd/app/misc/LoadFeeTrack.h>
-#include <bixd/app/paths/RippleState.h>
+#include <bixd/app/paths/BixdState.h>
 #include <bixd/ledger/ReadView.h>
 #include <bixd/net/RPCErr.h>
 #include <bixd/protocol/ErrorCodes.h>
@@ -58,7 +58,7 @@ fillTransaction(
 //   transactions: true             // optional, reccommend transactions
 // }
 Json::Value
-doNoRippleCheck(RPC::JsonContext& context)
+doNoBixdCheck(RPC::JsonContext& context)
 {
     auto const& params(context.params);
     if (!params.isMember(jss::account))
@@ -76,7 +76,7 @@ doNoRippleCheck(RPC::JsonContext& context)
     }
 
     unsigned int limit;
-    if (auto err = readLimitField(limit, RPC::Tuning::noRippleCheck, context))
+    if (auto err = readLimitField(limit, RPC::Tuning::noBixdCheck, context))
         return *err;
 
     bool transactions = false;
@@ -111,16 +111,16 @@ doNoRippleCheck(RPC::JsonContext& context)
 
     Json::Value& problems = (result["problems"] = Json::arrayValue);
 
-    bool bDefaultRipple = sle->getFieldU32(sfFlags) & lsfDefaultRipple;
+    bool bDefaultBixd = sle->getFieldU32(sfFlags) & lsfDefaultBixd;
 
-    if (bDefaultRipple & !roleGateway)
+    if (bDefaultBixd & !roleGateway)
     {
         problems.append(
             "You appear to have set your default bixd flag even though you "
             "are not a gateway. This is not recommended unless you are "
             "experimenting");
     }
-    else if (roleGateway & !bDefaultRipple)
+    else if (roleGateway & !bDefaultBixd)
     {
         problems.append("You should immediately set your default bixd flag");
         if (transactions)
@@ -144,17 +144,17 @@ doNoRippleCheck(RPC::JsonContext& context)
                 bool const bLow = accountID ==
                     ownedItem->getFieldAmount(sfLowLimit).getIssuer();
 
-                bool const bNoRipple = ownedItem->getFieldU32(sfFlags) &
-                    (bLow ? lsfLowNoRipple : lsfHighNoRipple);
+                bool const bNoBixd = ownedItem->getFieldU32(sfFlags) &
+                    (bLow ? lsfLowNoBixd : lsfHighNoBixd);
 
                 std::string problem;
                 bool needFix = false;
-                if (bNoRipple & roleGateway)
+                if (bNoBixd & roleGateway)
                 {
                     problem = "You should clear the no bixd flag on your ";
                     needFix = true;
                 }
-                else if (!roleGateway & !bNoRipple)
+                else if (!roleGateway & !bNoBixd)
                 {
                     problem =
                         "You should probably set the no bixd flag on your ";
@@ -180,7 +180,7 @@ doNoRippleCheck(RPC::JsonContext& context)
                     Json::Value& tx = jvTransactions.append(Json::objectValue);
                     tx["TransactionType"] = jss::TrustSet;
                     tx["LimitAmount"] = limitAmount.getJson(JsonOptions::none);
-                    tx["Flags"] = bNoRipple ? tfClearNoRipple : tfSetNoRipple;
+                    tx["Flags"] = bNoBixd ? tfClearNoBixd : tfSetNoBixd;
                     fillTransaction(context, tx, accountID, seq, *ledger);
 
                     return true;

@@ -49,13 +49,13 @@ skinparam note {
 'skinparam monochrome true
 
 actor Client as c
-entity RippleNode as rn
+entity BixdNode as rn
 entity ShardArchiveHandler as sa
 entity SSLHTTPDownloader as d
 database Database as db
 collections Fileserver as s
 
-c -> rn: Launch RippleNode
+c -> rn: Launch BixdNode
 activate rn
 
 c -> rn: Issue download request
@@ -144,13 +144,13 @@ group Download 2
 
 end
 
-rn -> rn: **RippleNode crashes**
+rn -> rn: **BixdNode crashes**
 
 deactivate sa
 deactivate rn
 deactivate d
 
-c -> rn: Restart RippleNode
+c -> rn: Restart BixdNode
 activate rn
 
 rn -> db: Detect non-empty state database
@@ -225,8 +225,8 @@ deactivate sa
 d -> d: Destroyed via reference\ncounting
 deactivate d
 
-c -> rn: Poll RippleNode to verify successfull\nimport of all requested shards.
-c -> rn: Shutdown RippleNode
+c -> rn: Poll BixdNode to verify successfull\nimport of all requested shards.
+c -> rn: Shutdown BixdNode
 
 deactivate rn
 

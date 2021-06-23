@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/app/paths/BixdLineCache.h>
 #include <bixd/ledger/OpenView.h>
 
 namespace bixd {
 
-RippleLineCache::RippleLineCache(std::shared_ptr<ReadView const> const& ledger)
+BixdLineCache::BixdLineCache(std::shared_ptr<ReadView const> const& ledger)
 {
     // We want the caching that OpenView provides
     // And we need to own a shared_ptr to the input view
@@ -30,18 +30,18 @@ RippleLineCache::RippleLineCache(std::shared_ptr<ReadView const> const& ledger)
     mLedger = std::make_shared<OpenView>(&*ledger, ledger);
 }
 
-std::vector<RippleState::pointer> const&
-RippleLineCache::getRippleLines(AccountID const& accountID)
+std::vector<BixdState::pointer> const&
+BixdLineCache::getBixdLines(AccountID const& accountID)
 {
     AccountKey key(accountID, hasher_(accountID));
 
     std::lock_guard sl(mLock);
 
     auto [it, inserted] =
-        lines_.emplace(key, std::vector<RippleState::pointer>());
+        lines_.emplace(key, std::vector<BixdState::pointer>());
 
     if (inserted)
-        it->second = getRippleStateItems(accountID, *mLedger);
+        it->second = getBixdStateItems(accountID, *mLedger);
 
     return it->second;
 }

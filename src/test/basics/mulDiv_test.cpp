@@ -56,7 +56,7 @@ struct mulDiv_test : beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(mulDiv, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(mulDiv, bixd_basics, bixd);
 
 }  // namespace test
 }  // namespace bixd

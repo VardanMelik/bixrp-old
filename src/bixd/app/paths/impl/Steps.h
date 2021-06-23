@@ -133,7 +133,7 @@ public:
 
     /**
        If this step is DirectStepI (IOU->IOU direct step), return the src
-       account. This is needed for checkNoRipple.
+       account. This is needed for checkNoBixd.
     */
     virtual boost::optional<AccountID>
     directStepSrcAcct() const

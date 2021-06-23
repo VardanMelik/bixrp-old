@@ -33,7 +33,7 @@ namespace detail {
 std::string
 configContents(std::string const& dbPath, std::string const& validatorsFile)
 {
-    static boost::format configContentsTemplate(R"rippleConfig(
+    static boost::format configContentsTemplate(R"bixdConfig(
 [server]
 port_rpc
 port_peer
@@ -112,7 +112,7 @@ r.bixd.com 51235
 
 [sqdb]
 backend=sqlite
-)rippleConfig");
+)bixdConfig");
 
     std::string dbPathSection =
         dbPath.empty() ? "" : "[database_path]\n" + dbPath;
@@ -205,7 +205,7 @@ public:
 std::string
 valFileContents()
 {
-    std::string configContents(R"rippleConfig(
+    std::string configContents(R"bixdConfig(
 [validators]
 n949f75evCHwgyP4fPVgaHqNHxUVN15PsJEZ3B3HnXPcPjcZAoy7
 n9MD5h24qrQqiyBC8aeqqCWvpiBiYQ3jxSr91uiDvmrkyHRdYLUj
@@ -219,13 +219,13 @@ nHBu9PTL9dn2GuZtdW4U2WzBwffyX9qsQCd9CNU4Z5YG3PQfViM8
 nHUPDdcdb2Y5DZAJne4c2iabFuAP3F34xZUgYQT2NH7qfkdapgnz
 
 [validator_list_sites]
-recommendedripplevalidators.com
-moreripplevalidators.net
+recommendedbixdvalidators.com
+morebixdvalidators.net
 
 [validator_list_keys]
 03E74EE14CB525AFBB9F1B7D86CD58ECC4B91452294B42AB4E78F260BD905C091D
 030775A669685BD6ABCEBD80385921C7851783D991A8055FD21D2F3966C96F1B56
-)rippleConfig");
+)bixdConfig");
     return configContents;
 }
 
@@ -282,7 +282,7 @@ public:
 
         Config c;
 
-        std::string toLoad(R"rippleConfig(
+        std::string toLoad(R"bixdConfig(
 [server]
 port_rpc
 port_peer
@@ -290,7 +290,7 @@ port_wss_admin
 
 [ssl_verify]
 0
-)rippleConfig");
+)bixdConfig");
 
         c.loadFromString(toLoad);
 
@@ -390,13 +390,13 @@ port_wss_admin
 
         {
             Config c;
-            static boost::format configTemplate(R"rippleConfig(
+            static boost::format configTemplate(R"bixdConfig(
 [validation_seed]
 %1%
 
 [validator_token]
 %2%
-)rippleConfig");
+)bixdConfig");
             std::string error;
             auto const expectedError =
                 "Cannot have both [validation_seed] "
@@ -463,7 +463,7 @@ port_wss_admin
         {
             // load validators from config into single section
             Config c;
-            std::string toLoad(R"rippleConfig(
+            std::string toLoad(R"bixdConfig(
 [validators]
 n949f75evCHwgyP4fPVgaHqNHxUVN15PsJEZ3B3HnXPcPjcZAoy7
 n9MD5h24qrQqiyBC8aeqqCWvpiBiYQ3jxSr91uiDvmrkyHRdYLUj
@@ -472,7 +472,7 @@ n9L81uNCaPgtUJfaHh89gmdvXKAmSt5Gdsw2g1iPWaPkAHW5Nm4C
 [validator_keys]
 nHUhG1PgAG8H8myUENypM35JgfqXAKNQvRVVAFDRzJrny5eZN8d5
 nHBu9PTL9dn2GuZtdW4U2WzBwffyX9qsQCd9CNU4Z5YG3PQfViM8
-)rippleConfig");
+)bixdConfig");
             c.loadFromString(toLoad);
             BEAST_EXPECT(c.legacy("validators_file").empty());
             BEAST_EXPECT(c.section(SECTION_VALIDATORS).values().size() == 5);
@@ -480,20 +480,20 @@ nHBu9PTL9dn2GuZtdW4U2WzBwffyX9qsQCd9CNU4Z5YG3PQfViM8
         {
             // load validator list sites and keys from config
             Config c;
-            std::string toLoad(R"rippleConfig(
+            std::string toLoad(R"bixdConfig(
 [validator_list_sites]
-ripplevalidators.com
+bixdvalidators.com
 trustthesevalidators.gov
 
 [validator_list_keys]
 021A99A537FDEBC34E4FCA03B39BEADD04299BB19E85097EC92B15A3518801E566
-)rippleConfig");
+)bixdConfig");
             c.loadFromString(toLoad);
             BEAST_EXPECT(
                 c.section(SECTION_VALIDATOR_LIST_SITES).values().size() == 2);
             BEAST_EXPECT(
                 c.section(SECTION_VALIDATOR_LIST_SITES).values()[0] ==
-                "ripplevalidators.com");
+                "bixdvalidators.com");
             BEAST_EXPECT(
                 c.section(SECTION_VALIDATOR_LIST_SITES).values()[1] ==
                 "trustthesevalidators.gov");
@@ -508,11 +508,11 @@ trustthesevalidators.gov
             // load should throw if [validator_list_sites] is configured but
             // [validator_list_keys] is not
             Config c;
-            std::string toLoad(R"rippleConfig(
+            std::string toLoad(R"bixdConfig(
 [validator_list_sites]
-ripplevalidators.com
+bixdvalidators.com
 trustthesevalidators.gov
-)rippleConfig");
+)bixdConfig");
             std::string error;
             auto const expectedError =
                 "[validator_list_keys] config section is missing";
@@ -616,7 +616,7 @@ trustthesevalidators.gov
 
         {
             // load validators from both config and validators file
-            boost::format cc(R"rippleConfig(
+            boost::format cc(R"bixdConfig(
 [validators_file]
 %1%
 
@@ -632,12 +632,12 @@ nHB1X37qrniVugfQcuBTAjswphC1drx7QjFFojJPZwKHHnt8kU7v
 nHUkAWDR4cB8AgPg7VXMX6et8xRTQb2KJfgv1aBEXozwrawRKgMB
 
 [validator_list_sites]
-ripplevalidators.com
+bixdvalidators.com
 trustthesevalidators.gov
 
 [validator_list_keys]
 021A99A537FDEBC34E4FCA03B39BEADD04299BB19E85097EC92B15A3518801E566
-)rippleConfig");
+)bixdConfig");
             detail::ValidatorsTxtGuard const vtg(
                 *this, "test_cfg", "validators.cfg");
             BEAST_EXPECT(vtg.validatorsFileExists());
@@ -1040,9 +1040,9 @@ r.bixd.com 51235
         for (auto& [unit, sec, val, shouldPass] : units)
         {
             Config c;
-            std::string toLoad(R"rippleConfig(
+            std::string toLoad(R"bixdConfig(
 [amendment_majority_time]
-)rippleConfig");
+)bixdConfig");
             toLoad += std::to_string(val) + space + unit;
             space = space == "" ? " " : "";
 

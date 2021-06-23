@@ -24,7 +24,7 @@ namespace bixd {
 hash_set<Currency>
 accountSourceCurrencies(
     AccountID const& account,
-    std::shared_ptr<RippleLineCache> const& lrCache,
+    std::shared_ptr<BixdLineCache> const& lrCache,
     bool includeBIXRP)
 {
     hash_set<Currency> currencies;
@@ -34,11 +34,11 @@ accountSourceCurrencies(
         currencies.insert(bixrpCurrency());
 
     // List of bixd lines.
-    auto& rippleLines = lrCache->getRippleLines(account);
+    auto& bixdLines = lrCache->getBixdLines(account);
 
-    for (auto const& item : rippleLines)
+    for (auto const& item : bixdLines)
     {
-        auto rspEntry = (RippleState*)item.get();
+        auto rspEntry = (BixdState*)item.get();
         assert(rspEntry);
         if (!rspEntry)
             continue;
@@ -63,7 +63,7 @@ accountSourceCurrencies(
 hash_set<Currency>
 accountDestCurrencies(
     AccountID const& account,
-    std::shared_ptr<RippleLineCache> const& lrCache,
+    std::shared_ptr<BixdLineCache> const& lrCache,
     bool includeBIXRP)
 {
     hash_set<Currency> currencies;
@@ -73,11 +73,11 @@ accountDestCurrencies(
     // Even if account doesn't exist
 
     // List of bixd lines.
-    auto& rippleLines = lrCache->getRippleLines(account);
+    auto& bixdLines = lrCache->getBixdLines(account);
 
-    for (auto const& item : rippleLines)
+    for (auto const& item : bixdLines)
     {
-        auto rspEntry = (RippleState*)item.get();
+        auto rspEntry = (BixdState*)item.get();
         assert(rspEntry);
         if (!rspEntry)
             continue;

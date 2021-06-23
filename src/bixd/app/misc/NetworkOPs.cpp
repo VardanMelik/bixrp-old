@@ -1498,13 +1498,13 @@ NetworkOPsImp::getOwnerInfo(
                         break;
 
                     case ltBIXD_STATE:
-                        if (!jvObjects.isMember(jss::ripple_lines))
+                        if (!jvObjects.isMember(jss::bixd_lines))
                         {
-                            jvObjects[jss::ripple_lines] =
+                            jvObjects[jss::bixd_lines] =
                                 Json::Value(Json::arrayValue);
                         }
 
-                        jvObjects[jss::ripple_lines].append(
+                        jvObjects[jss::bixd_lines].append(
                             sleCur->getJson(JsonOptions::none));
                         break;
 

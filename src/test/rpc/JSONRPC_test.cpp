@@ -2519,7 +2519,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(JSONRPC, ripple_app, bixd);
+BEAST_DEFINE_TESTSUITE(JSONRPC, bixd_app, bixd);
 
 }  // namespace RPC
 }  // namespace bixd

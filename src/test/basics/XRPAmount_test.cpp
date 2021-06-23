@@ -17,7 +17,7 @@
 */
 //==============================================================================
 
-#include <bixd/basics/BIXRPAmount.h>
+#include <bixd/basics/BIBIXRPAmount.h>
 #include <bixd/beast/unit_test.h>
 
 namespace bixd {

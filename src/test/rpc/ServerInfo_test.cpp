@@ -49,13 +49,13 @@ public:
     makeValidatorConfig()
     {
         auto p = std::make_unique<Config>();
-        boost::format toLoad(R"rippleConfig(
+        boost::format toLoad(R"bixdConfig(
 [validator_token]
 %1%
 
 [validators]
 %2%
-)rippleConfig");
+)bixdConfig");
 
         p->loadFromString(boost::str(
             toLoad % validator_data::token % validator_data::public_key));

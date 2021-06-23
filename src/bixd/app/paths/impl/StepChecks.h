@@ -58,7 +58,7 @@ checkFreeze(
 }
 
 inline TER
-checkNoRipple(
+checkNoBixd(
     ReadView const& view,
     AccountID const& prev,
     AccountID const& cur,
@@ -74,10 +74,10 @@ checkNoRipple(
     if (!sleIn || !sleOut)
         return terNO_LINE;
 
-    if ((*sleIn)[sfFlags] & ((cur > prev) ? lsfHighNoRipple : lsfLowNoRipple) &&
-        (*sleOut)[sfFlags] & ((cur > next) ? lsfHighNoRipple : lsfLowNoRipple))
+    if ((*sleIn)[sfFlags] & ((cur > prev) ? lsfHighNoBixd : lsfLowNoBixd) &&
+        (*sleOut)[sfFlags] & ((cur > next) ? lsfHighNoBixd : lsfLowNoBixd))
     {
-        JLOG(j.info()) << "Path violates noRipple constraint between " << prev
+        JLOG(j.info()) << "Path violates noBixd constraint between " << prev
                        << ", " << cur << " and " << next;
 
         return terNO_BIXD;

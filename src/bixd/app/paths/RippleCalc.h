@@ -35,12 +35,12 @@ namespace detail {
 struct FlowDebugInfo;
 }
 
-/** RippleCalc calculates the quality of a payment path.
+/** BixdCalc calculates the quality of a payment path.
 
     Quality is the amount of input required to produce a given output along a
     specified path - another name for this is exchange rate.
 */
-class RippleCalc
+class BixdCalc
 {
 public:
     struct Input
@@ -86,7 +86,7 @@ public:
     };
 
     static Output
-    rippleCalculate(
+    bixdCalculate(
         PaymentSandbox& view,
 
         // Compute paths using this ledger entry set.  Up to caller to actually

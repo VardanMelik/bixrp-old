@@ -145,6 +145,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(RangeSet, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(RangeSet, bixd_basics, bixd);
 
 }  // namespace bixd

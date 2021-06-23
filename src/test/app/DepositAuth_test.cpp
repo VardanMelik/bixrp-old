@@ -274,10 +274,10 @@ struct DepositAuth_test : public beast::unit_test::suite
     }
 
     void
-    testNoRipple()
+    testNoBixd()
     {
         // It its current incarnation the DepositAuth flag does not change
-        // any behaviors regarding rippling and the NoRipple flag.
+        // any behaviors regarding rippling and the NoBixd flag.
         // Demonstrate that.
         testcase("No bixd");
 
@@ -291,16 +291,16 @@ struct DepositAuth_test : public beast::unit_test::suite
         IOU const USD2(gw2["USD"]);
 
         auto testIssuer = [&](FeatureBitset const& features,
-                              bool noRipplePrev,
-                              bool noRippleNext,
+                              bool noBixdPrev,
+                              bool noBixdNext,
                               bool withDepositAuth) {
             assert(!withDepositAuth || features[featureDepositAuth]);
 
             Env env(*this, features);
 
             env.fund(BIXRP(10000), gw1, alice, bob);
-            env(trust(gw1, alice["USD"](10), noRipplePrev ? tfSetNoRipple : 0));
-            env(trust(gw1, bob["USD"](10), noRippleNext ? tfSetNoRipple : 0));
+            env(trust(gw1, alice["USD"](10), noBixdPrev ? tfSetNoBixd : 0));
+            env(trust(gw1, bob["USD"](10), noBixdNext ? tfSetNoBixd : 0));
             env.trust(USD1(10), alice, bob);
 
             env(pay(gw1, alice, USD1(10)));
@@ -308,28 +308,28 @@ struct DepositAuth_test : public beast::unit_test::suite
             if (withDepositAuth)
                 env(fset(gw1, asfDepositAuth));
 
-            TER const result = (noRippleNext && noRipplePrev) ? TER{tecPATH_DRY}
+            TER const result = (noBixdNext && noBixdPrev) ? TER{tecPATH_DRY}
                                                               : TER{tesSUCCESS};
             env(pay(alice, bob, USD1(10)), path(gw1), ter(result));
         };
 
         auto testNonIssuer = [&](FeatureBitset const& features,
-                                 bool noRipplePrev,
-                                 bool noRippleNext,
+                                 bool noBixdPrev,
+                                 bool noBixdNext,
                                  bool withDepositAuth) {
             assert(!withDepositAuth || features[featureDepositAuth]);
 
             Env env(*this, features);
 
             env.fund(BIXRP(10000), gw1, gw2, alice);
-            env(trust(alice, USD1(10), noRipplePrev ? tfSetNoRipple : 0));
-            env(trust(alice, USD2(10), noRippleNext ? tfSetNoRipple : 0));
+            env(trust(alice, USD1(10), noBixdPrev ? tfSetNoBixd : 0));
+            env(trust(alice, USD2(10), noBixdNext ? tfSetNoBixd : 0));
             env(pay(gw2, alice, USD2(10)));
 
             if (withDepositAuth)
                 env(fset(alice, asfDepositAuth));
 
-            TER const result = (noRippleNext && noRipplePrev) ? TER{tecPATH_DRY}
+            TER const result = (noBixdNext && noBixdPrev) ? TER{tecPATH_DRY}
                                                               : TER{tesSUCCESS};
             env(pay(gw1, gw2, USD2(10)),
                 path(alice),
@@ -337,36 +337,36 @@ struct DepositAuth_test : public beast::unit_test::suite
                 ter(result));
         };
 
-        // Test every combo of noRipplePrev, noRippleNext, and withDepositAuth
+        // Test every combo of noBixdPrev, noBixdNext, and withDepositAuth
         for (int i = 0; i < 8; ++i)
         {
-            auto const noRipplePrev = i & 0x1;
-            auto const noRippleNext = i & 0x2;
+            auto const noBixdPrev = i & 0x1;
+            auto const noBixdNext = i & 0x2;
             auto const withDepositAuth = i & 0x4;
             testIssuer(
                 supported_amendments() | featureDepositAuth,
-                noRipplePrev,
-                noRippleNext,
+                noBixdPrev,
+                noBixdNext,
                 withDepositAuth);
 
             if (!withDepositAuth)
                 testIssuer(
                     supported_amendments() - featureDepositAuth,
-                    noRipplePrev,
-                    noRippleNext,
+                    noBixdPrev,
+                    noBixdNext,
                     withDepositAuth);
 
             testNonIssuer(
                 supported_amendments() | featureDepositAuth,
-                noRipplePrev,
-                noRippleNext,
+                noBixdPrev,
+                noBixdNext,
                 withDepositAuth);
 
             if (!withDepositAuth)
                 testNonIssuer(
                     supported_amendments() - featureDepositAuth,
-                    noRipplePrev,
-                    noRippleNext,
+                    noBixdPrev,
+                    noBixdNext,
                     withDepositAuth);
         }
     }
@@ -377,7 +377,7 @@ struct DepositAuth_test : public beast::unit_test::suite
         testEnable();
         testPayIOU();
         testPayBIXRP();
-        testNoRipple();
+        testNoBixd();
     }
 };
 

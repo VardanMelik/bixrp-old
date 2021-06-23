@@ -223,7 +223,7 @@ checkPayment(
             if (auto ledger = app.openLedger().current())
             {
                 Pathfinder pf(
-                    std::make_shared<RippleLineCache>(ledger),
+                    std::make_shared<BixdLineCache>(ledger),
                     srcAddressID,
                     *dstAccountID,
                     sendMax.issue().currency,

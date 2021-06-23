@@ -23,7 +23,7 @@
 #include <bixd/app/paths/AccountCurrencies.h>
 #include <bixd/app/paths/PathRequest.h>
 #include <bixd/app/paths/PathRequests.h>
-#include <bixd/app/paths/RippleCalc.h>
+#include <bixd/app/paths/BixdCalc.h>
 #include <bixd/app/paths/impl/PathfinderUtils.h>
 #include <bixd/basics/Log.h>
 #include <bixd/beast/core/LexicalCast.h>
@@ -170,7 +170,7 @@ PathRequest::updateComplete()
 }
 
 bool
-PathRequest::isValid(std::shared_ptr<RippleLineCache> const& crCache)
+PathRequest::isValid(std::shared_ptr<BixdLineCache> const& crCache)
 {
     if (!raSrcAccount || !raDstAccount)
         return false;
@@ -243,7 +243,7 @@ PathRequest::isValid(std::shared_ptr<RippleLineCache> const& crCache)
 */
 std::pair<bool, Json::Value>
 PathRequest::doCreate(
-    std::shared_ptr<RippleLineCache> const& cache,
+    std::shared_ptr<BixdLineCache> const& cache,
     Json::Value const& value)
 {
     bool valid = false;
@@ -460,7 +460,7 @@ PathRequest::doStatus(Json::Value const&)
 
 std::unique_ptr<Pathfinder> const&
 PathRequest::getPathFinder(
-    std::shared_ptr<RippleLineCache> const& cache,
+    std::shared_ptr<BixdLineCache> const& cache,
     hash_map<Currency, std::unique_ptr<Pathfinder>>& currency_map,
     Currency const& currency,
     STAmount const& dst_amount,
@@ -487,7 +487,7 @@ PathRequest::getPathFinder(
 
 bool
 PathRequest::findPaths(
-    std::shared_ptr<RippleLineCache> const& cache,
+    std::shared_ptr<BixdLineCache> const& cache,
     int const level,
     Json::Value& jvArray)
 {
@@ -541,14 +541,14 @@ PathRequest::findPaths(
             STAmount({issue.currency, sourceAccount}, 1u, 0, true));
 
         JLOG(m_journal.debug())
-            << iIdentifier << " Paths found, calling rippleCalc";
+            << iIdentifier << " Paths found, calling bixdCalc";
 
-        path::RippleCalc::Input rcInput;
+        path::BixdCalc::Input rcInput;
         if (convert_all_)
             rcInput.partialPaymentAllowed = true;
         auto sandbox =
             std::make_unique<PaymentSandbox>(&*cache->getLedger(), tapNONE);
-        auto rc = path::RippleCalc::rippleCalculate(
+        auto rc = path::BixdCalc::bixdCalculate(
             *sandbox,
             saMaxAmount,    // --> Amount to send is unlimited
                             //     to get an estimate.
@@ -568,7 +568,7 @@ PathRequest::findPaths(
             ps.push_back(fullLiquidityPath);
             sandbox =
                 std::make_unique<PaymentSandbox>(&*cache->getLedger(), tapNONE);
-            rc = path::RippleCalc::rippleCalculate(
+            rc = path::BixdCalc::bixdCalculate(
                 *sandbox,
                 saMaxAmount,    // --> Amount to send is unlimited
                                 //     to get an estimate.
@@ -606,7 +606,7 @@ PathRequest::findPaths(
 
             if (hasCompletion())
             {
-                // Old ripple_path_find API requires this
+                // Old bixd_path_find API requires this
                 jvEntry[jss::paths_canonical] = Json::arrayValue;
             }
 
@@ -614,7 +614,7 @@ PathRequest::findPaths(
         }
         else
         {
-            JLOG(m_journal.debug()) << iIdentifier << " rippleCalc returns "
+            JLOG(m_journal.debug()) << iIdentifier << " bixdCalc returns "
                                     << transHuman(rc.result());
         }
     }
@@ -630,7 +630,7 @@ PathRequest::findPaths(
 }
 
 Json::Value
-PathRequest::doUpdate(std::shared_ptr<RippleLineCache> const& cache, bool fast)
+PathRequest::doUpdate(std::shared_ptr<BixdLineCache> const& cache, bool fast)
 {
     using namespace std::chrono;
     JLOG(m_journal.debug())
@@ -647,7 +647,7 @@ PathRequest::doUpdate(std::shared_ptr<RippleLineCache> const& cache, bool fast)
 
     if (hasCompletion())
     {
-        // Old ripple_path_find API gives destination_currencies
+        // Old bixd_path_find API gives destination_currencies
         auto& destCurrencies =
             (newStatus[jss::destination_currencies] = Json::arrayValue);
         auto usCurrencies = accountDestCurrencies(*raDstAccount, cache, true);

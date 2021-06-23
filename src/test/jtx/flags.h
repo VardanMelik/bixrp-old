@@ -74,8 +74,8 @@ private:
             case asfGlobalFreeze:
                 mask_ |= lsfGlobalFreeze;
                 break;
-            case asfDefaultRipple:
-                mask_ |= lsfDefaultRipple;
+            case asfDefaultBixd:
+                mask_ |= lsfDefaultBixd;
                 break;
             case asfDepositAuth:
                 mask_ |= lsfDepositAuth;

@@ -927,9 +927,9 @@ class LedgerRPC_test : public beast::unit_test::suite
     }
 
     void
-    testLedgerEntryRippleState()
+    testLedgerEntryBixdState()
     {
-        testcase("ledger_entry Request RippleState");
+        testcase("ledger_entry Request BixdState");
         using namespace test::jtx;
         Env env{*this};
         Account const alice{"alice"};
@@ -948,11 +948,11 @@ class LedgerRPC_test : public beast::unit_test::suite
         {
             // Request the trust line using the accounts and currency.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = alice.human();
-            jvParams[jss::ripple_state][jss::accounts][1u] = gw.human();
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = alice.human();
+            jvParams[jss::bixd_state][jss::accounts][1u] = gw.human();
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
@@ -962,138 +962,138 @@ class LedgerRPC_test : public beast::unit_test::suite
                 jrr[jss::node][sfHighLimit.jsonName][jss::value] == "999");
         }
         {
-            // ripple_state is not an object.
+            // bixd_state is not an object.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = "ripple_state";
+            jvParams[jss::bixd_state] = "bixd_state";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedRequest", "");
         }
         {
-            // ripple_state.currency is missing.
+            // bixd_state.currency is missing.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = alice.human();
-            jvParams[jss::ripple_state][jss::accounts][1u] = gw.human();
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = alice.human();
+            jvParams[jss::bixd_state][jss::accounts][1u] = gw.human();
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedRequest", "");
         }
         {
-            // ripple_state accounts is not an array.
+            // bixd_state accounts is not an array.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = 2;
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = 2;
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedRequest", "");
         }
         {
-            // ripple_state one of the accounts is missing.
+            // bixd_state one of the accounts is missing.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = alice.human();
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = alice.human();
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedRequest", "");
         }
         {
-            // ripple_state more than 2 accounts.
+            // bixd_state more than 2 accounts.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = alice.human();
-            jvParams[jss::ripple_state][jss::accounts][1u] = gw.human();
-            jvParams[jss::ripple_state][jss::accounts][2u] = alice.human();
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = alice.human();
+            jvParams[jss::bixd_state][jss::accounts][1u] = gw.human();
+            jvParams[jss::bixd_state][jss::accounts][2u] = alice.human();
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedRequest", "");
         }
         {
-            // ripple_state account[0] is not a string.
+            // bixd_state account[0] is not a string.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = 44;
-            jvParams[jss::ripple_state][jss::accounts][1u] = gw.human();
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = 44;
+            jvParams[jss::bixd_state][jss::accounts][1u] = gw.human();
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedRequest", "");
         }
         {
-            // ripple_state account[1] is not a string.
+            // bixd_state account[1] is not a string.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = alice.human();
-            jvParams[jss::ripple_state][jss::accounts][1u] = 21;
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = alice.human();
+            jvParams[jss::bixd_state][jss::accounts][1u] = 21;
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedRequest", "");
         }
         {
-            // ripple_state account[0] == account[1].
+            // bixd_state account[0] == account[1].
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = alice.human();
-            jvParams[jss::ripple_state][jss::accounts][1u] = alice.human();
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = alice.human();
+            jvParams[jss::bixd_state][jss::accounts][1u] = alice.human();
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedRequest", "");
         }
         {
-            // ripple_state malformed account[0].
+            // bixd_state malformed account[0].
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] =
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] =
                 makeBadAddress(alice.human());
-            jvParams[jss::ripple_state][jss::accounts][1u] = gw.human();
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state][jss::accounts][1u] = gw.human();
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedAddress", "");
         }
         {
-            // ripple_state malformed account[1].
+            // bixd_state malformed account[1].
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = alice.human();
-            jvParams[jss::ripple_state][jss::accounts][1u] =
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = alice.human();
+            jvParams[jss::bixd_state][jss::accounts][1u] =
                 makeBadAddress(gw.human());
-            jvParams[jss::ripple_state][jss::currency] = "USD";
+            jvParams[jss::bixd_state][jss::currency] = "USD";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
             checkErrorValue(jrr, "malformedAddress", "");
         }
         {
-            // ripple_state malformed currency.
+            // bixd_state malformed currency.
             Json::Value jvParams;
-            jvParams[jss::ripple_state] = Json::objectValue;
-            jvParams[jss::ripple_state][jss::accounts] = Json::arrayValue;
-            jvParams[jss::ripple_state][jss::accounts][0u] = alice.human();
-            jvParams[jss::ripple_state][jss::accounts][1u] = gw.human();
-            jvParams[jss::ripple_state][jss::currency] = "USDollars";
+            jvParams[jss::bixd_state] = Json::objectValue;
+            jvParams[jss::bixd_state][jss::accounts] = Json::arrayValue;
+            jvParams[jss::bixd_state][jss::accounts][0u] = alice.human();
+            jvParams[jss::bixd_state][jss::accounts][1u] = gw.human();
+            jvParams[jss::bixd_state][jss::currency] = "USDollars";
             jvParams[jss::ledger_hash] = ledgerHash;
             Json::Value const jrr = env.rpc(
                 "json", "ledger_entry", to_string(jvParams))[jss::result];
@@ -1699,7 +1699,7 @@ public:
         testLedgerEntryEscrow();
         testLedgerEntryOffer();
         testLedgerEntryPayChan();
-        testLedgerEntryRippleState();
+        testLedgerEntryBixdState();
         testLedgerEntryTicket();
         testLedgerEntryUnknownOption();
         testLookupLedger();

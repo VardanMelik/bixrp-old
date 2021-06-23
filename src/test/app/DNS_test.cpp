@@ -126,7 +126,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(DNS, ripple_data, bixd, 20);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(DNS, bixd_data, bixd, 20);
 
 }  // namespace test
 }  // namespace bixd

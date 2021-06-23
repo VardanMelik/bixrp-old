@@ -79,7 +79,7 @@ JSS(Payment);                // transaction type.
 JSS(PaymentChannelClaim);    // transaction type.
 JSS(PaymentChannelCreate);   // transaction type.
 JSS(PaymentChannelFund);     // transaction type.
-JSS(RippleState);            // ledger type.
+JSS(BixdState);            // ledger type.
 JSS(SLE_hit_rate);           // out: GetCounts.
 JSS(SetFee);                 // transaction type.
 JSS(UNLModify);              // transaction type.
@@ -119,7 +119,7 @@ JSS(acquiring);              // out: LedgerRequest
 JSS(address);                // out: PeerImp
 JSS(affected);               // out: AcceptedLedgerTx
 JSS(age);                    // out: NetworkOPs, Peers
-JSS(alternatives);           // out: PathRequest, RipplePathFind
+JSS(alternatives);           // out: PathRequest, BixdPathFind
 JSS(amendment_blocked);      // out: NetworkOPs
 JSS(amendments);             // in: AccountObjects, out: NetworkOPs
 JSS(amount);                 // out: AccountChannels
@@ -199,10 +199,10 @@ JSS(deposit_preauth);         // in: AccountObjects, LedgerData
 JSS(deprecated);              // out
 JSS(descending);              // in: AccountTx*
 JSS(description);             // in/out: Reservations
-JSS(destination_account);     // in: PathRequest, RipplePathFind, account_lines
+JSS(destination_account);     // in: PathRequest, BixdPathFind, account_lines
                               // out: AccountChannels
-JSS(destination_amount);      // in: PathRequest, RipplePathFind
-JSS(destination_currencies);  // in: PathRequest, RipplePathFind
+JSS(destination_amount);      // in: PathRequest, BixdPathFind
+JSS(destination_currencies);  // in: PathRequest, BixdPathFind
 JSS(destination_tag);         // in: PathRequest
                               // out: AccountChannels
 JSS(details);                 // out: Manifest, server_info
@@ -282,7 +282,7 @@ JSS(invalid_API_version);   // out: Many, when a request has an invalid
                             //      version
 JSS(io_latency_ms);         // out: NetworkOPs
 JSS(ip);                    // in: Connect, out: OverlayImpl
-JSS(issuer);                // in: RipplePathFind, Subscribe,
+JSS(issuer);                // in: BixdPathFind, Subscribe,
                             //     Unsubscribe, BookOffers
                             // out: STPathSet, STAmount
 JSS(job);
@@ -307,7 +307,7 @@ JSS(ledger_current_index);        // out: NetworkOPs, RPCHelpers,
                                   //      AccountLines
 JSS(ledger_data);                 // out: LedgerHeader
 JSS(ledger_hash);                 // in: RPCHelpers, LedgerRequest,
-                                  //     RipplePathFind, TransactionEntry,
+                                  //     BixdPathFind, TransactionEntry,
                                   //     handlers/Ledger
                                   // out: NetworkOPs, RPCHelpers,
                                   //      LedgerClosed, LedgerData,
@@ -378,8 +378,8 @@ JSS(needed_transaction_hashes);  // out: InboundLedger
 JSS(network_id);                 // out: NetworkOPs
 JSS(network_ledger);             // out: NetworkOPs
 JSS(next_refresh_time);          // out: ValidatorSite
-JSS(no_ripple);                  // out: AccountLines
-JSS(no_ripple_peer);             // out: AccountLines
+JSS(no_bixd);                  // out: AccountLines
+JSS(no_bixd_peer);             // out: AccountLines
 JSS(node);                       // out: LedgerEntry
 JSS(node_binary);                // out: LedgerEntry
 JSS(node_read_bytes);            // out: GetCounts
@@ -411,9 +411,9 @@ JSS(parent_hash);                // out: LedgerToJson
 JSS(partition);                  // in: LogLevel
 JSS(passphrase);                 // in: WalletPropose
 JSS(password);                   // in: Subscribe
-JSS(paths);                      // in: RipplePathFind
-JSS(paths_canonical);            // out: RipplePathFind
-JSS(paths_computed);             // out: PathRequest, RipplePathFind
+JSS(paths);                      // in: BixdPathFind
+JSS(paths_canonical);            // out: BixdPathFind
+JSS(paths_computed);             // out: PathRequest, BixdPathFind
 JSS(payment_channel);            // in: LedgerEntry
 JSS(peer);                       // in: AccountLines
 JSS(peer_authorized);            // out: AccountLines
@@ -464,14 +464,14 @@ JSS(reserve_inc);           // out: NetworkOPs
 JSS(reserve_inc_bixrp);       // out: NetworkOPs
 JSS(response);              // websocket
 JSS(result);                // RPC
-JSS(ripple_lines);          // out: NetworkOPs
-JSS(ripple_state);          // in: LedgerEntr
-JSS(ripplerpc);             // bixd RPC version
+JSS(bixd_lines);          // out: NetworkOPs
+JSS(bixd_state);          // in: LedgerEntr
+JSS(bixdrpc);             // bixd RPC version
 JSS(role);                  // out: Ping.cpp
 JSS(rpc);
 JSS(rt_accounts);  // in: Subscribe, Unsubscribe
 JSS(running_duration_us);
-JSS(search_depth);              // in: RipplePathFind
+JSS(search_depth);              // in: BixdPathFind
 JSS(searched_all);              // out: Tx
 JSS(secret);                    // in: TransactionSign,
                                 //     ValidationCreate, ValidationSeed,
@@ -479,7 +479,7 @@ JSS(secret);                    // in: TransactionSign,
 JSS(seed);                      //
 JSS(seed_hex);                  // in: WalletPropose, TransactionSign
 JSS(send_currencies);           // out: AccountCurrencies
-JSS(send_max);                  // in: PathRequest, RipplePathFind
+JSS(send_max);                  // in: PathRequest, BixdPathFind
 JSS(seq);                       // in: LedgerEntry;
                                 // out: NetworkOPs, RPCSub, AccountOffers,
                                 //      ValidatorList, ValidatorInfo, Manifest
@@ -501,9 +501,9 @@ JSS(signing_time);              // out: NetworkOPs
 JSS(signer_list);               // in: AccountObjects
 JSS(signer_lists);              // in/out: AccountInfo
 JSS(snapshot);                  // in: Subscribe
-JSS(source_account);            // in: PathRequest, RipplePathFind
-JSS(source_amount);             // in: PathRequest, RipplePathFind
-JSS(source_currencies);         // in: PathRequest, RipplePathFind
+JSS(source_account);            // in: PathRequest, BixdPathFind
+JSS(source_amount);             // in: PathRequest, BixdPathFind
+JSS(source_currencies);         // in: PathRequest, BixdPathFind
 JSS(source_tag);                // out: AccountChannels
 JSS(stand_alone);               // out: NetworkOPs
 JSS(start);                     // in: TxHistory

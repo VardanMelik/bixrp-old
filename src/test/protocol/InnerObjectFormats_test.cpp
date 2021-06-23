@@ -201,6 +201,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(InnerObjectFormatsParsedJSON, ripple_app, bixd);
+BEAST_DEFINE_TESTSUITE(InnerObjectFormatsParsedJSON, bixd_app, bixd);
 
 }  // namespace bixd

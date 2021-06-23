@@ -21,7 +21,7 @@
 #define BIXD_APP_PATHS_PATHFINDER_H_INCLUDED
 
 #include <bixd/app/ledger/Ledger.h>
-#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/app/paths/BixdLineCache.h>
 #include <bixd/core/LoadEvent.h>
 #include <bixd/protocol/STAmount.h>
 #include <bixd/protocol/STPathSet.h>
@@ -30,16 +30,16 @@ namespace bixd {
 
 /** Calculates payment paths.
 
-    The @ref RippleCalc determines the quality of the found paths.
+    The @ref BixdCalc determines the quality of the found paths.
 
-    @see RippleCalc
+    @see BixdCalc
 */
 class Pathfinder
 {
 public:
     /** Construct a pathfinder without an issuer.*/
     Pathfinder(
-        std::shared_ptr<RippleLineCache> const& cache,
+        std::shared_ptr<BixdLineCache> const& cache,
         AccountID const& srcAccount,
         AccountID const& dstAccount,
         Currency const& uSrcCurrency,
@@ -114,13 +114,13 @@ private:
                   addLink:
                       getPathsOut
                       issueMatchesOrigin
-                      isNoRippleOut:
-                          isNoRipple
+                      isNoBixdOut:
+                          isNoBixd
 
       computePathRanks:
-          rippleCalculate
+          bixdCalculate
           getPathLiquidity:
-              rippleCalculate
+              bixdCalculate
 
       getBestPaths
      */
@@ -165,11 +165,11 @@ private:
     // Does this path end on an account-to-account link whose last account has
     // set the "no bixd" flag on the link?
     bool
-    isNoRippleOut(STPath const& currentPath);
+    isNoBixdOut(STPath const& currentPath);
 
     // Is the "no bixd" flag set from one account to another?
     bool
-    isNoRipple(
+    isNoBixd(
         AccountID const& fromAccount,
         AccountID const& toAccount,
         Currency const& currency);
@@ -194,7 +194,7 @@ private:
 
     std::shared_ptr<ReadView const> mLedger;
     std::unique_ptr<LoadEvent> m_loadEvent;
-    std::shared_ptr<RippleLineCache> mRLCache;
+    std::shared_ptr<BixdLineCache> mRLCache;
 
     STPathElement mSource;
     STPathSet mCompletePaths;

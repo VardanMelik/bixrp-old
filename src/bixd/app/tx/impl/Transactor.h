@@ -22,7 +22,7 @@
 
 #include <bixd/app/tx/applySteps.h>
 #include <bixd/app/tx/impl/ApplyContext.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/beast/utility/Journal.h>
 #include <boost/optional.hpp>
 

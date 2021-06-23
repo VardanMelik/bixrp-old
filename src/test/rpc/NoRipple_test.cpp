@@ -25,13 +25,13 @@ namespace bixd {
 
 namespace test {
 
-class NoRipple_test : public beast::unit_test::suite
+class NoBixd_test : public beast::unit_test::suite
 {
 public:
     void
     testSetAndClear()
     {
-        testcase("Set and clear noripple");
+        testcase("Set and clear nobixd");
 
         using namespace jtx;
         Env env(*this);
@@ -55,26 +55,26 @@ public:
                 gw,
                 USD(100),
                 alice,
-                SetOrClear ? tfSetNoRipple : tfClearNoRipple));
+                SetOrClear ? tfSetNoBixd : tfClearNoBixd));
             env.close();
 
             // Check no-bixd flag on sender 'gateway'
             Json::Value lines{
                 env.rpc("json", "account_lines", to_string(account_gw))};
             auto const& gline0 = lines[jss::result][jss::lines][0u];
-            BEAST_EXPECT(gline0[jss::no_ripple].asBool() == SetOrClear);
+            BEAST_EXPECT(gline0[jss::no_bixd].asBool() == SetOrClear);
 
             // Check no-bixd peer flag on destination 'alice'
             lines = env.rpc("json", "account_lines", to_string(account_alice));
             auto const& aline0 = lines[jss::result][jss::lines][0u];
-            BEAST_EXPECT(aline0[jss::no_ripple_peer].asBool() == SetOrClear);
+            BEAST_EXPECT(aline0[jss::no_bixd_peer].asBool() == SetOrClear);
         }
     }
 
     void
     testNegativeBalance(FeatureBitset features)
     {
-        testcase("Set noripple on a line with negative balance");
+        testcase("Set nobixd on a line with negative balance");
 
         using namespace jtx;
         auto const gw = Account("gateway");
@@ -98,7 +98,7 @@ public:
 
             // After this payment alice has a -50 USD balance with bob, and
             // bob has a -50 USD balance with carol.  So neither alice nor
-            // bob should be able to clear the noRipple flag.
+            // bob should be able to clear the noBixd flag.
             env(pay(alice, carol, carol["USD"](50)), path(bob));
             env.close();
 
@@ -106,8 +106,8 @@ public:
                 tweakedFeatures[fix1578] ? TER{tecNO_PERMISSION}
                                          : TER{tesSUCCESS}};
 
-            env(trust(alice, bob["USD"](100), bob, tfSetNoRipple), ter(terNeg));
-            env(trust(bob, carol["USD"](100), carol, tfSetNoRipple),
+            env(trust(alice, bob["USD"](100), bob, tfSetNoBixd), ter(terNeg));
+            env(trust(bob, carol["USD"](100), carol, tfSetNoBixd),
                 ter(terNeg));
             env.close();
 
@@ -123,7 +123,7 @@ public:
             }();
 
             auto const resp =
-                env.rpc("json", "ripple_path_find", to_string(params));
+                env.rpc("json", "bixd_path_find", to_string(params));
             BEAST_EXPECT(resp[jss::result][jss::alternatives].size() == 1);
 
             auto getAccountLines = [&env](Account const& acct) {
@@ -135,31 +135,31 @@ public:
             {
                 auto const aliceLines = getAccountLines(alice);
                 BEAST_EXPECT(aliceLines.size() == 1);
-                BEAST_EXPECT(aliceLines[0u][jss::no_ripple].asBool() == false);
+                BEAST_EXPECT(aliceLines[0u][jss::no_bixd].asBool() == false);
 
                 auto const bobLines = getAccountLines(bob);
                 BEAST_EXPECT(bobLines.size() == 2);
-                BEAST_EXPECT(bobLines[0u][jss::no_ripple].asBool() == false);
-                BEAST_EXPECT(bobLines[1u][jss::no_ripple].asBool() == false);
+                BEAST_EXPECT(bobLines[0u][jss::no_bixd].asBool() == false);
+                BEAST_EXPECT(bobLines[1u][jss::no_bixd].asBool() == false);
             }
 
             // Now carol sends the 50 USD back to alice.  Then alice and
-            // bob can set the noRipple flag.
+            // bob can set the noBixd flag.
             env(pay(carol, alice, alice["USD"](50)), path(bob));
             env.close();
 
-            env(trust(alice, bob["USD"](100), bob, tfSetNoRipple));
-            env(trust(bob, carol["USD"](100), carol, tfSetNoRipple));
+            env(trust(alice, bob["USD"](100), bob, tfSetNoBixd));
+            env(trust(bob, carol["USD"](100), carol, tfSetNoBixd));
             env.close();
             {
                 auto const aliceLines = getAccountLines(alice);
                 BEAST_EXPECT(aliceLines.size() == 1);
-                BEAST_EXPECT(aliceLines[0u].isMember(jss::no_ripple));
+                BEAST_EXPECT(aliceLines[0u].isMember(jss::no_bixd));
 
                 auto const bobLines = getAccountLines(bob);
                 BEAST_EXPECT(bobLines.size() == 2);
-                BEAST_EXPECT(bobLines[0u].isMember(jss::no_ripple_peer));
-                BEAST_EXPECT(bobLines[1u].isMember(jss::no_ripple));
+                BEAST_EXPECT(bobLines[0u].isMember(jss::no_bixd_peer));
+                BEAST_EXPECT(bobLines[1u].isMember(jss::no_bixd));
             }
         }
     }
@@ -167,7 +167,7 @@ public:
     void
     testPairwise(FeatureBitset features)
     {
-        testcase("pairwise NoRipple");
+        testcase("pairwise NoBixd");
 
         using namespace jtx;
         Env env(*this, features);
@@ -181,8 +181,8 @@ public:
         env(trust(bob, alice["USD"](100)));
         env(trust(carol, bob["USD"](100)));
 
-        env(trust(bob, alice["USD"](100), alice, tfSetNoRipple));
-        env(trust(bob, carol["USD"](100), carol, tfSetNoRipple));
+        env(trust(bob, alice["USD"](100), alice, tfSetNoBixd));
+        env(trust(bob, carol["USD"](100), carol, tfSetNoBixd));
         env.close();
 
         Json::Value params;
@@ -197,14 +197,14 @@ public:
         }();
 
         Json::Value const resp{
-            env.rpc("json", "ripple_path_find", to_string(params))};
+            env.rpc("json", "bixd_path_find", to_string(params))};
         BEAST_EXPECT(resp[jss::result][jss::alternatives].size() == 0);
 
         env(pay(alice, carol, bob["USD"](50)), ter(tecPATH_DRY));
     }
 
     void
-    testDefaultRipple(FeatureBitset features)
+    testDefaultBixd(FeatureBitset features)
     {
         testcase("Set default bixd on an account and check new trustlines");
 
@@ -215,9 +215,9 @@ public:
         auto const alice = Account("alice");
         auto const bob = Account("bob");
 
-        env.fund(BIXRP(10000), gw, noripple(alice, bob));
+        env.fund(BIXRP(10000), gw, nobixd(alice, bob));
 
-        env(fset(bob, asfDefaultRipple));
+        env(fset(bob, asfDefaultBixd));
 
         auto const USD = gw["USD"];
 
@@ -231,7 +231,7 @@ public:
 
             auto lines = env.rpc("json", "account_lines", to_string(params));
             auto const& line0 = lines[jss::result][jss::lines][0u];
-            BEAST_EXPECT(line0[jss::no_ripple_peer].asBool() == true);
+            BEAST_EXPECT(line0[jss::no_bixd_peer].asBool() == true);
         }
         {
             Json::Value params;
@@ -240,7 +240,7 @@ public:
 
             auto lines = env.rpc("json", "account_lines", to_string(params));
             auto const& line0 = lines[jss::result][jss::lines][0u];
-            BEAST_EXPECT(line0[jss::no_ripple].asBool() == true);
+            BEAST_EXPECT(line0[jss::no_bixd].asBool() == true);
         }
         {
             Json::Value params;
@@ -249,7 +249,7 @@ public:
 
             auto lines = env.rpc("json", "account_lines", to_string(params));
             auto const& line0 = lines[jss::result][jss::lines][0u];
-            BEAST_EXPECT(line0[jss::no_ripple].asBool() == false);
+            BEAST_EXPECT(line0[jss::no_bixd].asBool() == false);
         }
         {
             Json::Value params;
@@ -258,7 +258,7 @@ public:
 
             auto lines = env.rpc("json", "account_lines", to_string(params));
             auto const& line0 = lines[jss::result][jss::lines][0u];
-            BEAST_EXPECT(line0[jss::no_ripple_peer].asBool() == false);
+            BEAST_EXPECT(line0[jss::no_bixd_peer].asBool() == false);
         }
     }
 
@@ -270,7 +270,7 @@ public:
         auto withFeatsTests = [this](FeatureBitset features) {
             testNegativeBalance(features);
             testPairwise(features);
-            testDefaultRipple(features);
+            testDefaultBixd(features);
         };
         using namespace jtx;
         auto const sa = supported_amendments();
@@ -279,7 +279,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(NoRipple, app, bixd);
+BEAST_DEFINE_TESTSUITE(NoBixd, app, bixd);
 
 }  // namespace test
 }  // namespace bixd

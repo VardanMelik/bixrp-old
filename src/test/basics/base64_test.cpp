@@ -77,6 +77,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(base64, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(base64, bixd_basics, bixd);
 
 }  // namespace bixd

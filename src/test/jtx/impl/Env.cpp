@@ -216,10 +216,10 @@ Env::le(Keylet const& k) const
 }
 
 void
-Env::fund(bool setDefaultRipple, STAmount const& amount, Account const& account)
+Env::fund(bool setDefaultBixd, STAmount const& amount, Account const& account)
 {
     memoize(account);
-    if (setDefaultRipple)
+    if (setDefaultBixd)
     {
         // VFALCO NOTE Is the fee formula correct?
         apply(
@@ -228,11 +228,11 @@ Env::fund(bool setDefaultRipple, STAmount const& amount, Account const& account)
             fee(jtx::autofill),
             sig(jtx::autofill));
         apply(
-            fset(account, asfDefaultRipple),
+            fset(account, asfDefaultBixd),
             jtx::seq(jtx::autofill),
             fee(jtx::autofill),
             sig(jtx::autofill));
-        require(flags(account, asfDefaultRipple));
+        require(flags(account, asfDefaultBixd));
     }
     else
     {
@@ -241,7 +241,7 @@ Env::fund(bool setDefaultRipple, STAmount const& amount, Account const& account)
             jtx::seq(jtx::autofill),
             fee(jtx::autofill),
             sig(jtx::autofill));
-        require(nflags(account, asfDefaultRipple));
+        require(nflags(account, asfDefaultBixd));
     }
     require(jtx::balance(account, amount));
 }

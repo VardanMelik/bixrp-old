@@ -169,17 +169,17 @@ public:
             // variadics
             env.fund(n, "alice");
             env.fund(n, "bob", "carol");
-            env.fund(n, "dave", noripple("eric"));
-            env.fund(n, "fred", noripple("gary", "hank"));
-            env.fund(n, noripple("irene"));
-            env.fund(n, noripple("jim"), "karen");
-            env.fund(n, noripple("lisa", "mary"));
+            env.fund(n, "dave", nobixd("eric"));
+            env.fund(n, "fred", nobixd("gary", "hank"));
+            env.fund(n, nobixd("irene"));
+            env.fund(n, nobixd("jim"), "karen");
+            env.fund(n, nobixd("lisa", "mary"));
 
             // flags
-            env.fund(n, noripple("xavier"));
-            env.require(nflags("xavier", asfDefaultRipple));
+            env.fund(n, nobixd("xavier"));
+            env.require(nflags("xavier", asfDefaultBixd));
             env.fund(n, "yana");
-            env.require(flags("yana", asfDefaultRipple));
+            env.require(flags("yana", asfDefaultBixd));
         }
 
         // trust
@@ -208,7 +208,7 @@ public:
         // seq
         {
             Env env(*this);
-            env.fund(n, noripple("alice", gw));
+            env.fund(n, nobixd("alice", gw));
             BEAST_EXPECT(env.seq("alice") == 3);
             BEAST_EXPECT(env.seq(gw) == 3);
         }

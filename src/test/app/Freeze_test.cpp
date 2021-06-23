@@ -54,9 +54,9 @@ class Freeze_test : public beast::unit_test::suite
     }
 
     void
-    testRippleState(FeatureBitset features)
+    testBixdState(FeatureBitset features)
     {
-        testcase("RippleState Freeze");
+        testcase("BixdState Freeze");
 
         using namespace test::jtx;
         Env env(*this, features);
@@ -537,7 +537,7 @@ public:
     run() override
     {
         auto testAll = [this](FeatureBitset features) {
-            testRippleState(features);
+            testBixdState(features);
             testGlobalFreeze(features);
             testNoFreeze(features);
             testOffersWhenFrozen(features);

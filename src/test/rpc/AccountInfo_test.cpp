@@ -199,7 +199,7 @@ public:
 
         auto const withoutSigners = std::string("{ ") +
             "\"jsonrpc\": \"2.0\", "
-            "\"ripplerpc\": \"2.0\", "
+            "\"bixdrpc\": \"2.0\", "
             "\"id\": 5, "
             "\"method\": \"account_info\", "
             "\"params\": { "
@@ -208,7 +208,7 @@ public:
 
         auto const withSigners = std::string("{ ") +
             "\"jsonrpc\": \"2.0\", "
-            "\"ripplerpc\": \"2.0\", "
+            "\"bixdrpc\": \"2.0\", "
             "\"id\": 6, "
             "\"method\": \"account_info\", "
             "\"params\": { "
@@ -226,7 +226,7 @@ public:
             BEAST_EXPECT(
                 info.isMember(jss::jsonrpc) && info[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                info.isMember(jss::ripplerpc) && info[jss::ripplerpc] == "2.0");
+                info.isMember(jss::bixdrpc) && info[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(info.isMember(jss::id) && info[jss::id] == 5);
         }
         {
@@ -243,7 +243,7 @@ public:
             BEAST_EXPECT(
                 info.isMember(jss::jsonrpc) && info[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                info.isMember(jss::ripplerpc) && info[jss::ripplerpc] == "2.0");
+                info.isMember(jss::bixdrpc) && info[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(info.isMember(jss::id) && info[jss::id] == 6);
         }
         {
@@ -259,8 +259,8 @@ public:
                 info[0u].isMember(jss::jsonrpc) &&
                 info[0u][jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                info[0u].isMember(jss::ripplerpc) &&
-                info[0u][jss::ripplerpc] == "2.0");
+                info[0u].isMember(jss::bixdrpc) &&
+                info[0u][jss::bixdrpc] == "2.0");
             BEAST_EXPECT(info[0u].isMember(jss::id) && info[0u][jss::id] == 5);
 
             BEAST_EXPECT(
@@ -275,8 +275,8 @@ public:
                 info[1u].isMember(jss::jsonrpc) &&
                 info[1u][jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                info[1u].isMember(jss::ripplerpc) &&
-                info[1u][jss::ripplerpc] == "2.0");
+                info[1u].isMember(jss::bixdrpc) &&
+                info[1u][jss::bixdrpc] == "2.0");
             BEAST_EXPECT(info[1u].isMember(jss::id) && info[1u][jss::id] == 6);
         }
 
@@ -296,7 +296,7 @@ public:
             BEAST_EXPECT(
                 info.isMember(jss::jsonrpc) && info[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                info.isMember(jss::ripplerpc) && info[jss::ripplerpc] == "2.0");
+                info.isMember(jss::bixdrpc) && info[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(info.isMember(jss::id) && info[jss::id] == 5);
         }
         {
@@ -320,7 +320,7 @@ public:
             BEAST_EXPECT(
                 info.isMember(jss::jsonrpc) && info[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                info.isMember(jss::ripplerpc) && info[jss::ripplerpc] == "2.0");
+                info.isMember(jss::bixdrpc) && info[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(info.isMember(jss::id) && info[jss::id] == 6);
         }
 
@@ -373,7 +373,7 @@ public:
             BEAST_EXPECT(
                 info.isMember(jss::jsonrpc) && info[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                info.isMember(jss::ripplerpc) && info[jss::ripplerpc] == "2.0");
+                info.isMember(jss::bixdrpc) && info[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(info.isMember(jss::id) && info[jss::id] == 6);
         }
     }

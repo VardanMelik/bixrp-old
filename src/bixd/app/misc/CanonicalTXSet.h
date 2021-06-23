@@ -20,7 +20,7 @@
 #ifndef BIXD_APP_MISC_CANONICALTXSET_H_INCLUDED
 #define BIXD_APP_MISC_CANONICALTXSET_H_INCLUDED
 
-#include <bixd/protocol/RippleLedgerHash.h>
+#include <bixd/protocol/BixdLedgerHash.h>
 #include <bixd/protocol/STTx.h>
 #include <bixd/protocol/SeqProxy.h>
 

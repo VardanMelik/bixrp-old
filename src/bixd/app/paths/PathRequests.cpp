@@ -30,10 +30,10 @@
 
 namespace bixd {
 
-/** Get the current RippleLineCache, updating it if necessary.
+/** Get the current BixdLineCache, updating it if necessary.
     Get the correct ledger to use.
 */
-std::shared_ptr<RippleLineCache>
+std::shared_ptr<BixdLineCache>
 PathRequests::getLineCache(
     std::shared_ptr<ReadView const> const& ledger,
     bool authoritative)
@@ -49,7 +49,7 @@ PathRequests::getLineCache(
          ((lgrSeq + 8) < lineSeq)) ||  // we jumped way back for some reason
         (lgrSeq > (lineSeq + 8)))      // we jumped way forward for some reason
     {
-        mLineCache = std::make_shared<RippleLineCache>(ledger);
+        mLineCache = std::make_shared<BixdLineCache>(ledger);
     }
     return mLineCache;
 }
@@ -63,7 +63,7 @@ PathRequests::updateAll(
         app_.getJobQueue().makeLoadEvent(jtPATH_FIND, "PathRequest::updateAll");
 
     std::vector<PathRequest::wptr> requests;
-    std::shared_ptr<RippleLineCache> cache;
+    std::shared_ptr<BixdLineCache> cache;
 
     // Get the ledger and cache we should be using
     {
@@ -220,7 +220,7 @@ PathRequests::makePathRequest(
     return std::move(jvRes);
 }
 
-// Make an old-style ripple_path_find request
+// Make an old-style bixd_path_find request
 Json::Value
 PathRequests::makeLegacyPathRequest(
     PathRequest::pointer& req,
@@ -260,7 +260,7 @@ PathRequests::doLegacyPathRequest(
     std::shared_ptr<ReadView const> const& inLedger,
     Json::Value const& request)
 {
-    auto cache = std::make_shared<RippleLineCache>(inLedger);
+    auto cache = std::make_shared<BixdLineCache>(inLedger);
 
     auto req = std::make_shared<PathRequest>(
         app_, [] {}, consumer, ++mLastIdentifier, *this, mJournal);

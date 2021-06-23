@@ -18,25 +18,25 @@
 //==============================================================================
 
 #include <bixd/app/main/Application.h>
-#include <bixd/app/paths/RippleState.h>
+#include <bixd/app/paths/BixdState.h>
 #include <bixd/protocol/STAmount.h>
 #include <cstdint>
 #include <memory>
 
 namespace bixd {
 
-RippleState::pointer
-RippleState::makeItem(
+BixdState::pointer
+BixdState::makeItem(
     AccountID const& accountID,
     std::shared_ptr<SLE const> sle)
 {
     // VFALCO Does this ever happen in practice?
     if (!sle || sle->getType() != ltBIXD_STATE)
         return {};
-    return std::make_shared<RippleState>(std::move(sle), accountID);
+    return std::make_shared<BixdState>(std::move(sle), accountID);
 }
 
-RippleState::RippleState(
+BixdState::BixdState(
     std::shared_ptr<SLE const>&& sle,
     AccountID const& viewAccount)
     : sle_(std::move(sle))
@@ -58,7 +58,7 @@ RippleState::RippleState(
 }
 
 Json::Value
-RippleState::getJson(int)
+BixdState::getJson(int)
 {
     Json::Value ret(Json::objectValue);
     ret["low_id"] = to_string(mLowID);
@@ -66,15 +66,15 @@ RippleState::getJson(int)
     return ret;
 }
 
-std::vector<RippleState::pointer>
-getRippleStateItems(AccountID const& accountID, ReadView const& view)
+std::vector<BixdState::pointer>
+getBixdStateItems(AccountID const& accountID, ReadView const& view)
 {
-    std::vector<RippleState::pointer> items;
+    std::vector<BixdState::pointer> items;
     forEachItem(
         view,
         accountID,
         [&items, &accountID](std::shared_ptr<SLE const> const& sleCur) {
-            auto ret = RippleState::makeItem(accountID, sleCur);
+            auto ret = BixdState::makeItem(accountID, sleCur);
             if (ret)
                 items.push_back(ret);
         });

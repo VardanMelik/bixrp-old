@@ -33,11 +33,11 @@ creditLimit(
 {
     STAmount result({currency, account});
 
-    auto sleRippleState = view.read(keylet::line(account, issuer, currency));
+    auto sleBixdState = view.read(keylet::line(account, issuer, currency));
 
-    if (sleRippleState)
+    if (sleBixdState)
     {
-        result = sleRippleState->getFieldAmount(
+        result = sleBixdState->getFieldAmount(
             account < issuer ? sfLowLimit : sfHighLimit);
         result.setIssuer(account);
     }
@@ -66,11 +66,11 @@ creditBalance(
 {
     STAmount result({currency, account});
 
-    auto sleRippleState = view.read(keylet::line(account, issuer, currency));
+    auto sleBixdState = view.read(keylet::line(account, issuer, currency));
 
-    if (sleRippleState)
+    if (sleBixdState)
     {
-        result = sleRippleState->getFieldAmount(sfBalance);
+        result = sleBixdState->getFieldAmount(sfBalance);
         if (account < issuer)
             result.negate();
         result.setIssuer(account);

@@ -78,6 +78,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(FileUtilities, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(FileUtilities, bixd_basics, bixd);
 
 }  // namespace bixd

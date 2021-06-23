@@ -118,7 +118,7 @@ public:
             if (rpc_version_ == 2)
             {
                 jr[jss::jsonrpc] = "2.0";
-                jr[jss::ripplerpc] = "2.0";
+                jr[jss::bixdrpc] = "2.0";
                 jr[jss::id] = 5;
             }
             if (params)

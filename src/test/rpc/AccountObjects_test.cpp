@@ -60,7 +60,7 @@ static char const* bobs_account_objects[] = {
         "value" : "1000"
     },
     "HighNode" : "0",
-    "LedgerEntryType" : "RippleState",
+    "LedgerEntryType" : "BixdState",
     "LowLimit" : {
         "currency" : "USD",
         "issuer" : "r9cZvwKU3zzuZK9JFovGg1JC5n7QiqNL8L",
@@ -82,7 +82,7 @@ static char const* bobs_account_objects[] = {
         "value" : "1000"
     },
     "HighNode" : "0",
-    "LedgerEntryType" : "RippleState",
+    "LedgerEntryType" : "BixdState",
     "LowLimit" : {
         "currency" : "USD",
         "issuer" : "r32rQHyesiTtdWFU7UJVtff4nCR5SHCbJW",
@@ -523,7 +523,7 @@ public:
                 std::vector<std::string> v{
                     jss::Escrow.c_str(),
                     jss::Check.c_str(),
-                    jss::RippleState.c_str(),
+                    jss::BixdState.c_str(),
                     jss::PayChannel.c_str()};
                 std::sort(v.begin(), v.end());
                 return v;

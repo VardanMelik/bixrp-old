@@ -60,6 +60,6 @@ struct Output_test : bixd::test::TestOutputSuite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Output, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(Output, bixd_basics, bixd);
 
 }  // namespace Json

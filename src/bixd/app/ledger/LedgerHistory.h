@@ -24,7 +24,7 @@
 #include <bixd/app/main/Application.h>
 #include <bixd/beast/insight/Collector.h>
 #include <bixd/beast/insight/Event.h>
-#include <bixd/protocol/RippleLedgerHash.h>
+#include <bixd/protocol/BixdLedgerHash.h>
 
 namespace bixd {
 

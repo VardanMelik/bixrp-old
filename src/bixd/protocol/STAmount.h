@@ -22,7 +22,7 @@
 
 #include <bixd/basics/IOUAmount.h>
 #include <bixd/basics/LocalValue.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/protocol/Issue.h>
 #include <bixd/protocol/SField.h>
 #include <bixd/protocol/STBase.h>

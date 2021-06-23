@@ -19,7 +19,7 @@
 
 #include <bixd/app/paths/impl/Steps.h>
 #include <bixd/basics/IOUAmount.h>
-#include <bixd/basics/BIXRPAmount.h>
+#include <bixd/basics/BIBIXRPAmount.h>
 #include <bixd/basics/contract.h>
 #include <bixd/json/json_writer.h>
 #include <bixd/ledger/ReadView.h>

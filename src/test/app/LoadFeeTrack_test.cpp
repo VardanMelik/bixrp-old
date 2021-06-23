@@ -89,6 +89,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(LoadFeeTrack, ripple_core, bixd);
+BEAST_DEFINE_TESTSUITE(LoadFeeTrack, bixd_core, bixd);
 
 }  // namespace bixd

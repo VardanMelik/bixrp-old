@@ -117,7 +117,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Backend, ripple_core, bixd);
+BEAST_DEFINE_TESTSUITE(Backend, bixd_core, bixd);
 
 }  // namespace NodeStore
 }  // namespace bixd

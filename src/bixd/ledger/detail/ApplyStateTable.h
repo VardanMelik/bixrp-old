@@ -20,7 +20,7 @@
 #ifndef BIXD_LEDGER_APPLYSTATETABLE_H_INCLUDED
 #define BIXD_LEDGER_APPLYSTATETABLE_H_INCLUDED
 
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/beast/utility/Journal.h>
 #include <bixd/ledger/OpenView.h>
 #include <bixd/ledger/RawView.h>

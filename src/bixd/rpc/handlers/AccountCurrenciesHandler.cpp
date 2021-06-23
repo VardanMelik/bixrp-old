@@ -18,7 +18,7 @@
 //==============================================================================
 
 #include <bixd/app/main/Application.h>
-#include <bixd/app/paths/RippleState.h>
+#include <bixd/app/paths/BixdState.h>
 #include <bixd/ledger/ReadView.h>
 #include <bixd/net/RPCErr.h>
 #include <bixd/protocol/ErrorCodes.h>
@@ -58,7 +58,7 @@ doAccountCurrencies(RPC::JsonContext& context)
         return rpcError(rpcACT_NOT_FOUND);
 
     std::set<Currency> send, receive;
-    for (auto const& item : getRippleStateItems(accountID, *ledger))
+    for (auto const& item : getBixdStateItems(accountID, *ledger))
     {
         auto const rspEntry = item.get();
 

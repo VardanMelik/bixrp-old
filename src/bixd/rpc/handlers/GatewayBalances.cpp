@@ -18,7 +18,7 @@
 //==============================================================================
 
 #include <bixd/app/main/Application.h>
-#include <bixd/app/paths/RippleState.h>
+#include <bixd/app/paths/BixdState.h>
 #include <bixd/ledger/ReadView.h>
 #include <bixd/protocol/AccountID.h>
 #include <bixd/protocol/ErrorCodes.h>
@@ -144,7 +144,7 @@ doGatewayBalances(RPC::JsonContext& context)
     {
         forEachItem(
             *ledger, accountID, [&](std::shared_ptr<SLE const> const& sle) {
-                auto rs = RippleState::makeItem(accountID, sle);
+                auto rs = BixdState::makeItem(accountID, sle);
 
                 if (!rs)
                     return;

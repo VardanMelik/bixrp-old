@@ -20,7 +20,7 @@
 #ifndef BIXD_LEDGER_APPLYVIEWBASE_H_INCLUDED
 #define BIXD_LEDGER_APPLYVIEWBASE_H_INCLUDED
 
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/ledger/ApplyView.h>
 #include <bixd/ledger/CashDiff.h>
 #include <bixd/ledger/OpenView.h>

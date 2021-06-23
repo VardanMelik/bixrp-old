@@ -20,7 +20,7 @@
 #ifndef BIXD_LEDGER_OPENVIEW_H_INCLUDED
 #define BIXD_LEDGER_OPENVIEW_H_INCLUDED
 
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/ledger/RawView.h>
 #include <bixd/ledger/ReadView.h>
 #include <bixd/ledger/detail/RawStateTable.h>

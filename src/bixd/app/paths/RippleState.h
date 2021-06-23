@@ -36,22 +36,22 @@ namespace bixd {
     a chosen account on the line.
 */
 // VFALCO TODO Rename to TrustLine
-class RippleState
+class BixdState
 {
 public:
     // VFALCO Why is this shared_ptr?
-    using pointer = std::shared_ptr<RippleState>;
+    using pointer = std::shared_ptr<BixdState>;
 
 public:
-    RippleState() = delete;
+    BixdState() = delete;
 
-    virtual ~RippleState() = default;
+    virtual ~BixdState() = default;
 
-    static RippleState::pointer
+    static BixdState::pointer
     makeItem(AccountID const& accountID, std::shared_ptr<SLE const> sle);
 
     // Must be public, for make_shared
-    RippleState(std::shared_ptr<SLE const>&& sle, AccountID const& viewAccount);
+    BixdState(std::shared_ptr<SLE const>&& sle, AccountID const& viewAccount);
 
     /** Returns the state map key for the ledger entry. */
     uint256
@@ -88,21 +88,21 @@ public:
     }
 
     bool
-    getDefaultRipple() const
+    getDefaultBixd() const
     {
-        return mFlags & lsfDefaultRipple;
+        return mFlags & lsfDefaultBixd;
     }
 
     bool
-    getNoRipple() const
+    getNoBixd() const
     {
-        return mFlags & (mViewLowest ? lsfLowNoRipple : lsfHighNoRipple);
+        return mFlags & (mViewLowest ? lsfLowNoBixd : lsfHighNoBixd);
     }
 
     bool
-    getNoRipplePeer() const
+    getNoBixdPeer() const
     {
-        return mFlags & (!mViewLowest ? lsfLowNoRipple : lsfHighNoRipple);
+        return mFlags & (!mViewLowest ? lsfLowNoBixd : lsfHighNoBixd);
     }
 
     /** Have we set the freeze flag on our peer */
@@ -173,8 +173,8 @@ private:
     STAmount mBalance;
 };
 
-std::vector<RippleState::pointer>
-getRippleStateItems(AccountID const& accountID, ReadView const& view);
+std::vector<BixdState::pointer>
+getBixdStateItems(AccountID const& accountID, ReadView const& view);
 
 }  // namespace bixd
 

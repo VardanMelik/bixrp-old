@@ -251,7 +251,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(tagged_integer, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(tagged_integer, bixd_basics, bixd);
 
 }  // namespace test
 }  // namespace bixd

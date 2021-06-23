@@ -432,10 +432,10 @@ DirectIPaymentStep::check(
         {
             if (ctx.prevStep->bookStepBook())
             {
-                auto const noRippleSrcToDst =
+                auto const noBixdSrcToDst =
                     ((*sleLine)[sfFlags] &
-                     ((src_ > dst_) ? lsfHighNoRipple : lsfLowNoRipple));
-                if (noRippleSrcToDst)
+                     ((src_ > dst_) ? lsfHighNoBixd : lsfLowNoBixd));
+                if (noBixdSrcToDst)
                     return terNO_BIXD;
             }
         }
@@ -544,7 +544,7 @@ DirectStepI<TDerived>::revImp(
         IOUAmount const in =
             mulRatio(srcToDst, srcQOut, QUALITY_ONE, /*roundUp*/ true);
         cache_.emplace(in, srcToDst, out, srcDebtDir);
-        rippleCredit(
+        bixdCredit(
             sb,
             src_,
             dst_,
@@ -565,7 +565,7 @@ DirectStepI<TDerived>::revImp(
     IOUAmount const actualOut =
         mulRatio(maxSrcToDst, dstQIn, QUALITY_ONE, /*roundUp*/ false);
     cache_.emplace(in, maxSrcToDst, actualOut, srcDebtDir);
-    rippleCredit(
+    bixdCredit(
         sb,
         src_,
         dst_,
@@ -669,7 +669,7 @@ DirectStepI<TDerived>::fwdImp(
         IOUAmount const out =
             mulRatio(srcToDst, dstQIn, QUALITY_ONE, /*roundUp*/ false);
         setCacheLimiting(in, srcToDst, out, srcDebtDir);
-        rippleCredit(
+        bixdCredit(
             sb,
             src_,
             dst_,
@@ -690,7 +690,7 @@ DirectStepI<TDerived>::fwdImp(
         IOUAmount const out =
             mulRatio(maxSrcToDst, dstQIn, QUALITY_ONE, /*roundUp*/ false);
         setCacheLimiting(actualIn, maxSrcToDst, out, srcDebtDir);
-        rippleCredit(
+        bixdCredit(
             sb,
             src_,
             dst_,
@@ -912,7 +912,7 @@ DirectStepI<TDerived>::check(StrandContext const& ctx) const
         if (auto prevSrc = ctx.prevStep->directStepSrcAcct())
         {
             auto const ter =
-                checkNoRipple(ctx.view, *prevSrc, src_, dst_, currency_, j_);
+                checkNoBixd(ctx.view, *prevSrc, src_, dst_, currency_, j_);
             if (ter != tesSUCCESS)
                 return ter;
         }

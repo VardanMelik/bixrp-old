@@ -451,7 +451,7 @@ extern SF_AMOUNT const sfDeliverMin;
 
 // currency amount (uncommon)
 extern SF_AMOUNT const sfMinimumOffer;
-extern SF_AMOUNT const sfRippleEscrow;
+extern SF_AMOUNT const sfBixdEscrow;
 extern SF_AMOUNT const sfDeliveredAmount;
 
 // variable length (common)

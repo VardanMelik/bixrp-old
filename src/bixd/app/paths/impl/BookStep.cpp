@@ -24,7 +24,7 @@
 #include <bixd/app/tx/impl/OfferStream.h>
 #include <bixd/basics/IOUAmount.h>
 #include <bixd/basics/Log.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/basics/contract.h>
 #include <bixd/ledger/Directory.h>
 #include <bixd/ledger/PaymentSandbox.h>
@@ -1098,7 +1098,7 @@ BookStep<TIn, TOut, TDerived>::check(StrandContext const& ctx) const
             if (!sle)
                 return terNO_LINE;
             if ((*sle)[sfFlags] &
-                ((cur > *prev) ? lsfHighNoRipple : lsfLowNoRipple))
+                ((cur > *prev) ? lsfHighNoBixd : lsfLowNoBixd))
                 return terNO_BIXD;
         }
     }

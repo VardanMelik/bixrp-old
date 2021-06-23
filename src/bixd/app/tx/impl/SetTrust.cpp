@@ -177,8 +177,8 @@ SetTrust::doApply()
     std::uint32_t const uTxFlags = ctx_.tx.getFlags();
 
     bool const bSetAuth = (uTxFlags & tfSetfAuth);
-    bool const bSetNoRipple = (uTxFlags & tfSetNoRipple);
-    bool const bClearNoRipple = (uTxFlags & tfClearNoRipple);
+    bool const bSetNoBixd = (uTxFlags & tfSetNoBixd);
+    bool const bClearNoBixd = (uTxFlags & tfClearNoBixd);
     bool const bSetFreeze = (uTxFlags & tfSetFreeze);
     bool const bClearFreeze = (uTxFlags & tfClearFreeze);
 
@@ -210,10 +210,10 @@ SetTrust::doApply()
     STAmount saLimitAllow = saLimitAmount;
     saLimitAllow.setIssuer(account_);
 
-    SLE::pointer sleRippleState =
+    SLE::pointer sleBixdState =
         view().peek(keylet::line(account_, uDstAccountID, currency));
 
-    if (sleRippleState)
+    if (sleBixdState)
     {
         STAmount saLowBalance;
         STAmount saLowLimit;
@@ -232,20 +232,20 @@ SetTrust::doApply()
         // Balances
         //
 
-        saLowBalance = sleRippleState->getFieldAmount(sfBalance);
+        saLowBalance = sleBixdState->getFieldAmount(sfBalance);
         saHighBalance = -saLowBalance;
 
         //
         // Limits
         //
 
-        sleRippleState->setFieldAmount(
+        sleBixdState->setFieldAmount(
             !bHigh ? sfLowLimit : sfHighLimit, saLimitAllow);
 
         saLowLimit =
-            !bHigh ? saLimitAllow : sleRippleState->getFieldAmount(sfLowLimit);
+            !bHigh ? saLimitAllow : sleBixdState->getFieldAmount(sfLowLimit);
         saHighLimit =
-            bHigh ? saLimitAllow : sleRippleState->getFieldAmount(sfHighLimit);
+            bHigh ? saLimitAllow : sleBixdState->getFieldAmount(sfHighLimit);
 
         //
         // Quality in
@@ -255,34 +255,34 @@ SetTrust::doApply()
         {
             // Not setting. Just get it.
 
-            uLowQualityIn = sleRippleState->getFieldU32(sfLowQualityIn);
-            uHighQualityIn = sleRippleState->getFieldU32(sfHighQualityIn);
+            uLowQualityIn = sleBixdState->getFieldU32(sfLowQualityIn);
+            uHighQualityIn = sleBixdState->getFieldU32(sfHighQualityIn);
         }
         else if (uQualityIn)
         {
             // Setting.
 
-            sleRippleState->setFieldU32(
+            sleBixdState->setFieldU32(
                 !bHigh ? sfLowQualityIn : sfHighQualityIn, uQualityIn);
 
             uLowQualityIn = !bHigh
                 ? uQualityIn
-                : sleRippleState->getFieldU32(sfLowQualityIn);
+                : sleBixdState->getFieldU32(sfLowQualityIn);
             uHighQualityIn = bHigh
                 ? uQualityIn
-                : sleRippleState->getFieldU32(sfHighQualityIn);
+                : sleBixdState->getFieldU32(sfHighQualityIn);
         }
         else
         {
             // Clearing.
 
-            sleRippleState->makeFieldAbsent(
+            sleBixdState->makeFieldAbsent(
                 !bHigh ? sfLowQualityIn : sfHighQualityIn);
 
             uLowQualityIn =
-                !bHigh ? 0 : sleRippleState->getFieldU32(sfLowQualityIn);
+                !bHigh ? 0 : sleBixdState->getFieldU32(sfLowQualityIn);
             uHighQualityIn =
-                bHigh ? 0 : sleRippleState->getFieldU32(sfHighQualityIn);
+                bHigh ? 0 : sleBixdState->getFieldU32(sfHighQualityIn);
         }
 
         if (QUALITY_ONE == uLowQualityIn)
@@ -299,51 +299,51 @@ SetTrust::doApply()
         {
             // Not setting. Just get it.
 
-            uLowQualityOut = sleRippleState->getFieldU32(sfLowQualityOut);
-            uHighQualityOut = sleRippleState->getFieldU32(sfHighQualityOut);
+            uLowQualityOut = sleBixdState->getFieldU32(sfLowQualityOut);
+            uHighQualityOut = sleBixdState->getFieldU32(sfHighQualityOut);
         }
         else if (uQualityOut)
         {
             // Setting.
 
-            sleRippleState->setFieldU32(
+            sleBixdState->setFieldU32(
                 !bHigh ? sfLowQualityOut : sfHighQualityOut, uQualityOut);
 
             uLowQualityOut = !bHigh
                 ? uQualityOut
-                : sleRippleState->getFieldU32(sfLowQualityOut);
+                : sleBixdState->getFieldU32(sfLowQualityOut);
             uHighQualityOut = bHigh
                 ? uQualityOut
-                : sleRippleState->getFieldU32(sfHighQualityOut);
+                : sleBixdState->getFieldU32(sfHighQualityOut);
         }
         else
         {
             // Clearing.
 
-            sleRippleState->makeFieldAbsent(
+            sleBixdState->makeFieldAbsent(
                 !bHigh ? sfLowQualityOut : sfHighQualityOut);
 
             uLowQualityOut =
-                !bHigh ? 0 : sleRippleState->getFieldU32(sfLowQualityOut);
+                !bHigh ? 0 : sleBixdState->getFieldU32(sfLowQualityOut);
             uHighQualityOut =
-                bHigh ? 0 : sleRippleState->getFieldU32(sfHighQualityOut);
+                bHigh ? 0 : sleBixdState->getFieldU32(sfHighQualityOut);
         }
 
-        std::uint32_t const uFlagsIn(sleRippleState->getFieldU32(sfFlags));
+        std::uint32_t const uFlagsIn(sleBixdState->getFieldU32(sfFlags));
         std::uint32_t uFlagsOut(uFlagsIn);
 
-        if (bSetNoRipple && !bClearNoRipple)
+        if (bSetNoBixd && !bClearNoBixd)
         {
             if ((bHigh ? saHighBalance : saLowBalance) >= beast::zero)
-                uFlagsOut |= (bHigh ? lsfHighNoRipple : lsfLowNoRipple);
+                uFlagsOut |= (bHigh ? lsfHighNoBixd : lsfLowNoBixd);
 
             else if (view().rules().enabled(fix1578))
-                // Cannot set noRipple on a negative balance.
+                // Cannot set noBixd on a negative balance.
                 return tecNO_PERMISSION;
         }
-        else if (bClearNoRipple && !bSetNoRipple)
+        else if (bClearNoBixd && !bSetNoBixd)
         {
-            uFlagsOut &= ~(bHigh ? lsfHighNoRipple : lsfLowNoRipple);
+            uFlagsOut &= ~(bHigh ? lsfHighNoBixd : lsfLowNoBixd);
         }
 
         if (bSetFreeze && !bClearFreeze && !sle->isFlag(lsfNoFreeze))
@@ -361,18 +361,18 @@ SetTrust::doApply()
         if (QUALITY_ONE == uHighQualityOut)
             uHighQualityOut = 0;
 
-        bool const bLowDefRipple = sleLowAccount->getFlags() & lsfDefaultRipple;
-        bool const bHighDefRipple =
-            sleHighAccount->getFlags() & lsfDefaultRipple;
+        bool const bLowDefBixd = sleLowAccount->getFlags() & lsfDefaultBixd;
+        bool const bHighDefBixd =
+            sleHighAccount->getFlags() & lsfDefaultBixd;
 
         bool const bLowReserveSet = uLowQualityIn || uLowQualityOut ||
-            ((uFlagsOut & lsfLowNoRipple) == 0) != bLowDefRipple ||
+            ((uFlagsOut & lsfLowNoBixd) == 0) != bLowDefBixd ||
             (uFlagsOut & lsfLowFreeze) || saLowLimit ||
             saLowBalance > beast::zero;
         bool const bLowReserveClear = !bLowReserveSet;
 
         bool const bHighReserveSet = uHighQualityIn || uHighQualityOut ||
-            ((uFlagsOut & lsfHighNoRipple) == 0) != bHighDefRipple ||
+            ((uFlagsOut & lsfHighNoBixd) == 0) != bHighDefBixd ||
             (uFlagsOut & lsfHighFreeze) || saHighLimit ||
             saHighBalance > beast::zero;
         bool const bHighReserveClear = !bHighReserveSet;
@@ -424,14 +424,14 @@ SetTrust::doApply()
         }
 
         if (uFlagsIn != uFlagsOut)
-            sleRippleState->setFieldU32(sfFlags, uFlagsOut);
+            sleBixdState->setFieldU32(sfFlags, uFlagsOut);
 
         if (bDefault || badCurrency() == currency)
         {
             // Delete.
 
             terResult = trustDelete(
-                view(), sleRippleState, uLowAccountID, uHighAccountID, viewJ);
+                view(), sleBixdState, uLowAccountID, uHighAccountID, viewJ);
         }
         // Reserve is not scaled by load.
         else if (bReserveIncrease && mPriorBalance < reserveCreate)
@@ -445,7 +445,7 @@ SetTrust::doApply()
         }
         else
         {
-            view().update(sleRippleState);
+            view().update(sleBixdState);
 
             JLOG(j_.trace()) << "Modify bixd line";
         }
@@ -491,7 +491,7 @@ SetTrust::doApply()
             k.key,
             sle,
             bSetAuth,
-            bSetNoRipple && !bClearNoRipple,
+            bSetNoBixd && !bClearNoBixd,
             bSetFreeze && !bClearFreeze,
             saBalance,
             saLimitAllow,  // Limit for who is being charged.

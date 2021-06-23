@@ -20,7 +20,7 @@
 #ifndef BIXD_APP_PATHS_ACCOUNTCURRENCIES_H_INCLUDED
 #define BIXD_APP_PATHS_ACCOUNTCURRENCIES_H_INCLUDED
 
-#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/app/paths/BixdLineCache.h>
 #include <bixd/protocol/UintTypes.h>
 
 namespace bixd {
@@ -28,13 +28,13 @@ namespace bixd {
 hash_set<Currency>
 accountDestCurrencies(
     AccountID const& account,
-    std::shared_ptr<RippleLineCache> const& cache,
+    std::shared_ptr<BixdLineCache> const& cache,
     bool includeBIXRP);
 
 hash_set<Currency>
 accountSourceCurrencies(
     AccountID const& account,
-    std::shared_ptr<RippleLineCache> const& lrLedger,
+    std::shared_ptr<BixdLineCache> const& lrLedger,
     bool includeBIXRP);
 
 }  // namespace bixd

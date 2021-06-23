@@ -22,7 +22,7 @@
 
 #include <bixd/app/paths/impl/AmountSpec.h>
 #include <bixd/basics/IOUAmount.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/ledger/PaymentSandbox.h>
 
 #include <boost/container/flat_map.hpp>

@@ -61,7 +61,7 @@ namespace jtx {
 /** Designate accounts as no-bixd in Env::fund */
 template <class... Args>
 std::array<Account, 1 + sizeof...(Args)>
-noripple(Account const& account, Args const&... args)
+nobixd(Account const& account, Args const&... args)
 {
     return {{account, args...}};
 }
@@ -545,7 +545,7 @@ public:
 
 private:
     void
-    fund(bool setDefaultRipple, STAmount const& amount, Account const& account);
+    fund(bool setDefaultBixd, STAmount const& amount, Account const& account);
 
     void
     fund_arg(STAmount const& amount, Account const& account)
@@ -573,9 +573,9 @@ public:
             The account must not already exist
 
         Effects:
-            The asfDefaultRipple on the account is set,
+            The asfDefaultBixd on the account is set,
             and the sequence number is incremented, unless
-            the account is wrapped with a call to noripple.
+            the account is wrapped with a call to nobixd.
 
             The account's BIXRP balance is set to amount.
 
@@ -585,7 +585,7 @@ public:
                       each account.
 
         @param args A heterogeneous list of accounts to fund
-                    or calls to noripple with lists of accounts
+                    or calls to nobixd with lists of accounts
                     to fund.
     */
     template <class Arg, class... Args>

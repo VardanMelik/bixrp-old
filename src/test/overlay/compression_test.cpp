@@ -533,7 +533,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL(compression, ripple_data, bixd);
+BEAST_DEFINE_TESTSUITE_MANUAL(compression, bixd_data, bixd);
 
 }  // namespace test
 }  // namespace bixd

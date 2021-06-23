@@ -21,7 +21,7 @@ message LedgerObject
         LedgerHashes ledger_hashes = 8;
         Offer offer = 9;
         PayChannel pay_channel = 10;
-        RippleState ripple_state = 11;
+        BixdState bixd_state = 11;
         SignerList signer_list = 12;
         NegativeUNL negative_unl = 13;
         TicketObject ticket = 14;
@@ -292,7 +292,7 @@ message PayChannel
 }
 
 // Next field: 13
-message RippleState
+message BixdState
 {
     Balance balance = 1;
 

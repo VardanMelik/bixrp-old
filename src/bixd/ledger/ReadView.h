@@ -22,7 +22,7 @@
 
 #include <bixd/basics/FeeUnits.h>
 #include <bixd/basics/IOUAmount.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/basics/chrono.h>
 #include <bixd/beast/hash/uhash.h>
 #include <bixd/beast/utility/Journal.h>

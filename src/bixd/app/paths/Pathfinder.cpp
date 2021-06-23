@@ -20,8 +20,8 @@
 #include <bixd/app/ledger/OrderBookDB.h>
 #include <bixd/app/main/Application.h>
 #include <bixd/app/paths/Pathfinder.h>
-#include <bixd/app/paths/RippleCalc.h>
-#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/app/paths/BixdCalc.h>
+#include <bixd/app/paths/BixdLineCache.h>
 #include <bixd/app/paths/Tuning.h>
 #include <bixd/app/paths/impl/PathfinderUtils.h>
 #include <bixd/basics/Log.h>
@@ -155,7 +155,7 @@ smallestUsefulAmount(STAmount const& amount, int maxPaths)
 }  // namespace
 
 Pathfinder::Pathfinder(
-    std::shared_ptr<RippleLineCache> const& cache,
+    std::shared_ptr<BixdLineCache> const& cache,
     AccountID const& uSrcAccount,
     AccountID const& uDstAccount,
     Currency const& uSrcCurrency,
@@ -343,7 +343,7 @@ Pathfinder::getPathLiquidity(
     STPathSet pathSet;
     pathSet.push_back(path);
 
-    path::RippleCalc::Input rcInput;
+    path::BixdCalc::Input rcInput;
     rcInput.defaultPathsAllowed = false;
 
     PaymentSandbox sandbox(&*mLedger, tapNONE);
@@ -354,7 +354,7 @@ Pathfinder::getPathLiquidity(
         if (convert_all_)
             rcInput.partialPaymentAllowed = true;
 
-        auto rc = path::RippleCalc::rippleCalculate(
+        auto rc = path::BixdCalc::bixdCalculate(
             sandbox,
             mSrcAmount,
             minDstAmount,
@@ -374,7 +374,7 @@ Pathfinder::getPathLiquidity(
         {
             // Now try to compute the remaining liquidity.
             rcInput.partialPaymentAllowed = true;
-            rc = path::RippleCalc::rippleCalculate(
+            rc = path::BixdCalc::bixdCalculate(
                 sandbox,
                 mSrcAmount,
                 mDstAmount - amountOut,
@@ -409,9 +409,9 @@ Pathfinder::computePathRanks(int maxPaths)
     {
         PaymentSandbox sandbox(&*mLedger, tapNONE);
 
-        path::RippleCalc::Input rcInput;
+        path::BixdCalc::Input rcInput;
         rcInput.partialPaymentAllowed = true;
-        auto rc = path::RippleCalc::rippleCalculate(
+        auto rc = path::BixdCalc::bixdCalculate(
             sandbox,
             mSrcAmount,
             mRemainingAmount,
@@ -717,9 +717,9 @@ Pathfinder::getPathsOut(
     {
         count = app_.getOrderBookDB().getBookSize(issue);
 
-        for (auto const& item : mRLCache->getRippleLines(account))
+        for (auto const& item : mRLCache->getBixdLines(account))
         {
-            RippleState* rspEntry = (RippleState*)item.get();
+            BixdState* rspEntry = (BixdState*)item.get();
 
             if (currency != rspEntry->getLimit().getCurrency())
             {
@@ -736,7 +736,7 @@ Pathfinder::getPathsOut(
             {
                 count += 10000;  // count a path to the destination extra
             }
-            else if (rspEntry->getNoRipplePeer())
+            else if (rspEntry->getNoBixdPeer())
             {
                 // This probably isn't a useful path out
             }
@@ -838,24 +838,24 @@ Pathfinder::addPathsForType(PathType const& pathType)
 }
 
 bool
-Pathfinder::isNoRipple(
+Pathfinder::isNoBixd(
     AccountID const& fromAccount,
     AccountID const& toAccount,
     Currency const& currency)
 {
-    auto sleRipple =
+    auto sleBixd =
         mLedger->read(keylet::line(toAccount, fromAccount, currency));
 
     auto const flag(
-        (toAccount > fromAccount) ? lsfHighNoRipple : lsfLowNoRipple);
+        (toAccount > fromAccount) ? lsfHighNoBixd : lsfLowNoBixd);
 
-    return sleRipple && (sleRipple->getFieldU32(sfFlags) & flag);
+    return sleBixd && (sleBixd->getFieldU32(sfFlags) & flag);
 }
 
 // Does this path end on an account-to-account link whose last account has
 // set "no bixd" on the link?
 bool
-Pathfinder::isNoRippleOut(STPath const& currentPath)
+Pathfinder::isNoBixdOut(STPath const& currentPath)
 {
     // Must have at least one link.
     if (currentPath.empty())
@@ -873,7 +873,7 @@ Pathfinder::isNoRippleOut(STPath const& currentPath)
         ? mSrcAccount
         : (currentPath.end() - 2)->getAccountID();
     auto const& toAccount = endElement.getAccountID();
-    return isNoRipple(fromAccount, toAccount, endElement.getCurrency());
+    return isNoBixd(fromAccount, toAccount, endElement.getCurrency());
 }
 
 void
@@ -932,20 +932,20 @@ Pathfinder::addLink(
                     sleEnd->getFieldU32(sfFlags) & lsfRequireAuth);
                 bool const bIsEndCurrency(
                     uEndCurrency == mDstAmount.getCurrency());
-                bool const bIsNoRippleOut(isNoRippleOut(currentPath));
+                bool const bIsNoBixdOut(isNoBixdOut(currentPath));
                 bool const bDestOnly(addFlags & afAC_LAST);
 
-                auto& rippleLines(mRLCache->getRippleLines(uEndAccount));
+                auto& bixdLines(mRLCache->getBixdLines(uEndAccount));
 
                 AccountCandidates candidates;
-                candidates.reserve(rippleLines.size());
+                candidates.reserve(bixdLines.size());
 
-                for (auto const& item : rippleLines)
+                for (auto const& item : bixdLines)
                 {
-                    auto* rs = dynamic_cast<RippleState const*>(item.get());
+                    auto* rs = dynamic_cast<BixdState const*>(item.get());
                     if (!rs)
                     {
-                        JLOG(j_.error()) << "Couldn't decipher RippleState";
+                        JLOG(j_.error()) << "Couldn't decipher BixdState";
                         continue;
                     }
                     auto const& acct = rs->getAccountIDPeer();
@@ -974,7 +974,7 @@ Pathfinder::addLink(
                         {
                             // path has no credit
                         }
-                        else if (bIsNoRippleOut && rs->getNoRipple())
+                        else if (bIsNoBixdOut && rs->getNoBixd())
                         {
                             // Can't leave on this path
                         }

@@ -22,7 +22,7 @@
 
 #include <bixd/app/main/Application.h>
 #include <bixd/app/paths/PathRequest.h>
-#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/app/paths/BixdLineCache.h>
 #include <bixd/core/Job.h>
 #include <atomic>
 #include <mutex>
@@ -54,7 +54,7 @@ public:
         std::shared_ptr<ReadView const> const& ledger,
         Job::CancelCallback shouldCancel);
 
-    std::shared_ptr<RippleLineCache>
+    std::shared_ptr<BixdLineCache>
     getLineCache(
         std::shared_ptr<ReadView const> const& ledger,
         bool authoritative);
@@ -111,8 +111,8 @@ private:
     // Track all requests
     std::vector<PathRequest::wptr> requests_;
 
-    // Use a RippleLineCache
-    std::shared_ptr<RippleLineCache> mLineCache;
+    // Use a BixdLineCache
+    std::shared_ptr<BixdLineCache> mLineCache;
 
     std::atomic<int> mLastIdentifier;
 

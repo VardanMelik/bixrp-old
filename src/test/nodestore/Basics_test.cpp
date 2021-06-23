@@ -87,7 +87,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(NodeStoreBasic, ripple_core, bixd);
+BEAST_DEFINE_TESTSUITE(NodeStoreBasic, bixd_core, bixd);
 
 }  // namespace NodeStore
 }  // namespace bixd

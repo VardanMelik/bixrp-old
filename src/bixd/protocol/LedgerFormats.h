@@ -109,7 +109,7 @@ enum LedgerSpecificFlags {
     lsfDisableMaster = 0x00100000,  // True, force regular key
     lsfNoFreeze = 0x00200000,       // True, cannot freeze bixd states
     lsfGlobalFreeze = 0x00400000,   // True, all assets frozen
-    lsfDefaultRipple =
+    lsfDefaultBixd =
         0x00800000,               // True, trust lines allow rippling by default
     lsfDepositAuth = 0x01000000,  // True, all deposits require authorization
 
@@ -122,8 +122,8 @@ enum LedgerSpecificFlags {
     lsfHighReserve = 0x00020000,
     lsfLowAuth = 0x00040000,
     lsfHighAuth = 0x00080000,
-    lsfLowNoRipple = 0x00100000,
-    lsfHighNoRipple = 0x00200000,
+    lsfLowNoBixd = 0x00100000,
+    lsfHighNoBixd = 0x00200000,
     lsfLowFreeze = 0x00400000,   // True, low side has set freeze flag
     lsfHighFreeze = 0x00800000,  // True, high side has set freeze flag
 

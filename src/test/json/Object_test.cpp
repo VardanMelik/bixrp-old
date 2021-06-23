@@ -252,6 +252,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(JsonObject, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(JsonObject, bixd_basics, bixd);
 
 }  // namespace Json

@@ -20,7 +20,7 @@
 #ifndef BIXD_PROTOCOL_PAYCHAN_H_INCLUDED
 #define BIXD_PROTOCOL_PAYCHAN_H_INCLUDED
 
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/basics/base_uint.h>
 #include <bixd/protocol/HashPrefix.h>
 #include <bixd/protocol/Serializer.h>

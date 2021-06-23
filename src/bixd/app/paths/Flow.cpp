@@ -24,7 +24,7 @@
 #include <bixd/app/paths/impl/StrandFlow.h>
 #include <bixd/basics/IOUAmount.h>
 #include <bixd/basics/Log.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 
 #include <boost/container/flat_set.hpp>
 
@@ -41,7 +41,7 @@ finishFlow(
     Issue const& dstIssue,
     FlowResult&& f)
 {
-    path::RippleCalc::Output result;
+    path::BixdCalc::Output result;
     if (f.ter == tesSUCCESS)
         f.sandbox->apply(sb);
     else
@@ -54,7 +54,7 @@ finishFlow(
     return result;
 };
 
-path::RippleCalc::Output
+path::BixdCalc::Output
 flow(
     PaymentSandbox& sb,
     STAmount const& deliver,
@@ -102,7 +102,7 @@ flow(
 
     if (toStrandsTer != tesSUCCESS)
     {
-        path::RippleCalc::Output result;
+        path::BixdCalc::Output result;
         result.setResult(toStrandsTer);
         return result;
     }

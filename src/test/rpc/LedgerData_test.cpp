@@ -442,7 +442,7 @@ public:
             auto const jrr = makeRequest(jss::state);
             BEAST_EXPECT(checkArraySize(jrr[jss::state], 1));
             for (auto const& j : jrr[jss::state])
-                BEAST_EXPECT(j["LedgerEntryType"] == jss::RippleState);
+                BEAST_EXPECT(j["LedgerEntryType"] == jss::BixdState);
         }
 
         {  // jvParams[jss::type] = "ticket";

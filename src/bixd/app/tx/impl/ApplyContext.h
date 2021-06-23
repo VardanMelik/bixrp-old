@@ -21,7 +21,7 @@
 #define BIXD_TX_APPLYCONTEXT_H_INCLUDED
 
 #include <bixd/app/main/Application.h>
-#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
 #include <bixd/beast/utility/Journal.h>
 #include <bixd/core/Config.h>
 #include <bixd/ledger/ApplyViewImpl.h>

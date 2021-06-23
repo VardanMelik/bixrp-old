@@ -627,7 +627,7 @@ private:
         if (jv.isObject())
         {
             if (jv.isMember(jss::jsonrpc) && jv[jss::jsonrpc] == "2.0" &&
-                jv.isMember(jss::ripplerpc) && jv[jss::ripplerpc] == "2.0" &&
+                jv.isMember(jss::bixdrpc) && jv[jss::bixdrpc] == "2.0" &&
                 jv.isMember(jss::id) && jv.isMember(jss::method))
             {
                 if (jv.isMember(jss::params) &&
@@ -658,7 +658,7 @@ private:
                         jv1[i.key().asString()] = *i;
                 }
                 jv1[jss::jsonrpc] = jv[jss::jsonrpc];
-                jv1[jss::ripplerpc] = jv[jss::ripplerpc];
+                jv1[jss::bixdrpc] = jv[jss::bixdrpc];
                 jv1[jss::id] = jv[jss::id];
                 jv1[jss::method] = jv[jss::method];
                 return jv1;
@@ -674,7 +674,7 @@ private:
                         jv1[j][i.key().asString()] = *i;
                 }
                 jv1[j][jss::jsonrpc] = jv[j][jss::jsonrpc];
-                jv1[j][jss::ripplerpc] = jv[j][jss::ripplerpc];
+                jv1[j][jss::bixdrpc] = jv[j][jss::bixdrpc];
                 jv1[j][jss::id] = jv[j][jss::id];
                 jv1[j][jss::method] = jv[j][jss::method];
             }
@@ -683,8 +683,8 @@ private:
         auto jv_error = rpcError(rpcINVALID_PARAMS);
         if (jv.isMember(jss::jsonrpc))
             jv_error[jss::jsonrpc] = jv[jss::jsonrpc];
-        if (jv.isMember(jss::ripplerpc))
-            jv_error[jss::ripplerpc] = jv[jss::ripplerpc];
+        if (jv.isMember(jss::bixdrpc))
+            jv_error[jss::bixdrpc] = jv[jss::bixdrpc];
         if (jv.isMember(jss::id))
             jv_error[jss::id] = jv[jss::id];
         return jv_error;
@@ -959,9 +959,9 @@ private:
         return jvRequest;
     }
 
-    // ripple_path_find <json> [<ledger>]
+    // bixd_path_find <json> [<ledger>]
     Json::Value
-    parseRipplePathFind(Json::Value const& jvParams)
+    parseBixdPathFind(Json::Value const& jvParams)
     {
         Json::Reader reader;
         Json::Value jvRequest{Json::objectValue};
@@ -1274,7 +1274,7 @@ public:
              1,
              1},
             {"peer_reservations_list", &RPCParser::parseAsIs, 0, 0},
-            {"ripple_path_find", &RPCParser::parseRipplePathFind, 1, 2},
+            {"bixd_path_find", &RPCParser::parseBixdPathFind, 1, 2},
             {"sign", &RPCParser::parseSignSubmit, 2, 3},
             {"sign_for", &RPCParser::parseSignFor, 3, 4},
             {"submit", &RPCParser::parseSignSubmit, 1, 3},
@@ -1508,8 +1508,8 @@ cmdLineToJSONRPC(std::vector<std::string> const& args, beast::Journal j)
     }
     if (paramsObj.isMember(jss::jsonrpc))
         jv[jss::jsonrpc] = paramsObj[jss::jsonrpc];
-    if (paramsObj.isMember(jss::ripplerpc))
-        jv[jss::ripplerpc] = paramsObj[jss::ripplerpc];
+    if (paramsObj.isMember(jss::bixdrpc))
+        jv[jss::bixdrpc] = paramsObj[jss::bixdrpc];
     if (paramsObj.isMember(jss::id))
         jv[jss::id] = paramsObj[jss::id];
     return jv;

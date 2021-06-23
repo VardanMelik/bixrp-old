@@ -148,7 +148,7 @@ public:
             env.close();
 
             // Set flags on gw2 trust lines so we can look for them.
-            env(trust(alice, gw2Currency(0), gw2, tfSetNoRipple | tfSetFreeze));
+            env(trust(alice, gw2Currency(0), gw2, tfSetNoBixd | tfSetFreeze));
         }
         env.close();
         LedgerInfo const ledger58Info = env.closed()->info();
@@ -325,7 +325,7 @@ public:
                     gw2.human() + R"("})");
             auto const& line = lines[jss::result][jss::lines][0u];
             BEAST_EXPECT(line[jss::freeze].asBool() == true);
-            BEAST_EXPECT(line[jss::no_ripple].asBool() == true);
+            BEAST_EXPECT(line[jss::no_bixd].asBool() == true);
             BEAST_EXPECT(line[jss::peer_authorized].asBool() == true);
         }
         {
@@ -340,7 +340,7 @@ public:
                     alice.human() + R"("})");
             auto const& lineA = linesA[jss::result][jss::lines][0u];
             BEAST_EXPECT(lineA[jss::freeze_peer].asBool() == true);
-            BEAST_EXPECT(lineA[jss::no_ripple_peer].asBool() == true);
+            BEAST_EXPECT(lineA[jss::no_bixd_peer].asBool() == true);
             BEAST_EXPECT(lineA[jss::authorized].asBool() == true);
 
             // Continue from the returned marker to make sure that works.
@@ -452,13 +452,13 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0")"
+                R"("bixdrpc" : "2.0")"
                 " }");
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
         }
         {
             // account_lines with no account.
@@ -467,7 +467,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5)"
                 " }");
             BEAST_EXPECT(
@@ -476,8 +476,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -487,7 +487,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": )"
@@ -498,8 +498,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         Account const alice{"alice"};
@@ -510,7 +510,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -521,8 +521,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         env.fund(BIXRP(10000), alice);
@@ -537,7 +537,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -547,8 +547,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -558,7 +558,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -570,8 +570,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -581,7 +581,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -592,8 +592,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         // Create trust lines to share with alice.
@@ -641,7 +641,7 @@ public:
             env.close();
 
             // Set flags on gw2 trust lines so we can look for them.
-            env(trust(alice, gw2Currency(0), gw2, tfSetNoRipple | tfSetFreeze));
+            env(trust(alice, gw2Currency(0), gw2, tfSetNoBixd | tfSetFreeze));
         }
         env.close();
         LedgerInfo const ledger58Info = env.closed()->info();
@@ -658,7 +658,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -672,8 +672,8 @@ public:
                 linesSeq.isMember(jss::jsonrpc) &&
                 linesSeq[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                linesSeq.isMember(jss::ripplerpc) &&
-                linesSeq[jss::ripplerpc] == "2.0");
+                linesSeq.isMember(jss::bixdrpc) &&
+                linesSeq[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(linesSeq.isMember(jss::id) && linesSeq[jss::id] == 5);
 
             // Get account_lines by ledger hash.
@@ -682,7 +682,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -696,8 +696,8 @@ public:
                 linesHash.isMember(jss::jsonrpc) &&
                 linesHash[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                linesHash.isMember(jss::ripplerpc) &&
-                linesHash[jss::ripplerpc] == "2.0");
+                linesHash.isMember(jss::bixdrpc) &&
+                linesHash[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(
                 linesHash.isMember(jss::id) && linesHash[jss::id] == 5);
         };
@@ -719,7 +719,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -735,8 +735,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -746,7 +746,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -756,8 +756,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -767,7 +767,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -780,8 +780,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -791,7 +791,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -805,8 +805,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -816,7 +816,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -829,8 +829,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -840,7 +840,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -852,8 +852,8 @@ public:
             BEAST_EXPECT(
                 linesA.isMember(jss::jsonrpc) && linesA[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                linesA.isMember(jss::ripplerpc) &&
-                linesA[jss::ripplerpc] == "2.0");
+                linesA.isMember(jss::bixdrpc) &&
+                linesA[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(linesA.isMember(jss::id) && linesA[jss::id] == 5);
 
             // Pick up from where the marker left off.  We should get 51.
@@ -863,7 +863,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -876,8 +876,8 @@ public:
             BEAST_EXPECT(
                 linesB.isMember(jss::jsonrpc) && linesB[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                linesB.isMember(jss::ripplerpc) &&
-                linesB[jss::ripplerpc] == "2.0");
+                linesB.isMember(jss::bixdrpc) &&
+                linesB[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(linesB.isMember(jss::id) && linesB[jss::id] == 5);
 
             // Go again from where the marker left off, but set a limit of 3.
@@ -886,7 +886,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -900,8 +900,8 @@ public:
             BEAST_EXPECT(
                 linesC.isMember(jss::jsonrpc) && linesC[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                linesC.isMember(jss::ripplerpc) &&
-                linesC[jss::ripplerpc] == "2.0");
+                linesC.isMember(jss::bixdrpc) &&
+                linesC[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(linesC.isMember(jss::id) && linesC[jss::id] == 5);
 
             // Mess with the marker so it becomes bad and check for the error.
@@ -911,7 +911,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -925,8 +925,8 @@ public:
             BEAST_EXPECT(
                 linesD.isMember(jss::jsonrpc) && linesD[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                linesD.isMember(jss::ripplerpc) &&
-                linesD[jss::ripplerpc] == "2.0");
+                linesD.isMember(jss::bixdrpc) &&
+                linesD[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(linesD.isMember(jss::id) && linesD[jss::id] == 5);
         }
         {
@@ -936,7 +936,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -949,8 +949,8 @@ public:
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -960,7 +960,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -971,13 +971,13 @@ public:
                     gw2.human() + R"("}})");
             auto const& line = lines[jss::result][jss::lines][0u];
             BEAST_EXPECT(line[jss::freeze].asBool() == true);
-            BEAST_EXPECT(line[jss::no_ripple].asBool() == true);
+            BEAST_EXPECT(line[jss::no_bixd].asBool() == true);
             BEAST_EXPECT(line[jss::peer_authorized].asBool() == true);
             BEAST_EXPECT(
                 lines.isMember(jss::jsonrpc) && lines[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                lines.isMember(jss::ripplerpc) &&
-                lines[jss::ripplerpc] == "2.0");
+                lines.isMember(jss::bixdrpc) &&
+                lines[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(lines.isMember(jss::id) && lines[jss::id] == 5);
         }
         {
@@ -987,7 +987,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -998,13 +998,13 @@ public:
                     alice.human() + R"("}})");
             auto const& lineA = linesA[jss::result][jss::lines][0u];
             BEAST_EXPECT(lineA[jss::freeze_peer].asBool() == true);
-            BEAST_EXPECT(lineA[jss::no_ripple_peer].asBool() == true);
+            BEAST_EXPECT(lineA[jss::no_bixd_peer].asBool() == true);
             BEAST_EXPECT(lineA[jss::authorized].asBool() == true);
             BEAST_EXPECT(
                 linesA.isMember(jss::jsonrpc) && linesA[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                linesA.isMember(jss::ripplerpc) &&
-                linesA[jss::ripplerpc] == "2.0");
+                linesA.isMember(jss::bixdrpc) &&
+                linesA[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(linesA.isMember(jss::id) && linesA[jss::id] == 5);
 
             // Continue from the returned marker to make sure that works.
@@ -1015,7 +1015,7 @@ public:
                 "{ "
                 R"("method" : "account_lines",)"
                 R"("jsonrpc" : "2.0",)"
-                R"("ripplerpc" : "2.0",)"
+                R"("bixdrpc" : "2.0",)"
                 R"("id" : 5,)"
                 R"("params": )"
                 R"({"account": ")" +
@@ -1033,8 +1033,8 @@ public:
             BEAST_EXPECT(
                 linesB.isMember(jss::jsonrpc) && linesB[jss::jsonrpc] == "2.0");
             BEAST_EXPECT(
-                linesB.isMember(jss::ripplerpc) &&
-                linesB[jss::ripplerpc] == "2.0");
+                linesB.isMember(jss::bixdrpc) &&
+                linesB[jss::bixdrpc] == "2.0");
             BEAST_EXPECT(linesB.isMember(jss::id) && linesB[jss::id] == 5);
         }
     }
@@ -1092,7 +1092,7 @@ public:
             "{ "
             R"("method" : "account_lines",)"
             R"("jsonrpc" : "2.0",)"
-            R"("ripplerpc" : "2.0",)"
+            R"("bixdrpc" : "2.0",)"
             R"("id" : 5,)"
             R"("params": )"
             R"({"account": ")" +
@@ -1105,8 +1105,8 @@ public:
         BEAST_EXPECT(
             linesBeg.isMember(jss::jsonrpc) && linesBeg[jss::jsonrpc] == "2.0");
         BEAST_EXPECT(
-            linesBeg.isMember(jss::ripplerpc) &&
-            linesBeg[jss::ripplerpc] == "2.0");
+            linesBeg.isMember(jss::bixdrpc) &&
+            linesBeg[jss::bixdrpc] == "2.0");
         BEAST_EXPECT(linesBeg.isMember(jss::id) && linesBeg[jss::id] == 5);
 
         // alice pays 100 USD to cheri.
@@ -1120,7 +1120,7 @@ public:
             "{ "
             R"("method" : "account_lines",)"
             R"("jsonrpc" : "2.0",)"
-            R"("ripplerpc" : "2.0",)"
+            R"("bixdrpc" : "2.0",)"
             R"("id" : 5,)"
             R"("params": )"
             R"({"account": ")" +
@@ -1134,8 +1134,8 @@ public:
         BEAST_EXPECT(
             linesEnd.isMember(jss::jsonrpc) && linesEnd[jss::jsonrpc] == "2.0");
         BEAST_EXPECT(
-            linesEnd.isMember(jss::ripplerpc) &&
-            linesEnd[jss::ripplerpc] == "2.0");
+            linesEnd.isMember(jss::bixdrpc) &&
+            linesEnd[jss::bixdrpc] == "2.0");
         BEAST_EXPECT(linesEnd.isMember(jss::id) && linesEnd[jss::id] == 5);
     }
 

@@ -3337,7 +3337,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
      __LINE__,
      {
          "json2",
-         R"({"jsonrpc":"2.0","ripplerpc":"2.0","id":"A1","method":"call_1"})",
+         R"({"jsonrpc":"2.0","bixdrpc":"2.0","id":"A1","method":"call_1"})",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3350,10 +3350,10 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "id" : "A1",
          "jsonrpc" : "2.0",
          "method" : "call_1",
-         "ripplerpc" : "2.0"
+         "bixdrpc" : "2.0"
       }
     ],
-    "ripplerpc" : "2.0"
+    "bixdrpc" : "2.0"
     })"},
     {"json2: object with nested params.",
      __LINE__,
@@ -3361,7 +3361,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "json2",
          R"({
         "jsonrpc" : "2.0",
-        "ripplerpc" : "2.0",
+        "bixdrpc" : "2.0",
         "id" : "A1",
         "method" : "call_1",
         "params" : [{"inner_arg" : "yup"}]
@@ -3381,16 +3381,16 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "id" : "A1",
          "jsonrpc" : "2.0",
          "method" : "call_1",
-         "ripplerpc" : "2.0"
+         "bixdrpc" : "2.0"
       }
     ],
-    "ripplerpc" : "2.0"
+    "bixdrpc" : "2.0"
     })"},
     {"json2: minimal array.",
      __LINE__,
      {
          "json2",
-         R"([{"jsonrpc":"2.0","ripplerpc":"2.0","id":"A1","method":"call_1"}])",
+         R"([{"jsonrpc":"2.0","bixdrpc":"2.0","id":"A1","method":"call_1"}])",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3402,7 +3402,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
             "id" : "A1",
             "jsonrpc" : "2.0",
             "method" : "call_1",
-            "ripplerpc" : "2.0"
+            "bixdrpc" : "2.0"
          }
       ]
     ]
@@ -3413,7 +3413,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "json2",
          R"([
         {"jsonrpc":"2.0",
-        "ripplerpc":"2.0",
+        "bixdrpc":"2.0",
         "id":"A1",
         "method":"call_1",
         "params" : [{"inner_arg" : "yup"}]}
@@ -3432,7 +3432,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
             "id" : "A1",
             "jsonrpc" : "2.0",
             "method" : "call_1",
-            "ripplerpc" : "2.0"
+            "bixdrpc" : "2.0"
          }
       ]
     ]})"},
@@ -3455,7 +3455,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
     {"json2: too many arguments.",
      __LINE__,
      {"json2",
-      R"({"jsonrpc":"2.0","ripplerpc":"2.0","id":"A1","method":"call_this"})",
+      R"({"jsonrpc":"2.0","bixdrpc":"2.0","id":"A1","method":"call_this"})",
       "extra"},
      RPCCallTestData::no_exception,
      R"({
@@ -3472,7 +3472,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
      __LINE__,
      {
          "json2",
-         R"({"jsonrpc":"2.0","ripplerpc":"2.0","id":"A1","method":"call_1",})",
+         R"({"jsonrpc":"2.0","bixdrpc":"2.0","id":"A1","method":"call_1",})",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3486,16 +3486,16 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "error_message" : "Invalid parameters.",
          "id" : "A1",
          "jsonrpc" : "2.0",
-         "ripplerpc" : "2.0"
+         "bixdrpc" : "2.0"
       }
     ],
-    "ripplerpc" : "2.0"
+    "bixdrpc" : "2.0"
     })"},
     {"json2: omit jsonrpc.",
      __LINE__,
      {
          "json2",
-         R"({"ripplerpc":"2.0","id":"A1","method":"call_1"})",
+         R"({"bixdrpc":"2.0","id":"A1","method":"call_1"})",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3507,16 +3507,16 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "error_code" : 31,
          "error_message" : "Invalid parameters.",
          "id" : "A1",
-         "ripplerpc" : "2.0"
+         "bixdrpc" : "2.0"
       }
     ],
-    "ripplerpc" : "2.0"
+    "bixdrpc" : "2.0"
     })"},
     {"json2: wrong jsonrpc version.",
      __LINE__,
      {
          "json2",
-         R"({"jsonrpc":"2.1","ripplerpc":"2.0","id":"A1","method":"call_1"})",
+         R"({"jsonrpc":"2.1","bixdrpc":"2.0","id":"A1","method":"call_1"})",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3530,12 +3530,12 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "error_message" : "Invalid parameters.",
          "id" : "A1",
          "jsonrpc" : "2.1",
-         "ripplerpc" : "2.0"
+         "bixdrpc" : "2.0"
       }
     ],
-    "ripplerpc" : "2.0"
+    "bixdrpc" : "2.0"
     })"},
-    {"json2: omit ripplerpc.",
+    {"json2: omit bixdrpc.",
      __LINE__,
      {
          "json2",
@@ -3556,11 +3556,11 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"json2: wrong ripplerpc version.",
+    {"json2: wrong bixdrpc version.",
      __LINE__,
      {
          "json2",
-         R"({"jsonrpc":"2.0","ripplerpc":"2.00","id":"A1","method":"call_1"})",
+         R"({"jsonrpc":"2.0","bixdrpc":"2.00","id":"A1","method":"call_1"})",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3574,16 +3574,16 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "error_message" : "Invalid parameters.",
          "id" : "A1",
          "jsonrpc" : "2.0",
-         "ripplerpc" : "2.00"
+         "bixdrpc" : "2.00"
       }
     ],
-    "ripplerpc" : "2.00"
+    "bixdrpc" : "2.00"
     })"},
     {"json2: omit id.",
      __LINE__,
      {
          "json2",
-         R"({"jsonrpc":"2.0","ripplerpc":"2.0","method":"call_1"})",
+         R"({"jsonrpc":"2.0","bixdrpc":"2.0","method":"call_1"})",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3595,16 +3595,16 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "error_code" : 31,
          "error_message" : "Invalid parameters.",
          "jsonrpc" : "2.0",
-         "ripplerpc" : "2.0"
+         "bixdrpc" : "2.0"
       }
     ],
-   "ripplerpc" : "2.0"
+   "bixdrpc" : "2.0"
     })"},
     {"json2: omit method.",
      __LINE__,
      {
          "json2",
-         R"({"jsonrpc":"2.0","ripplerpc":"2.0","id":"A1"})",
+         R"({"jsonrpc":"2.0","bixdrpc":"2.0","id":"A1"})",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3618,10 +3618,10 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "error_message" : "Invalid parameters.",
          "id" : "A1",
          "jsonrpc" : "2.0",
-         "ripplerpc" : "2.0"
+         "bixdrpc" : "2.0"
       }
     ],
-   "ripplerpc" : "2.0"
+   "bixdrpc" : "2.0"
     })"},
     {"json2: empty outer array.",
      __LINE__,
@@ -3644,7 +3644,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
      __LINE__,
      {
          "json2",
-         R"([{"jsonrpc":"2.0","ripplerpc":"2.0","id":"A1","method":"call_1",[]}])",
+         R"([{"jsonrpc":"2.0","bixdrpc":"2.0","id":"A1","method":"call_1",[]}])",
      },
      RPCCallTestData::no_exception,
      R"({
@@ -3663,7 +3663,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "json2",
          R"([
             {"jsonrpc" : "2.1",
-            "ripplerpc" : "2.0",
+            "bixdrpc" : "2.0",
             "id" : "A1",
             "method" : "call_1"
             }
@@ -3686,7 +3686,7 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "json2",
          R"({
         "jsonrpc" : "2.0",
-        "ripplerpc" : "2.0",
+        "bixdrpc" : "2.0",
         "id" : "A1",
         "method" : "call_1",
         "params" : true
@@ -3704,10 +3704,10 @@ static RPCCallTestData const rpcCallTestArray[] = {
          "error_message" : "Invalid parameters.",
          "id" : "A1",
          "jsonrpc" : "2.0",
-         "ripplerpc" : "2.0"
+         "bixdrpc" : "2.0"
       }
    ],
-   "ripplerpc" : "2.0"
+   "bixdrpc" : "2.0"
     })"},
 
     // ledger
@@ -4734,17 +4734,17 @@ static RPCCallTestData const rpcCallTestArray[] = {
     ]
     })"},
 
-    // ripple_path_find
+    // bixd_path_find
     // ------------------------------------------------------------
-    {"ripple_path_find: minimal.",
+    {"bixd_path_find: minimal.",
      __LINE__,
      {
-         "ripple_path_find",
+         "bixd_path_find",
          R"({"json_argument":true})",
      },
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "api_version" : %MAX_API_VER%,
@@ -4752,12 +4752,12 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"ripple_path_find: ledger index.",
+    {"bixd_path_find: ledger index.",
      __LINE__,
-     {"ripple_path_find", R"({"json_argument":true})", "4294967295"},
+     {"bixd_path_find", R"({"json_argument":true})", "4294967295"},
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "api_version" : %MAX_API_VER%,
@@ -4766,12 +4766,12 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"ripple_path_find: text ledger index.",
+    {"bixd_path_find: text ledger index.",
      __LINE__,
-     {"ripple_path_find", R"({"json_argument":true})", "closed"},
+     {"bixd_path_find", R"({"json_argument":true})", "closed"},
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "api_version" : %MAX_API_VER%,
@@ -4780,14 +4780,14 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"ripple_path_find: ledger hash.",
+    {"bixd_path_find: ledger hash.",
      __LINE__,
-     {"ripple_path_find",
+     {"bixd_path_find",
       R"({"json_argument":true})",
       "0123456789ABCDEFGHIJKLMNOPQRSTUV0123456789ABCDEFGHIJKLMNOPQRSTUV"},
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "api_version" : %MAX_API_VER%,
@@ -4797,14 +4797,14 @@ static RPCCallTestData const rpcCallTestArray[] = {
     ]
     })"},
 
-    {"ripple_path_find: too few arguments.",
+    {"bixd_path_find: too few arguments.",
      __LINE__,
      {
-         "ripple_path_find",
+         "bixd_path_find",
      },
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "error" : "badSyntax",
@@ -4813,12 +4813,12 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"ripple_path_find: too many arguments.",
+    {"bixd_path_find: too many arguments.",
      __LINE__,
-     {"ripple_path_find", R"({"json_argument":true})", "current", "extra"},
+     {"bixd_path_find", R"({"json_argument":true})", "current", "extra"},
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "error" : "badSyntax",
@@ -4827,15 +4827,15 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"ripple_path_find: invalid json (note extra comma).",
+    {"bixd_path_find: invalid json (note extra comma).",
      __LINE__,
      {
-         "ripple_path_find",
+         "bixd_path_find",
          R"({"json_argument":true,})",
      },
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "error" : "invalidParams",
@@ -4844,12 +4844,12 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"ripple_path_find: ledger index too small.",
+    {"bixd_path_find: ledger index too small.",
      __LINE__,
-     {"ripple_path_find", R"({"json_argument":true})", "-1"},
+     {"bixd_path_find", R"({"json_argument":true})", "-1"},
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
         "api_version" : %MAX_API_VER%,
@@ -4858,12 +4858,12 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"ripple_path_find: ledger index too big.",
+    {"bixd_path_find: ledger index too big.",
      __LINE__,
-     {"ripple_path_find", R"({"json_argument":true})", "4294967296"},
+     {"bixd_path_find", R"({"json_argument":true})", "4294967296"},
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "api_version" : %MAX_API_VER%,
@@ -4872,12 +4872,12 @@ static RPCCallTestData const rpcCallTestArray[] = {
       }
     ]
     })"},
-    {"ripple_path_find: invalid text ledger index.",
+    {"bixd_path_find: invalid text ledger index.",
      __LINE__,
-     {"ripple_path_find", R"({"json_argument":true})", "cur"},
+     {"bixd_path_find", R"({"json_argument":true})", "cur"},
      RPCCallTestData::no_exception,
      R"({
-    "method" : "ripple_path_find",
+    "method" : "bixd_path_find",
     "params" : [
       {
          "api_version" : %MAX_API_VER%,

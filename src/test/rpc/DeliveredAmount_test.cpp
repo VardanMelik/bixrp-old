@@ -239,8 +239,8 @@ class DeliveredAmount_test : public beast::unit_test::suite
                     BEAST_EXPECT(
                         jv.isMember(jss::jsonrpc) && jv[jss::jsonrpc] == "2.0");
                     BEAST_EXPECT(
-                        jv.isMember(jss::ripplerpc) &&
-                        jv[jss::ripplerpc] == "2.0");
+                        jv.isMember(jss::bixdrpc) &&
+                        jv[jss::bixdrpc] == "2.0");
                     BEAST_EXPECT(jv.isMember(jss::id) && jv[jss::id] == 5);
                 }
                 BEAST_EXPECT(jv[jss::result][jss::ledger_index] == 3);

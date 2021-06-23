@@ -17,7 +17,7 @@
 */
 //==============================================================================
 
-#include <bixd/app/paths/RippleCalc.h>
+#include <bixd/app/paths/BixdCalc.h>
 #include <bixd/app/tx/impl/Payment.h>
 #include <bixd/basics/Log.h>
 #include <bixd/core/Config.h>
@@ -361,14 +361,14 @@ Payment::doApply()
 
     bool const depositPreauth = view().rules().enabled(featureDepositPreauth);
 
-    bool const bRipple = paths || sendMax || !saDstAmount.native();
+    bool const bBixd = paths || sendMax || !saDstAmount.native();
 
     // If the destination has lsfDepositAuth set, then only direct BIXRP
     // payments (no intermediate steps) are allowed to the destination.
-    if (!depositPreauth && bRipple && reqDepositAuth)
+    if (!depositPreauth && bBixd && reqDepositAuth)
         return tecNO_PERMISSION;
 
-    if (bRipple)
+    if (bBixd)
     {
         // bixd payment with at least one intermediate step and uses
         // transitive balances.
@@ -390,18 +390,18 @@ Payment::doApply()
         // Copy paths into an editable class.
         STPathSet spsPaths = ctx_.tx.getFieldPathSet(sfPaths);
 
-        path::RippleCalc::Input rcInput;
+        path::BixdCalc::Input rcInput;
         rcInput.partialPaymentAllowed = partialPaymentAllowed;
         rcInput.defaultPathsAllowed = defaultPathsAllowed;
         rcInput.limitQuality = limitQuality;
         rcInput.isLedgerOpen = view().open();
 
-        path::RippleCalc::Output rc;
+        path::BixdCalc::Output rc;
         {
             PaymentSandbox pv(&view());
-            JLOG(j_.debug()) << "Entering RippleCalc in payment: "
+            JLOG(j_.debug()) << "Entering BixdCalc in payment: "
                              << ctx_.tx.getTransactionID();
-            rc = path::RippleCalc::rippleCalculate(
+            rc = path::BixdCalc::bixdCalculate(
                 pv,
                 maxSourceAmount,
                 saDstAmount,
@@ -428,7 +428,7 @@ Payment::doApply()
 
         auto terResult = rc.result();
 
-        // Because of its overhead, if RippleCalc
+        // Because of its overhead, if BixdCalc
         // fails with a retry code, claim a fee
         // instead. Maybe the user will be more
         // careful with their path spec next time.

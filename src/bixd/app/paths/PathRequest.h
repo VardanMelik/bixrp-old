@@ -22,7 +22,7 @@
 
 #include <bixd/app/ledger/Ledger.h>
 #include <bixd/app/paths/Pathfinder.h>
-#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/app/paths/BixdLineCache.h>
 #include <bixd/json/json_value.h>
 #include <bixd/net/InfoSub.h>
 #include <bixd/protocol/UintTypes.h>
@@ -37,7 +37,7 @@ namespace bixd {
 // A pathfinding request submitted by a client
 // The request issuer must maintain a strong pointer
 
-class RippleLineCache;
+class BixdLineCache;
 class PathRequests;
 
 // Return values from parseJson <0 = invalid, >0 = valid
@@ -66,7 +66,7 @@ public:
         PathRequests&,
         beast::Journal journal);
 
-    // ripple_path_find semantics
+    // bixd_path_find semantics
     // Completion function is called after path update is complete
     PathRequest(
         Application& app,
@@ -88,7 +88,7 @@ public:
     updateComplete();
 
     std::pair<bool, Json::Value>
-    doCreate(std::shared_ptr<RippleLineCache> const&, Json::Value const&);
+    doCreate(std::shared_ptr<BixdLineCache> const&, Json::Value const&);
 
     Json::Value
     doClose(Json::Value const&);
@@ -97,7 +97,7 @@ public:
 
     // update jvStatus
     Json::Value
-    doUpdate(std::shared_ptr<RippleLineCache> const&, bool fast);
+    doUpdate(std::shared_ptr<BixdLineCache> const&, bool fast);
     InfoSub::pointer
     getSubscriber();
     bool
@@ -105,11 +105,11 @@ public:
 
 private:
     bool
-    isValid(std::shared_ptr<RippleLineCache> const& crCache);
+    isValid(std::shared_ptr<BixdLineCache> const& crCache);
 
     std::unique_ptr<Pathfinder> const&
     getPathFinder(
-        std::shared_ptr<RippleLineCache> const&,
+        std::shared_ptr<BixdLineCache> const&,
         hash_map<Currency, std::unique_ptr<Pathfinder>>&,
         Currency const&,
         STAmount const&,
@@ -119,7 +119,7 @@ private:
         Returns false if the source currencies are inavlid.
     */
     bool
-    findPaths(std::shared_ptr<RippleLineCache> const&, int const, Json::Value&);
+    findPaths(std::shared_ptr<BixdLineCache> const&, int const, Json::Value&);
 
     int
     parseJson(Json::Value const&);

@@ -260,36 +260,36 @@ doLedgerEntry(RPC::JsonContext& context)
             jvResult[jss::error] = "malformedRequest";
         }
     }
-    else if (context.params.isMember(jss::ripple_state))
+    else if (context.params.isMember(jss::bixd_state))
     {
         expectedType = ltBIXD_STATE;
         Currency uCurrency;
-        Json::Value jvRippleState = context.params[jss::ripple_state];
+        Json::Value jvBixdState = context.params[jss::bixd_state];
 
-        if (!jvRippleState.isObject() ||
-            !jvRippleState.isMember(jss::currency) ||
-            !jvRippleState.isMember(jss::accounts) ||
-            !jvRippleState[jss::accounts].isArray() ||
-            2 != jvRippleState[jss::accounts].size() ||
-            !jvRippleState[jss::accounts][0u].isString() ||
-            !jvRippleState[jss::accounts][1u].isString() ||
-            (jvRippleState[jss::accounts][0u].asString() ==
-             jvRippleState[jss::accounts][1u].asString()))
+        if (!jvBixdState.isObject() ||
+            !jvBixdState.isMember(jss::currency) ||
+            !jvBixdState.isMember(jss::accounts) ||
+            !jvBixdState[jss::accounts].isArray() ||
+            2 != jvBixdState[jss::accounts].size() ||
+            !jvBixdState[jss::accounts][0u].isString() ||
+            !jvBixdState[jss::accounts][1u].isString() ||
+            (jvBixdState[jss::accounts][0u].asString() ==
+             jvBixdState[jss::accounts][1u].asString()))
         {
             jvResult[jss::error] = "malformedRequest";
         }
         else
         {
             auto const id1 = parseBase58<AccountID>(
-                jvRippleState[jss::accounts][0u].asString());
+                jvBixdState[jss::accounts][0u].asString());
             auto const id2 = parseBase58<AccountID>(
-                jvRippleState[jss::accounts][1u].asString());
+                jvBixdState[jss::accounts][1u].asString());
             if (!id1 || !id2)
             {
                 jvResult[jss::error] = "malformedAddress";
             }
             else if (!to_currency(
-                         uCurrency, jvRippleState[jss::currency].asString()))
+                         uCurrency, jvBixdState[jss::currency].asString()))
             {
                 jvResult[jss::error] = "malformedCurrency";
             }

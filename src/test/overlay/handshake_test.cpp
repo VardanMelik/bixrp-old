@@ -58,7 +58,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(handshake, ripple_data, bixd);
+BEAST_DEFINE_TESTSUITE(handshake, bixd_data, bixd);
 
 }  // namespace test
 }  // namespace bixd

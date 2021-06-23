@@ -1297,11 +1297,11 @@ protected:
         doTest("Config Test", log, [&](bool log) {
             Config c;
 
-            std::string toLoad(R"rippleConfig(
+            std::string toLoad(R"bixdConfig(
 [reduce_relay]
 vp_enable=1
 vp_squelch=1
-)rippleConfig");
+)bixdConfig");
 
             c.loadFromString(toLoad);
             BEAST_EXPECT(c.VP_REDUCE_RELAY_ENABLE == true);
@@ -1309,11 +1309,11 @@ vp_squelch=1
 
             Config c1;
 
-            toLoad = (R"rippleConfig(
+            toLoad = (R"bixdConfig(
 [reduce_relay]
 vp_enable=0
 vp_squelch=0
-)rippleConfig");
+)bixdConfig");
 
             c1.loadFromString(toLoad);
             BEAST_EXPECT(c1.VP_REDUCE_RELAY_ENABLE == false);
@@ -1321,11 +1321,11 @@ vp_squelch=0
 
             Config c2;
 
-            toLoad = R"rippleConfig(
+            toLoad = R"bixdConfig(
 [reduce_relay]
 vp_enabled=1
 vp_squelched=1
-)rippleConfig";
+)bixdConfig";
 
             c2.loadFromString(toLoad);
             BEAST_EXPECT(c2.VP_REDUCE_RELAY_ENABLE == false);
@@ -1579,8 +1579,8 @@ class reduce_relay_simulate_test : public reduce_relay_test
     }
 };
 
-BEAST_DEFINE_TESTSUITE(reduce_relay, ripple_data, bixd);
-BEAST_DEFINE_TESTSUITE_MANUAL(reduce_relay_simulate, ripple_data, bixd);
+BEAST_DEFINE_TESTSUITE(reduce_relay, bixd_data, bixd);
+BEAST_DEFINE_TESTSUITE_MANUAL(reduce_relay_simulate, bixd_data, bixd);
 
 }  // namespace test
 

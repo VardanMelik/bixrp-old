@@ -31,12 +31,12 @@
 
 namespace bixd {
 
-class NoRippleCheck_test : public beast::unit_test::suite
+class NoBixdCheck_test : public beast::unit_test::suite
 {
     void
     testBadInput()
     {
-        testcase("Bad input to noripple_check");
+        testcase("Bad input to nobixd_check");
 
         using namespace test::jtx;
         Env env{*this};
@@ -47,7 +47,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
 
         {  // missing account field
             auto const result =
-                env.rpc("json", "noripple_check", "{}")[jss::result];
+                env.rpc("json", "nobixd_check", "{}")[jss::result];
             BEAST_EXPECT(result[jss::error] == "invalidParams");
             BEAST_EXPECT(
                 result[jss::error_message] == "Missing field 'account'.");
@@ -58,7 +58,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
             params[jss::account] = alice.human();
             auto const result = env.rpc(
                 "json",
-                "noripple_check",
+                "nobixd_check",
                 boost::lexical_cast<std::string>(params))[jss::result];
             BEAST_EXPECT(result[jss::error] == "invalidParams");
             BEAST_EXPECT(result[jss::error_message] == "Missing field 'role'.");
@@ -70,7 +70,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
             params[jss::role] = "not_a_role";
             auto const result = env.rpc(
                 "json",
-                "noripple_check",
+                "nobixd_check",
                 boost::lexical_cast<std::string>(params))[jss::result];
             BEAST_EXPECT(result[jss::error] == "invalidParams");
             BEAST_EXPECT(result[jss::error_message] == "Invalid field 'role'.");
@@ -83,7 +83,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
             params[jss::limit] = -1;
             auto const result = env.rpc(
                 "json",
-                "noripple_check",
+                "nobixd_check",
                 boost::lexical_cast<std::string>(params))[jss::result];
             BEAST_EXPECT(result[jss::error] == "invalidParams");
             BEAST_EXPECT(
@@ -98,7 +98,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
             params[jss::ledger_hash] = 1;
             auto const result = env.rpc(
                 "json",
-                "noripple_check",
+                "nobixd_check",
                 boost::lexical_cast<std::string>(params))[jss::result];
             BEAST_EXPECT(result[jss::error] == "invalidParams");
             BEAST_EXPECT(result[jss::error_message] == "ledgerHashNotString");
@@ -111,7 +111,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
             params[jss::ledger] = "current";
             auto const result = env.rpc(
                 "json",
-                "noripple_check",
+                "nobixd_check",
                 boost::lexical_cast<std::string>(params))[jss::result];
             BEAST_EXPECT(result[jss::error] == "actNotFound");
             BEAST_EXPECT(result[jss::error_message] == "Account not found.");
@@ -125,7 +125,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
             params[jss::ledger] = "current";
             auto const result = env.rpc(
                 "json",
-                "noripple_check",
+                "nobixd_check",
                 boost::lexical_cast<std::string>(params))[jss::result];
             BEAST_EXPECT(result[jss::error] == "badSeed");
             BEAST_EXPECT(result[jss::error_message] == "Disallowed seed.");
@@ -135,7 +135,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
     void
     testBasic(bool user, bool problems)
     {
-        testcase << "Request noripple_check for " << (user ? "user" : "gateway")
+        testcase << "Request nobixd_check for " << (user ? "user" : "gateway")
                  << " role, expect" << (problems ? "" : " no") << " problems";
 
         using namespace test::jtx;
@@ -147,13 +147,13 @@ class NoRippleCheck_test : public beast::unit_test::suite
         env.fund(BIXRP(10000), gw, alice);
         if ((user && problems) || (!user && !problems))
         {
-            env(fset(alice, asfDefaultRipple));
+            env(fset(alice, asfDefaultBixd));
             env(trust(alice, gw["USD"](100)));
         }
         else
         {
-            env(fclear(alice, asfDefaultRipple));
-            env(trust(alice, gw["USD"](100), gw, tfSetNoRipple));
+            env(fclear(alice, asfDefaultBixd));
+            env(trust(alice, gw["USD"](100), gw, tfSetNoBixd));
         }
         env.close();
 
@@ -163,7 +163,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
         params[jss::ledger] = "current";
         auto result = env.rpc(
             "json",
-            "noripple_check",
+            "nobixd_check",
             boost::lexical_cast<std::string>(params))[jss::result];
 
         auto const pa = result["problems"];
@@ -200,7 +200,7 @@ class NoRippleCheck_test : public beast::unit_test::suite
         params[jss::transactions] = true;
         result = env.rpc(
             "json",
-            "noripple_check",
+            "nobixd_check",
             boost::lexical_cast<std::string>(params))[jss::result];
         if (!BEAST_EXPECT(result[jss::transactions].isArray()))
             return;
@@ -244,7 +244,7 @@ public:
     }
 };
 
-class NoRippleCheckLimits_test : public beast::unit_test::suite
+class NoBixdCheckLimits_test : public beast::unit_test::suite
 {
     void
     testLimits(bool admin)
@@ -258,7 +258,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
 
         auto const alice = Account{"alice"};
         env.fund(BIXRP(100000), alice);
-        env(fset(alice, asfDefaultRipple));
+        env(fset(alice, asfDefaultBixd));
         env.close();
 
         auto checkBalance = [&env]() {
@@ -284,7 +284,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
             }
         };
 
-        for (auto i = 0; i < bixd::RPC::Tuning::noRippleCheck.rmax + 5; ++i)
+        for (auto i = 0; i < bixd::RPC::Tuning::noBixdCheck.rmax + 5; ++i)
         {
             if (!admin)
                 checkBalance();
@@ -300,7 +300,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
                         baseFee) +
                     1),
                 sig(autofill));
-            env(fset(gw, asfDefaultRipple),
+            env(fset(gw, asfDefaultBixd),
                 seq(autofill),
                 fee(toDrops(
                         txq.getMetrics(*env.current()).openLedgerFeeLevel,
@@ -322,7 +322,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
         params[jss::ledger] = "current";
         auto result = env.rpc(
             "json",
-            "noripple_check",
+            "nobixd_check",
             boost::lexical_cast<std::string>(params))[jss::result];
 
         BEAST_EXPECT(result["problems"].size() == 301);
@@ -331,7 +331,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
         params[jss::limit] = 9;
         result = env.rpc(
             "json",
-            "noripple_check",
+            "nobixd_check",
             boost::lexical_cast<std::string>(params))[jss::result];
         BEAST_EXPECT(result["problems"].size() == (admin ? 10 : 11));
 
@@ -339,7 +339,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
         params[jss::limit] = 10;
         result = env.rpc(
             "json",
-            "noripple_check",
+            "nobixd_check",
             boost::lexical_cast<std::string>(params))[jss::result];
         BEAST_EXPECT(result["problems"].size() == 11);
 
@@ -347,7 +347,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
         params[jss::limit] = 400;
         result = env.rpc(
             "json",
-            "noripple_check",
+            "nobixd_check",
             boost::lexical_cast<std::string>(params))[jss::result];
         BEAST_EXPECT(result["problems"].size() == 401);
 
@@ -355,7 +355,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
         params[jss::limit] = 401;
         result = env.rpc(
             "json",
-            "noripple_check",
+            "nobixd_check",
             boost::lexical_cast<std::string>(params))[jss::result];
         BEAST_EXPECT(result["problems"].size() == (admin ? 402 : 401));
     }
@@ -369,12 +369,12 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(NoRippleCheck, app, bixd);
+BEAST_DEFINE_TESTSUITE(NoBixdCheck, app, bixd);
 
 // These tests that deal with limit amounts are slow because of the
 // offer/account setup, so making them manual -- the additional coverage
 // provided by them is minimal
 
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(NoRippleCheckLimits, app, bixd, 1);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(NoBixdCheckLimits, app, bixd, 1);
 
 }  // namespace bixd

@@ -18,7 +18,7 @@
 //==============================================================================
 
 #include <bixd/app/paths/Flow.h>
-#include <bixd/app/paths/RippleCalc.h>
+#include <bixd/app/paths/BixdCalc.h>
 #include <bixd/app/paths/Tuning.h>
 #include <bixd/app/paths/impl/FlowDebugInfo.h>
 #include <bixd/basics/Log.h>
@@ -28,8 +28,8 @@
 namespace bixd {
 namespace path {
 
-RippleCalc::Output
-RippleCalc::rippleCalculate(
+BixdCalc::Output
+BixdCalc::bixdCalculate(
     PaymentSandbox& view,
 
     // Compute paths using this ledger entry set.  Up to caller to actually
@@ -118,13 +118,13 @@ RippleCalc::rippleCalculate(
             JLOG(j.error()) << "Exception from flow: " << e.what();
 
             // return a tec so the tx is stored
-            path::RippleCalc::Output exceptResult;
+            path::BixdCalc::Output exceptResult;
             exceptResult.setResult(tecINTERNAL);
             return exceptResult;
         }
     }
 
-    j.debug() << "RippleCalc Result> "
+    j.debug() << "BixdCalc Result> "
               << " actualIn: " << flowOut.actualAmountIn
               << ", actualOut: " << flowOut.actualAmountOut
               << ", result: " << flowOut.result()

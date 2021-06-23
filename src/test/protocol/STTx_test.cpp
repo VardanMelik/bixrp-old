@@ -1815,7 +1815,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(STTx, ripple_app, bixd);
-BEAST_DEFINE_TESTSUITE(InnerObjectFormatsSerializer, ripple_app, bixd);
+BEAST_DEFINE_TESTSUITE(STTx, bixd_app, bixd);
+BEAST_DEFINE_TESTSUITE(InnerObjectFormatsSerializer, bixd_app, bixd);
 
 }  // namespace bixd

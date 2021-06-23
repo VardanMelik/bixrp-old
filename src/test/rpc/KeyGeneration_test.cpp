@@ -736,7 +736,7 @@ public:
     }
 
     void
-    testRippleLibEd25519()
+    testBixdLibEd25519()
     {
         testcase("bixd-lib encoded Ed25519 keys");
 
@@ -863,13 +863,13 @@ public:
         testKeypairForSignature(std::string("ed25519"), ed25519_strings);
         testKeypairForSignature(std::string("secp256k1"), strong_brain_strings);
 
-        testRippleLibEd25519();
+        testBixdLibEd25519();
 
         testKeypairForSignatureErrors();
     }
 };
 
-BEAST_DEFINE_TESTSUITE(WalletPropose, ripple_basics, bixd);
+BEAST_DEFINE_TESTSUITE(WalletPropose, bixd_basics, bixd);
 
 }  // namespace RPC
 }  // namespace bixd

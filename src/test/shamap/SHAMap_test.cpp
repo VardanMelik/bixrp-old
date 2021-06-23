@@ -424,7 +424,7 @@ class SHAMapPathProof_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(SHAMap, ripple_app, bixd);
-BEAST_DEFINE_TESTSUITE(SHAMapPathProof, ripple_app, bixd);
+BEAST_DEFINE_TESTSUITE(SHAMap, bixd_app, bixd);
+BEAST_DEFINE_TESTSUITE(SHAMapPathProof, bixd_app, bixd);
 }  // namespace tests
 }  // namespace bixd
