@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_SEED_H_INCLUDED
-#define RIPPLE_PROTOCOL_SEED_H_INCLUDED
+#ifndef BIXD_PROTOCOL_SEED_H_INCLUDED
+#define BIXD_PROTOCOL_SEED_H_INCLUDED
 
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/protocol/tokens.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/protocol/tokens.h>
 #include <boost/optional.hpp>
 #include <array>
 
-namespace ripple {
+namespace bixd {
 
 /** Seeds are used to generate deterministic secret keys. */
 class Seed
@@ -99,7 +99,7 @@ randomSeed();
 
 /** Generate a seed deterministically.
 
-    The algorithm is specific to Ripple:
+    The algorithm is specific to bixd:
 
         The seed is calculated as the first 128 bits
         of the SHA512-Half of the string text excluding
@@ -131,6 +131,6 @@ toBase58(Seed const& seed)
     return encodeBase58Token(TokenType::FamilySeed, seed.data(), seed.size());
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

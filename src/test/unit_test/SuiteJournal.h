@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -20,10 +20,10 @@
 #ifndef TEST_UNIT_TEST_SUITE_JOURNAL_H
 #define TEST_UNIT_TEST_SUITE_JOURNAL_H
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/beast/utility/Journal.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/beast/utility/Journal.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 // A Journal::Sink intended for use with the beast unit test framework.
@@ -138,6 +138,6 @@ public:
 };
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

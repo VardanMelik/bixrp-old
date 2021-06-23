@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TX_CREATETICKET_H_INCLUDED
-#define RIPPLE_TX_CREATETICKET_H_INCLUDED
+#ifndef BIXD_TX_CREATETICKET_H_INCLUDED
+#define BIXD_TX_CREATETICKET_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/tx/impl/Transactor.h>
-#include <ripple/basics/Log.h>
-#include <ripple/protocol/Indexes.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/tx/impl/Transactor.h>
+#include <bixd/basics/Log.h>
+#include <bixd/protocol/Indexes.h>
 
-namespace ripple {
+namespace bixd {
 
 class CreateTicket : public Transactor
 {
@@ -84,6 +84,6 @@ public:
     doApply() override;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

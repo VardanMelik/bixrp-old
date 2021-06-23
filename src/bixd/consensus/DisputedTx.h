@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_CONSENSUS_IMPL_DISPUTEDTX_H_INCLUDED
-#define RIPPLE_APP_CONSENSUS_IMPL_DISPUTEDTX_H_INCLUDED
+#ifndef BIXD_APP_CONSENSUS_IMPL_DISPUTEDTX_H_INCLUDED
+#define BIXD_APP_CONSENSUS_IMPL_DISPUTEDTX_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/consensus/ConsensusParms.h>
-#include <ripple/json/json_writer.h>
-#include <ripple/protocol/Serializer.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/consensus/ConsensusParms.h>
+#include <bixd/json/json_writer.h>
+#include <bixd/protocol/Serializer.h>
+#include <bixd/protocol/UintTypes.h>
 #include <boost/container/flat_map.hpp>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 /** A transaction discovered to be in dispute during consensus.
 
@@ -275,6 +275,6 @@ DisputedTx<Tx_t, NodeID_t>::getJson() const
     return ret;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

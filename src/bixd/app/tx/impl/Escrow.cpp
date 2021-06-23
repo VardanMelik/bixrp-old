@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/Escrow.h>
+#include <bixd/app/tx/impl/Escrow.h>
 
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/conditions/Condition.h>
-#include <ripple/conditions/Fulfillment.h>
-#include <ripple/ledger/ApplyView.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/conditions/Condition.h>
+#include <bixd/conditions/Fulfillment.h>
+#include <bixd/ledger/ApplyView.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/st.h>
 
 // During an EscrowFinish, the transaction must specify both
 // a condition and a fulfillment. We track whether that
@@ -40,7 +40,7 @@
 #define SF_CF_INVALID SF_PRIVATE5
 #define SF_CF_VALID SF_PRIVATE6
 
-namespace ripple {
+namespace bixd {
 
 /*
     Escrow
@@ -58,22 +58,22 @@ namespace ripple {
     expiration time, the BIXRP can only be returned to the sender.
 
     For more details on escrow, including examples, diagrams and more please
-    visit https://ripple.com/build/escrow/#escrow
+    visit https://bixd.com/build/escrow/#escrow
 
     For details on specific transactions, including fields and validation rules
     please see:
 
     `EscrowCreate`
     --------------
-        See: https://ripple.com/build/transactions/#escrowcreate
+        See: https://bixd.com/build/transactions/#escrowcreate
 
     `EscrowFinish`
     --------------
-        See: https://ripple.com/build/transactions/#escrowfinish
+        See: https://bixd.com/build/transactions/#escrowfinish
 
     `EscrowCancel`
     --------------
-        See: https://ripple.com/build/transactions/#escrowcancel
+        See: https://bixd.com/build/transactions/#escrowcancel
 */
 
 //------------------------------------------------------------------------------
@@ -134,7 +134,7 @@ EscrowCreate::preflight(PreflightContext const& ctx)
 
     if (auto const cb = ctx.tx[~sfCondition])
     {
-        using namespace ripple::cryptoconditions;
+        using namespace bixd::cryptoconditions;
 
         std::error_code ec;
 
@@ -286,7 +286,7 @@ EscrowCreate::doApply()
 static bool
 checkCondition(Slice f, Slice c)
 {
-    using namespace ripple::cryptoconditions;
+    using namespace bixd::cryptoconditions;
 
     std::error_code ec;
 
@@ -595,4 +595,4 @@ EscrowCancel::doApply()
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

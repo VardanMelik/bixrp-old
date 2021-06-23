@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,27 +17,27 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/AccountCurrencies.h>
-#include <ripple/basics/contract.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/STParsedJSON.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/RPCHandler.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/paths/AccountCurrencies.h>
+#include <bixd/basics/contract.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/STParsedJSON.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/RPCHandler.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/Tuning.h>
 #include <chrono>
 #include <condition_variable>
 #include <mutex>
 #include <test/jtx.h>
 #include <thread>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 //------------------------------------------------------------------------------
@@ -694,7 +694,7 @@ public:
     void
     issues_path_negative_ripple_client_issue_23_smaller()
     {
-        testcase("path negative: ripple-client issue #23: smaller");
+        testcase("path negative: bixd-client issue #23: smaller");
         using namespace jtx;
         Env env(*this);
         env.fund(BIXRP(10000), "alice", "bob", "carol", "dan");
@@ -713,7 +713,7 @@ public:
     void
     issues_path_negative_ripple_client_issue_23_larger()
     {
-        testcase("path negative: ripple-client issue #23: larger");
+        testcase("path negative: bixd-client issue #23: larger");
         using namespace jtx;
         Env env(*this);
         env.fund(BIXRP(10000), "alice", "bob", "carol", "dan", "edward");
@@ -1075,7 +1075,7 @@ public:
         env(pay(G1BS, A1, G1BS["HKD"](1000)));
         env(pay(G2SW, A2, G2SW["HKD"](1000)));
         // SnapSwap wants to be able to set trust line quality settings so they
-        // can charge a fee when transactions ripple across. Liquidity
+        // can charge a fee when transactions bixd across. Liquidity
         // provider, via trusting/holding both accounts
         env(pay(G1BS, M1, G1BS["HKD"](1200)));
         env(pay(G2SW, M1, G2SW["HKD"](5000)));
@@ -1400,7 +1400,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Path, app, ripple);
+BEAST_DEFINE_TESTSUITE(Path, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/consensus/RCLCensorshipDetector.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/app/consensus/RCLCensorshipDetector.h>
+#include <bixd/beast/unit_test.h>
 #include <algorithm>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class RCLCensorshipDetector_test : public beast::unit_test::suite
@@ -96,6 +96,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(RCLCensorshipDetector, app, ripple);
+BEAST_DEFINE_TESTSUITE(RCLCensorshipDetector, app, bixd);
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/resource/Charge.h>
+#include <bixd/resource/Charge.h>
 #include <sstream>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 Charge::Charge(value_type cost, std::string const& label)
@@ -68,4 +68,4 @@ Charge::operator!=(Charge const& c) const
 }
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd

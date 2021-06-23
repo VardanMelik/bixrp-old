@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_SERVERHANDLERIMP_H_INCLUDED
-#define RIPPLE_RPC_SERVERHANDLERIMP_H_INCLUDED
+#ifndef BIXD_RPC_SERVERHANDLERIMP_H_INCLUDED
+#define BIXD_RPC_SERVERHANDLERIMP_H_INCLUDED
 
-#include <ripple/app/main/CollectorManager.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/json/Output.h>
-#include <ripple/rpc/RPCHandler.h>
-#include <ripple/rpc/impl/WSInfoSub.h>
-#include <ripple/server/Server.h>
-#include <ripple/server/Session.h>
-#include <ripple/server/WSSession.h>
+#include <bixd/app/main/CollectorManager.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/json/Output.h>
+#include <bixd/rpc/RPCHandler.h>
+#include <bixd/rpc/impl/WSInfoSub.h>
+#include <bixd/server/Server.h>
+#include <bixd/server/Session.h>
+#include <bixd/server/WSSession.h>
 #include <boost/beast/core/tcp_stream.hpp>
 #include <boost/beast/ssl/ssl_stream.hpp>
 #include <boost/utility/string_view.hpp>
@@ -35,7 +35,7 @@
 #include <mutex>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 inline bool
 operator<(Port const& lhs, Port const& rhs)
@@ -198,6 +198,6 @@ private:
     statusResponse(http_request_type const& request) const;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

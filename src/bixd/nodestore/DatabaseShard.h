@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2017 Ripple Labs Inc.
+    Copyright (c) 2012, 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NODESTORE_DATABASESHARD_H_INCLUDED
-#define RIPPLE_NODESTORE_DATABASESHARD_H_INCLUDED
+#ifndef BIXD_NODESTORE_DATABASESHARD_H_INCLUDED
+#define BIXD_NODESTORE_DATABASESHARD_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/basics/RangeSet.h>
-#include <ripple/nodestore/Database.h>
-#include <ripple/nodestore/Types.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/basics/RangeSet.h>
+#include <bixd/nodestore/Database.h>
+#include <bixd/nodestore/Types.h>
 
 #include <boost/optional.hpp>
 
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 /** A collection of historical shards
@@ -196,6 +196,6 @@ make_ShardStore(
     beast::Journal j);
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

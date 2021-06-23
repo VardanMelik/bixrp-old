@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2018 Ripple Labs Inc.
+    Copyright (c) 2012-2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -54,12 +54,12 @@
 
 */
 
-#ifndef RIPPLE_BASICS_BASE64_H_INCLUDED
-#define RIPPLE_BASICS_BASE64_H_INCLUDED
+#ifndef BIXD_BASICS_BASE64_H_INCLUDED
+#define BIXD_BASICS_BASE64_H_INCLUDED
 
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 std::string
 base64_encode(std::uint8_t const* data, std::size_t len);
@@ -74,6 +74,6 @@ base64_encode(std::string const& s)
 std::string
 base64_decode(std::string const& data);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

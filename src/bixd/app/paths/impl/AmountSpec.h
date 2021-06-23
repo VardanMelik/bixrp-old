@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PATH_IMPL_AMOUNTSPEC_H_INCLUDED
-#define RIPPLE_PATH_IMPL_AMOUNTSPEC_H_INCLUDED
+#ifndef BIXD_PATH_IMPL_AMOUNTSPEC_H_INCLUDED
+#define BIXD_PATH_IMPL_AMOUNTSPEC_H_INCLUDED
 
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/protocol/STAmount.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/protocol/STAmount.h>
 
-namespace ripple {
+namespace bixd {
 
 struct AmountSpec
 {
@@ -209,6 +209,6 @@ toAmountSpec(EitherAmount const& ea, boost::optional<Currency> const& c)
     return r;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

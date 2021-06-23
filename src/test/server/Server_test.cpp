@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/make_SSLContext.h>
-#include <ripple/beast/rfc2616.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/server/Server.h>
-#include <ripple/server/Session.h>
+#include <bixd/basics/make_SSLContext.h>
+#include <bixd/beast/rfc2616.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/server/Server.h>
+#include <bixd/server/Session.h>
 #include <boost/asio.hpp>
 #include <boost/beast/core/tcp_stream.hpp>
 #include <boost/beast/ssl/ssl_stream.hpp>
@@ -36,7 +36,7 @@
 #include <test/unit_test/SuiteJournal.h>
 #include <thread>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 using socket_type = boost::beast::tcp_stream;
@@ -510,7 +510,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Server, http, ripple);
+BEAST_DEFINE_TESTSUITE(Server, http, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

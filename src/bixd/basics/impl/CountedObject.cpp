@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/basics/CountedObject.h>
+#include <bixd/basics/CountedObject.h>
 #include <algorithm>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 CountedObjects&
 CountedObjects::getInstance() noexcept
@@ -55,4 +55,4 @@ CountedObjects::getCounts(int minimumThreshold) const
     return counts;
 }
 
-}  // namespace ripple
+}  // namespace bixd

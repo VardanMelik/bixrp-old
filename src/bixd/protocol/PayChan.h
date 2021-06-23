@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_PAYCHAN_H_INCLUDED
-#define RIPPLE_PROTOCOL_PAYCHAN_H_INCLUDED
+#ifndef BIXD_PROTOCOL_PAYCHAN_H_INCLUDED
+#define BIXD_PROTOCOL_PAYCHAN_H_INCLUDED
 
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/Serializer.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/Serializer.h>
 
-namespace ripple {
+namespace bixd {
 
 inline void
 serializePayChanAuthorization(
@@ -38,6 +38,6 @@ serializePayChanAuthorization(
     msg.add64(amt.drops());
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

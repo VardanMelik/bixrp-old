@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CRYPTO_EC_KEY_H_INCLUDED
-#define RIPPLE_CRYPTO_EC_KEY_H_INCLUDED
+#ifndef BIXD_CRYPTO_EC_KEY_H_INCLUDED
+#define BIXD_CRYPTO_EC_KEY_H_INCLUDED
 
-#include <ripple/basics/base_uint.h>
+#include <bixd/basics/base_uint.h>
 #include <cstdint>
 
-namespace ripple {
+namespace bixd {
 namespace openssl {
 
 class ec_key
@@ -79,6 +79,6 @@ private:
 };
 
 }  // namespace openssl
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd: link
-    Copyright (c) 2012-19 Ripple Labs Inc.
+    Copyright (c) 2012-19 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TXQ_H_INCLUDED
-#define RIPPLE_TXQ_H_INCLUDED
+#ifndef BIXD_TXQ_H_INCLUDED
+#define BIXD_TXQ_H_INCLUDED
 
 #include <bixd/app/tx/applySteps.h>
 #include <bixd/ledger/ApplyView.h>
@@ -29,7 +29,7 @@
 #include <boost/circular_buffer.hpp>
 #include <boost/intrusive/set.hpp>
 
-namespace ripple {
+namespace bixd {
 
 class Application;
 class Config;
@@ -841,6 +841,6 @@ toFeeLevel(BIXRPAmount const& drops, BIXRPAmount const& baseFee)
     return FeeLevel64(std::numeric_limits<std::uint64_t>::max());
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

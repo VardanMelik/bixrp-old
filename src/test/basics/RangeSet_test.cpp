@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/RangeSet.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/RangeSet.h>
+#include <bixd/beast/unit_test.h>
 
-namespace ripple {
+namespace bixd {
 class RangeSet_test : public beast::unit_test::suite
 {
 public:
@@ -145,6 +145,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(RangeSet, ripple_basics, ripple);
+BEAST_DEFINE_TESTSUITE(RangeSet, ripple_basics, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

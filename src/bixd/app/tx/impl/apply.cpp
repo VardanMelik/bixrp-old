@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/app/tx/applySteps.h>
-#include <ripple/basics/Log.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/app/tx/applySteps.h>
+#include <bixd/basics/Log.h>
+#include <bixd/protocol/Feature.h>
 
-namespace ripple {
+namespace bixd {
 
 // These are the same flags defined as SF_PRIVATE1-4 in HashRouter.h
 #define SF_SIGBAD SF_PRIVATE1     // Signature is bad
@@ -165,4 +165,4 @@ applyTransaction(
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/beast/unit_test.h>
 
-namespace ripple {
+namespace bixd {
 
 class IOUAmount_test : public beast::unit_test::suite
 {
@@ -251,7 +251,7 @@ public:
     IOUAmount big(maxMantissa, maxExponent);
     except([&] { mulRatio(big, 2, 0, true); });
 }
-}  // namespace ripple
+}  // namespace bixd
 
 //--------------------------------------------------------------------------
 
@@ -268,6 +268,6 @@ run() override
 }
 ;
 
-BEAST_DEFINE_TESTSUITE(IOUAmount, protocol, ripple);
+BEAST_DEFINE_TESTSUITE(IOUAmount, protocol, bixd);
 
-}  // ripple
+}  // bixd

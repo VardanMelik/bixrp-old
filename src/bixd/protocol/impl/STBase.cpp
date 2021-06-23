@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/STBase.h>
+#include <bixd/protocol/STBase.h>
 #include <boost/checked_delete.hpp>
 #include <cassert>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 STBase::STBase() : fName(&sfGeneric)
 {
@@ -137,4 +137,4 @@ operator<<(std::ostream& out, const STBase& t)
     return out << t.getFullText();
 }
 
-}  // namespace ripple
+}  // namespace bixd

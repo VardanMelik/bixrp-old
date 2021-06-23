@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_REPORTING_ETLSOURCE_H_INCLUDED
-#define RIPPLE_APP_REPORTING_ETLSOURCE_H_INCLUDED
-#include <ripple/app/main/Application.h>
-#include <ripple/app/reporting/ETLHelpers.h>
-#include <ripple/protocol/STLedgerEntry.h>
-#include <ripple/rpc/Context.h>
+#ifndef BIXD_APP_REPORTING_ETLSOURCE_H_INCLUDED
+#define BIXD_APP_REPORTING_ETLSOURCE_H_INCLUDED
+#include <bixd/app/main/Application.h>
+#include <bixd/app/reporting/ETLHelpers.h>
+#include <bixd/protocol/STLedgerEntry.h>
+#include <bixd/rpc/Context.h>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/beast/core.hpp>
@@ -32,7 +32,7 @@
 #include "org/xrpl/rpc/v1/xrp_ledger.grpc.pb.h"
 #include <grpcpp/grpcpp.h>
 
-namespace ripple {
+namespace bixd {
 
 class ReportingETL;
 
@@ -431,5 +431,5 @@ private:
     execute(Func f, uint32_t ledgerSequence);
 };
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_IMPL_STRANDFLOW_H_INCLUDED
-#define RIPPLE_APP_PATHS_IMPL_STRANDFLOW_H_INCLUDED
+#ifndef BIXD_APP_PATHS_IMPL_STRANDFLOW_H_INCLUDED
+#define BIXD_APP_PATHS_IMPL_STRANDFLOW_H_INCLUDED
 
-#include <ripple/app/paths/Credit.h>
-#include <ripple/app/paths/Flow.h>
-#include <ripple/app/paths/impl/AmountSpec.h>
-#include <ripple/app/paths/impl/FlatSets.h>
-#include <ripple/app/paths/impl/FlowDebugInfo.h>
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/app/paths/Credit.h>
+#include <bixd/app/paths/Flow.h>
+#include <bixd/app/paths/impl/AmountSpec.h>
+#include <bixd/app/paths/impl/FlatSets.h>
+#include <bixd/app/paths/impl/FlowDebugInfo.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/protocol/Feature.h>
 
 #include <boost/container/flat_set.hpp>
 
@@ -38,7 +38,7 @@
 #include <numeric>
 #include <sstream>
 
-namespace ripple {
+namespace bixd {
 
 /** Result of flow() execution of a single Strand. */
 template <class TInAmt, class TOutAmt>
@@ -91,7 +91,7 @@ struct StrandResult
    Request `out` amount from a strand
 
    @param baseView Trust lines and balances
-   @param strand Steps of Accounts to ripple through and offer books to use
+   @param strand Steps of Accounts to bixd through and offer books to use
    @param maxIn Max amount of input allowed
    @param out Amount of output requested from the strand
    @param j Journal to write log messages to
@@ -481,7 +481,7 @@ public:
    from least expensive to most expensive
 
    @param baseView Trust lines and balances
-   @param strands Each strand contains the steps of accounts to ripple through
+   @param strands Each strand contains the steps of accounts to bixd through
                   and offer books to use
    @param outReq Amount of output requested from the strand
    @param partialPayment If true allow less than the full payment
@@ -776,6 +776,6 @@ flow(
     return {actualIn, actualOut, std::move(sb), std::move(ofrsToRmOnFail)};
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

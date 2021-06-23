@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <test/jtx.h>
 
 #include <boost/container/flat_set.hpp>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 
@@ -601,7 +601,7 @@ public:
         testAccountDelete();
     }
 };
-BEAST_DEFINE_TESTSUITE(AccountTx, app, ripple);
+BEAST_DEFINE_TESTSUITE(AccountTx, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

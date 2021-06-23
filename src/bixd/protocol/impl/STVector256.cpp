@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/protocol/STVector256.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/protocol/STVector256.h>
+#include <bixd/protocol/jss.h>
 
-namespace ripple {
+namespace bixd {
 
 STVector256::STVector256(SerialIter& sit, SField const& name) : STBase(name)
 {
@@ -66,4 +66,4 @@ Json::Value STVector256::getJson(JsonOptions) const
     return ret;
 }
 
-}  // namespace ripple
+}  // namespace bixd

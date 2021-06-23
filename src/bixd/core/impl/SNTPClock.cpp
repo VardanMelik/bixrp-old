@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/core/impl/SNTPClock.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/core/impl/SNTPClock.h>
 #include <boost/asio.hpp>
 #include <boost/optional.hpp>
 #include <cmath>
@@ -30,7 +30,7 @@
 #include <mutex>
 #include <thread>
 
-namespace ripple {
+namespace bixd {
 
 static uint8_t SNTPQueryData[48] = {
     0x1B, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -488,4 +488,4 @@ make_SNTPClock(beast::Journal j)
     return std::make_unique<SNTPClientImp>(j);
 }
 
-}  // namespace ripple
+}  // namespace bixd

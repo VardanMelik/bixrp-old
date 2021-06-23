@@ -17,7 +17,7 @@ import "org/xrpl/rpc/v1/account.proto";
 
 message CancelAfter
 {
-    // time in seconds since Ripple epoch
+    // time in seconds since bixd epoch
 	uint32 value = 1;
 }
 
@@ -28,13 +28,13 @@ message ClearFlag
 
 message CloseTime
 {
-    // time in seconds since Ripple epoch
+    // time in seconds since bixd epoch
 	uint32 value = 1;
 }
 
 message Date
 {
-    // time in seconds since Ripple epoch
+    // time in seconds since bixd epoch
 	uint32 value = 1;
 }
 
@@ -45,13 +45,13 @@ message DestinationTag
 
 message Expiration
 {
-    // time in seconds since Ripple epoch
+    // time in seconds since bixd epoch
 	uint32 value = 1;
 }
 
 message FinishAfter
 {
-    // time in seconds since Ripple epoch
+    // time in seconds since bixd epoch
 	uint32 value = 1;
 }
 

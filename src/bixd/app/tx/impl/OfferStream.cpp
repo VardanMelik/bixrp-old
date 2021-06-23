@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/OfferStream.h>
-#include <ripple/basics/Log.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/app/tx/impl/OfferStream.h>
+#include <bixd/basics/Log.h>
+#include <bixd/protocol/Feature.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace {
 bool
@@ -383,4 +383,4 @@ template class TOfferStreamBase<STAmount, STAmount>;
 template class TOfferStreamBase<IOUAmount, IOUAmount>;
 template class TOfferStreamBase<BIXRPAmount, IOUAmount>;
 template class TOfferStreamBase<IOUAmount, BIXRPAmount>;
-}  // namespace ripple
+}  // namespace bixd

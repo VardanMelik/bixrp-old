@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CONSENSUS_VALIDATIONS_H_INCLUDED
-#define RIPPLE_CONSENSUS_VALIDATIONS_H_INCLUDED
+#ifndef BIXD_CONSENSUS_VALIDATIONS_H_INCLUDED
+#define BIXD_CONSENSUS_VALIDATIONS_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/container/aged_container_utility.h>
-#include <ripple/beast/container/aged_unordered_map.h>
-#include <ripple/consensus/LedgerTrie.h>
-#include <ripple/protocol/PublicKey.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/container/aged_container_utility.h>
+#include <bixd/beast/container/aged_unordered_map.h>
+#include <bixd/consensus/LedgerTrie.h>
+#include <bixd/protocol/PublicKey.h>
 #include <boost/optional.hpp>
 #include <mutex>
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /** Timing parameters to control validation staleness and expiration.
 
@@ -1098,5 +1098,5 @@ public:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_SHAMAPNODEID_H_INCLUDED
-#define RIPPLE_SHAMAP_SHAMAPNODEID_H_INCLUDED
+#ifndef BIXD_SHAMAP_SHAMAPNODEID_H_INCLUDED
+#define BIXD_SHAMAP_SHAMAPNODEID_H_INCLUDED
 
-#include <ripple/basics/CountedObject.h>
-#include <ripple/basics/base_uint.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/basics/base_uint.h>
 #include <optional>
 #include <ostream>
 #include <string>
 #include <tuple>
 
-namespace ripple {
+namespace bixd {
 
 /** Identifies a node inside a SHAMap */
 class SHAMapNodeID : public CountedObject<SHAMapNodeID>
@@ -158,6 +158,6 @@ deserializeSHAMapNodeID(std::string const& s)
 [[nodiscard]] unsigned int
 selectBranch(SHAMapNodeID const& id, uint256 const& hash);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

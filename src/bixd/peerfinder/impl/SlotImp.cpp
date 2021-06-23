@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/peerfinder/PeerfinderManager.h>
-#include <ripple/peerfinder/impl/SlotImp.h>
-#include <ripple/peerfinder/impl/Tuning.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
+#include <bixd/peerfinder/impl/SlotImp.h>
+#include <bixd/peerfinder/impl/Tuning.h>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 SlotImp::SlotImp(
@@ -135,4 +135,4 @@ SlotImp::recent_t::expire()
 }
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd

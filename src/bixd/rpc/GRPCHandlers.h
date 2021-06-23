@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_GRPCHANDLER_H_INCLUDED
-#define RIPPLE_RPC_GRPCHANDLER_H_INCLUDED
+#ifndef BIXD_RPC_GRPCHANDLER_H_INCLUDED
+#define BIXD_RPC_GRPCHANDLER_H_INCLUDED
 
-#include <ripple/rpc/Context.h>
+#include <bixd/rpc/Context.h>
 #include <grpcpp/grpcpp.h>
 #include <org/xrpl/rpc/v1/xrp_ledger.pb.h>
 
-namespace ripple {
+namespace bixd {
 
 /*
  * These handlers are for gRPC. They each take in a protobuf message that is
@@ -71,6 +71,6 @@ std::pair<org::xrpl::rpc::v1::GetLedgerDiffResponse, grpc::Status>
 doLedgerDiffGrpc(
     RPC::GRPCContext<org::xrpl::rpc::v1::GetLedgerDiffRequest>& context);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

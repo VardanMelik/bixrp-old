@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/nodestore/impl/EncodedBlob.h>
+#include <bixd/nodestore/impl/EncodedBlob.h>
 #include <cstring>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 void
@@ -39,4 +39,4 @@ EncodedBlob::prepare(std::shared_ptr<NodeObject> const& object)
 }
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

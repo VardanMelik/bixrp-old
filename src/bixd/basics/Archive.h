@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2018 Ripple Labs Inc.
+    Copyright (c) 2012, 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_ARCHIVE_H_INCLUDED
-#define RIPPLE_BASICS_ARCHIVE_H_INCLUDED
+#ifndef BIXD_BASICS_ARCHIVE_H_INCLUDED
+#define BIXD_BASICS_ARCHIVE_H_INCLUDED
 
 #include <boost/filesystem.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /** Extract a tar archive compressed with lz4
 
@@ -36,6 +36,6 @@ extractTarLz4(
     boost::filesystem::path const& src,
     boost::filesystem::path const& dst);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

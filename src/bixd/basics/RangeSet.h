@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_RANGESET_H_INCLUDED
-#define RIPPLE_BASICS_RANGESET_H_INCLUDED
+#ifndef BIXD_BASICS_RANGESET_H_INCLUDED
+#define BIXD_BASICS_RANGESET_H_INCLUDED
 
-#include <ripple/beast/core/LexicalCast.h>
+#include <bixd/beast/core/LexicalCast.h>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/icl/closed_interval.hpp>
@@ -29,7 +29,7 @@
 
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 /** A closed interval over the domain T.
 
@@ -98,7 +98,7 @@ template <class T>
 std::string
 to_string(RangeSet<T> const& rs)
 {
-    using ripple::to_string;
+    using bixd::to_string;
 
     if (rs.empty())
         return "empty";
@@ -192,6 +192,6 @@ prevMissing(RangeSet<T> const& rs, T t, T minVal = 0)
     return boost::icl::last(tgt);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

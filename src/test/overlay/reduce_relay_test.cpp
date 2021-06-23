@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2020 Ripple Labs Inc.
+    Copyright 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,14 +16,14 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#include <ripple/basics/random.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/overlay/Message.h>
-#include <ripple/overlay/Peer.h>
-#include <ripple/overlay/Slot.h>
-#include <ripple/overlay/impl/Handshake.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple.pb.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/overlay/Message.h>
+#include <bixd/overlay/Peer.h>
+#include <bixd/overlay/Slot.h>
+#include <bixd/overlay/impl/Handshake.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd.pb.h>
 #include <test/jtx/Env.h>
 
 #include <boost/optional.hpp>
@@ -32,7 +32,7 @@
 #include <numeric>
 #include <optional>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 
@@ -1497,7 +1497,7 @@ vp_squelched=1
                     boost::asio::ip::address::from_string("172.1.1.100");
 
                 setEnv(outboundEnable);
-                auto request = ripple::makeRequest(
+                auto request = bixd::makeRequest(
                     true,
                     env_.app().config().COMPRESSION,
                     env_.app().config().VP_REDUCE_RELAY_ENABLE,
@@ -1515,7 +1515,7 @@ vp_squelched=1
                 BEAST_EXPECT(!(peerEnabled ^ inboundEnabled));
 
                 setEnv(inboundEnable);
-                auto http_resp = ripple::makeResponse(
+                auto http_resp = bixd::makeResponse(
                     true,
                     http_request,
                     addr,
@@ -1579,9 +1579,9 @@ class reduce_relay_simulate_test : public reduce_relay_test
     }
 };
 
-BEAST_DEFINE_TESTSUITE(reduce_relay, ripple_data, ripple);
-BEAST_DEFINE_TESTSUITE_MANUAL(reduce_relay_simulate, ripple_data, ripple);
+BEAST_DEFINE_TESTSUITE(reduce_relay, ripple_data, bixd);
+BEAST_DEFINE_TESTSUITE_MANUAL(reduce_relay_simulate, ripple_data, bixd);
 
 }  // namespace test
 
-}  // namespace ripple
+}  // namespace bixd

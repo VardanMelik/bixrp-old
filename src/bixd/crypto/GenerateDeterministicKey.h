@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -22,13 +22,13 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RIPPLE_CRYPTO_GENERATEDETERMINISTICKEY_H_INCLUDED
-#define RIPPLE_CRYPTO_GENERATEDETERMINISTICKEY_H_INCLUDED
+#ifndef BIXD_CRYPTO_GENERATEDETERMINISTICKEY_H_INCLUDED
+#define BIXD_CRYPTO_GENERATEDETERMINISTICKEY_H_INCLUDED
 
-#include <ripple/basics/Blob.h>
-#include <ripple/basics/base_uint.h>
+#include <bixd/basics/Blob.h>
+#include <bixd/basics/base_uint.h>
 
-namespace ripple {
+namespace bixd {
 
 Blob
 generateRootDeterministicPublicKey(uint128 const& seed);
@@ -42,6 +42,6 @@ generatePublicDeterministicKey(Blob const& generator, int n);
 uint256
 generatePrivateDeterministicKey(Blob const& family, uint128 const& seed, int n);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

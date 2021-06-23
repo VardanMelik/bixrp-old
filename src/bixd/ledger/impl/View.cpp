@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/basics/contract.h>
-#include <ripple/ledger/BookDirs.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/Quality.h>
-#include <ripple/protocol/st.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/basics/contract.h>
+#include <bixd/ledger/BookDirs.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/Quality.h>
+#include <bixd/protocol/st.h>
 #include <boost/algorithm/string.hpp>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 
 //------------------------------------------------------------------------------
 //
@@ -741,10 +741,10 @@ trustCreate(
     const bool bSrcHigh,
     AccountID const& uSrcAccountID,
     AccountID const& uDstAccountID,
-    uint256 const& uIndex,      // --> ripple state entry
+    uint256 const& uIndex,      // --> bixd state entry
     SLE::ref sleAccount,        // --> the account being set.
     const bool bAuth,           // --> authorize account.
-    const bool bNoRipple,       // --> others cannot ripple through
+    const bool bNoRipple,       // --> others cannot bixd through
     const bool bFreeze,         // --> funds cannot leave
     STAmount const& saBalance,  // --> balance of account being set.
                                 // Issuer should be noAccount()
@@ -761,7 +761,7 @@ trustCreate(
     auto const& uLowAccountID = !bSrcHigh ? uSrcAccountID : uDstAccountID;
     auto const& uHighAccountID = bSrcHigh ? uSrcAccountID : uDstAccountID;
 
-    auto const sleRippleState = std::make_shared<SLE>(ltRIPPLE_STATE, uIndex);
+    auto const sleRippleState = std::make_shared<SLE>(ltBIXD_STATE, uIndex);
     view.insert(sleRippleState);
 
     auto lowNode = dirAdd(
@@ -845,7 +845,7 @@ trustCreate(
     sleRippleState->setFieldU32(sfFlags, uFlags);
     adjustOwnerCount(view, sleAccount, 1, j);
 
-    // ONLY: Create ripple balance.
+    // ONLY: Create bixd balance.
     sleRippleState->setFieldAmount(
         sfBalance, bSetHigh ? -saBalance : saBalance);
 
@@ -867,7 +867,7 @@ trustDelete(
     std::uint64_t uLowNode = sleRippleState->getFieldU64(sfLowNode);
     std::uint64_t uHighNode = sleRippleState->getFieldU64(sfHighNode);
 
-    JLOG(j.trace()) << "trustDelete: Deleting ripple line: low";
+    JLOG(j.trace()) << "trustDelete: Deleting bixd line: low";
 
     if (!view.dirRemove(
             keylet::ownerDir(uLowAccountID),
@@ -878,7 +878,7 @@ trustDelete(
         return tefBAD_LEDGER;
     }
 
-    JLOG(j.trace()) << "trustDelete: Deleting ripple line: high";
+    JLOG(j.trace()) << "trustDelete: Deleting bixd line: high";
 
     if (!view.dirRemove(
             keylet::ownerDir(uHighAccountID),
@@ -889,7 +889,7 @@ trustDelete(
         return tefBAD_LEDGER;
     }
 
-    JLOG(j.trace()) << "trustDelete: Deleting ripple line: state";
+    JLOG(j.trace()) << "trustDelete: Deleting bixd line: state";
     view.erase(sleRippleState);
 
     return tesSUCCESS;
@@ -1028,7 +1028,7 @@ rippleCredit(
 
         // Want to reflect balance to zero even if we are deleting line.
         sleRippleState->setFieldAmount(sfBalance, saBalance);
-        // ONLY: Adjust ripple balance.
+        // ONLY: Adjust bixd balance.
 
         if (bDelete)
         {
@@ -1491,4 +1491,4 @@ transferBIXRP(
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

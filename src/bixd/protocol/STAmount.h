@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STAMOUNT_H_INCLUDED
-#define RIPPLE_PROTOCOL_STAMOUNT_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STAMOUNT_H_INCLUDED
+#define BIXD_PROTOCOL_STAMOUNT_H_INCLUDED
 
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/LocalValue.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/protocol/Issue.h>
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/STBase.h>
-#include <ripple/protocol/Serializer.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/LocalValue.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/protocol/Issue.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/STBase.h>
+#include <bixd/protocol/Serializer.h>
 
-namespace ripple {
+namespace bixd {
 
 // Internal form:
 // 1: If amount is zero, then value is zero and offset is -100
@@ -498,6 +498,6 @@ private:
     bool saved_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/json/json_value.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/ledger/View.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/json/json_value.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/ledger/View.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/Tuning.h>
 
-namespace ripple {
+namespace bixd {
 
 void
 appendOfferJson(std::shared_ptr<SLE const> const& offer, Json::Value& offers)
@@ -157,4 +157,4 @@ doAccountOffers(RPC::JsonContext& context)
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

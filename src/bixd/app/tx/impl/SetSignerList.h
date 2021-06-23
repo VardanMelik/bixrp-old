@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TX_SETSIGNERLIST_H_INCLUDED
-#define RIPPLE_TX_SETSIGNERLIST_H_INCLUDED
+#ifndef BIXD_TX_SETSIGNERLIST_H_INCLUDED
+#define BIXD_TX_SETSIGNERLIST_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/tx/impl/SignerEntries.h>
-#include <ripple/app/tx/impl/Transactor.h>
-#include <ripple/basics/Log.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/STArray.h>
-#include <ripple/protocol/STObject.h>
-#include <ripple/protocol/STTx.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/tx/impl/SignerEntries.h>
+#include <bixd/app/tx/impl/Transactor.h>
+#include <bixd/basics/Log.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/STArray.h>
+#include <bixd/protocol/STObject.h>
+#include <bixd/protocol/STTx.h>
 #include <algorithm>
 #include <cstdint>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /**
 See the README.md for an overview of the SetSignerList transaction that
@@ -95,6 +95,6 @@ private:
         const;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

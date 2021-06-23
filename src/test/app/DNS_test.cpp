@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2020 Ripple Labs Inc.
+    Copyright 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/detail/WorkSSL.h>
-#include <ripple/basics/StringUtilities.h>
+#include <bixd/app/misc/detail/WorkSSL.h>
+#include <bixd/basics/StringUtilities.h>
 #include <test/jtx.h>
 
 #include <condition_variable>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class DNS_test : public beast::unit_test::suite
 {
     using endpoint_type = boost::asio::ip::tcp::endpoint;
     using error_code = boost::system::error_code;
-    std::weak_ptr<ripple::detail::Work> work_;
+    std::weak_ptr<bixd::detail::Work> work_;
     endpoint_type lastEndpoint_{};
     parsedURL pUrl_;
     std::string port_;
@@ -50,14 +50,14 @@ public:
     {
         auto onFetch = [&](error_code const& errorCode,
                            endpoint_type const& endpoint,
-                           ripple::detail::response_type&& resp) {
+                           bixd::detail::response_type&& resp) {
             BEAST_EXPECT(!errorCode);
             lastEndpoint_ = endpoint;
             resolved_[endpoint.address().to_string()]++;
             cv_.notify_all();
         };
 
-        auto sp = std::make_shared<ripple::detail::WorkSSL>(
+        auto sp = std::make_shared<bixd::detail::WorkSSL>(
             pUrl_.domain,
             pUrl_.path,
             port_,
@@ -93,7 +93,7 @@ public:
     {
         std::string url = arg();
         if (url == "")
-            url = "https://vl.ripple.com";
+            url = "https://vl.bixd.com";
         BEAST_EXPECT(parseUrl(pUrl_, url));
         port_ = pUrl_.port ? std::to_string(*pUrl_.port) : "443";
     }
@@ -126,7 +126,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(DNS, ripple_data, ripple, 20);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(DNS, ripple_data, bixd, 20);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

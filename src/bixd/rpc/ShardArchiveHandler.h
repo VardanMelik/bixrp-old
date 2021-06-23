@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_SHARDARCHIVEHANDLER_H_INCLUDED
-#define RIPPLE_RPC_SHARDARCHIVEHANDLER_H_INCLUDED
+#ifndef BIXD_RPC_SHARDARCHIVEHANDLER_H_INCLUDED
+#define BIXD_RPC_SHARDARCHIVEHANDLER_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/net/DatabaseDownloader.h>
-#include <ripple/rpc/ShardVerificationScheduler.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/net/DatabaseDownloader.h>
+#include <bixd/rpc/ShardVerificationScheduler.h>
 
 #include <boost/asio/basic_waitable_timer.hpp>
 #include <boost/filesystem.hpp>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 class ShardArchiveHandler_test;
 }
@@ -165,6 +165,6 @@ public:
 };
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,7 +16,7 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#include <ripple/net/RegisterSSLCerts.h>
+#include <bixd/net/RegisterSSLCerts.h>
 #include <boost/predef.h>
 
 #if BOOST_OS_WINDOWS
@@ -29,7 +29,7 @@
 #include <wincrypt.h>
 #endif
 
-namespace ripple {
+namespace bixd {
 
 void
 registerSSLCerts(
@@ -105,7 +105,7 @@ registerSSLCerts(
 #endif
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 // There is a very unpleasant interaction between <wincrypt> and
 // openssl x509 types (namely the former has macros that stomp

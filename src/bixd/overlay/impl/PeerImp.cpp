@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,28 +17,28 @@
 */
 //==============================================================================
 
-#include <ripple/app/consensus/RCLValidations.h>
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/InboundTransactions.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/basics/UptimeClock.h>
-#include <ripple/basics/base64.h>
-#include <ripple/basics/random.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/beast/core/SemanticVersion.h>
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/overlay/Cluster.h>
-#include <ripple/overlay/impl/PeerImp.h>
-#include <ripple/overlay/impl/Tuning.h>
-#include <ripple/overlay/predicates.h>
-#include <ripple/protocol/digest.h>
+#include <bixd/app/consensus/RCLValidations.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/InboundTransactions.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/basics/UptimeClock.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/random.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/beast/core/SemanticVersion.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/overlay/Cluster.h>
+#include <bixd/overlay/impl/PeerImp.h>
+#include <bixd/overlay/impl/Tuning.h>
+#include <bixd/overlay/predicates.h>
+#include <bixd/protocol/digest.h>
 
 #include <boost/algorithm/clamp.hpp>
 #include <boost/algorithm/string.hpp>
@@ -53,7 +53,7 @@
 
 using namespace std::chrono_literals;
 
-namespace ripple {
+namespace bixd {
 
 namespace {
 /** The threshold above which we treat a peer connection as high latency */
@@ -3198,4 +3198,4 @@ PeerImp::Metrics::total_bytes() const
     return totalBytes_;
 }
 
-}  // namespace ripple
+}  // namespace bixd

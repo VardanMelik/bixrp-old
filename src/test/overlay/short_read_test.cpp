@@ -2,7 +2,7 @@
 /*
     This file is part of bixd
 
-    Copyright 2014 Ripple Labs Inc.
+    Copyright 2014 bixd Labs Inc.
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
     copyright notice and this permission notice appear in all copies.
@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/basics/make_SSLContext.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/make_SSLContext.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/beast/unit_test.h>
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
 #include <boost/optional.hpp>
@@ -32,7 +32,7 @@
 #include <thread>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 /*
 
 Findings from the test:
@@ -653,6 +653,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(short_read, overlay, ripple);
+BEAST_DEFINE_TESTSUITE(short_read, overlay, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

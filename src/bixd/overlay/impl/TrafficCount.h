@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_TRAFFIC_H_INCLUDED
-#define RIPPLE_OVERLAY_TRAFFIC_H_INCLUDED
+#ifndef BIXD_OVERLAY_TRAFFIC_H_INCLUDED
+#define BIXD_OVERLAY_TRAFFIC_H_INCLUDED
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/protocol/messages.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/protocol/messages.h>
 
 #include <array>
 #include <atomic>
 #include <cstdint>
 
-namespace ripple {
+namespace bixd {
 
 class TrafficCount
 {
@@ -240,5 +240,5 @@ protected:
     }};
 };
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

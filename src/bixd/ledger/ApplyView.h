@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_APPLYVIEW_H_INCLUDED
-#define RIPPLE_LEDGER_APPLYVIEW_H_INCLUDED
+#ifndef BIXD_LEDGER_APPLYVIEW_H_INCLUDED
+#define BIXD_LEDGER_APPLYVIEW_H_INCLUDED
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/ledger/RawView.h>
-#include <ripple/ledger/ReadView.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/ledger/RawView.h>
+#include <bixd/ledger/ReadView.h>
 #include <boost/optional.hpp>
 
-namespace ripple {
+namespace bixd {
 
 enum ApplyFlags : std::uint32_t {
     tapNONE = 0x00,
@@ -377,6 +377,6 @@ public:
     emptyDirDelete(Keylet const& directory);
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

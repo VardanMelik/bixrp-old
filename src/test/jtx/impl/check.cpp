@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx/check.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
@@ -88,4 +88,4 @@ cancel(jtx::Account const& dest, uint256 const& checkId)
 
 }  // namespace jtx
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

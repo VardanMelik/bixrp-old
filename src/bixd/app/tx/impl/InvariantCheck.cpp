@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
   This file is part of bixd
-  Copyright (c) 2012-2016 Ripple Labs Inc.
+  Copyright (c) 2012-2016 bixd Labs Inc.
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/InvariantCheck.h>
-#include <ripple/basics/FeeUnits.h>
-#include <ripple/basics/Log.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/SystemParameters.h>
+#include <bixd/app/tx/impl/InvariantCheck.h>
+#include <bixd/basics/FeeUnits.h>
+#include <bixd/basics/Log.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/SystemParameters.h>
 
-namespace ripple {
+namespace bixd {
 
 void
 TransactionFeeCheck::visitEntry(
@@ -354,7 +354,7 @@ LedgerEntryTypesMatch::visitEntry(
         {
             case ltACCOUNT_ROOT:
             case ltDIR_NODE:
-            case ltRIPPLE_STATE:
+            case ltBIXD_STATE:
             case ltTICKET:
             case ltSIGNER_LIST:
             case ltOFFER:
@@ -406,7 +406,7 @@ NoBIXRPTrustLines::visitEntry(
     std::shared_ptr<SLE const> const&,
     std::shared_ptr<SLE const> const& after)
 {
-    if (after && after->getType() == ltRIPPLE_STATE)
+    if (after && after->getType() == ltBIXD_STATE)
     {
         // checking the issue directly here instead of
         // relying on .native() just in case native somehow
@@ -485,4 +485,4 @@ ValidNewAccountRoot::finalize(
     return false;
 }
 
-}  // namespace ripple
+}  // namespace bixd

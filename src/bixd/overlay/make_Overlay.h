@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_MAKE_OVERLAY_H_INCLUDED
-#define RIPPLE_OVERLAY_MAKE_OVERLAY_H_INCLUDED
+#ifndef BIXD_OVERLAY_MAKE_OVERLAY_H_INCLUDED
+#define BIXD_OVERLAY_MAKE_OVERLAY_H_INCLUDED
 
-#include <ripple/basics/Resolver.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/resource/ResourceManager.h>
-#include <ripple/rpc/ServerHandler.h>
+#include <bixd/basics/Resolver.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/resource/ResourceManager.h>
+#include <bixd/rpc/ServerHandler.h>
 #include <boost/asio/io_service.hpp>
 #include <boost/asio/ssl/context.hpp>
 
-namespace ripple {
+namespace bixd {
 
 Overlay::Setup
 setup_Overlay(BasicConfig const& config);
@@ -46,6 +46,6 @@ make_Overlay(
     BasicConfig const& config,
     beast::insight::Collector::ptr const& collector);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

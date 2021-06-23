@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/rpc/ShardVerificationScheduler.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/rpc/ShardVerificationScheduler.h>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 ShardVerificationScheduler::ShardVerificationScheduler(
@@ -65,4 +65,4 @@ ShardVerificationScheduler::reset()
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

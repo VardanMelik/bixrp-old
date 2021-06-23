@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/json/JsonPropertyStream.h>
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/json/JsonPropertyStream.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doPrint(RPC::JsonContext& context)
@@ -42,4 +42,4 @@ doPrint(RPC::JsonContext& context)
     return stream.top();
 }
 
-}  // namespace ripple
+}  // namespace bixd

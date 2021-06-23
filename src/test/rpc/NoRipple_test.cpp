@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 
@@ -50,7 +50,7 @@ public:
 
         for (auto SetOrClear : {true, false})
         {
-            // Create a trust line with no-ripple flag setting
+            // Create a trust line with no-bixd flag setting
             env(trust(
                 gw,
                 USD(100),
@@ -58,13 +58,13 @@ public:
                 SetOrClear ? tfSetNoRipple : tfClearNoRipple));
             env.close();
 
-            // Check no-ripple flag on sender 'gateway'
+            // Check no-bixd flag on sender 'gateway'
             Json::Value lines{
                 env.rpc("json", "account_lines", to_string(account_gw))};
             auto const& gline0 = lines[jss::result][jss::lines][0u];
             BEAST_EXPECT(gline0[jss::no_ripple].asBool() == SetOrClear);
 
-            // Check no-ripple peer flag on destination 'alice'
+            // Check no-bixd peer flag on destination 'alice'
             lines = env.rpc("json", "account_lines", to_string(account_alice));
             auto const& aline0 = lines[jss::result][jss::lines][0u];
             BEAST_EXPECT(aline0[jss::no_ripple_peer].asBool() == SetOrClear);
@@ -206,7 +206,7 @@ public:
     void
     testDefaultRipple(FeatureBitset features)
     {
-        testcase("Set default ripple on an account and check new trustlines");
+        testcase("Set default bixd on an account and check new trustlines");
 
         using namespace jtx;
         Env env(*this, features);
@@ -279,7 +279,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(NoRipple, app, ripple);
+BEAST_DEFINE_TESTSUITE(NoRipple, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

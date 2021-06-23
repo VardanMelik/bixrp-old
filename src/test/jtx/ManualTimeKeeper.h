@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TEST_MANUALTIMEKEEPER_H_INCLUDED
-#define RIPPLE_TEST_MANUALTIMEKEEPER_H_INCLUDED
+#ifndef BIXD_TEST_MANUALTIMEKEEPER_H_INCLUDED
+#define BIXD_TEST_MANUALTIMEKEEPER_H_INCLUDED
 
-#include <ripple/core/TimeKeeper.h>
+#include <bixd/core/TimeKeeper.h>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class ManualTimeKeeper : public TimeKeeper
@@ -63,6 +63,6 @@ private:
 };
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

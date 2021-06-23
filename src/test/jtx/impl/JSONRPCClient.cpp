@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,10 +16,10 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#include <ripple/json/json_reader.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/server/Port.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/server/Port.h>
 #include <boost/asio.hpp>
 #include <boost/beast/http/dynamic_body.hpp>
 #include <boost/beast/http/message.hpp>
@@ -29,7 +29,7 @@
 #include <string>
 #include <test/jtx/JSONRPCClient.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class JSONRPCClient : public AbstractClient
@@ -158,4 +158,4 @@ makeJSONRPCClient(Config const& cfg, unsigned rpc_version)
 }
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

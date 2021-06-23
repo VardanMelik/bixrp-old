@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc
+    Copyright (c) 2012-2017 bixd Labs Inc
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -18,7 +18,7 @@
 //==============================================================================
 #include <test/csf/Sim.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace csf {
 
@@ -81,4 +81,4 @@ Sim::branches(PeerGroup const& g) const
 
 }  // namespace csf
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

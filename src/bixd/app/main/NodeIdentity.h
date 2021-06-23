@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_MAIN_NODEIDENTITY_H_INCLUDED
-#define RIPPLE_APP_MAIN_NODEIDENTITY_H_INCLUDED
+#ifndef BIXD_APP_MAIN_NODEIDENTITY_H_INCLUDED
+#define BIXD_APP_MAIN_NODEIDENTITY_H_INCLUDED
 
 #include <bixd/app/main/Application.h>
 #include <bixd/protocol/PublicKey.h>
 #include <bixd/protocol/SecretKey.h>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /** The cryptographic credentials identifying this server instance. */
 std::pair<PublicKey, SecretKey>
 loadNodeIdentity(Application& app);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

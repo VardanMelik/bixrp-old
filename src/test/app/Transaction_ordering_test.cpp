@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
     copyright notice and this permission notice appear in all copies.
@@ -15,11 +15,11 @@
 */
 //==============================================================================
 
-#include <ripple/core/JobQueue.h>
-#include <ripple/protocol/ErrorCodes.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/protocol/ErrorCodes.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 struct Transaction_ordering_test : public beast::unit_test::suite
@@ -155,7 +155,7 @@ struct Transaction_ordering_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Transaction_ordering, app, ripple);
+BEAST_DEFINE_TESTSUITE(Transaction_ordering, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

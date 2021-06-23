@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/TER.h>
+#include <bixd/protocol/TER.h>
 #include <boost/range/adaptor/transformed.hpp>
 #include <type_traits>
 #include <unordered_map>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -130,7 +130,7 @@ transResults()
         MAKE_ERROR(temBAD_REGKEY,             "Malformed: Regular key cannot be same as master key."),
         MAKE_ERROR(temBAD_SEND_BIXRP_LIMIT,     "Malformed: Limit quality is not allowed for BIXRP to BIXRP."),
         MAKE_ERROR(temBAD_SEND_BIXRP_MAX,       "Malformed: Send max is not allowed for BIXRP to BIXRP."),
-        MAKE_ERROR(temBAD_SEND_BIXRP_NO_DIRECT, "Malformed: No Ripple direct is not allowed for BIXRP to BIXRP."),
+        MAKE_ERROR(temBAD_SEND_BIXRP_NO_DIRECT, "Malformed: No bixd direct is not allowed for BIXRP to BIXRP."),
         MAKE_ERROR(temBAD_SEND_BIXRP_PARTIAL,   "Malformed: Partial payment is not allowed for BIXRP to BIXRP."),
         MAKE_ERROR(temBAD_SEND_BIXRP_PATHS,     "Malformed: Paths are not allowed for BIXRP to BIXRP."),
         MAKE_ERROR(temBAD_SEQUENCE,           "Malformed: Sequence is not in the past."),
@@ -144,7 +144,7 @@ transResults()
         MAKE_ERROR(temINVALID,                "The transaction is ill-formed."),
         MAKE_ERROR(temINVALID_FLAG,           "The transaction has an invalid flag."),
         MAKE_ERROR(temREDUNDANT,              "Sends same currency to self."),
-        MAKE_ERROR(temRIPPLE_EMPTY,           "PathSet with no paths."),
+        MAKE_ERROR(temBIXD_EMPTY,           "PathSet with no paths."),
         MAKE_ERROR(temUNCERTAIN,              "In process of determining result. Never returned."),
         MAKE_ERROR(temUNKNOWN,                "The transaction requires logic that is not implemented yet."),
         MAKE_ERROR(temDISABLED,               "The transaction requires logic that is currently disabled."),
@@ -158,7 +158,7 @@ transResults()
         MAKE_ERROR(terFUNDS_SPENT,            "DEPRECATED."),
         MAKE_ERROR(terINSUF_FEE_B,            "Account balance can't pay fee."),
         MAKE_ERROR(terLAST,                   "DEPRECATED."),
-        MAKE_ERROR(terNO_RIPPLE,              "Path does not permit rippling."),
+        MAKE_ERROR(terNO_BIXD,              "Path does not permit rippling."),
         MAKE_ERROR(terNO_ACCOUNT,             "The source account does not exist."),
         MAKE_ERROR(terNO_AUTH,                "Not authorized to hold IOUs."),
         MAKE_ERROR(terNO_LINE,                "No such line."),
@@ -232,4 +232,4 @@ transCode(std::string const& token)
     return TER::fromInt(r->second);
 }
 
-}  // namespace ripple
+}  // namespace bixd

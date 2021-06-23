@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/beast/clock/basic_seconds_clock.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/beast/rfc2616.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/nodestore/impl/codec.h>
+#include <bixd/basics/contract.h>
+#include <bixd/beast/clock/basic_seconds_clock.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/beast/rfc2616.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/nodestore/impl/codec.h>
 #include <boost/beast/core/string.hpp>
 #include <boost/regex.hpp>
 #include <algorithm>
@@ -34,7 +34,7 @@
 #include <nudb/xxhasher.hpp>
 #include <sstream>
 
-#include <ripple/unity/rocksdb.h>
+#include <bixd/unity/rocksdb.h>
 
 /*
 
@@ -57,7 +57,7 @@ multi(32gb):
 
 */
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 namespace detail {
@@ -276,7 +276,7 @@ parse_args(std::string const& s)
 
 //------------------------------------------------------------------------------
 
-#if RIPPLE_ROCKSDB_AVAILABLE
+#if BIXD_ROCKSDB_AVAILABLE
 
 class import_test : public beast::unit_test::suite
 {
@@ -548,11 +548,11 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL(import, NodeStore, ripple);
+BEAST_DEFINE_TESTSUITE_MANUAL(import, NodeStore, bixd);
 
 #endif
 
 //------------------------------------------------------------------------------
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

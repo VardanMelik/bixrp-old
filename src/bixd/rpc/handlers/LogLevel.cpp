@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/Log.h>
-#include <ripple/json/json_value.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/Log.h>
+#include <bixd/json/json_value.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
 #include <boost/algorithm/string/predicate.hpp>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doLogLevel(RPC::JsonContext& context)
@@ -82,4 +82,4 @@ doLogLevel(RPC::JsonContext& context)
     return rpcError(rpcINVALID_PARAMS);
 }
 
-}  // namespace ripple
+}  // namespace bixd

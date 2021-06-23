@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_REGISTER_SSL_CERTS_H_INCLUDED
-#define RIPPLE_NET_REGISTER_SSL_CERTS_H_INCLUDED
+#ifndef BIXD_NET_REGISTER_SSL_CERTS_H_INCLUDED
+#define BIXD_NET_REGISTER_SSL_CERTS_H_INCLUDED
 
-#include <ripple/basics/Log.h>
+#include <bixd/basics/Log.h>
 #include <boost/asio/ssl/context.hpp>
 
-namespace ripple {
+namespace bixd {
 /** Register default SSL certificates.
 
     Register the system default SSL root certificates. On linux/mac,
@@ -37,6 +37,6 @@ registerSSLCerts(
     boost::system::error_code&,
     beast::Journal j);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

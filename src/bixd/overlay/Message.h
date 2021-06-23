@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_MESSAGE_H_INCLUDED
-#define RIPPLE_OVERLAY_MESSAGE_H_INCLUDED
+#ifndef BIXD_OVERLAY_MESSAGE_H_INCLUDED
+#define BIXD_OVERLAY_MESSAGE_H_INCLUDED
 
-#include <ripple/basics/ByteUtilities.h>
-#include <ripple/overlay/Compression.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/messages.h>
+#include <bixd/basics/ByteUtilities.h>
+#include <bixd/overlay/Compression.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/messages.h>
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/buffers_iterator.hpp>
 #include <algorithm>
@@ -33,13 +33,13 @@
 #include <memory>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 constexpr std::size_t maximiumMessageSize = megabytes(64);
 
 // VFALCO NOTE If we forward declare Message and write out shared_ptr
 //             instead of using the in-class type alias, we can remove the
-//             entire ripple.pb.h from the main headers.
+//             entire bixd.pb.h from the main headers.
 //
 
 // packaging of messages into length/type-prepended buffers
@@ -140,6 +140,6 @@ private:
     getType(std::uint8_t const* in) const;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

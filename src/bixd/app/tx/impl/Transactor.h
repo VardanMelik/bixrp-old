@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_TX_TRANSACTOR_H_INCLUDED
-#define RIPPLE_APP_TX_TRANSACTOR_H_INCLUDED
+#ifndef BIXD_APP_TX_TRANSACTOR_H_INCLUDED
+#define BIXD_APP_TX_TRANSACTOR_H_INCLUDED
 
-#include <ripple/app/tx/applySteps.h>
-#include <ripple/app/tx/impl/ApplyContext.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/beast/utility/Journal.h>
+#include <bixd/app/tx/applySteps.h>
+#include <bixd/app/tx/impl/ApplyContext.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/beast/utility/Journal.h>
 #include <boost/optional.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /** State information when preflighting a tx. */
 struct PreflightContext
@@ -176,7 +176,7 @@ protected:
 
         @param app The application hosting the server
         @param baseFee The base fee of a candidate transaction
-            @see ripple::calculateBaseFee
+            @see bixd::calculateBaseFee
         @param fees Fee settings from the current ledger
         @param flags Transaction processing fees
      */
@@ -213,6 +213,6 @@ preflight1(PreflightContext const& ctx);
 NotTEC
 preflight2(PreflightContext const& ctx);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

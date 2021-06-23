@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/net/HTTPStream.h>
+#include <bixd/net/HTTPStream.h>
 
-namespace ripple {
+namespace bixd {
 
 SSLStream::SSLStream(
     Config const& config,
@@ -200,4 +200,4 @@ RawStream::asyncReadSome(
     boost::beast::http::async_read_some(*stream_, buf, p, yield[ec]);
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/beast/hash/uhash.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/beast/hash/uhash.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/jss.h>
 #include <boost/lexical_cast.hpp>
 #include <boost/optional.hpp>
 #include <test/jtx.h>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class Env_test : public beast::unit_test::suite
@@ -922,7 +922,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Env, app, ripple);
+BEAST_DEFINE_TESTSUITE(Env, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

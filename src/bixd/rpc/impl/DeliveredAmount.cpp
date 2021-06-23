@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/rpc/DeliveredAmount.h>
+#include <bixd/rpc/DeliveredAmount.h>
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/OpenLedger.h>
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/ledger/View.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/AccountID.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/OpenLedger.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/ledger/View.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/AccountID.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <boost/algorithm/string/case_conv.hpp>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 /*
@@ -248,4 +248,4 @@ insertDeliveredAmount(
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

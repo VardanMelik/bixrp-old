@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_HANDLERS_HANDLERS_H_INCLUDED
-#define RIPPLE_RPC_HANDLERS_HANDLERS_H_INCLUDED
+#ifndef BIXD_RPC_HANDLERS_HANDLERS_H_INCLUDED
+#define BIXD_RPC_HANDLERS_HANDLERS_H_INCLUDED
 
-#include <ripple/rpc/handlers/LedgerHandler.h>
+#include <bixd/rpc/handlers/LedgerHandler.h>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doAccountCurrencies(RPC::JsonContext&);
@@ -152,6 +152,6 @@ Json::Value
 doValidatorListSites(RPC::JsonContext&);
 Json::Value
 doValidatorInfo(RPC::JsonContext&);
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

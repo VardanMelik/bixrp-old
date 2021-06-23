@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: https://github.com/bixd/bixd
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -28,7 +28,7 @@
 #include <bixd/protocol/HashPrefix.h>
 #include <bixd/protocol/digest.h>
 
-namespace ripple {
+namespace bixd {
 
 ConsensusTransSetSF::ConsensusTransSetSF(Application& app, NodeCache& nodeCache)
     : app_(app), m_nodeCache(nodeCache), j_(app.journal("TransactionAcquire"))
@@ -99,4 +99,4 @@ ConsensusTransSetSF::getNode(SHAMapHash const& nodeHash) const
     return boost::none;
 }
 
-}  // namespace ripple
+}  // namespace bixd

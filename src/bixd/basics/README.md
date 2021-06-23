@@ -2,7 +2,7 @@
 
 Utility functions and classes.
 
-ripple/basic should contain no dependencies on other modules.
+bixd/basic should contain no dependencies on other modules.
 
 
 Choosing a bixd container.

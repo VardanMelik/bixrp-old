@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/basics/TaggedCache.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/clock/manual_clock.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/TaggedCache.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/clock/manual_clock.h>
+#include <bixd/beast/unit_test.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 
 /*
 I guess you can put some items in, make sure they're still there. Let some
@@ -150,6 +150,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(TaggedCache, common, ripple);
+BEAST_DEFINE_TESTSUITE(TaggedCache, common, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/Credit.h>
-#include <ripple/app/paths/impl/StepChecks.h>
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/Log.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Quality.h>
+#include <bixd/app/paths/Credit.h>
+#include <bixd/app/paths/impl/StepChecks.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/Log.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Quality.h>
 
 #include <boost/container/flat_set.hpp>
 #include <boost/optional.hpp>
@@ -32,7 +32,7 @@
 #include <numeric>
 #include <sstream>
 
-namespace ripple {
+namespace bixd {
 
 template <class TDerived>
 class DirectStepI : public StepImp<IOUAmount, IOUAmount, DirectStepI<TDerived>>
@@ -436,7 +436,7 @@ DirectIPaymentStep::check(
                     ((*sleLine)[sfFlags] &
                      ((src_ > dst_) ? lsfHighNoRipple : lsfLowNoRipple));
                 if (noRippleSrcToDst)
-                    return terNO_RIPPLE;
+                    return terNO_BIXD;
             }
         }
     }
@@ -906,7 +906,7 @@ DirectStepI<TDerived>::check(StrandContext const& ctx) const
     }
 
     // If previous step was a direct step then we need to check
-    // no ripple flags.
+    // no bixd flags.
     if (ctx.prevStep)
     {
         if (auto prevSrc = ctx.prevStep->directStepSrcAcct())
@@ -1002,4 +1002,4 @@ make_DirectStepI(
     return {tesSUCCESS, std::move(r)};
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PEERFINDER_FIXED_H_INCLUDED
-#define RIPPLE_PEERFINDER_FIXED_H_INCLUDED
+#ifndef BIXD_PEERFINDER_FIXED_H_INCLUDED
+#define BIXD_PEERFINDER_FIXED_H_INCLUDED
 
-#include <ripple/peerfinder/impl/Tuning.h>
+#include <bixd/peerfinder/impl/Tuning.h>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 /** Metadata for a Fixed slot. */
@@ -66,6 +66,6 @@ private:
 };
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_IOUAMOUNT_H_INCLUDED
-#define RIPPLE_BASICS_IOUAMOUNT_H_INCLUDED
+#ifndef BIXD_BASICS_IOUAMOUNT_H_INCLUDED
+#define BIXD_BASICS_IOUAMOUNT_H_INCLUDED
 
-#include <ripple/beast/utility/Zero.h>
+#include <bixd/beast/utility/Zero.h>
 #include <boost/operators.hpp>
 #include <cstdint>
 #include <string>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /** Floating point representation of amounts with high dynamic range
 
@@ -149,6 +149,6 @@ mulRatio(
     std::uint32_t den,
     bool roundUp);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

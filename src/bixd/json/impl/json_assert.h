@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_JSON_JSON_ASSERT_H_INCLUDED
-#define RIPPLE_JSON_JSON_ASSERT_H_INCLUDED
+#ifndef BIXD_JSON_JSON_ASSERT_H_INCLUDED
+#define BIXD_JSON_JSON_ASSERT_H_INCLUDED
 
-#include <ripple/json/json_errors.h>
+#include <bixd/json/json_errors.h>
 
 #define JSON_ASSERT_UNREACHABLE assert(false)
 #define JSON_ASSERT(condition) \
     assert(condition);  // @todo <= change this into an exception throw
 #define JSON_ASSERT_MESSAGE(condition, message) \
     if (!(condition))                           \
-        ripple::Throw<Json::error>(message);
+        bixd::Throw<Json::error>(message);
 
 #endif

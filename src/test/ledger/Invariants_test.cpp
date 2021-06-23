@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/apply.h>
-#include <ripple/app/tx/impl/ApplyContext.h>
-#include <ripple/app/tx/impl/Transactor.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/protocol/STLedgerEntry.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/app/tx/impl/ApplyContext.h>
+#include <bixd/app/tx/impl/Transactor.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/protocol/STLedgerEntry.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <test/jtx.h>
 #include <test/jtx/Env.h>
 
-namespace ripple {
+namespace bixd {
 
 class Invariants_test : public beast::unit_test::suite
 {
@@ -477,6 +477,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Invariants, ledger, ripple);
+BEAST_DEFINE_TESTSUITE(Invariants, ledger, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

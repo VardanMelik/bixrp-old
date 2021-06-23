@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_TIMEKEEPER_H_INCLUDED
-#define RIPPLE_CORE_TIMEKEEPER_H_INCLUDED
+#ifndef BIXD_CORE_TIMEKEEPER_H_INCLUDED
+#define BIXD_CORE_TIMEKEEPER_H_INCLUDED
 
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/utility/Journal.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/utility/Journal.h>
 #include <string>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /** Manages various times used by the server. */
 class TimeKeeper : public beast::abstract_clock<NetClock>
@@ -44,7 +44,7 @@ public:
 
     /** Returns the estimate of wall time, in network time.
 
-        The network time is wall time adjusted for the Ripple
+        The network time is wall time adjusted for the bixd
         epoch, the beginning of January 1st, 2000 UTC. Each server
         can compute a different value for network time. Other
         servers value for network time is not directly observable,
@@ -89,6 +89,6 @@ public:
 extern std::unique_ptr<TimeKeeper>
 make_TimeKeeper(beast::Journal j);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

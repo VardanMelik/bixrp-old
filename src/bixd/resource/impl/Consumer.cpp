@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/resource/Consumer.h>
-#include <ripple/resource/impl/Entry.h>
-#include <ripple/resource/impl/Logic.h>
+#include <bixd/resource/Consumer.h>
+#include <bixd/resource/impl/Entry.h>
+#include <bixd/resource/impl/Logic.h>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 Consumer::Consumer(Logic& logic, Entry& entry)
@@ -142,4 +142,4 @@ operator<<(std::ostream& os, Consumer const& v)
 }
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd

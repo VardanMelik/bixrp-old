@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_HANDLER_H_INCLUDED
-#define RIPPLE_RPC_HANDLER_H_INCLUDED
+#ifndef BIXD_RPC_HANDLER_H_INCLUDED
+#define BIXD_RPC_HANDLER_H_INCLUDED
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/core/Config.h>
-#include <ripple/rpc/RPCHandler.h>
-#include <ripple/rpc/Status.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/core/Config.h>
+#include <bixd/rpc/RPCHandler.h>
+#include <bixd/rpc/Status.h>
+#include <bixd/rpc/impl/Tuning.h>
 #include <vector>
 
 namespace Json {
 class Object;
 }
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 // Under what condition can we call this RPC?
@@ -155,6 +155,6 @@ conditionMet(Condition condition_required, T& context)
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

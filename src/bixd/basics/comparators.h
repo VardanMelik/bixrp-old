@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_COMPARATORS_H_INCLUDED
-#define RIPPLE_BASICS_COMPARATORS_H_INCLUDED
+#ifndef BIXD_BASICS_COMPARATORS_H_INCLUDED
+#define BIXD_BASICS_COMPARATORS_H_INCLUDED
 
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 
 #ifdef _MSC_VER
 
@@ -71,6 +71,6 @@ using equal_to = std::equal_to<T>;
 
 #endif
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

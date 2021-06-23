@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,26 +17,26 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/applySteps.h>
-#include <ripple/app/tx/impl/ApplyContext.h>
-#include <ripple/app/tx/impl/CancelCheck.h>
-#include <ripple/app/tx/impl/CancelOffer.h>
-#include <ripple/app/tx/impl/CashCheck.h>
-#include <ripple/app/tx/impl/Change.h>
-#include <ripple/app/tx/impl/CreateCheck.h>
-#include <ripple/app/tx/impl/CreateOffer.h>
-#include <ripple/app/tx/impl/CreateTicket.h>
-#include <ripple/app/tx/impl/DeleteAccount.h>
-#include <ripple/app/tx/impl/DepositPreauth.h>
-#include <ripple/app/tx/impl/Escrow.h>
-#include <ripple/app/tx/impl/PayChan.h>
-#include <ripple/app/tx/impl/Payment.h>
-#include <ripple/app/tx/impl/SetAccount.h>
-#include <ripple/app/tx/impl/SetRegularKey.h>
-#include <ripple/app/tx/impl/SetSignerList.h>
-#include <ripple/app/tx/impl/SetTrust.h>
+#include <bixd/app/tx/applySteps.h>
+#include <bixd/app/tx/impl/ApplyContext.h>
+#include <bixd/app/tx/impl/CancelCheck.h>
+#include <bixd/app/tx/impl/CancelOffer.h>
+#include <bixd/app/tx/impl/CashCheck.h>
+#include <bixd/app/tx/impl/Change.h>
+#include <bixd/app/tx/impl/CreateCheck.h>
+#include <bixd/app/tx/impl/CreateOffer.h>
+#include <bixd/app/tx/impl/CreateTicket.h>
+#include <bixd/app/tx/impl/DeleteAccount.h>
+#include <bixd/app/tx/impl/DepositPreauth.h>
+#include <bixd/app/tx/impl/Escrow.h>
+#include <bixd/app/tx/impl/PayChan.h>
+#include <bixd/app/tx/impl/Payment.h>
+#include <bixd/app/tx/impl/SetAccount.h>
+#include <bixd/app/tx/impl/SetRegularKey.h>
+#include <bixd/app/tx/impl/SetSignerList.h>
+#include <bixd/app/tx/impl/SetTrust.h>
 
-namespace ripple {
+namespace bixd {
 
 // Templates so preflight does the right thing with T::ConsequencesFactory.
 //
@@ -522,4 +522,4 @@ doApply(PreclaimResult const& preclaimResult, Application& app, OpenView& view)
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

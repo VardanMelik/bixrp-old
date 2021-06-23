@@ -1,4 +1,4 @@
-# Ripple Source Guidelines
+# bixd Source Guidelines
 
 Each folder contains a single module following the newest style:
 

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_WEBSOCKET_AUTOSOCKET_AUTOSOCKET_H_INCLUDED
-#define RIPPLE_WEBSOCKET_AUTOSOCKET_AUTOSOCKET_H_INCLUDED
+#ifndef BIXD_WEBSOCKET_AUTOSOCKET_AUTOSOCKET_H_INCLUDED
+#define BIXD_WEBSOCKET_AUTOSOCKET_AUTOSOCKET_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/beast/net/IPAddressConversion.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/net/IPAddressConversion.h>
 #include <boost/asio.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/ssl.hpp>
@@ -297,7 +297,7 @@ protected:
         const error_code& ec,
         size_t bytesTransferred)
     {
-        using namespace ripple;
+        using namespace bixd;
 
         if (ec)
         {

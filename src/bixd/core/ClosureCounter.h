@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_CLOSURE_COUNTER_H_INCLUDED
-#define RIPPLE_CORE_CLOSURE_COUNTER_H_INCLUDED
+#ifndef BIXD_CORE_CLOSURE_COUNTER_H_INCLUDED
+#define BIXD_CORE_CLOSURE_COUNTER_H_INCLUDED
 
-#include <ripple/basics/Log.h>
+#include <bixd/basics/Log.h>
 #include <boost/optional.hpp>
 #include <atomic>
 #include <condition_variable>
 #include <mutex>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 // A class that does reference counting for postponed closures -- a closure
 // who's execution is delayed by a timer or queue.  The reference counting
@@ -207,6 +207,6 @@ public:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_CORE_CLOSURE_COUNTER_H_INCLUDED
+#endif  // BIXD_CORE_CLOSURE_COUNTER_H_INCLUDED

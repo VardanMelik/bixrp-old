@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_PATHREQUESTS_H_INCLUDED
-#define RIPPLE_APP_PATHS_PATHREQUESTS_H_INCLUDED
+#ifndef BIXD_APP_PATHS_PATHREQUESTS_H_INCLUDED
+#define BIXD_APP_PATHS_PATHREQUESTS_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/paths/PathRequest.h>
-#include <ripple/app/paths/RippleLineCache.h>
-#include <ripple/core/Job.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/paths/PathRequest.h>
+#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/core/Job.h>
 #include <atomic>
 #include <mutex>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 class PathRequests
 {
@@ -119,6 +119,6 @@ private:
     std::recursive_mutex mLock;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

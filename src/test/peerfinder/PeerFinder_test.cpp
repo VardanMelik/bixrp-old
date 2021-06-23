@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/Config.h>
-#include <ripple/peerfinder/impl/Logic.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/Config.h>
+#include <bixd/peerfinder/impl/Logic.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 class PeerFinder_test : public beast::unit_test::suite
@@ -170,7 +170,7 @@ public:
                        std::uint16_t expectOut,
                        std::uint16_t expectIn,
                        std::uint16_t expectIpLimit) {
-            ripple::Config c;
+            bixd::Config c;
 
             testcase(test);
 
@@ -235,7 +235,7 @@ public:
         testcase("invalid config");
 
         auto run = [&](std::string const& toLoad) {
-            ripple::Config c;
+            bixd::Config c;
             try
             {
                 c.loadFromString(toLoad);
@@ -284,7 +284,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(PeerFinder, PeerFinder, ripple);
+BEAST_DEFINE_TESTSUITE(PeerFinder, PeerFinder, bixd);
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd

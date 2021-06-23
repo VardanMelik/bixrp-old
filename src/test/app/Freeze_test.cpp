@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2016 Ripple Labs Inc.
+    Copyright (c) 2012-2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,14 +16,14 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#include <ripple/protocol/AccountID.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/protocol/AccountID.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 
 class Freeze_test : public beast::unit_test::suite
 {
@@ -549,5 +549,5 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Freeze, app, ripple);
-}  // namespace ripple
+BEAST_DEFINE_TESTSUITE(Freeze, app, bixd);
+}  // namespace bixd

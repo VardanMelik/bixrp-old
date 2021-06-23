@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,25 +17,25 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/basics/mulDiv.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/basics/mulDiv.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <test/jtx.h>
 #include <test/jtx/Env.h>
 #include <test/jtx/envconfig.h>
 
-#include <ripple/rpc/GRPCHandlers.h>
-#include <ripple/rpc/impl/GRPCHelpers.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/GRPCHandlers.h>
+#include <bixd/rpc/impl/GRPCHelpers.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <test/rpc/GRPCTestClientBase.h>
 
 #include <string>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class Tx_test : public beast::unit_test::suite
@@ -825,6 +825,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Tx, app, ripple);
+BEAST_DEFINE_TESTSUITE(Tx, app, bixd);
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

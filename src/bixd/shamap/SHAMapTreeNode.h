@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_SHAMAPTREENODE_H_INCLUDED
-#define RIPPLE_SHAMAP_SHAMAPTREENODE_H_INCLUDED
+#ifndef BIXD_SHAMAP_SHAMAPTREENODE_H_INCLUDED
+#define BIXD_SHAMAP_SHAMAPTREENODE_H_INCLUDED
 
-#include <ripple/basics/CountedObject.h>
-#include <ripple/basics/TaggedCache.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/shamap/SHAMapItem.h>
-#include <ripple/shamap/SHAMapNodeID.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/basics/TaggedCache.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/shamap/SHAMapItem.h>
+#include <bixd/shamap/SHAMapNodeID.h>
 
 #include <cstdint>
 #include <memory>
 #include <mutex>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 // These are wire-protocol identifiers used during serialization to encode the
 // type of a node. They should not be arbitrarily be changed.
@@ -268,6 +268,6 @@ private:
     makeTransactionWithMeta(Slice data, SHAMapHash const& hash, bool hashValid);
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

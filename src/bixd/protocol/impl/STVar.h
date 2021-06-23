@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STVAR_H_INCLUDED
-#define RIPPLE_PROTOCOL_STVAR_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STVAR_H_INCLUDED
+#define BIXD_PROTOCOL_STVAR_H_INCLUDED
 
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/STBase.h>
-#include <ripple/protocol/Serializer.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/STBase.h>
+#include <bixd/protocol/Serializer.h>
 #include <cstddef>
 #include <cstdint>
 #include <typeinfo>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 struct defaultObject_t
@@ -160,6 +160,6 @@ operator!=(STVar const& lhs, STVar const& rhs)
 }
 
 }  // namespace detail
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

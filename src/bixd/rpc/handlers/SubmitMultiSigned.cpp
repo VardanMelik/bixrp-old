@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/TransactionSign.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/TransactionSign.h>
 
-namespace ripple {
+namespace bixd {
 
 // {
 //   SigningAccounts <array>,
@@ -46,4 +46,4 @@ doSubmitMultiSigned(RPC::JsonContext& context)
         RPC::getProcessTxnFn(context.netOps));
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/beast/utility/temp_dir.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/nodestore/DummyScheduler.h>
-#include <ripple/nodestore/Manager.h>
+#include <bixd/beast/utility/temp_dir.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/nodestore/DummyScheduler.h>
+#include <bixd/nodestore/Manager.h>
 #include <test/jtx.h>
 #include <test/jtx/CheckMessageLogs.h>
 #include <test/jtx/envconfig.h>
 #include <test/nodestore/TestBase.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace NodeStore {
 
@@ -45,8 +45,8 @@ public:
     {
         testcase("Config");
 
-        using namespace ripple::test;
-        using namespace ripple::test::jtx;
+        using namespace bixd::test;
+        using namespace bixd::test::jtx;
 
         auto const integrityWarning =
             "reducing the data integrity guarantees from the "
@@ -691,7 +691,7 @@ public:
         {
             testNodeStore("nudb", true, seedValue);
 
-#if RIPPLE_ROCKSDB_AVAILABLE
+#if BIXD_ROCKSDB_AVAILABLE
             testNodeStore("rocksdb", true, seedValue);
 #endif
         }
@@ -700,18 +700,18 @@ public:
         {
             testImport("nudb", "nudb", seedValue);
 
-#if RIPPLE_ROCKSDB_AVAILABLE
+#if BIXD_ROCKSDB_AVAILABLE
             testImport("rocksdb", "rocksdb", seedValue);
 #endif
 
-#if RIPPLE_ENABLE_SQLITE_BACKEND_TESTS
+#if BIXD_ENABLE_SQLITE_BACKEND_TESTS
             testImport("sqlite", "sqlite", seedValue);
 #endif
         }
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Database, NodeStore, ripple);
+BEAST_DEFINE_TESTSUITE(Database, NodeStore, bixd);
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/SHAMapStore.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/SHAMapStore.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/format.hpp>
 
-namespace ripple {
+namespace bixd {
 
 // can_delete [<ledgerid>|<ledgerhash>|now|always|never]
 Json::Value
@@ -101,4 +101,4 @@ doCanDelete(RPC::JsonContext& context)
     return ret;
 }
 
-}  // namespace ripple
+}  // namespace bixd

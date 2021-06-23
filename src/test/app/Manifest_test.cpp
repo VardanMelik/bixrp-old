@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2014 Ripple Labs Inc.
+    Copyright 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/DBInit.h>
-#include <ripple/app/misc/Manifest.h>
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/base64.h>
-#include <ripple/basics/contract.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/protocol/STExchange.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Sign.h>
+#include <bixd/app/main/DBInit.h>
+#include <bixd/app/misc/Manifest.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/protocol/STExchange.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Sign.h>
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/utility/in_place_factory.hpp>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class Manifest_test : public beast::unit_test::suite
@@ -1033,7 +1033,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Manifest, app, ripple);
+BEAST_DEFINE_TESTSUITE(Manifest, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

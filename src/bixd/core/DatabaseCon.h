@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_DATA_DATABASECON_H_INCLUDED
-#define RIPPLE_APP_DATA_DATABASECON_H_INCLUDED
+#ifndef BIXD_APP_DATA_DATABASECON_H_INCLUDED
+#define BIXD_APP_DATA_DATABASECON_H_INCLUDED
 
-#include <ripple/app/main/DBInit.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/SociDB.h>
+#include <bixd/app/main/DBInit.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/SociDB.h>
 #include <boost/filesystem/path.hpp>
 #include <boost/optional.hpp>
 #include <mutex>
@@ -32,7 +32,7 @@ namespace soci {
 class session;
 }
 
-namespace ripple {
+namespace bixd {
 
 class LockedSociSession
 {
@@ -236,6 +236,6 @@ setup_DatabaseCon(
     Config const& c,
     boost::optional<beast::Journal> j = boost::none);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

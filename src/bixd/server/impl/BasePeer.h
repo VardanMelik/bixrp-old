@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_BASEPEER_H_INCLUDED
-#define RIPPLE_SERVER_BASEPEER_H_INCLUDED
+#ifndef BIXD_SERVER_BASEPEER_H_INCLUDED
+#define BIXD_SERVER_BASEPEER_H_INCLUDED
 
-#include <ripple/beast/utility/WrappedSink.h>
-#include <ripple/server/Port.h>
-#include <ripple/server/impl/LowestLayer.h>
-#include <ripple/server/impl/io_list.h>
+#include <bixd/beast/utility/WrappedSink.h>
+#include <bixd/server/Port.h>
+#include <bixd/server/impl/LowestLayer.h>
+#include <bixd/server/impl/io_list.h>
 #include <boost/asio.hpp>
 #include <atomic>
 #include <cassert>
 #include <functional>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 // Common part of all peers
 template <class Handler, class Impl>
@@ -102,9 +102,9 @@ BasePeer<Handler, Impl>::close()
         return post(
             strand_, std::bind(&BasePeer::close, impl().shared_from_this()));
     error_code ec;
-    ripple::get_lowest_layer(impl().ws_).socket().close(ec);
+    bixd::get_lowest_layer(impl().ws_).socket().close(ec);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

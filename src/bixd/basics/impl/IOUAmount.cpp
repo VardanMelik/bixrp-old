@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/contract.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/contract.h>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <algorithm>
 #include <iterator>
 #include <numeric>
 #include <stdexcept>
 
-namespace ripple {
+namespace bixd {
 
 /* The range for the mantissa when normalized */
 static std::int64_t const minMantissa = 1000000000000000ull;
@@ -380,4 +380,4 @@ mulRatio(
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

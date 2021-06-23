@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -19,7 +19,7 @@
 
 #include <bixd/app/misc/CanonicalTXSet.h>
 
-namespace ripple {
+namespace bixd {
 
 bool
 operator<(CanonicalTXSet::Key const& lhs, CanonicalTXSet::Key const& rhs)
@@ -86,4 +86,4 @@ CanonicalTXSet::popAcctTransaction(std::shared_ptr<STTx const> const& tx)
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

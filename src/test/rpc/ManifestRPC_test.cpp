@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 
 #include <string>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class ManifestRPC_test : public beast::unit_test::suite
@@ -88,6 +88,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(ManifestRPC, rpc, ripple);
+BEAST_DEFINE_TESTSUITE(ManifestRPC, rpc, bixd);
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

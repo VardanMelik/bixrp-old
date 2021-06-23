@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/ValidatorSite.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/rpc/Context.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/ValidatorSite.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/rpc/Context.h>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doValidatorListSites(RPC::JsonContext& context)
@@ -34,4 +34,4 @@ doValidatorListSites(RPC::JsonContext& context)
     return context.app.validatorSites().getJson();
 }
 
-}  // namespace ripple
+}  // namespace bixd

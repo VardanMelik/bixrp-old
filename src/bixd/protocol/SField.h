@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_SFIELD_H_INCLUDED
-#define RIPPLE_PROTOCOL_SFIELD_H_INCLUDED
+#ifndef BIXD_PROTOCOL_SFIELD_H_INCLUDED
+#define BIXD_PROTOCOL_SFIELD_H_INCLUDED
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/json/json_value.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/json/json_value.h>
 #include <cstdint>
 #include <map>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /*
 
@@ -525,6 +525,6 @@ extern SField const sfMajorities;
 extern SField const sfDisabledValidators;
 //------------------------------------------------------------------------------
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

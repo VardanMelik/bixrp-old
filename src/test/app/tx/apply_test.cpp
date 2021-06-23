@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/apply.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/protocol/Feature.h>
 #include <test/jtx/Env.h>
 
-namespace ripple {
+namespace bixd {
 
 class Apply_test : public beast::unit_test::suite
 {
@@ -85,6 +85,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Apply, app, ripple);
+BEAST_DEFINE_TESTSUITE(Apply, app, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

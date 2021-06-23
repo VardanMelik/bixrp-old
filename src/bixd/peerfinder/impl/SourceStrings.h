@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PEERFINDER_SOURCESTRINGS_H_INCLUDED
-#define RIPPLE_PEERFINDER_SOURCESTRINGS_H_INCLUDED
+#ifndef BIXD_PEERFINDER_SOURCESTRINGS_H_INCLUDED
+#define BIXD_PEERFINDER_SOURCESTRINGS_H_INCLUDED
 
-#include <ripple/peerfinder/impl/Source.h>
+#include <bixd/peerfinder/impl/Source.h>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 /** Provides addresses from a static set of strings. */
@@ -39,6 +39,6 @@ public:
 };
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

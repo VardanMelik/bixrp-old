@@ -20,7 +20,7 @@
 #ifndef BEAST_INSIGHT_EVENT_H_INCLUDED
 #define BEAST_INSIGHT_EVENT_H_INCLUDED
 
-#include <ripple/beast/insight/EventImpl.h>
+#include <bixd/beast/insight/EventImpl.h>
 
 #include <date/date.h>
 

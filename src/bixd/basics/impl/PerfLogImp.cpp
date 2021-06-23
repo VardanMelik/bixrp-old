@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/basics/impl/PerfLogImp.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/JobTypes.h>
-#include <ripple/json/json_writer.h>
-#include <ripple/json/to_string.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/basics/impl/PerfLogImp.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/JobTypes.h>
+#include <bixd/json/json_writer.h>
+#include <bixd/json/to_string.h>
 #include <boost/optional.hpp>
 #include <atomic>
 #include <cstdint>
@@ -37,7 +37,7 @@
 #include <unordered_map>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 namespace perf {
 
 PerfLogImp::Counters::Counters(
@@ -510,4 +510,4 @@ make_PerfLog(
 }
 
 }  // namespace perf
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/consensus/RCLValidations.h>
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/misc/NegativeUNLVote.h>
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/basics/Log.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/ledger/View.h>
-#include <ripple/rpc/impl/GRPCHelpers.h>
+#include <bixd/app/consensus/RCLValidations.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/misc/NegativeUNLVote.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/ledger/View.h>
+#include <bixd/rpc/impl/GRPCHelpers.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 /*
@@ -1915,7 +1915,7 @@ class NegativeUNLgRPC_test : public beast::unit_test::suite
                 return false;
 
             org::xrpl::rpc::v1::NegativeUNL to;
-            ripple::RPC::convert(to, *negUnlObject);
+            bixd::RPC::convert(to, *negUnlObject);
             if (!to.has_flags() ||
                 to.flags().value() != negUnlObject->getFlags())
                 return false;
@@ -1991,22 +1991,22 @@ class NegativeUNLgRPC_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(NegativeUNL, ledger, ripple);
-BEAST_DEFINE_TESTSUITE(NegativeUNLNoAmendment, ledger, ripple);
+BEAST_DEFINE_TESTSUITE(NegativeUNL, ledger, bixd);
+BEAST_DEFINE_TESTSUITE(NegativeUNLNoAmendment, ledger, bixd);
 
-BEAST_DEFINE_TESTSUITE(NegativeUNLVoteInternal, consensus, ripple);
-BEAST_DEFINE_TESTSUITE_MANUAL(NegativeUNLVoteScoreTable, consensus, ripple);
-BEAST_DEFINE_TESTSUITE_PRIO(NegativeUNLVoteGoodScore, consensus, ripple, 1);
-BEAST_DEFINE_TESTSUITE_PRIO(NegativeUNLVoteOffline, consensus, ripple, 1);
-BEAST_DEFINE_TESTSUITE_PRIO(NegativeUNLVoteMaxListed, consensus, ripple, 1);
+BEAST_DEFINE_TESTSUITE(NegativeUNLVoteInternal, consensus, bixd);
+BEAST_DEFINE_TESTSUITE_MANUAL(NegativeUNLVoteScoreTable, consensus, bixd);
+BEAST_DEFINE_TESTSUITE_PRIO(NegativeUNLVoteGoodScore, consensus, bixd, 1);
+BEAST_DEFINE_TESTSUITE_PRIO(NegativeUNLVoteOffline, consensus, bixd, 1);
+BEAST_DEFINE_TESTSUITE_PRIO(NegativeUNLVoteMaxListed, consensus, bixd, 1);
 BEAST_DEFINE_TESTSUITE_PRIO(
     NegativeUNLVoteRetiredValidator,
     consensus,
-    ripple,
+    bixd,
     1);
-BEAST_DEFINE_TESTSUITE_PRIO(NegativeUNLVoteNewValidator, consensus, ripple, 1);
-BEAST_DEFINE_TESTSUITE(NegativeUNLVoteFilterValidations, consensus, ripple);
-BEAST_DEFINE_TESTSUITE(NegativeUNLgRPC, ledger, ripple);
+BEAST_DEFINE_TESTSUITE_PRIO(NegativeUNLVoteNewValidator, consensus, bixd, 1);
+BEAST_DEFINE_TESTSUITE(NegativeUNLVoteFilterValidations, consensus, bixd);
+BEAST_DEFINE_TESTSUITE(NegativeUNLgRPC, ledger, bixd);
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
@@ -2113,4 +2113,4 @@ createTx(bool disabling, LedgerIndex seq, PublicKey const& txKey)
 }
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

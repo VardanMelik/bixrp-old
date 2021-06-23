@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/nodestore/impl/DatabaseNodeImp.h>
-#include <ripple/protocol/HashPrefix.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/nodestore/impl/DatabaseNodeImp.h>
+#include <bixd/protocol/HashPrefix.h>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 void
@@ -165,4 +165,4 @@ DatabaseNodeImp::fetchBatch(std::vector<uint256> const& hashes)
 }
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

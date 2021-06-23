@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/chrono.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/make_SSLContext.h>
-#include <ripple/beast/container/aged_unordered_set.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/make_SSLContext.h>
+#include <bixd/beast/container/aged_unordered_set.h>
 #include <cstdint>
 #include <sstream>
 #include <stdexcept>
 
-namespace ripple {
+namespace bixd {
 namespace openssl {
 namespace detail {
 
@@ -345,8 +345,8 @@ get_context(std::string const& cipherList)
             LogicError("SSL_CTX_set_cipher_list failed");
     }
 
-    // These are the raw DH parameters that Ripple Labs has
-    // chosen for Ripple, in the binary format needed by
+    // These are the raw DH parameters that bixd Labs has
+    // chosen for bixd, in the binary format needed by
     // d2i_DHparams.
     //
     unsigned char const params[] = {
@@ -419,4 +419,4 @@ make_SSLContextAuthed(
     return context;
 }
 
-}  // namespace ripple
+}  // namespace bixd

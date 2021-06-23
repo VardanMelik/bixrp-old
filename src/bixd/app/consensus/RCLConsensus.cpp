@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: https://github.com/bixd/bixd
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -47,7 +47,7 @@
 #include <algorithm>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 RCLConsensus::RCLConsensus(
     Application& app,
@@ -187,7 +187,7 @@ RCLConsensus::Adaptor::propose(RCLCxPeerPos::Proposal const& proposal)
     JLOG(j_.trace()) << "We propose: "
                      << (proposal.isBowOut()
                              ? std::string("bowOut")
-                             : ripple::to_string(proposal.position()));
+                             : bixd::to_string(proposal.position()));
 
     protocol::TMProposeSet prop;
 
@@ -1046,4 +1046,4 @@ RCLConsensus::startRound(
         nowUntrusted,
         adaptor_.preStartRound(prevLgr, nowTrusted));
 }
-}  // namespace ripple
+}  // namespace bixd

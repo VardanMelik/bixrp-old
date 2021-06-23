@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2016 Ripple Labs Inc.
+    Copyright (c) 2012-2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/BasicApp.h>
-#include <ripple/app/misc/ValidatorSite.h>
-#include <ripple/basics/base64.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/Sign.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/main/BasicApp.h>
+#include <bixd/app/misc/ValidatorSite.h>
+#include <bixd/basics/base64.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/Sign.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 #include <test/jtx/TrustedPublisherServer.h>
 
 #include <set>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 
@@ -593,7 +593,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(ValidatorRPC, app, ripple);
+BEAST_DEFINE_TESTSUITE(ValidatorRPC, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

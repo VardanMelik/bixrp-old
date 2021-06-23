@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/crypto/csprng.h>
-#include <ripple/protocol/Serializer.h>
-#include <ripple/shamap/SHAMap.h>
-#include <ripple/shamap/SHAMapNodeID.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/crypto/csprng.h>
+#include <bixd/protocol/Serializer.h>
+#include <bixd/shamap/SHAMap.h>
+#include <bixd/shamap/SHAMapNodeID.h>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 
 static uint256 const&
 depthMask(unsigned int depth)
@@ -139,4 +139,4 @@ SHAMapNodeID::createID(int depth, uint256 const& key)
     return SHAMapNodeID(depth, key & depthMask(depth));
 }
 
-}  // namespace ripple
+}  // namespace bixd

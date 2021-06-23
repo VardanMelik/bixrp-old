@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/json/json_value.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/Handler.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/json/json_value.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/Handler.h>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doLedgerCleaner(RPC::JsonContext& context)
@@ -32,4 +32,4 @@ doLedgerCleaner(RPC::JsonContext& context)
     return RPC::makeObjectValue("Cleaner configured");
 }
 
-}  // namespace ripple
+}  // namespace bixd

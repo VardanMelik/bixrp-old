@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/BuildInfo.h>
-#include <ripple/protocol/SystemParameters.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/server/impl/JSONRPCUtil.h>
+#include <bixd/basics/Log.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/BuildInfo.h>
+#include <bixd/protocol/SystemParameters.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/server/impl/JSONRPCUtil.h>
 #include <boost/algorithm/string.hpp>
 
-namespace ripple {
+namespace bixd {
 
 std::string
 getHTTPHeaderTimestamp()
@@ -141,4 +141,4 @@ HTTPReply(
     output("\r\n");
 }
 
-}  // namespace ripple
+}  // namespace bixd

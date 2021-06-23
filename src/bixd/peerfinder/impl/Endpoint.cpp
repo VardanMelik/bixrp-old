@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/peerfinder/PeerfinderManager.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 Endpoint::Endpoint() : hops(0)
@@ -38,4 +38,4 @@ operator<(Endpoint const& lhs, Endpoint const& rhs)
 }
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd

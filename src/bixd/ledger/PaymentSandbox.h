@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_PAYMENTSANDBOX_H_INCLUDED
-#define RIPPLE_LEDGER_PAYMENTSANDBOX_H_INCLUDED
+#ifndef BIXD_LEDGER_PAYMENTSANDBOX_H_INCLUDED
+#define BIXD_LEDGER_PAYMENTSANDBOX_H_INCLUDED
 
-#include <ripple/ledger/RawView.h>
-#include <ripple/ledger/Sandbox.h>
-#include <ripple/ledger/detail/ApplyViewBase.h>
-#include <ripple/protocol/AccountID.h>
+#include <bixd/ledger/RawView.h>
+#include <bixd/ledger/Sandbox.h>
+#include <bixd/ledger/detail/ApplyViewBase.h>
+#include <bixd/protocol/AccountID.h>
 #include <map>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -207,6 +207,6 @@ private:
     PaymentSandbox const* ps_ = nullptr;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

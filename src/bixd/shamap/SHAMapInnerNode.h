@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_SHAMAPINNERNODE_H_INCLUDED
-#define RIPPLE_SHAMAP_SHAMAPINNERNODE_H_INCLUDED
+#ifndef BIXD_SHAMAP_SHAMAPINNERNODE_H_INCLUDED
+#define BIXD_SHAMAP_SHAMAPINNERNODE_H_INCLUDED
 
-#include <ripple/basics/TaggedCache.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/shamap/SHAMapItem.h>
-#include <ripple/shamap/SHAMapNodeID.h>
-#include <ripple/shamap/SHAMapTreeNode.h>
-#include <ripple/shamap/impl/TaggedPointer.h>
+#include <bixd/basics/TaggedCache.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/shamap/SHAMapItem.h>
+#include <bixd/shamap/SHAMapNodeID.h>
+#include <bixd/shamap/SHAMapTreeNode.h>
+#include <bixd/shamap/impl/TaggedPointer.h>
 
 #include <bitset>
 #include <cstdint>
@@ -34,7 +34,7 @@
 #include <optional>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 class SHAMapInnerNode final : public SHAMapTreeNode,
                               public CountedObject<SHAMapInnerNode>
@@ -209,5 +209,5 @@ SHAMapInnerNode::setFullBelowGen(std::uint32_t gen)
     fullBelowGen_ = gen;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

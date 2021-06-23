@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/ByteUtilities.h>
-#include <ripple/basics/FileUtilities.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/ByteUtilities.h>
+#include <bixd/basics/FileUtilities.h>
+#include <bixd/beast/unit_test.h>
 #include <test/unit_test/FileDirGuard.h>
 
-namespace ripple {
+namespace bixd {
 
 class FileUtilities_test : public beast::unit_test::suite
 {
@@ -30,7 +30,7 @@ public:
     void
     testGetFileContents()
     {
-        using namespace ripple::test::detail;
+        using namespace bixd::test::detail;
         using namespace boost::system;
 
         constexpr const char* expectedContents =
@@ -78,6 +78,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(FileUtilities, ripple_basics, ripple);
+BEAST_DEFINE_TESTSUITE(FileUtilities, ripple_basics, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

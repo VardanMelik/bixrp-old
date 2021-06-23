@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,13 +16,13 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#include <ripple/beast/unit_test.h>
-#include <ripple/consensus/LedgerTrie.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/consensus/LedgerTrie.h>
 #include <random>
 #include <test/csf/ledgers.h>
 #include <unordered_map>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class LedgerTrie_test : public beast::unit_test::suite
@@ -677,6 +677,6 @@ class LedgerTrie_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(LedgerTrie, consensus, ripple);
+BEAST_DEFINE_TESTSUITE(LedgerTrie, consensus, bixd);
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

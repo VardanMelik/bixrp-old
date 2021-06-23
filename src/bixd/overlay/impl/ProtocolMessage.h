@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_PROTOCOLMESSAGE_H_INCLUDED
-#define RIPPLE_OVERLAY_PROTOCOLMESSAGE_H_INCLUDED
+#ifndef BIXD_OVERLAY_PROTOCOLMESSAGE_H_INCLUDED
+#define BIXD_OVERLAY_PROTOCOLMESSAGE_H_INCLUDED
 
-#include <ripple/basics/ByteUtilities.h>
-#include <ripple/overlay/Compression.h>
-#include <ripple/overlay/Message.h>
-#include <ripple/overlay/impl/ZeroCopyStream.h>
-#include <ripple/protocol/messages.h>
+#include <bixd/basics/ByteUtilities.h>
+#include <bixd/overlay/Compression.h>
+#include <bixd/overlay/Message.h>
+#include <bixd/overlay/impl/ZeroCopyStream.h>
+#include <bixd/protocol/messages.h>
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/buffers_iterator.hpp>
 #include <boost/system/error_code.hpp>
@@ -32,11 +32,11 @@
 #include <cstdint>
 #include <memory>
 #include <optional>
-#include <ripple.pb.h>
+#include <bixd.pb.h>
 #include <type_traits>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 inline protocol::MessageType
 protocolMessageType(protocol::TMGetLedger const&)
@@ -176,7 +176,7 @@ parseMessageHeader(
     BufferSequence const& bufs,
     std::size_t size)
 {
-    using namespace ripple::compression;
+    using namespace bixd::compression;
 
     MessageHeader hdr;
     auto iter = buffersBegin(bufs);
@@ -278,7 +278,7 @@ parseMessageContent(MessageHeader const& header, Buffers const& buffers)
         std::vector<std::uint8_t> payload;
         payload.resize(header.uncompressed_size);
 
-        auto const payloadSize = ripple::compression::decompress(
+        auto const payloadSize = bixd::compression::decompress(
             stream,
             header.payload_wire_size,
             payload.data(),
@@ -307,7 +307,7 @@ invoke(MessageHeader const& header, Buffers const& buffers, Handler& handler)
     if (!m)
         return false;
 
-    using namespace ripple::compression;
+    using namespace bixd::compression;
     handler.onMessageBegin(
         header.message_type,
         m,
@@ -495,6 +495,6 @@ invokeProtocolMessage(
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

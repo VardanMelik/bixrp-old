@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2015 Ripple Labs Inc.
+    Copyright (c) 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/Quality.h>
-#include <ripple/protocol/Rate.h>
+#include <bixd/protocol/Quality.h>
+#include <bixd/protocol/Rate.h>
 
-namespace ripple {
+namespace bixd {
 
 Rate const parityRate(QUALITY_ONE);
 
@@ -110,4 +110,4 @@ divideRound(
     return divRound(amount, detail::as_amount(rate), issue, roundUp);
 }
 
-}  // namespace ripple
+}  // namespace bixd

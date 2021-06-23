@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2015 Ripple Labs Inc.
+    Copyright (c) 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -39,7 +39,7 @@
 #include <numeric>
 #include <shared_mutex>
 
-namespace ripple {
+namespace bixd {
 
 std::string
 to_string(ListDisposition disposition)
@@ -1289,7 +1289,7 @@ ValidatorList::verify(
     auto const sig = strUnHex(signature);
     auto const data = base64_decode(blob);
     if (!sig ||
-        !ripple::verify(
+        !bixd::verify(
             publisherManifests_.getSigningKey(pubKey),
             makeSlice(data),
             makeSlice(*sig)))
@@ -1988,4 +1988,4 @@ ValidatorList::negativeUNLFilter(
     return ret;
 }
 
-}  // namespace ripple
+}  // namespace bixd

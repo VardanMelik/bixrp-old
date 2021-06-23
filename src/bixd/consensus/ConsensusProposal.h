@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,15 +16,15 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#ifndef RIPPLE_CONSENSUS_ConsensusProposal_H_INCLUDED
-#define RIPPLE_CONSENSUS_ConsensusProposal_H_INCLUDED
+#ifndef BIXD_CONSENSUS_ConsensusProposal_H_INCLUDED
+#define BIXD_CONSENSUS_ConsensusProposal_H_INCLUDED
 
-#include <ripple/basics/chrono.h>
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/jss.h>
 #include <cstdint>
 
-namespace ripple {
+namespace bixd {
 /** Represents a proposed position taken during a round of consensus.
 
     During consensus, peers seek agreement on a set of transactions to
@@ -240,5 +240,5 @@ operator==(
         a.prevLedger() == b.prevLedger() && a.position() == b.position() &&
         a.closeTime() == b.closeTime() && a.seenTime() == b.seenTime();
 }
-}  // namespace ripple
+}  // namespace bixd
 #endif

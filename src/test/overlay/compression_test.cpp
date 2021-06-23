@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2020 Ripple Labs Inc.
+    Copyright 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,46 +17,46 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/Manifest.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/TimeKeeper.h>
-#include <ripple/overlay/Compression.h>
-#include <ripple/overlay/Message.h>
-#include <ripple/overlay/impl/Handshake.h>
-#include <ripple/overlay/impl/ProtocolMessage.h>
-#include <ripple/overlay/impl/ZeroCopyStream.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Sign.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/shamap/SHAMapNodeID.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/Manifest.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/TimeKeeper.h>
+#include <bixd/overlay/Compression.h>
+#include <bixd/overlay/Message.h>
+#include <bixd/overlay/impl/Handshake.h>
+#include <bixd/overlay/impl/ProtocolMessage.h>
+#include <bixd/overlay/impl/ZeroCopyStream.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Sign.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/shamap/SHAMapNodeID.h>
 #include <boost/asio/ip/address_v4.hpp>
 #include <boost/beast/core/multi_buffer.hpp>
 #include <boost/endian/conversion.hpp>
 #include <algorithm>
-#include <ripple.pb.h>
+#include <bixd.pb.h>
 #include <test/jtx/Account.h>
 #include <test/jtx/Env.h>
 #include <test/jtx/WSClient.h>
 #include <test/jtx/amount.h>
 #include <test/jtx/pay.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 
-using namespace ripple::test;
-using namespace ripple::test::jtx;
+using namespace bixd::test;
+using namespace bixd::test::jtx;
 
 static uint256
 ledgerHash(LedgerInfo const& info)
 {
-    return ripple::sha512Half(
+    return bixd::sha512Half(
         HashPrefix::ledgerMaster,
         std::uint32_t(info.seq),
         std::uint64_t(info.drops.drops()),
@@ -108,7 +108,7 @@ public:
         }
 
         boost::system::error_code ec;
-        auto header = ripple::detail::parseMessageHeader(
+        auto header = bixd::detail::parseMessageHeader(
             ec, buffers.data(), buffer.size());
 
         BEAST_EXPECT(header);
@@ -125,7 +125,7 @@ public:
         ZeroCopyInputStream stream(buffers.data());
         stream.Skip(header->header_size);
 
-        auto decompressedSize = ripple::compression::decompress(
+        auto decompressedSize = bixd::compression::decompress(
             stream,
             header->payload_wire_size,
             decompressed.data(),
@@ -137,7 +137,7 @@ public:
             proto1->ParseFromArray(decompressed.data(), decompressedSize));
         auto uncompressed = m.getBuffer(Compressed::Off);
         BEAST_EXPECT(std::equal(
-            uncompressed.begin() + ripple::compression::headerBytes,
+            uncompressed.begin() + bixd::compression::headerBytes,
             uncompressed.end(),
             decompressed.begin()));
     }
@@ -240,10 +240,10 @@ public:
         auto getLedger = std::make_shared<protocol::TMGetLedger>();
         getLedger->set_itype(protocol::liTS_CANDIDATE);
         getLedger->set_ltype(protocol::TMLedgerType::ltACCEPTED);
-        uint256 const hash(ripple::sha512Half(123456789));
+        uint256 const hash(bixd::sha512Half(123456789));
         getLedger->set_ledgerhash(hash.begin(), hash.size());
         getLedger->set_ledgerseq(123456789);
-        ripple::SHAMapNodeID sha(64, hash);
+        bixd::SHAMapNodeID sha(64, hash);
         getLedger->add_nodeids(sha.getRawString());
         getLedger->set_requestcookie(123456789);
         getLedger->set_querytype(protocol::qtINDIRECT);
@@ -255,7 +255,7 @@ public:
     buildLedgerData(uint32_t n, Logs& logs)
     {
         auto ledgerData = std::make_shared<protocol::TMLedgerData>();
-        uint256 const hash(ripple::sha512Half(12356789));
+        uint256 const hash(bixd::sha512Half(12356789));
         ledgerData->set_ledgerhash(hash.data(), hash.size());
         ledgerData->set_ledgerseq(123456789);
         ledgerData->set_type(protocol::TMLedgerInfoType::liAS_NODE);
@@ -269,16 +269,16 @@ public:
             auto tk = make_TimeKeeper(logs.journal("TimeKeeper"));
             info.seq = i;
             info.parentCloseTime = tk->now();
-            info.hash = ripple::sha512Half(i);
-            info.txHash = ripple::sha512Half(i + 1);
-            info.accountHash = ripple::sha512Half(i + 2);
+            info.hash = bixd::sha512Half(i);
+            info.txHash = bixd::sha512Half(i + 1);
+            info.accountHash = bixd::sha512Half(i + 2);
             info.parentHash = parentHash;
             info.drops = BIXRPAmount(10);
             info.closeTimeResolution = tk->now().time_since_epoch();
             info.closeTime = tk->now();
             parentHash = ledgerHash(info);
             Serializer nData;
-            ripple::addRaw(info, nData);
+            bixd::addRaw(info, nData);
             ledgerData->add_nodes()->set_nodedata(
                 nData.getDataPtr(), nData.getLength());
         }
@@ -295,15 +295,15 @@ public:
                                 TMGetObjectByHash_ObjectType_otTRANSACTION);
         getObject->set_query(true);
         getObject->set_seq(123456789);
-        uint256 hash(ripple::sha512Half(123456789));
+        uint256 hash(bixd::sha512Half(123456789));
         getObject->set_ledgerhash(hash.data(), hash.size());
         getObject->set_fat(true);
         for (int i = 0; i < 100; i++)
         {
-            uint256 hash(ripple::sha512Half(i));
+            uint256 hash(bixd::sha512Half(i));
             auto object = getObject->add_objects();
             object->set_hash(hash.data(), hash.size());
-            ripple::SHAMapNodeID sha(64, hash);
+            bixd::SHAMapNodeID sha(64, hash);
             object->set_nodeid(sha.getRawString());
             object->set_index("");
             object->set_data("");
@@ -336,7 +336,7 @@ public:
         list->set_manifest(s.data(), s.size());
         list->set_version(3);
         STObject signature(sfSignature);
-        ripple::sign(
+        bixd::sign(
             st, HashPrefix::manifest, KeyType::ed25519, std::get<1>(signing));
         Serializer s1;
         st.add(s1);
@@ -369,7 +369,7 @@ public:
         list->set_manifest(s.data(), s.size());
         list->set_version(4);
         STObject signature(sfSignature);
-        ripple::sign(
+        bixd::sign(
             st, HashPrefix::manifest, KeyType::ed25519, std::get<1>(signing));
         Serializer s1;
         st.add(s1);
@@ -485,7 +485,7 @@ public:
                 boost::asio::ip::address::from_string("172.1.1.100");
 
             auto env = getEnv(outboundEnable);
-            auto request = ripple::makeRequest(
+            auto request = bixd::makeRequest(
                 true,
                 env->app().config().COMPRESSION,
                 env->app().config().VP_REDUCE_RELAY_ENABLE,
@@ -504,7 +504,7 @@ public:
 
             env.reset();
             env = getEnv(inboundEnable);
-            auto http_resp = ripple::makeResponse(
+            auto http_resp = bixd::makeResponse(
                 true,
                 http_request,
                 addr,
@@ -533,7 +533,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL(compression, ripple_data, ripple);
+BEAST_DEFINE_TESTSUITE_MANUAL(compression, ripple_data, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

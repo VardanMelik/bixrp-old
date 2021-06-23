@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/ApplyContext.h>
-#include <ripple/app/tx/impl/InvariantCheck.h>
-#include <ripple/app/tx/impl/Transactor.h>
-#include <ripple/basics/Log.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
+#include <bixd/app/tx/impl/ApplyContext.h>
+#include <bixd/app/tx/impl/InvariantCheck.h>
+#include <bixd/app/tx/impl/Transactor.h>
+#include <bixd/basics/Log.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 
 ApplyContext::ApplyContext(
     Application& app_,
@@ -154,4 +154,4 @@ ApplyContext::checkInvariants(TER const result, BIXRPAmount const fee)
         std::make_index_sequence<std::tuple_size<InvariantChecks>::value>{});
 }
 
-}  // namespace ripple
+}  // namespace bixd

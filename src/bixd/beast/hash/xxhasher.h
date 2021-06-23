@@ -20,7 +20,7 @@
 #ifndef BEAST_HASH_XXHASHER_H_INCLUDED
 #define BEAST_HASH_XXHASHER_H_INCLUDED
 
-#include <ripple/beast/hash/impl/xxhash.h>
+#include <bixd/beast/hash/impl/xxhash.h>
 #include <boost/endian/conversion.hpp>
 #include <cstddef>
 #include <type_traits>

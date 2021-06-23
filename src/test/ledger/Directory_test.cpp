@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
     copyright notice and this permission notice appear in all copies.
@@ -15,17 +15,17 @@
 */
 //==============================================================================
 
-#include <ripple/basics/random.h>
-#include <ripple/ledger/BookDirs.h>
-#include <ripple/ledger/Directory.h>
-#include <ripple/ledger/Sandbox.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/random.h>
+#include <bixd/ledger/BookDirs.h>
+#include <bixd/ledger/Directory.h>
+#include <bixd/ledger/Sandbox.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/jss.h>
 #include <algorithm>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 struct Directory_test : public beast::unit_test::suite
@@ -412,7 +412,7 @@ struct Directory_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE_PRIO(Directory, ledger, ripple, 1);
+BEAST_DEFINE_TESTSUITE_PRIO(Directory, ledger, bixd, 1);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

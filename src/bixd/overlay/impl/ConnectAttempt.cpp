@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/json/json_reader.h>
-#include <ripple/overlay/Cluster.h>
-#include <ripple/overlay/impl/ConnectAttempt.h>
-#include <ripple/overlay/impl/PeerImp.h>
-#include <ripple/overlay/impl/ProtocolVersion.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/overlay/Cluster.h>
+#include <bixd/overlay/impl/ConnectAttempt.h>
+#include <bixd/overlay/impl/PeerImp.h>
+#include <bixd/overlay/impl/ProtocolVersion.h>
 
-namespace ripple {
+namespace bixd {
 
 ConnectAttempt::ConnectAttempt(
     Application& app,
@@ -397,4 +397,4 @@ ConnectAttempt::processResponse()
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

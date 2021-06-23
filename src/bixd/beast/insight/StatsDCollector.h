@@ -20,10 +20,10 @@
 #ifndef BEAST_INSIGHT_STATSDCOLLECTOR_H_INCLUDED
 #define BEAST_INSIGHT_STATSDCOLLECTOR_H_INCLUDED
 
-#include <ripple/beast/insight/Collector.h>
+#include <bixd/beast/insight/Collector.h>
 
-#include <ripple/beast/net/IPEndpoint.h>
-#include <ripple/beast/utility/Journal.h>
+#include <bixd/beast/net/IPEndpoint.h>
+#include <bixd/beast/utility/Journal.h>
 
 namespace beast {
 namespace insight {

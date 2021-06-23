@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NODESTORE_FACTORY_H_INCLUDED
-#define RIPPLE_NODESTORE_FACTORY_H_INCLUDED
+#ifndef BIXD_NODESTORE_FACTORY_H_INCLUDED
+#define BIXD_NODESTORE_FACTORY_H_INCLUDED
 
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/nodestore/Backend.h>
-#include <ripple/nodestore/Scheduler.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/nodestore/Backend.h>
+#include <bixd/nodestore/Scheduler.h>
 #include <nudb/store.hpp>
 
-namespace ripple {
+namespace bixd {
 
 namespace NodeStore {
 
@@ -78,6 +78,6 @@ public:
 };
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

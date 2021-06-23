@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -64,7 +64,7 @@ same path request (particularly if the search depth may change).
 
 */
 
-namespace ripple {
+namespace bixd {
 
 namespace {
 
@@ -445,7 +445,7 @@ static bool
 isDefaultPath(STPath const& path)
 {
     // TODO(tom): default paths can consist of more than just an account:
-    // https://forum.ripple.com/viewtopic.php?f=2&t=8206&start=10#p57713
+    // https://forum.bixd.com/viewtopic.php?f=2&t=8206&start=10#p57713
     //
     // JoelKatz writes:
     // So the test for whether a path is a default path is incorrect. I'm not
@@ -853,7 +853,7 @@ Pathfinder::isNoRipple(
 }
 
 // Does this path end on an account-to-account link whose last account has
-// set "no ripple" on the link?
+// set "no bixd" on the link?
 bool
 Pathfinder::isNoRippleOut(STPath const& currentPath)
 {
@@ -867,8 +867,8 @@ Pathfinder::isNoRippleOut(STPath const& currentPath)
         return false;
 
     // If there's only one item in the path, return true if that item specifies
-    // no ripple on the output. A path with no ripple on its output can't be
-    // followed by a link with no ripple on its input.
+    // no bixd on the output. A path with no bixd on its output can't be
+    // followed by a link with no bixd on its input.
     auto const& fromAccount = (currentPath.size() == 1)
         ? mSrcAccount
         : (currentPath.end() - 2)->getAccountID();
@@ -1305,4 +1305,4 @@ Pathfinder::initPathTable()
         });
 }
 
-}  // namespace ripple
+}  // namespace bixd

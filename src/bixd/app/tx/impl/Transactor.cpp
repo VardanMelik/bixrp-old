@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/app/tx/impl/SignerEntries.h>
-#include <ripple/app/tx/impl/Transactor.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/contract.h>
-#include <ripple/core/Config.h>
-#include <ripple/json/to_string.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/app/tx/impl/SignerEntries.h>
+#include <bixd/app/tx/impl/Transactor.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/Config.h>
+#include <bixd/json/to_string.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/UintTypes.h>
 
-namespace ripple {
+namespace bixd {
 
 /** Performs early sanity checks on the txid */
 NotTEC
@@ -903,4 +903,4 @@ Transactor::operator()()
     return {result, applied};
 }
 
-}  // namespace ripple
+}  // namespace bixd

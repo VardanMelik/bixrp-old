@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_CONFIGSECTIONS_H_INCLUDED
-#define RIPPLE_CORE_CONFIGSECTIONS_H_INCLUDED
+#ifndef BIXD_CORE_CONFIGSECTIONS_H_INCLUDED
+#define BIXD_CORE_CONFIGSECTIONS_H_INCLUDED
 
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 // VFALCO DEPRECATED in favor of the BasicConfig interface
 struct ConfigSection
@@ -98,6 +98,6 @@ struct ConfigSection
 #define SECTION_WORKERS "workers"
 #define SECTION_LEDGER_REPLAY "ledger_replay"
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

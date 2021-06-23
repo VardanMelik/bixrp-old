@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_RPCSUB_H_INCLUDED
-#define RIPPLE_NET_RPCSUB_H_INCLUDED
+#ifndef BIXD_NET_RPCSUB_H_INCLUDED
+#define BIXD_NET_RPCSUB_H_INCLUDED
 
-#include <ripple/core/JobQueue.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/net/InfoSub.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/net/InfoSub.h>
 #include <boost/asio/io_service.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /** Subscription object for JSON RPC. */
 class RPCSub : public InfoSub
@@ -51,6 +51,6 @@ make_RPCSub(
     std::string const& strPassword,
     Logs& logs);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

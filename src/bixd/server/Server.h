@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_SERVER_H_INCLUDED
-#define RIPPLE_SERVER_SERVER_H_INCLUDED
+#ifndef BIXD_SERVER_SERVER_H_INCLUDED
+#define BIXD_SERVER_SERVER_H_INCLUDED
 
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/server/Port.h>
-#include <ripple/server/impl/ServerImpl.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/server/Port.h>
+#include <bixd/server/impl/ServerImpl.h>
 #include <boost/asio/io_service.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /** Create the HTTP server using the specified handler. */
 template <class Handler>
@@ -39,6 +39,6 @@ make_Server(
     return std::make_unique<ServerImpl<Handler>>(handler, io_service, journal);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

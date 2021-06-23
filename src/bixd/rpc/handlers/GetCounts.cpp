@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,24 +17,24 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/AcceptedLedger.h>
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/basics/UptimeClock.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/json/json_value.h>
-#include <ripple/ledger/CachedSLEs.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/nodestore/Database.h>
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/shamap/ShardFamily.h>
+#include <bixd/app/ledger/AcceptedLedger.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/basics/UptimeClock.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/json/json_value.h>
+#include <bixd/ledger/CachedSLEs.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/nodestore/Database.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/shamap/ShardFamily.h>
 
-namespace ripple {
+namespace bixd {
 
 static void
 textTime(
@@ -161,4 +161,4 @@ doGetCounts(RPC::JsonContext& context)
     return getCountsJson(context.app, minCount);
 }
 
-}  // namespace ripple
+}  // namespace bixd

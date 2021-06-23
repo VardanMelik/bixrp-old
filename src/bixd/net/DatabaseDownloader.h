@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_DATABASEDOWNLOADER_H
-#define RIPPLE_NET_DATABASEDOWNLOADER_H
+#ifndef BIXD_NET_DATABASEDOWNLOADER_H
+#define BIXD_NET_DATABASEDOWNLOADER_H
 
-#include <ripple/net/DatabaseBody.h>
-#include <ripple/net/HTTPDownloader.h>
+#include <bixd/net/DatabaseBody.h>
+#include <bixd/net/HTTPDownloader.h>
 
-namespace ripple {
+namespace bixd {
 
 class DatabaseDownloader : public HTTPDownloader
 {
@@ -71,6 +71,6 @@ make_DatabaseDownloader(
     Config const& config,
     beast::Journal j);
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_NET_DATABASEDOWNLOADER_H
+#endif  // BIXD_NET_DATABASEDOWNLOADER_H

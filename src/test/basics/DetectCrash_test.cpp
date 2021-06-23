@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -21,7 +21,7 @@
 
 #include <exception>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 struct DetectCrash_test : public beast::unit_test::suite
@@ -44,4 +44,4 @@ struct DetectCrash_test : public beast::unit_test::suite
 BEAST_DEFINE_TESTSUITE_MANUAL(DetectCrash, unit_test, beast);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

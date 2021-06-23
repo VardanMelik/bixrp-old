@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/tokens.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/tokens.h>
 #include <boost/container/small_vector.hpp>
 #include <cassert>
 #include <cstring>
@@ -28,7 +28,7 @@
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 static constexpr char const* alphabetForward =
     "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz";
@@ -242,4 +242,4 @@ decodeBase58Token(std::string const& s, TokenType type)
     return ret.substr(1, ret.size() - 1 - guard.size());
 }
 
-}  // namespace ripple
+}  // namespace bixd

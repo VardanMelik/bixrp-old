@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -84,7 +84,7 @@
 #include <utility>
 #include <variant>
 
-namespace ripple {
+namespace bixd {
 
 // VFALCO TODO Move the function definitions into the class declaration
 class ApplicationImp : public Application, public RootStoppable, public BasicApp
@@ -2309,4 +2309,4 @@ make_Application(
         std::move(config), std::move(logs), std::move(timeKeeper));
 }
 
-}  // namespace ripple
+}  // namespace bixd

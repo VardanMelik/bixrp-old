@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_PORT_H_INCLUDED
-#define RIPPLE_SERVER_PORT_H_INCLUDED
+#ifndef BIXD_SERVER_PORT_H_INCLUDED
+#define BIXD_SERVER_PORT_H_INCLUDED
 
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/beast/net/IPEndpoint.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/beast/net/IPEndpoint.h>
 #include <boost/asio/ip/address.hpp>
 #include <boost/beast/core/string.hpp>
 #include <boost/beast/websocket/option.hpp>
@@ -38,7 +38,7 @@ class context;
 }  // namespace asio
 }  // namespace boost
 
-namespace ripple {
+namespace bixd {
 
 /** Configuration information for a Server listening port. */
 struct Port
@@ -114,6 +114,6 @@ struct ParsedPort
 void
 parse_Port(ParsedPort& port, Section const& section, std::ostream& log);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

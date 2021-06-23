@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_PUBLICKEY_H_INCLUDED
-#define RIPPLE_PROTOCOL_PUBLICKEY_H_INCLUDED
+#ifndef BIXD_PROTOCOL_PUBLICKEY_H_INCLUDED
+#define BIXD_PROTOCOL_PUBLICKEY_H_INCLUDED
 
-#include <ripple/basics/Slice.h>
-#include <ripple/protocol/KeyType.h>
-#include <ripple/protocol/STExchange.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/tokens.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/protocol/KeyType.h>
+#include <bixd/protocol/STExchange.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/tokens.h>
 #include <boost/optional.hpp>
 #include <algorithm>
 #include <cstdint>
@@ -32,14 +32,14 @@
 #include <ostream>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /** A public key.
 
     Public keys are used in the public-key cryptography
     system used to verify signatures attached to messages.
 
-    The format of the public key is Ripple specific,
+    The format of the public key is bixd specific,
     information needed to determine the cryptosystem
     parameters used is stored inside the key.
 
@@ -266,6 +266,6 @@ calcNodeID(PublicKey const&);
 AccountID
 calcAccountID(PublicKey const& pk);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

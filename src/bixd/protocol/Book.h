@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_BOOK_H_INCLUDED
-#define RIPPLE_PROTOCOL_BOOK_H_INCLUDED
+#ifndef BIXD_PROTOCOL_BOOK_H_INCLUDED
+#define BIXD_PROTOCOL_BOOK_H_INCLUDED
 
-#include <ripple/protocol/Issue.h>
+#include <bixd/protocol/Issue.h>
 #include <boost/utility/base_from_member.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /** Specifies an order book.
     The order book is a pair of Issues called in and out.
@@ -88,28 +88,28 @@ bool
 operator<=(Book const& lhs, Book const& rhs);
 /** @} */
 
-}  // namespace ripple
+}  // namespace bixd
 
 //------------------------------------------------------------------------------
 
 namespace std {
 
 template <>
-struct hash<ripple::Issue>
-    : private boost::base_from_member<std::hash<ripple::Currency>, 0>,
-      private boost::base_from_member<std::hash<ripple::AccountID>, 1>
+struct hash<bixd::Issue>
+    : private boost::base_from_member<std::hash<bixd::Currency>, 0>,
+      private boost::base_from_member<std::hash<bixd::AccountID>, 1>
 {
 private:
     using currency_hash_type =
-        boost::base_from_member<std::hash<ripple::Currency>, 0>;
+        boost::base_from_member<std::hash<bixd::Currency>, 0>;
     using issuer_hash_type =
-        boost::base_from_member<std::hash<ripple::AccountID>, 1>;
+        boost::base_from_member<std::hash<bixd::AccountID>, 1>;
 
 public:
     explicit hash() = default;
 
     using value_type = std::size_t;
-    using argument_type = ripple::Issue;
+    using argument_type = bixd::Issue;
 
     value_type
     operator()(argument_type const& value) const
@@ -125,10 +125,10 @@ public:
 //------------------------------------------------------------------------------
 
 template <>
-struct hash<ripple::Book>
+struct hash<bixd::Book>
 {
 private:
-    using hasher = std::hash<ripple::Issue>;
+    using hasher = std::hash<bixd::Issue>;
 
     hasher m_hasher;
 
@@ -136,7 +136,7 @@ public:
     explicit hash() = default;
 
     using value_type = std::size_t;
-    using argument_type = ripple::Book;
+    using argument_type = bixd::Book;
 
     value_type
     operator()(argument_type const& value) const
@@ -154,21 +154,21 @@ public:
 namespace boost {
 
 template <>
-struct hash<ripple::Issue> : std::hash<ripple::Issue>
+struct hash<bixd::Issue> : std::hash<bixd::Issue>
 {
     explicit hash() = default;
 
-    using Base = std::hash<ripple::Issue>;
+    using Base = std::hash<bixd::Issue>;
     // VFALCO NOTE broken in vs2012
     // using Base::Base; // inherit ctors
 };
 
 template <>
-struct hash<ripple::Book> : std::hash<ripple::Book>
+struct hash<bixd::Book> : std::hash<bixd::Book>
 {
     explicit hash() = default;
 
-    using Base = std::hash<ripple::Book>;
+    using Base = std::hash<bixd::Book>;
     // VFALCO NOTE broken in vs2012
     // using Base::Base; // inherit ctors
 };

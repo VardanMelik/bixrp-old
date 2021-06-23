@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
 #include <string>
 #include <test/jtx.h>
 #include <test/jtx/WSClient.h>
 #include <unordered_map>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 
@@ -114,8 +114,8 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Roles, app, ripple);
+BEAST_DEFINE_TESTSUITE(Roles, app, bixd);
 
 }  // namespace test
 
-}  // namespace ripple
+}  // namespace bixd

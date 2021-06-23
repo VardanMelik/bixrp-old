@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,24 +17,24 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RESOURCE_LOGIC_H_INCLUDED
-#define RIPPLE_RESOURCE_LOGIC_H_INCLUDED
+#ifndef BIXD_RESOURCE_LOGIC_H_INCLUDED
+#define BIXD_RESOURCE_LOGIC_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/insight/Insight.h>
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/resource/Gossip.h>
-#include <ripple/resource/impl/Import.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/insight/Insight.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/resource/Gossip.h>
+#include <bixd/resource/impl/Import.h>
 #include <cassert>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 class Logic
@@ -558,6 +558,6 @@ public:
 };
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

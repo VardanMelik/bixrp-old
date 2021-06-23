@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_STRINGUTILITIES_H_INCLUDED
-#define RIPPLE_BASICS_STRINGUTILITIES_H_INCLUDED
+#ifndef BIXD_BASICS_STRINGUTILITIES_H_INCLUDED
+#define BIXD_BASICS_STRINGUTILITIES_H_INCLUDED
 
-#include <ripple/basics/Blob.h>
-#include <ripple/basics/strHex.h>
+#include <bixd/basics/Blob.h>
+#include <bixd/basics/strHex.h>
 
 #include <boost/format.hpp>
 #include <boost/optional.hpp>
@@ -29,7 +29,7 @@
 #include <sstream>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 /** Format arbitrary binary data as an SQLite "blob literal".
 
@@ -134,6 +134,6 @@ to_uint64(std::string const& s);
 bool
 isProperlyFormedTomlDomain(std::string const& domain);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

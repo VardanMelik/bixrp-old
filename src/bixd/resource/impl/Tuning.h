@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RESOURCE_TUNING_H_INCLUDED
-#define RIPPLE_RESOURCE_TUNING_H_INCLUDED
+#ifndef BIXD_RESOURCE_TUNING_H_INCLUDED
+#define BIXD_RESOURCE_TUNING_H_INCLUDED
 
 #include <chrono>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 /** Tunable constants. */
@@ -51,6 +51,6 @@ std::chrono::seconds constexpr secondsUntilExpiration{300};
 std::chrono::seconds constexpr gossipExpirationSeconds{30};
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

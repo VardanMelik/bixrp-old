@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/SystemParameters.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/SystemParameters.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/jss.h>
 #include <boost/algorithm/string.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/regex.hpp>
@@ -32,7 +32,7 @@
 #include <iterator>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 LocalValue<bool> stAmountCanonicalizeSwitchover(true);
 
@@ -1373,4 +1373,4 @@ divRound(
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/overlay/PeerReservationTable.h>
+#include <bixd/overlay/PeerReservationTable.h>
 
-#include <ripple/basics/Log.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/jss.h>
 
 #include <boost/optional.hpp>
 
@@ -33,7 +33,7 @@
 #include <string>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 auto
 PeerReservation::toJson() const -> Json::Value
@@ -60,7 +60,7 @@ PeerReservationTable::list() const -> std::vector<PeerReservation>
     return list;
 }
 
-// See `ripple/app/main/DBInit.cpp` for the `CREATE TABLE` statement.
+// See `bixd/app/main/DBInit.cpp` for the `CREATE TABLE` statement.
 // It is unfortunate that we do not get to define a function for it.
 
 // We choose a `bool` return type to fit in with the error handling scheme
@@ -165,4 +165,4 @@ PeerReservationTable::erase(PublicKey const& nodeId)
     return previous;
 }
 
-}  // namespace ripple
+}  // namespace bixd

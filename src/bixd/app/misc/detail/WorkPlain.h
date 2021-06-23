@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_MISC_DETAIL_WORKPLAIN_H_INCLUDED
-#define RIPPLE_APP_MISC_DETAIL_WORKPLAIN_H_INCLUDED
+#ifndef BIXD_APP_MISC_DETAIL_WORKPLAIN_H_INCLUDED
+#define BIXD_APP_MISC_DETAIL_WORKPLAIN_H_INCLUDED
 
 #include <bixd/app/misc/detail/WorkBase.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -79,6 +79,6 @@ WorkPlain::onConnect(error_code const& ec)
 
 }  // namespace detail
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

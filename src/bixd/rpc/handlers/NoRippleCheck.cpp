@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/paths/RippleState.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/paths/RippleState.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/Tuning.h>
 
-namespace ripple {
+namespace bixd {
 
 static void
 fillTransaction(
@@ -116,13 +116,13 @@ doNoRippleCheck(RPC::JsonContext& context)
     if (bDefaultRipple & !roleGateway)
     {
         problems.append(
-            "You appear to have set your default ripple flag even though you "
+            "You appear to have set your default bixd flag even though you "
             "are not a gateway. This is not recommended unless you are "
             "experimenting");
     }
     else if (roleGateway & !bDefaultRipple)
     {
-        problems.append("You should immediately set your default ripple flag");
+        problems.append("You should immediately set your default bixd flag");
         if (transactions)
         {
             Json::Value& tx = jvTransactions.append(Json::objectValue);
@@ -139,7 +139,7 @@ doNoRippleCheck(RPC::JsonContext& context)
         0,
         limit,
         [&](std::shared_ptr<SLE const> const& ownedItem) {
-            if (ownedItem->getType() == ltRIPPLE_STATE)
+            if (ownedItem->getType() == ltBIXD_STATE)
             {
                 bool const bLow = accountID ==
                     ownedItem->getFieldAmount(sfLowLimit).getIssuer();
@@ -151,13 +151,13 @@ doNoRippleCheck(RPC::JsonContext& context)
                 bool needFix = false;
                 if (bNoRipple & roleGateway)
                 {
-                    problem = "You should clear the no ripple flag on your ";
+                    problem = "You should clear the no bixd flag on your ";
                     needFix = true;
                 }
                 else if (!roleGateway & !bNoRipple)
                 {
                     problem =
-                        "You should probably set the no ripple flag on your ";
+                        "You should probably set the no bixd flag on your ";
                     needFix = true;
                 }
                 if (needFix)
@@ -192,4 +192,4 @@ doNoRippleCheck(RPC::JsonContext& context)
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

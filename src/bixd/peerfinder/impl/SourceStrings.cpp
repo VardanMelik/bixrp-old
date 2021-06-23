@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/peerfinder/impl/SourceStrings.h>
+#include <bixd/peerfinder/impl/SourceStrings.h>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 class SourceStringsImp : public SourceStrings
@@ -68,4 +68,4 @@ SourceStrings::New(std::string const& name, Strings const& strings)
 }
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd

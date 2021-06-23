@@ -17,7 +17,7 @@
 */
 //==============================================================================
 
-#include <ripple/beast/net/IPEndpoint.h>
+#include <bixd/beast/net/IPEndpoint.h>
 #include <boost/algorithm/string.hpp>
 
 namespace beast {

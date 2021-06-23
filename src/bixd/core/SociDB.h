@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SOCIDB_H_INCLUDED
-#define RIPPLE_SOCIDB_H_INCLUDED
+#ifndef BIXD_SOCIDB_H_INCLUDED
+#define BIXD_SOCIDB_H_INCLUDED
 
 /** An embedded database wrapper with an intuitive, type-safe interface.
 
@@ -33,8 +33,8 @@
 #pragma clang diagnostic ignored "-Wdeprecated"
 #endif
 
-#include <ripple/basics/Log.h>
-#include <ripple/core/JobQueue.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/JobQueue.h>
 #define SOCI_USE_BOOST
 #include <cstdint>
 #include <soci/soci.h>
@@ -45,7 +45,7 @@ namespace sqlite_api {
 struct sqlite3;
 }
 
-namespace ripple {
+namespace bixd {
 
 template <class T, class C>
 T
@@ -158,7 +158,7 @@ makeCheckpointer(
     JobQueue&,
     Logs&);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #if defined(__clang__)
 #pragma clang diagnostic pop

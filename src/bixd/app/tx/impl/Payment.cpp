@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/RippleCalc.h>
-#include <ripple/app/tx/impl/Payment.h>
-#include <ripple/basics/Log.h>
-#include <ripple/core/Config.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/paths/RippleCalc.h>
+#include <bixd/app/tx/impl/Payment.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/Config.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/protocol/st.h>
 
-namespace ripple {
+namespace bixd {
 
-// See https://ripple.com/wiki/Transaction_Format#Payment_.280.29
+// See https://bixd.com/wiki/Transaction_Format#Payment_.280.29
 
 TxConsequences
 Payment::makeTxConsequences(PreflightContext const& ctx)
@@ -163,7 +163,7 @@ Payment::preflight(PreflightContext const& ctx)
     {
         // Consistent but redundant transaction.
         JLOG(j.trace()) << "Malformed transaction: "
-                        << "No ripple direct specified for BIXRP to BIXRP.";
+                        << "No bixd direct specified for BIXRP to BIXRP.";
         return temBAD_SEND_BIXRP_NO_DIRECT;
     }
 
@@ -209,7 +209,7 @@ Payment::preflight(PreflightContext const& ctx)
 TER
 Payment::preclaim(PreclaimContext const& ctx)
 {
-    // Ripple if source or destination is non-native or if there are paths.
+    // bixd if source or destination is non-native or if there are paths.
     std::uint32_t const uTxFlags = ctx.tx.getFlags();
     bool const partialPaymentAllowed = uTxFlags & tfPartialPayment;
     auto const paths = ctx.tx.isFieldPresent(sfPaths);
@@ -275,7 +275,7 @@ Payment::preclaim(PreclaimContext const& ctx)
 
     if (paths || sendMax || !saDstAmount.native())
     {
-        // Ripple payment with at least one intermediate step and uses
+        // bixd payment with at least one intermediate step and uses
         // transitive balances.
 
         // Copy paths into an editable class.
@@ -305,7 +305,7 @@ Payment::doApply()
 {
     auto const deliverMin = ctx_.tx[~sfDeliverMin];
 
-    // Ripple if source or destination is non-native or if there are paths.
+    // bixd if source or destination is non-native or if there are paths.
     std::uint32_t const uTxFlags = ctx_.tx.getFlags();
     bool const partialPaymentAllowed = uTxFlags & tfPartialPayment;
     bool const limitQuality = uTxFlags & tfLimitQuality;
@@ -370,7 +370,7 @@ Payment::doApply()
 
     if (bRipple)
     {
-        // Ripple payment with at least one intermediate step and uses
+        // bixd payment with at least one intermediate step and uses
         // transitive balances.
 
         if (depositPreauth && reqDepositAuth)
@@ -517,4 +517,4 @@ Payment::doApply()
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013, 2019 Ripple Labs Inc.
+    Copyright (c) 2012, 2013, 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -31,7 +31,7 @@
 #include <limits>
 #include <numeric>
 
-namespace ripple {
+namespace bixd {
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -1663,7 +1663,7 @@ TxQ::tryDirectApply(
                          << " to open ledger.";
 
         auto const [txnResult, didApply] =
-            ripple::apply(app, view, *tx, flags, j);
+            bixd::apply(app, view, *tx, flags, j);
 
         JLOG(j_.trace()) << "New transaction " << transactionID
                          << (didApply ? " applied successfully with "
@@ -1904,4 +1904,4 @@ setup_TxQ(Config const& config)
     return setup;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission target use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
+#include <bixd/beast/unit_test.h>
 #include <string>
 #include <test/csf/Digraph.h>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class Digraph_test : public beast::unit_test::suite
@@ -90,7 +90,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Digraph, test, ripple);
+BEAST_DEFINE_TESTSUITE(Digraph, test, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

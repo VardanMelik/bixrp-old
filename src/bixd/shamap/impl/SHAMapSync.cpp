@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/basics/random.h>
-#include <ripple/shamap/SHAMap.h>
-#include <ripple/shamap/SHAMapSyncFilter.h>
+#include <bixd/basics/random.h>
+#include <bixd/shamap/SHAMap.h>
+#include <bixd/shamap/SHAMapSyncFilter.h>
 
-namespace ripple {
+namespace bixd {
 
 void
 SHAMap::visitLeaves(
@@ -868,4 +868,4 @@ SHAMap::verifyProofPath(
     return false;
 }
 
-}  // namespace ripple
+}  // namespace bixd

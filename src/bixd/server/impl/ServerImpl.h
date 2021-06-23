@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_SERVERIMPL_H_INCLUDED
-#define RIPPLE_SERVER_SERVERIMPL_H_INCLUDED
+#ifndef BIXD_SERVER_SERVERIMPL_H_INCLUDED
+#define BIXD_SERVER_SERVERIMPL_H_INCLUDED
 
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/core/List.h>
-#include <ripple/server/Server.h>
-#include <ripple/server/impl/Door.h>
-#include <ripple/server/impl/io_list.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/core/List.h>
+#include <bixd/server/Server.h>
+#include <bixd/server/impl/Door.h>
+#include <bixd/server/impl/io_list.h>
 #include <boost/asio.hpp>
 #include <boost/optional.hpp>
 #include <array>
 #include <chrono>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 using Endpoints = std::vector<boost::asio::ip::tcp::endpoint>;
 
@@ -195,6 +195,6 @@ ServerImpl<Handler>::closed()
 {
     return ios_.closed();
 }
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

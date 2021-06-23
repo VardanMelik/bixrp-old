@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,27 +17,27 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/Credit.h>
-#include <ripple/app/paths/NodeDirectory.h>
-#include <ripple/app/paths/impl/FlatSets.h>
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/app/tx/impl/OfferStream.h>
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/basics/contract.h>
-#include <ripple/ledger/Directory.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/protocol/Book.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Quality.h>
+#include <bixd/app/paths/Credit.h>
+#include <bixd/app/paths/NodeDirectory.h>
+#include <bixd/app/paths/impl/FlatSets.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/app/tx/impl/OfferStream.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/contract.h>
+#include <bixd/ledger/Directory.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/protocol/Book.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Quality.h>
 
 #include <boost/container/flat_set.hpp>
 
 #include <numeric>
 #include <sstream>
 
-namespace ripple {
+namespace bixd {
 
 template <class TIn, class TOut, class TDerived>
 class BookStep : public StepImp<TIn, TOut, BookStep<TIn, TOut, TDerived>>
@@ -1099,7 +1099,7 @@ BookStep<TIn, TOut, TDerived>::check(StrandContext const& ctx) const
                 return terNO_LINE;
             if ((*sle)[sfFlags] &
                 ((cur > *prev) ? lsfHighNoRipple : lsfLowNoRipple))
-                return terNO_RIPPLE;
+                return terNO_BIXD;
         }
     }
 
@@ -1113,7 +1113,7 @@ namespace test {
 
 template <class TIn, class TOut, class TDerived>
 static bool
-equalHelper(Step const& step, ripple::Book const& book)
+equalHelper(Step const& step, bixd::Book const& book)
 {
     if (auto bs = dynamic_cast<BookStep<TIn, TOut, TDerived> const*>(&step))
         return book == bs->book();
@@ -1121,7 +1121,7 @@ equalHelper(Step const& step, ripple::Book const& book)
 }
 
 bool
-bookStepEqual(Step const& step, ripple::Book const& book)
+bookStepEqual(Step const& step, bixd::Book const& book)
 {
     bool const inBIXRP = isBIXRP(book.in.currency);
     bool const outBIXRP = isBIXRP(book.out.currency);
@@ -1195,4 +1195,4 @@ make_BookStepXI(StrandContext const& ctx, Issue const& out)
     return make_BookStepHelper<BIXRPAmount, IOUAmount>(ctx, bixrpIssue(), out);
 }
 
-}  // namespace ripple
+}  // namespace bixd

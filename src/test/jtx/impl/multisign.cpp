@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/Sign.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/contract.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/Sign.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx/multisign.h>
 #include <test/jtx/utility.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
@@ -98,7 +98,7 @@ msig::operator()(Env& env, JTx& jt) const
             jo[jss::SigningPubKey] = strHex(e.sig.pk().slice());
 
             Serializer ss{buildMultiSigningData(*st, e.acct.id())};
-            auto const sig = ripple::sign(
+            auto const sig = bixd::sign(
                 *publicKeyType(e.sig.pk().slice()), e.sig.sk(), ss.slice());
             jo[sfTxnSignature.getJsonName()] =
                 strHex(Slice{sig.data(), sig.size()});
@@ -108,4 +108,4 @@ msig::operator()(Env& env, JTx& jt) const
 
 }  // namespace jtx
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

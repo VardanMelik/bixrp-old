@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_SEQ_PROXY_H_INCLUDED
-#define RIPPLE_PROTOCOL_SEQ_PROXY_H_INCLUDED
+#ifndef BIXD_PROTOCOL_SEQ_PROXY_H_INCLUDED
+#define BIXD_PROTOCOL_SEQ_PROXY_H_INCLUDED
 
 #include <cstdint>
 #include <ostream>
 
-namespace ripple {
+namespace bixd {
 
 /** A type that represents either a sequence value or a ticket value.
 
@@ -165,6 +165,6 @@ public:
         return os;
     }
 };
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

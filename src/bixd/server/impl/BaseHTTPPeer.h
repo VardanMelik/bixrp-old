@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright(c) 2012, 2013 Ripple Labs Inc.
+    Copyright(c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_BASEHTTPPEER_H_INCLUDED
-#define RIPPLE_SERVER_BASEHTTPPEER_H_INCLUDED
+#ifndef BIXD_SERVER_BASEHTTPPEER_H_INCLUDED
+#define BIXD_SERVER_BASEHTTPPEER_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/beast/net/IPAddressConversion.h>
-#include <ripple/server/Session.h>
-#include <ripple/server/impl/io_list.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/net/IPAddressConversion.h>
+#include <bixd/server/Session.h>
+#include <bixd/server/impl/io_list.h>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/spawn.hpp>
 #include <boost/asio/ssl/stream.hpp>
@@ -42,7 +42,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /** Represents an active connection. */
 template <class Handler, class Impl>
@@ -527,6 +527,6 @@ BaseHTTPPeer<Handler, Impl>::close(bool graceful)
     boost::beast::get_lowest_layer(impl().stream_).close();
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

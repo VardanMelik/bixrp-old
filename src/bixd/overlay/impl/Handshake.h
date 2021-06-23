@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_HANDSHAKE_H_INCLUDED
-#define RIPPLE_OVERLAY_HANDSHAKE_H_INCLUDED
+#ifndef BIXD_OVERLAY_HANDSHAKE_H_INCLUDED
+#define BIXD_OVERLAY_HANDSHAKE_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/overlay/impl/ProtocolVersion.h>
-#include <ripple/protocol/BuildInfo.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/overlay/impl/ProtocolVersion.h>
+#include <bixd/protocol/BuildInfo.h>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/ssl/context.hpp>
 #include <boost/asio/ssl/stream.hpp>
@@ -37,7 +37,7 @@
 #include <optional>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 using socket_type = boost::beast::tcp_stream;
 using stream_type = boost::beast::ssl_stream<socket_type>;
@@ -237,6 +237,6 @@ makeFeaturesResponseHeader(
     bool vpReduceRelayEnabled,
     bool ledgerReplayEnabled);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

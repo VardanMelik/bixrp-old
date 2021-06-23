@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of BIXD:
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -59,7 +59,7 @@
 #include <memory>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 namespace {
 
@@ -2387,4 +2387,4 @@ LedgerMaster::minSqlSeq()
     return {};
 }
 
-}  // namespace ripple
+}  // namespace bixd

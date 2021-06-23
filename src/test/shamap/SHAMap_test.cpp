@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Blob.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/shamap/SHAMap.h>
+#include <bixd/basics/Blob.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/shamap/SHAMap.h>
 #include <test/shamap/common.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 namespace tests {
 
 #ifndef __INTELLISENSE__
@@ -424,7 +424,7 @@ class SHAMapPathProof_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(SHAMap, ripple_app, ripple);
-BEAST_DEFINE_TESTSUITE(SHAMapPathProof, ripple_app, ripple);
+BEAST_DEFINE_TESTSUITE(SHAMap, ripple_app, bixd);
+BEAST_DEFINE_TESTSUITE(SHAMapPathProof, ripple_app, bixd);
 }  // namespace tests
-}  // namespace ripple
+}  // namespace bixd

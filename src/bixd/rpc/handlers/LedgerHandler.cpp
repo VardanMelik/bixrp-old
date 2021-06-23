@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerToJson.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/json/Object.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/GRPCHandlers.h>
-#include <ripple/rpc/Role.h>
-#include <ripple/rpc/handlers/LedgerHandler.h>
-#include <ripple/rpc/impl/GRPCHelpers.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/app/ledger/LedgerToJson.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/json/Object.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/GRPCHandlers.h>
+#include <bixd/rpc/Role.h>
+#include <bixd/rpc/handlers/LedgerHandler.h>
+#include <bixd/rpc/impl/GRPCHelpers.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 LedgerHandler::LedgerHandler(JsonContext& context) : context_(context)
@@ -205,4 +205,4 @@ doLedgerGrpc(RPC::GRPCContext<org::xrpl::rpc::v1::GetLedgerRequest>& context)
 
     return {response, status};
 }
-}  // namespace ripple
+}  // namespace bixd

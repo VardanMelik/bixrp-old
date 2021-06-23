@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_MAKE_SSLCONTEXT_H_INCLUDED
-#define RIPPLE_BASICS_MAKE_SSLCONTEXT_H_INCLUDED
+#ifndef BIXD_BASICS_MAKE_SSLCONTEXT_H_INCLUDED
+#define BIXD_BASICS_MAKE_SSLCONTEXT_H_INCLUDED
 
 #include <boost/asio/ssl/context.hpp>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 /** Create a self-signed SSL context that allows anonymous Diffie Hellman. */
 std::shared_ptr<boost::asio::ssl::context>
@@ -37,6 +37,6 @@ make_SSLContextAuthed(
     std::string const& chainFile,
     std::string const& cipherList);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

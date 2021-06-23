@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#include <ripple/json/Output.h>
-#include <ripple/json/Writer.h>
+#include <bixd/json/Output.h>
+#include <bixd/json/Writer.h>
 #include <set>
 #include <stack>
 
@@ -276,14 +276,14 @@ Writer::output(Json::Value const& value)
 void
 Writer::output(float f)
 {
-    auto s = ripple::to_string(f);
+    auto s = bixd::to_string(f);
     impl_->output({s.data(), lengthWithoutTrailingZeros(s)});
 }
 
 void
 Writer::output(double f)
 {
-    auto s = ripple::to_string(f);
+    auto s = bixd::to_string(f);
     impl_->output({s.data(), lengthWithoutTrailingZeros(s)});
 }
 

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_SHARDVERIFICATIONSCHEDULER_H_INCLUDED
-#define RIPPLE_RPC_SHARDVERIFICATIONSCHEDULER_H_INCLUDED
+#ifndef BIXD_RPC_SHARDVERIFICATIONSCHEDULER_H_INCLUDED
+#define BIXD_RPC_SHARDVERIFICATIONSCHEDULER_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
+#include <bixd/app/main/Application.h>
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 class ShardVerificationScheduler
@@ -79,6 +79,6 @@ private:
 };
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_RPC_SHARDVERIFICATIONSCHEDULER_H_INCLUDED
+#endif  // BIXD_RPC_SHARDVERIFICATIONSCHEDULER_H_INCLUDED

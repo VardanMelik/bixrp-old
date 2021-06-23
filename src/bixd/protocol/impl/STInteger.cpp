@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/protocol/LedgerFormats.h>
-#include <ripple/protocol/STInteger.h>
-#include <ripple/protocol/TER.h>
-#include <ripple/protocol/TxFormats.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/protocol/LedgerFormats.h>
+#include <bixd/protocol/STInteger.h>
+#include <bixd/protocol/TER.h>
+#include <bixd/protocol/TxFormats.h>
 #include <charconv>
 
-namespace ripple {
+namespace bixd {
 
 template <>
 STInteger<unsigned char>::STInteger(SerialIter& sit, SField const& name)
@@ -201,4 +201,4 @@ Json::Value STUInt64::getJson(JsonOptions) const
     return str;
 }
 
-}  // namespace ripple
+}  // namespace bixd

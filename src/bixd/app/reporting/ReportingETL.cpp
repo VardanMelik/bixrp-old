@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/reporting/DBHelpers.h>
-#include <ripple/app/reporting/ReportingETL.h>
+#include <bixd/app/reporting/DBHelpers.h>
+#include <bixd/app/reporting/ReportingETL.h>
 
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/json/json_writer.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/json_writer.h>
 #include <boost/asio/connect.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/core.hpp>
@@ -32,7 +32,7 @@
 #include <string>
 #include <variant>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 /// Convenience function for printing out basic ledger info
@@ -921,4 +921,4 @@ ReportingETL::ReportingETL(Application& app, Stoppable& parent)
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

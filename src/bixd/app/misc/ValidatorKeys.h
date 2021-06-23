@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_MISC_VALIDATOR_KEYS_H_INCLUDED
-#define RIPPLE_APP_MISC_VALIDATOR_KEYS_H_INCLUDED
+#ifndef BIXD_APP_MISC_VALIDATOR_KEYS_H_INCLUDED
+#define BIXD_APP_MISC_VALIDATOR_KEYS_H_INCLUDED
 
 #include <bixd/beast/utility/Journal.h>
 #include <bixd/protocol/PublicKey.h>
@@ -26,7 +26,7 @@
 #include <bixd/protocol/UintTypes.h>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 class Config;
 
@@ -53,6 +53,6 @@ private:
     bool configInvalid_ = false;  //< Set to true if config was invalid
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

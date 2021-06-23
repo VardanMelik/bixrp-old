@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/json/json_value.h>
-#include <ripple/rpc/impl/Handler.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/json/json_value.h>
+#include <bixd/rpc/impl/Handler.h>
 
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 namespace RPC {
 struct JsonContext;
@@ -38,4 +38,4 @@ doStop(RPC::JsonContext& context)
     return RPC::makeObjectValue(systemName() + " server stopping");
 }
 
-}  // namespace ripple
+}  // namespace bixd

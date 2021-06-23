@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -19,7 +19,7 @@
 #ifndef BASICS_FEES_H_INCLUDED
 #define BASICS_FEES_H_INCLUDED
 
-#include <ripple/basics/XRPAmount.h>
+#include <bixd/basics/XRPAmount.h>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <limits>
 #include <utility>
@@ -31,7 +31,7 @@
 #include <sstream>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 namespace feeunit {
 
@@ -41,7 +41,7 @@ namespace feeunit {
 struct feeunitTag;
 /** "fee levels" are used by the transaction queue to compare the relative
     cost of transactions that require different levels of effort to process.
-    See also: src/ripple/app/misc/FeeEscalation.md#fee-level */
+    See also: src/bixd/app/misc/FeeEscalation.md#fee-level */
 struct feelevelTag;
 /** unitless values are plain scalars wrapped in a TaggedFee. They are
     used for calculations in this header. */
@@ -552,6 +552,6 @@ unsafe_cast(Src s) noexcept
     return Dest{unsafe_cast<typename Dest::value_type>(s.value())};
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif  // BASICS_FEES_H_INCLUDED

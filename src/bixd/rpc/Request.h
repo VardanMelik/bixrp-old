@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_REQUEST_H_INCLUDED
-#define RIPPLE_RPC_REQUEST_H_INCLUDED
+#ifndef BIXD_RPC_REQUEST_H_INCLUDED
+#define BIXD_RPC_REQUEST_H_INCLUDED
 
-#include <ripple/json/json_value.h>
-#include <ripple/resource/Charge.h>
-#include <ripple/resource/Fees.h>
+#include <bixd/json/json_value.h>
+#include <bixd/resource/Charge.h>
+#include <bixd/resource/Fees.h>
 #include <beast/utility/Journal.h>
 
-namespace ripple {
+namespace bixd {
 
 class Application;
 
@@ -52,7 +52,7 @@ struct Request
     // [in] The JSON-RPC method
     std::string method;
 
-    // [in] The Ripple-specific "params" object
+    // [in] The bixd-specific "params" object
     Json::Value params;
 
     // [in, out] The resource cost for the command
@@ -70,6 +70,6 @@ private:
 };
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

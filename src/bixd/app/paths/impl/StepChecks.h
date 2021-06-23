@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2015 Ripple Labs Inc.
+    Copyright (c) 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_IMPL_STEP_CHECKS_H_INCLUDED
-#define RIPPLE_APP_PATHS_IMPL_STEP_CHECKS_H_INCLUDED
+#ifndef BIXD_APP_PATHS_IMPL_STEP_CHECKS_H_INCLUDED
+#define BIXD_APP_PATHS_IMPL_STEP_CHECKS_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/AccountID.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/AccountID.h>
+#include <bixd/protocol/UintTypes.h>
 
-namespace ripple {
+namespace bixd {
 
 inline TER
 checkFreeze(
@@ -67,7 +67,7 @@ checkNoRipple(
     Currency const& currency,
     beast::Journal j)
 {
-    // fetch the ripple lines into and out of this node
+    // fetch the bixd lines into and out of this node
     auto sleIn = view.read(keylet::line(prev, cur, currency));
     auto sleOut = view.read(keylet::line(cur, next, currency));
 
@@ -80,11 +80,11 @@ checkNoRipple(
         JLOG(j.info()) << "Path violates noRipple constraint between " << prev
                        << ", " << cur << " and " << next;
 
-        return terNO_RIPPLE;
+        return terNO_BIXD;
     }
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

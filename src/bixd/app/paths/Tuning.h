@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_TUNING_H_INCLUDED
-#define RIPPLE_APP_PATHS_TUNING_H_INCLUDED
+#ifndef BIXD_APP_PATHS_TUNING_H_INCLUDED
+#define BIXD_APP_PATHS_TUNING_H_INCLUDED
 
-namespace ripple {
+namespace bixd {
 
 int const CALC_NODE_DELIVER_MAX_LOOPS = 100;
 int const CALC_NODE_DELIVER_MAX_LOOPS_MQ = 2000;
@@ -31,6 +31,6 @@ int const PATHFINDER_MAX_PATHS = 50;
 int const PATHFINDER_MAX_COMPLETE_PATHS = 1000;
 int const PATHFINDER_MAX_PATHS_FROM_SOURCE = 10;
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

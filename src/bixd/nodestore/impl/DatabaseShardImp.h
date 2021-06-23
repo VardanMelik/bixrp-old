@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2017 Ripple Labs Inc.
+    Copyright (c) 2012, 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NODESTORE_DATABASESHARDIMP_H_INCLUDED
-#define RIPPLE_NODESTORE_DATABASESHARDIMP_H_INCLUDED
+#ifndef BIXD_NODESTORE_DATABASESHARDIMP_H_INCLUDED
+#define BIXD_NODESTORE_DATABASESHARDIMP_H_INCLUDED
 
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/nodestore/impl/Shard.h>
-#include <ripple/nodestore/impl/TaskQueue.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/nodestore/impl/Shard.h>
+#include <bixd/nodestore/impl/TaskQueue.h>
 
 #include <boost/asio/basic_waitable_timer.hpp>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 class DatabaseShardImp : public DatabaseShard
@@ -330,6 +330,6 @@ private:
 };
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

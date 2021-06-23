@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2015 Ripple Labs Inc.
+    Copyright 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/overlay/Cluster.h>
-#include <ripple/overlay/ClusterNode.h>
-#include <ripple/protocol/SecretKey.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/overlay/Cluster.h>
+#include <bixd/overlay/ClusterNode.h>
+#include <bixd/protocol/SecretKey.h>
 #include <test/jtx/TestSuite.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 namespace tests {
 
-class cluster_test : public ripple::TestSuite
+class cluster_test : public bixd::TestSuite
 {
     test::SuiteJournal journal_;
 
@@ -266,7 +266,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(cluster, overlay, ripple);
+BEAST_DEFINE_TESTSUITE(cluster, overlay, bixd);
 
 }  // namespace tests
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/json/json_value.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/handlers/Handlers.h>
+#include <bixd/json/json_value.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/handlers/Handlers.h>
 
 #include <boost/optional.hpp>
 
 #include <string>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doPeerReservationsAdd(RPC::JsonContext& context)
@@ -136,4 +136,4 @@ doPeerReservationsList(RPC::JsonContext& context)
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

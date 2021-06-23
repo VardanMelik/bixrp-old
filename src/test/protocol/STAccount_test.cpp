@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2015 Ripple Labs Inc.
+    Copyright (c) 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/protocol/STAccount.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/protocol/STAccount.h>
 
-namespace ripple {
+namespace bixd {
 
 struct STAccount_test : public beast::unit_test::suite
 {
@@ -129,6 +129,6 @@ struct STAccount_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(STAccount, protocol, ripple);
+BEAST_DEFINE_TESTSUITE(STAccount, protocol, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

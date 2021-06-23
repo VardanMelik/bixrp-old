@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_JOBQUEUE_H_INCLUDED
-#define RIPPLE_CORE_JOBQUEUE_H_INCLUDED
+#ifndef BIXD_CORE_JOBQUEUE_H_INCLUDED
+#define BIXD_CORE_JOBQUEUE_H_INCLUDED
 
-#include <ripple/basics/LocalValue.h>
-#include <ripple/core/JobTypeData.h>
-#include <ripple/core/JobTypes.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/core/impl/Workers.h>
-#include <ripple/json/json_value.h>
+#include <bixd/basics/LocalValue.h>
+#include <bixd/core/JobTypeData.h>
+#include <bixd/core/JobTypes.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/core/impl/Workers.h>
+#include <bixd/json/json_value.h>
 #include <boost/coroutine/all.hpp>
 #include <boost/range/begin.hpp>  // workaround for boost 1.72 bug
 #include <boost/range/end.hpp>    // workaround for boost 1.72 bug
 
-namespace ripple {
+namespace bixd {
 
 namespace perf {
 class PerfLog;
@@ -416,11 +416,11 @@ private:
             lock is released which only happens after the coroutine completes.
 */
 
-}  // namespace ripple
+}  // namespace bixd
 
-#include <ripple/core/Coro.ipp>
+#include <bixd/core/Coro.ipp>
 
-namespace ripple {
+namespace bixd {
 
 template <class F>
 std::shared_ptr<JobQueue::Coro>
@@ -442,6 +442,6 @@ JobQueue::postCoro(JobType t, std::string const& name, F&& f)
     return coro;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

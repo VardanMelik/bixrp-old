@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_SSLHTTPPEER_H_INCLUDED
-#define RIPPLE_SERVER_SSLHTTPPEER_H_INCLUDED
+#ifndef BIXD_SERVER_SSLHTTPPEER_H_INCLUDED
+#define BIXD_SERVER_SSLHTTPPEER_H_INCLUDED
 
-#include <ripple/server/impl/BaseHTTPPeer.h>
-#include <ripple/server/impl/SSLWSPeer.h>
+#include <bixd/server/impl/BaseHTTPPeer.h>
+#include <bixd/server/impl/SSLWSPeer.h>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/ssl/context.hpp>
 #include <boost/asio/ssl/stream.hpp>
@@ -29,7 +29,7 @@
 #include <boost/beast/ssl/ssl_stream.hpp>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 template <class Handler>
 class SSLHTTPPeer : public BaseHTTPPeer<Handler, SSLHTTPPeer<Handler>>,
@@ -221,6 +221,6 @@ SSLHTTPPeer<Handler>::on_shutdown(error_code ec)
     stream_.next_layer().close();
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

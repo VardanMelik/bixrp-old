@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_TIMEOUTCOUNTER_H_INCLUDED
-#define RIPPLE_APP_LEDGER_TIMEOUTCOUNTER_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_TIMEOUTCOUNTER_H_INCLUDED
+#define BIXD_APP_LEDGER_TIMEOUTCOUNTER_H_INCLUDED
 
 #include <bixd/app/main/Application.h>
 #include <bixd/beast/clock/abstract_clock.h>
@@ -27,7 +27,7 @@
 #include <boost/asio/basic_waitable_timer.hpp>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 /**
     This class is an "active" object. It maintains its own timer
@@ -119,7 +119,7 @@ protected:
     }
 
     // Used in this class for access to boost::asio::io_service and
-    // ripple::Overlay. Used in subtypes for the kitchen sink.
+    // bixd::Overlay. Used in subtypes for the kitchen sink.
     Application& app_;
     beast::Journal journal_;
     mutable std::recursive_mutex mtx_;
@@ -147,6 +147,6 @@ private:
     boost::asio::basic_waitable_timer<std::chrono::steady_clock> timer_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

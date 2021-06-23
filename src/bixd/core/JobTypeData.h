@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_JOBTYPEDATA_H_INCLUDED
-#define RIPPLE_CORE_JOBTYPEDATA_H_INCLUDED
+#ifndef BIXD_CORE_JOBTYPEDATA_H_INCLUDED
+#define BIXD_CORE_JOBTYPEDATA_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/beast/insight/Collector.h>
-#include <ripple/core/JobTypeInfo.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/insight/Collector.h>
+#include <bixd/core/JobTypeInfo.h>
 
-namespace ripple {
+namespace bixd {
 
 struct JobTypeData
 {
@@ -102,6 +102,6 @@ public:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

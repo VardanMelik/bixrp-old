@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/AmendmentTable.h>
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/misc/AmendmentTable.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx/Env.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 
 class AmendmentTable_test final : public beast::unit_test::suite
 {
@@ -440,7 +440,7 @@ public:
             }
 
             auto v = std::make_shared<STValidation>(
-                ripple::NetClock::time_point{},
+                bixd::NetClock::time_point{},
                 pub,
                 sec,
                 calcNodeID(pub),
@@ -911,6 +911,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(AmendmentTable, app, ripple);
+BEAST_DEFINE_TESTSUITE(AmendmentTable, app, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

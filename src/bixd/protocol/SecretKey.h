@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_SECRETKEY_H_INCLUDED
-#define RIPPLE_PROTOCOL_SECRETKEY_H_INCLUDED
+#ifndef BIXD_PROTOCOL_SECRETKEY_H_INCLUDED
+#define BIXD_PROTOCOL_SECRETKEY_H_INCLUDED
 
-#include <ripple/basics/Buffer.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/protocol/KeyType.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/Seed.h>
-#include <ripple/protocol/tokens.h>
+#include <bixd/basics/Buffer.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/protocol/KeyType.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/Seed.h>
+#include <bixd/protocol/tokens.h>
 #include <array>
 #include <cstring>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 /** A secret key. */
 class SecretKey
@@ -136,7 +136,7 @@ derivePublicKey(KeyType type, SecretKey const& sk);
 
 /** Generate a key pair deterministically.
 
-    This algorithm is specific to Ripple:
+    This algorithm is specific to bixd:
 
     For secp256k1 key pairs, the seed is converted
     to a Generator and used to compute the key pair
@@ -180,6 +180,6 @@ sign(KeyType type, SecretKey const& sk, Slice const& message)
 }
 /** @} */
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

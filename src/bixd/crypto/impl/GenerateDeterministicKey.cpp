@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/crypto/GenerateDeterministicKey.h>
-#include <ripple/crypto/impl/ec_key.h>
-#include <ripple/crypto/impl/openssl.h>
-#include <ripple/crypto/secure_erase.h>
-#include <ripple/protocol/digest.h>
+#include <bixd/basics/contract.h>
+#include <bixd/crypto/GenerateDeterministicKey.h>
+#include <bixd/crypto/impl/ec_key.h>
+#include <bixd/crypto/impl/openssl.h>
+#include <bixd/crypto/secure_erase.h>
+#include <bixd/protocol/digest.h>
 #include <array>
 #include <openssl/pem.h>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 namespace openssl {
 
@@ -133,7 +133,7 @@ generateRootDeterministicPrivateKey(uint128 const& seed)
     return uint256_from_bignum_clear(key);
 }
 
-// Take ripple address.
+// Take bixd address.
 // --> root public generator (consumes)
 // <-- root public generator in EC format
 static ec_point
@@ -214,4 +214,4 @@ generatePrivateDeterministicKey(
     return uint256_from_bignum_clear(privKey);
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/core/Job.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/rpc/impl/LegacyPathFind.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/core/Job.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/rpc/impl/LegacyPathFind.h>
+#include <bixd/rpc/impl/Tuning.h>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 LegacyPathFind::LegacyPathFind(bool isAdmin, Application& app) : m_isOk(false)
@@ -68,4 +68,4 @@ LegacyPathFind::~LegacyPathFind()
 std::atomic<int> LegacyPathFind::inProgress(0);
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

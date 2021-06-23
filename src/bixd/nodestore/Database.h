@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2017 Ripple Labs Inc.
+    Copyright (c) 2012, 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NODESTORE_DATABASE_H_INCLUDED
-#define RIPPLE_NODESTORE_DATABASE_H_INCLUDED
+#ifndef BIXD_NODESTORE_DATABASE_H_INCLUDED
+#define BIXD_NODESTORE_DATABASE_H_INCLUDED
 
-#include <ripple/core/Stoppable.h>
-#include <ripple/nodestore/Backend.h>
-#include <ripple/nodestore/NodeObject.h>
-#include <ripple/nodestore/Scheduler.h>
-#include <ripple/protocol/SystemParameters.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/nodestore/Backend.h>
+#include <bixd/nodestore/NodeObject.h>
+#include <bixd/nodestore/Scheduler.h>
+#include <bixd/protocol/SystemParameters.h>
 
 #include <thread>
 
-namespace ripple {
+namespace bixd {
 
 class Ledger;
 
@@ -329,6 +329,6 @@ private:
 };
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

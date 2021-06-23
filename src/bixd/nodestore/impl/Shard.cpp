@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2017 Ripple Labs Inc.
+    Copyright (c) 2012, 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/InboundLedger.h>
-#include <ripple/app/main/DBInit.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/nodestore/Manager.h>
-#include <ripple/nodestore/impl/Shard.h>
-#include <ripple/protocol/digest.h>
+#include <bixd/app/ledger/InboundLedger.h>
+#include <bixd/app/main/DBInit.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/nodestore/Manager.h>
+#include <bixd/nodestore/impl/Shard.h>
+#include <bixd/protocol/digest.h>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/range/adaptor/transformed.hpp>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 uint256 const Shard::finalKey{0};
@@ -1081,7 +1081,7 @@ Shard::storeSQLite(std::shared_ptr<Ledger const> const& ledger)
                                     [&](AccountID const& accountID) {
                                         return boost::str(
                                             boost::format(s) %
-                                            ripple::toBase58(accountID));
+                                            bixd::toBase58(accountID));
                                     }),
                             ",");
                         sql += ';';
@@ -1324,4 +1324,4 @@ Shard::makeBackendCount()
 }
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

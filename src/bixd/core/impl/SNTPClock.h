@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_SNTPCLOCK_H_INCLUDED
-#define RIPPLE_NET_SNTPCLOCK_H_INCLUDED
+#ifndef BIXD_NET_SNTPCLOCK_H_INCLUDED
+#define BIXD_NET_SNTPCLOCK_H_INCLUDED
 
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/utility/Journal.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/utility/Journal.h>
 #include <chrono>
 #include <memory>
 #include <string>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /** A clock based on system_clock and adjusted for SNTP. */
 class SNTPClock : public beast::abstract_clock<std::chrono::system_clock>
@@ -42,6 +42,6 @@ public:
 
 extern std::unique_ptr<SNTPClock> make_SNTPClock(beast::Journal);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

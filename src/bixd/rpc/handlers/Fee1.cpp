@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/OpenLedger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/basics/mulDiv.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/GRPCHandlers.h>
+#include <bixd/app/ledger/OpenLedger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/basics/mulDiv.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/GRPCHandlers.h>
 
-namespace ripple {
+namespace bixd {
 Json::Value
 doFee(RPC::JsonContext& context)
 {
@@ -83,4 +83,4 @@ doFeeGrpc(RPC::GRPCContext<org::xrpl::rpc::v1::GetFeeRequest>& context)
             .drops());
     return {reply, status};
 }
-}  // namespace ripple
+}  // namespace bixd

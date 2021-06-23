@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/basics/random.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/beast/utility/rngfill.h>
-#include <ripple/beast/xor_shift_engine.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Seed.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/beast/utility/rngfill.h>
+#include <bixd/beast/xor_shift_engine.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Seed.h>
 #include <algorithm>
 
-namespace ripple {
+namespace bixd {
 
 class Seed_test : public beast::unit_test::suite
 {
@@ -128,8 +128,8 @@ public:
     void
     testKeypairGenerationAndSigning()
     {
-        std::string const message1 = "http://www.ripple.com";
-        std::string const message2 = "https://www.ripple.com";
+        std::string const message1 = "http://www.bixd.com";
+        std::string const message2 = "https://www.bixd.com";
 
         {
             testcase("Node keypair generation & signing (secp256k1)");
@@ -358,6 +358,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Seed, protocol, ripple);
+BEAST_DEFINE_TESTSUITE(Seed, protocol, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

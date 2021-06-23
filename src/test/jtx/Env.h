@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,26 +17,26 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TEST_JTX_ENV_H_INCLUDED
-#define RIPPLE_TEST_JTX_ENV_H_INCLUDED
+#ifndef BIXD_TEST_JTX_ENV_H_INCLUDED
+#define BIXD_TEST_JTX_ENV_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/ledger/OpenLedger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/paths/Pathfinder.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/Config.h>
-#include <ripple/json/json_value.h>
-#include <ripple/json/to_string.h>
-#include <ripple/ledger/CachedSLEs.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/Issue.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STObject.h>
-#include <ripple/protocol/STTx.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/ledger/OpenLedger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/paths/Pathfinder.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/Config.h>
+#include <bixd/json/json_value.h>
+#include <bixd/json/to_string.h>
+#include <bixd/ledger/CachedSLEs.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/Issue.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STObject.h>
+#include <bixd/protocol/STTx.h>
 #include <functional>
 #include <string>
 #include <test/jtx/AbstractClient.h>
@@ -54,11 +54,11 @@
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
-/** Designate accounts as no-ripple in Env::fund */
+/** Designate accounts as no-bixd in Env::fund */
 template <class... Args>
 std::array<Account, 1 + sizeof...(Args)>
 noripple(Account const& account, Args const&... args)
@@ -70,7 +70,7 @@ inline FeatureBitset
 supported_amendments()
 {
     static const FeatureBitset ids = [] {
-        auto const& sa = ripple::detail::supportedAmendments();
+        auto const& sa = bixd::detail::supportedAmendments();
         std::vector<uint256> feats;
         feats.reserve(sa.size());
         for (auto const& s : sa)
@@ -254,7 +254,7 @@ public:
         return *bundle_.timeKeeper;
     }
 
-    /** Returns the current Ripple Network Time
+    /** Returns the current bixd Network Time
 
         @note This is manually advanced when ledgers
               close or by callers.
@@ -702,6 +702,6 @@ Env::rpc(std::string const& cmd, Args&&... args)
 
 }  // namespace jtx
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

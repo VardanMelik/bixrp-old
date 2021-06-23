@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
   This file is part of bixd
-  Copyright (c) 2012-2015 Ripple Labs Inc.
+  Copyright (c) 2012-2015 bixd Labs Inc.
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/basics/safe_cast.h>
+#include <bixd/basics/safe_cast.h>
 #include <cassert>
 #include <cmath>
 #include <iomanip>
 #include <test/jtx/Account.h>
 #include <test/jtx/amount.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
@@ -127,4 +127,4 @@ any_t const any{};
 
 }  // namespace jtx
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

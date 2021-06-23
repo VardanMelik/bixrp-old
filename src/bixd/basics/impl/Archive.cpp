@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2018 Ripple Labs Inc.
+    Copyright (c) 2012, 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Archive.h>
-#include <ripple/basics/contract.h>
+#include <bixd/basics/Archive.h>
+#include <bixd/basics/contract.h>
 
 #include <archive.h>
 #include <archive_entry.h>
 
-namespace ripple {
+namespace bixd {
 
 void
 extractTarLz4(
@@ -111,4 +111,4 @@ extractTarLz4(
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

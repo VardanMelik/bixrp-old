@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/basics/base64.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/rpc/ServerHandler.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/basics/base64.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/rpc/ServerHandler.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
@@ -38,7 +38,7 @@
 #include <test/jtx/WSClient.h>
 #include <test/jtx/envconfig.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class ServerStatus_test : public beast::unit_test::suite,
@@ -1244,7 +1244,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(ServerStatus, server, ripple);
+BEAST_DEFINE_TESTSUITE(ServerStatus, server, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

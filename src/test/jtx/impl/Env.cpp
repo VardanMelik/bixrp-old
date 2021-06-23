@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,26 +17,26 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/contract.h>
-#include <ripple/consensus/LedgerTiming.h>
-#include <ripple/json/to_string.h>
-#include <ripple/net/HTTPClient.h>
-#include <ripple/net/RPCCall.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/LedgerFormats.h>
-#include <ripple/protocol/Serializer.h>
-#include <ripple/protocol/SystemParameters.h>
-#include <ripple/protocol/TER.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/contract.h>
+#include <bixd/consensus/LedgerTiming.h>
+#include <bixd/json/to_string.h>
+#include <bixd/net/HTTPClient.h>
+#include <bixd/net/RPCCall.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/LedgerFormats.h>
+#include <bixd/protocol/Serializer.h>
+#include <bixd/protocol/SystemParameters.h>
+#include <bixd/protocol/TER.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/jss.h>
 #include <memory>
 #include <test/jtx/Env.h>
 #include <test/jtx/JSONRPCClient.h>
@@ -50,7 +50,7 @@
 #include <test/jtx/trust.h>
 #include <test/jtx/utility.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
@@ -462,4 +462,4 @@ Env::enableFeature(uint256 const feature)
 }  // namespace jtx
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

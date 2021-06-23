@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PEERFINDER_MANAGER_H_INCLUDED
-#define RIPPLE_PEERFINDER_MANAGER_H_INCLUDED
+#ifndef BIXD_PEERFINDER_MANAGER_H_INCLUDED
+#define BIXD_PEERFINDER_MANAGER_H_INCLUDED
 
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/peerfinder/Slot.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/peerfinder/Slot.h>
 #include <boost/asio/ip/tcp.hpp>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 using clock_type = beast::abstract_clock<std::chrono::steady_clock>;
@@ -102,7 +102,7 @@ struct Config
      */
     static Config
     makeConfig(
-        ripple::Config const& config,
+        bixd::Config const& config,
         std::uint16_t port,
         bool validationPublicKey,
         int ipLimit);
@@ -265,6 +265,6 @@ public:
 };
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/BIXRPAmount.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/BIXRPAmount.h>
+#include <bixd/beast/unit_test.h>
 
-namespace ripple {
+namespace bixd {
 
 class BIXRPAmount_test : public beast::unit_test::suite
 {
@@ -322,7 +322,7 @@ public:
     BIXRPAmount bigNegative(minBIXRP + 10);
     BEAST_EXPECT(mulRatio(bigNegative, 2, 1, true) == minBIXRP);
 }
-}  // namespace ripple
+}  // namespace bixd
 
 //--------------------------------------------------------------------------
 
@@ -340,6 +340,6 @@ run() override
 }
 ;
 
-BEAST_DEFINE_TESTSUITE(BIXRPAmount, protocol, ripple);
+BEAST_DEFINE_TESTSUITE(BIXRPAmount, protocol, bixd);
 
-}  // ripple
+}  // bixd

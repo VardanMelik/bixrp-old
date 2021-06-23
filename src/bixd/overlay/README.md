@@ -212,7 +212,7 @@ The value, if the field is present, is a 32-bit unsigned integer. The
 following well-known values are in use:
 
 - **0**: The "main net"
-- **1**: The Ripple-operated [Test Net](https://xrpl.org/xrp-test-net-faucet.html).
+- **1**: The bixd-operated [Test Net](https://xrpl.org/xrp-test-net-faucet.html).
 
 If a server configured to join one network receives a connection request from a
 server configured to join another network, the request should fail with an
@@ -366,9 +366,9 @@ message stream between Alice and Bob, although she may be still be able to injec
 delays or terminate the link.
 
 
-# Ripple Clustering #
+# bixd Clustering #
 
-A cluster consists of more than one Ripple server under common
+A cluster consists of more than one bixd server under common
 administration that share load information, distribute cryptography
 operations, and provide greater response consistency.
 

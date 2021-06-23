@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_PROTOCOLVERSION_H_INCLUDED
-#define RIPPLE_OVERLAY_PROTOCOLVERSION_H_INCLUDED
+#ifndef BIXD_OVERLAY_PROTOCOLVERSION_H_INCLUDED
+#define BIXD_OVERLAY_PROTOCOLVERSION_H_INCLUDED
 
 #include <boost/beast/core/string.hpp>
 #include <boost/optional.hpp>
@@ -27,7 +27,7 @@
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /** Represents a particular version of the peer-to-peer protocol.
 
@@ -77,6 +77,6 @@ supportedProtocolVersions();
 bool
 isProtocolSupported(ProtocolVersion const& v);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

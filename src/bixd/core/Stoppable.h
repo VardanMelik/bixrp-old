@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_STOPPABLE_H_INCLUDED
-#define RIPPLE_CORE_STOPPABLE_H_INCLUDED
+#ifndef BIXD_CORE_STOPPABLE_H_INCLUDED
+#define BIXD_CORE_STOPPABLE_H_INCLUDED
 
-#include <ripple/beast/core/LockFreeStack.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/ClosureCounter.h>
-#include <ripple/core/Job.h>
+#include <bixd/beast/core/LockFreeStack.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/ClosureCounter.h>
+#include <bixd/core/Job.h>
 #include <atomic>
 #include <chrono>
 #include <condition_variable>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 // Give a reasonable name for the JobCounter
 using JobCounter = ClosureCounter<void, Job&>;
@@ -442,6 +442,6 @@ Stoppable::alertable_sleep_until(std::chrono::system_clock::time_point const& t)
     return m_root.alertable_sleep_until(t);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

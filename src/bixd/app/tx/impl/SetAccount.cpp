@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/SetAccount.h>
-#include <ripple/basics/Log.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/Quality.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/tx/impl/SetAccount.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/Quality.h>
+#include <bixd/protocol/st.h>
 
-namespace ripple {
+namespace bixd {
 
 TxConsequences
 SetAccount::makeTxConsequences(PreflightContext const& ctx)
@@ -522,4 +522,4 @@ SetAccount::doApply()
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/beast/net/IPAddressConversion.h>
-#include <ripple/resource/ResourceManager.h>
-#include <ripple/resource/impl/Logic.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/beast/net/IPAddressConversion.h>
+#include <bixd/resource/ResourceManager.h>
+#include <bixd/resource/impl/Logic.h>
 #include <boost/asio/ip/address_v4.hpp>
 #include <boost/core/ignore_unused.hpp>
 #include <boost/system/error_code.hpp>
@@ -30,7 +30,7 @@
 #include <memory>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 class ManagerImp : public Manager
@@ -180,4 +180,4 @@ make_Manager(
 }
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd

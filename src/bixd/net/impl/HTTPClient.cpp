@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/net/AutoSocket.h>
-#include <ripple/net/HTTPClient.h>
-#include <ripple/net/HTTPClientSSLContext.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/net/AutoSocket.h>
+#include <bixd/net/HTTPClient.h>
+#include <bixd/net/HTTPClientSSLContext.h>
 #include <boost/asio.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/ssl.hpp>
 #include <boost/optional.hpp>
 #include <boost/regex.hpp>
 
-namespace ripple {
+namespace bixd {
 
 boost::optional<HTTPClientSSLContext> httpClientSSLContext;
 
@@ -604,4 +604,4 @@ HTTPClient::request(
     client->request(bSSL, deqSites, setRequest, timeout, complete);
 }
 
-}  // namespace ripple
+}  // namespace bixd

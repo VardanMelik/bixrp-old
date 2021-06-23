@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/paths/RippleState.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/paths/RippleState.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/Tuning.h>
 
-namespace ripple {
+namespace bixd {
 
 struct VisitData
 {
@@ -142,7 +142,7 @@ doAccountLines(RPC::JsonContext& context)
         if (!startAfter.parseHex(marker.asString()))
             return rpcError(rpcINVALID_PARAMS);
 
-        auto const sleLine = ledger->read({ltRIPPLE_STATE, startAfter});
+        auto const sleLine = ledger->read({ltBIXD_STATE, startAfter});
 
         if (!sleLine)
             return rpcError(rpcINVALID_PARAMS);
@@ -212,4 +212,4 @@ doAccountLines(RPC::JsonContext& context)
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

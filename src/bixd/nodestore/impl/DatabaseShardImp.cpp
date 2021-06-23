@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2017 Ripple Labs Inc.
+    Copyright (c) 2012, 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/InboundLedgers.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/basics/ByteUtilities.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/basics/random.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/nodestore/DummyScheduler.h>
-#include <ripple/nodestore/impl/DatabaseShardImp.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/overlay/predicates.h>
-#include <ripple/protocol/HashPrefix.h>
+#include <bixd/app/ledger/InboundLedgers.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/basics/ByteUtilities.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/basics/random.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/nodestore/DummyScheduler.h>
+#include <bixd/nodestore/impl/DatabaseShardImp.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/overlay/predicates.h>
+#include <bixd/protocol/HashPrefix.h>
 
 #include <boost/algorithm/string/predicate.hpp>
 
@@ -36,7 +36,7 @@
 #include <sys/statvfs.h>
 #endif
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 DatabaseShardImp::DatabaseShardImp(
@@ -1908,4 +1908,4 @@ make_ShardStore(
 }
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STTX_H_INCLUDED
-#define RIPPLE_PROTOCOL_STTX_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STTX_H_INCLUDED
+#define BIXD_PROTOCOL_STTX_H_INCLUDED
 
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/STObject.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/SeqProxy.h>
-#include <ripple/protocol/TxFormats.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/STObject.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/SeqProxy.h>
+#include <bixd/protocol/TxFormats.h>
 #include <boost/container/flat_set.hpp>
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 
 enum TxnSql : char {
     txnSqlNew = 'N',
@@ -177,6 +177,6 @@ sterilize(STTx const& stx);
 bool
 isPseudoTx(STObject const& tx);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

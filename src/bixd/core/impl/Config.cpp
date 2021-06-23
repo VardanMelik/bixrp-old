@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/basics/FileUtilities.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/net/HTTPClient.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/SystemParameters.h>
+#include <bixd/basics/FileUtilities.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/net/HTTPClient.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/SystemParameters.h>
 #include <boost/algorithm/string.hpp>
 #include <boost/beast/core/string.hpp>
 #include <boost/format.hpp>
@@ -38,7 +38,7 @@
 #include <iostream>
 #include <iterator>
 
-namespace ripple {
+namespace bixd {
 
 // The configurable node sizes are "tiny", "small", "medium", "large", "huge"
 inline constexpr std::array<std::pair<SizedItem, std::array<int, 5>>, 11>
@@ -829,4 +829,4 @@ Config::getValueFor(SizedItem item, boost::optional<std::size_t> node) const
     return sizedItems.at(index).second.at(node.value_or(NODE_SIZE));
 }
 
-}  // namespace ripple
+}  // namespace bixd

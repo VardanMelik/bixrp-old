@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
     copyright notice and this permission notice appear in all copies.
@@ -15,18 +15,18 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/net/RPCCall.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/net/RPCCall.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <test/jtx.h>
 
 #include <boost/algorithm/string.hpp>
 #include <initializer_list>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 struct RPCCallTestData
@@ -6491,7 +6491,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(RPCCall, app, ripple);
+BEAST_DEFINE_TESTSUITE(RPCCall, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

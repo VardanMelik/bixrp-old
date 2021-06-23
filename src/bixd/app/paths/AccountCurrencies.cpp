@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -19,7 +19,7 @@
 
 #include <bixd/app/paths/AccountCurrencies.h>
 
-namespace ripple {
+namespace bixd {
 
 hash_set<Currency>
 accountSourceCurrencies(
@@ -33,7 +33,7 @@ accountSourceCurrencies(
     if (includeBIXRP)
         currencies.insert(bixrpCurrency());
 
-    // List of ripple lines.
+    // List of bixd lines.
     auto& rippleLines = lrCache->getRippleLines(account);
 
     for (auto const& item : rippleLines)
@@ -72,7 +72,7 @@ accountDestCurrencies(
         currencies.insert(bixrpCurrency());
     // Even if account doesn't exist
 
-    // List of ripple lines.
+    // List of bixd lines.
     auto& rippleLines = lrCache->getRippleLines(account);
 
     for (auto const& item : rippleLines)
@@ -92,4 +92,4 @@ accountDestCurrencies(
     return currencies;
 }
 
-}  // namespace ripple
+}  // namespace bixd

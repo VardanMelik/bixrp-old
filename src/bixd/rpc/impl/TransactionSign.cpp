@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,32 +17,32 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/OpenLedger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/app/paths/Pathfinder.h>
-#include <ripple/app/tx/apply.h>  // Validity::Valid
-#include <ripple/basics/Log.h>
-#include <ripple/basics/mulDiv.h>
-#include <ripple/json/json_writer.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/STParsedJSON.h>
-#include <ripple/protocol/Sign.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/rpc/impl/LegacyPathFind.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/TransactionSign.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/OpenLedger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/app/paths/Pathfinder.h>
+#include <bixd/app/tx/apply.h>  // Validity::Valid
+#include <bixd/basics/Log.h>
+#include <bixd/basics/mulDiv.h>
+#include <bixd/json/json_writer.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/STParsedJSON.h>
+#include <bixd/protocol/Sign.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/rpc/impl/LegacyPathFind.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/TransactionSign.h>
+#include <bixd/rpc/impl/Tuning.h>
 #include <algorithm>
 #include <iterator>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 namespace detail {
 
@@ -537,7 +537,7 @@ transactionPreProcessImpl(
         Serializer s =
             buildMultiSigningData(*stpTrans, signingArgs.getSigner());
 
-        auto multisig = ripple::sign(pk, sk, s.slice());
+        auto multisig = bixd::sign(pk, sk, s.slice());
 
         signingArgs.moveMultiSignature(std::move(multisig));
     }
@@ -1227,4 +1227,4 @@ transactionSubmitMultiSigned(
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,28 +17,28 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_READVIEW_H_INCLUDED
-#define RIPPLE_LEDGER_READVIEW_H_INCLUDED
+#ifndef BIXD_LEDGER_READVIEW_H_INCLUDED
+#define BIXD_LEDGER_READVIEW_H_INCLUDED
 
-#include <ripple/basics/FeeUnits.h>
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/hash/uhash.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/ledger/detail/ReadViewFwdRange.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STLedgerEntry.h>
-#include <ripple/protocol/STTx.h>
+#include <bixd/basics/FeeUnits.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/hash/uhash.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/ledger/detail/ReadViewFwdRange.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STLedgerEntry.h>
+#include <bixd/protocol/STTx.h>
 #include <boost/optional.hpp>
 #include <cassert>
 #include <cstdint>
 #include <memory>
 #include <unordered_set>
 
-namespace ripple {
+namespace bixd {
 
 /** Reflects the fee settings for a particular ledger.
 
@@ -423,8 +423,8 @@ getCloseAgree(LedgerInfo const& info)
 void
 addRaw(LedgerInfo const&, Serializer&, bool includeHash = false);
 
-}  // namespace ripple
+}  // namespace bixd
 
-#include <ripple/ledger/detail/ReadViewFwdRange.ipp>
+#include <bixd/ledger/detail/ReadViewFwdRange.ipp>
 
 #endif

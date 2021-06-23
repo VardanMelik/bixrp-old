@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/SetTrust.h>
-#include <ripple/basics/Log.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/Quality.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/tx/impl/SetTrust.h>
+#include <bixd/basics/Log.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/Quality.h>
+#include <bixd/protocol/st.h>
 
-namespace ripple {
+namespace bixd {
 
 NotTEC
 SetTrust::preflight(PreflightContext const& ctx)
@@ -152,7 +152,7 @@ SetTrust::doApply()
     // items.
     //
     // We do this because being able to exchange currencies,
-    // which needs trust lines, is a powerful Ripple feature.
+    // which needs trust lines, is a powerful bixd feature.
     // So we want to make it easy for a gateway to fund the
     // accounts of its users without fear of being tricked.
     //
@@ -447,7 +447,7 @@ SetTrust::doApply()
         {
             view().update(sleRippleState);
 
-            JLOG(j_.trace()) << "Modify ripple line";
+            JLOG(j_.trace()) << "Modify bixd line";
         }
     }
     // Line does not exist.
@@ -460,7 +460,7 @@ SetTrust::doApply()
         (!bSetAuth))
     {
         JLOG(j_.trace())
-            << "Redundant: Setting non-existent ripple line to defaults.";
+            << "Redundant: Setting non-existent bixd line to defaults.";
         return tecNO_LINE_REDUNDANT;
     }
     else if (mPriorBalance < reserveCreate)  // Reserve is not scaled by load.
@@ -479,10 +479,10 @@ SetTrust::doApply()
 
         auto const k = keylet::line(account_, uDstAccountID, currency);
 
-        JLOG(j_.trace()) << "doTrustSet: Creating ripple line: "
+        JLOG(j_.trace()) << "doTrustSet: Creating bixd line: "
                          << to_string(k.key);
 
-        // Create a new ripple line.
+        // Create a new bixd line.
         terResult = trustCreate(
             view(),
             bHigh,
@@ -503,4 +503,4 @@ SetTrust::doApply()
     return terResult;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/app/misc/Transaction.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/GRPCHandlers.h>
-#include <ripple/rpc/impl/GRPCHelpers.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/TransactionSign.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/app/misc/Transaction.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/GRPCHandlers.h>
+#include <bixd/rpc/impl/GRPCHelpers.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/TransactionSign.h>
 
-namespace ripple {
+namespace bixd {
 
 static NetworkOPs::FailHard
 getFailHard(RPC::JsonContext const& context)
@@ -292,4 +292,4 @@ doSubmitGrpc(
     return {result, status};
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/beast/utility/rngfill.h>
-#include <ripple/crypto/GenerateDeterministicKey.h>
-#include <ripple/crypto/csprng.h>
-#include <ripple/crypto/secure_erase.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/impl/secp256k1.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/beast/utility/rngfill.h>
+#include <bixd/crypto/GenerateDeterministicKey.h>
+#include <bixd/crypto/csprng.h>
+#include <bixd/crypto/secure_erase.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/impl/secp256k1.h>
 #include <cstring>
 #include <ed25519-donna/ed25519.h>
 
-namespace ripple {
+namespace bixd {
 
 SecretKey::~SecretKey()
 {
@@ -275,4 +275,4 @@ parseBase58(TokenType type, std::string const& s)
     return SecretKey(makeSlice(result));
 }
 
-}  // namespace ripple
+}  // namespace bixd

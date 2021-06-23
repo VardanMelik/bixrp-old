@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/overlay/Message.h>
-#include <ripple/overlay/impl/TrafficCount.h>
+#include <bixd/overlay/Message.h>
+#include <bixd/overlay/impl/TrafficCount.h>
 #include <cstdint>
 
-namespace ripple {
+namespace bixd {
 
 Message::Message(
     ::google::protobuf::Message const& message,
@@ -30,7 +30,7 @@ Message::Message(
     : category_(TrafficCount::categorize(message, type, false))
     , validatorKey_(validator)
 {
-    using namespace ripple::compression;
+    using namespace bixd::compression;
 
     auto const messageBytes = messageSize(message);
 
@@ -67,7 +67,7 @@ Message::totalSize(::google::protobuf::Message const& message)
 void
 Message::compress()
 {
-    using namespace ripple::compression;
+    using namespace bixd::compression;
     auto const messageBytes = buffer_.size() - headerBytes;
 
     auto type = getType(buffer_.data());
@@ -109,7 +109,7 @@ Message::compress()
     {
         auto payload = static_cast<void const*>(buffer_.data() + headerBytes);
 
-        auto compressedSize = ripple::compression::compress(
+        auto compressedSize = bixd::compression::compress(
             payload,
             messageBytes,
             [&](std::size_t inSize) {  // size of required compressed buffer
@@ -225,4 +225,4 @@ Message::getType(std::uint8_t const* in) const
     return type;
 }
 
-}  // namespace ripple
+}  // namespace bixd

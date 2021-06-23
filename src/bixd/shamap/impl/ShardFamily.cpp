@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/main/Tuning.h>
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/shamap/ShardFamily.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/main/Tuning.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/shamap/ShardFamily.h>
 
-namespace ripple {
+namespace bixd {
 
 static NodeStore::Database&
 getShardStore(Application& app)
@@ -192,4 +192,4 @@ ShardFamily::acquire(uint256 const& hash, std::uint32_t seq)
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

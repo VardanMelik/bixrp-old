@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_JSON_BODY_H
-#define RIPPLE_RPC_JSON_BODY_H
+#ifndef BIXD_RPC_JSON_BODY_H
+#define BIXD_RPC_JSON_BODY_H
 
-#include <ripple/json/json_value.h>
-#include <ripple/json/to_string.h>
+#include <bixd/json/json_value.h>
+#include <bixd/json/to_string.h>
 
 #include <boost/beast/core/multi_buffer.hpp>
 #include <boost/beast/http/message.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /// Body that holds JSON
 struct json_body
@@ -106,6 +106,6 @@ struct json_body
     };
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

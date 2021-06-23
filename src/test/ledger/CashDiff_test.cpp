@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
   This file is part of bixd
-  Copyright (c) 2016 Ripple Labs Inc.
+  Copyright (c) 2016 bixd Labs Inc.
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/ledger/CashDiff.h>
-#include <ripple/protocol/STAmount.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/ledger/CashDiff.h>
+#include <bixd/protocol/STAmount.h>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class CashDiff_test : public beast::unit_test::suite
@@ -106,7 +106,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(CashDiff, ledger, ripple);
+BEAST_DEFINE_TESTSUITE(CashDiff, ledger, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

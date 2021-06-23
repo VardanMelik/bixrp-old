@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PEERS_PEERSET_H_INCLUDED
-#define RIPPLE_APP_PEERS_PEERSET_H_INCLUDED
+#ifndef BIXD_APP_PEERS_PEERSET_H_INCLUDED
+#define BIXD_APP_PEERS_PEERSET_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/overlay/Peer.h>
-#include <ripple/overlay/impl/ProtocolMessage.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/overlay/Peer.h>
+#include <bixd/overlay/impl/ProtocolMessage.h>
 #include <boost/asio/basic_waitable_timer.hpp>
 #include <mutex>
 #include <set>
 
-namespace ripple {
+namespace bixd {
 
 /** Supports data retrieval by managing a set of peers.
 
@@ -97,6 +97,6 @@ make_PeerSetBuilder(Application& app);
 std::unique_ptr<PeerSet>
 make_DummyPeerSet(Application& app);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

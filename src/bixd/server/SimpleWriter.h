@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_SIMPLEWRITER_H_INCLUDED
-#define RIPPLE_SERVER_SIMPLEWRITER_H_INCLUDED
+#ifndef BIXD_SERVER_SIMPLEWRITER_H_INCLUDED
+#define BIXD_SERVER_SIMPLEWRITER_H_INCLUDED
 
-#include <ripple/server/Writer.h>
+#include <bixd/server/Writer.h>
 #include <boost/beast/core/multi_buffer.hpp>
 #include <boost/beast/core/ostream.hpp>
 #include <boost/beast/http/message.hpp>
 #include <boost/beast/http/write.hpp>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /// Deprecated: Writer that serializes a HTTP/1 message
 class SimpleWriter : public Writer
@@ -72,6 +72,6 @@ public:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

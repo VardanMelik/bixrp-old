@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -69,7 +69,7 @@
 
 namespace po = boost::program_options;
 
-namespace ripple {
+namespace bixd {
 
 bool
 adjustDescriptorLimit(int needed, beast::Journal j)
@@ -163,7 +163,7 @@ printHelp(const po::options_description& desc)
            "     peer_reservations_add <public_key> [<description>]\n"
            "     peer_reservations_del <public_key>\n"
            "     peer_reservations_list\n"
-           "     ripple ...\n"
+           "     bixd ...\n"
            "     ripple_path_find <json> [<ledger>]\n"
            "     server_info [counters]\n"
            "     server_state [counters]\n"
@@ -260,9 +260,9 @@ runUnitTests(
     char** argv)
 {
     using namespace beast::unit_test;
-    using namespace ripple::test;
+    using namespace bixd::test;
 
-    ripple::test::envUseIPv4 = (!ipv6);
+    bixd::test::envUseIPv4 = (!ipv6);
 
     if (!child && num_jobs == 1)
     {
@@ -780,7 +780,7 @@ run(int argc, char** argv)
         *config, vm["parameters"].as<std::vector<std::string>>(), *logs);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 // Must be outside the namespace for obvious reasons
 //
@@ -807,7 +807,7 @@ main(int argc, char** argv)
 
     atexit(&google::protobuf::ShutdownProtobufLibrary);
 
-    auto const result(ripple::run(argc, argv));
+    auto const result(bixd::run(argc, argv));
 
     return result;
 }

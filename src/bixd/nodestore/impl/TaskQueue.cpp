@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2019 Ripple Labs Inc.
+    Copyright (c) 2012, 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/nodestore/impl/TaskQueue.h>
+#include <bixd/nodestore/impl/TaskQueue.h>
 
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 TaskQueue::TaskQueue(Stoppable& parent)
@@ -63,4 +63,4 @@ TaskQueue::processTask(int instance)
 }
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

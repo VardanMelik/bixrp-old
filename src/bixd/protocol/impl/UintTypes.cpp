@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/beast/utility/Zero.h>
-#include <ripple/protocol/Serializer.h>
-#include <ripple/protocol/SystemParameters.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/beast/utility/Zero.h>
+#include <bixd/protocol/Serializer.h>
+#include <bixd/protocol/SystemParameters.h>
+#include <bixd/protocol/UintTypes.h>
 #include <string_view>
 
-namespace ripple {
+namespace bixd {
 
 // For details on the protocol-level serialization please visit
 // https://xrpl.org/serialization.html#currency-codes
@@ -141,4 +141,4 @@ badCurrency()
     return currency;
 }
 
-}  // namespace ripple
+}  // namespace bixd

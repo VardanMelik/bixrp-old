@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CONSENSUS_CONSENSUS_TYPES_H_INCLUDED
-#define RIPPLE_CONSENSUS_CONSENSUS_TYPES_H_INCLUDED
+#ifndef BIXD_CONSENSUS_CONSENSUS_TYPES_H_INCLUDED
+#define BIXD_CONSENSUS_CONSENSUS_TYPES_H_INCLUDED
 
-#include <ripple/basics/chrono.h>
-#include <ripple/consensus/ConsensusProposal.h>
-#include <ripple/consensus/DisputedTx.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/consensus/ConsensusProposal.h>
+#include <bixd/consensus/DisputedTx.h>
 #include <chrono>
 #include <map>
 
-namespace ripple {
+namespace bixd {
 
 /** Represents how a node currently participates in Consensus.
 
@@ -239,6 +239,6 @@ struct ConsensusResult
     // The number of peers proposing during the round
     std::size_t proposers = 0;
 };
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

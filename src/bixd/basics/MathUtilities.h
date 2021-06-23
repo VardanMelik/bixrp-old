@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_MATHUTILITIES_H_INCLUDED
-#define RIPPLE_BASICS_MATHUTILITIES_H_INCLUDED
+#ifndef BIXD_BASICS_MATHUTILITIES_H_INCLUDED
+#define BIXD_BASICS_MATHUTILITIES_H_INCLUDED
 
 #include <algorithm>
 #include <assert.h>
 #include <cstddef>
 
-namespace ripple {
+namespace bixd {
 
 /** Calculate one number divided by another number in percentage.
  * The result is rounded up to the next integer, and capped in the range [0,100]
@@ -63,6 +63,6 @@ static_assert(calculatePercent(50'000'000, 100'000'000) == 50);
 static_assert(calculatePercent(50'000'001, 100'000'000) == 51);
 static_assert(calculatePercent(99'999'999, 100'000'000) == 100);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/AmendmentTable.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/tx/impl/Change.h>
-#include <ripple/basics/Log.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/TxFlags.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/AmendmentTable.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/tx/impl/Change.h>
+#include <bixd/basics/Log.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/TxFlags.h>
 
-namespace ripple {
+namespace bixd {
 
 NotTEC
 Change::preflight(PreflightContext const& ctx)
@@ -369,4 +369,4 @@ Change::applyUNLModify()
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

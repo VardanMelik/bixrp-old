@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/rpc/impl/GRPCHelpers.h>
+#include <bixd/rpc/impl/GRPCHelpers.h>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 // In the below populateProto* functions, getProto is a function that returns
@@ -1532,9 +1532,9 @@ setLedgerEntryType(
             proto.set_ledger_entry_type(
                 org::xrpl::rpc::v1::LEDGER_ENTRY_TYPE_DIRECTORY_NODE);
             break;
-        case ltRIPPLE_STATE:
+        case ltBIXD_STATE:
             proto.set_ledger_entry_type(
-                org::xrpl::rpc::v1::LEDGER_ENTRY_TYPE_RIPPLE_STATE);
+                org::xrpl::rpc::v1::LEDGER_ENTRY_TYPE_BIXD_STATE);
             break;
         case ltSIGNER_LIST:
             proto.set_ledger_entry_type(
@@ -1598,7 +1598,7 @@ convert(T& to, STObject& from, std::uint16_t type)
         case ltDIR_NODE:
             RPC::convert(*to.mutable_directory_node(), from);
             break;
-        case ltRIPPLE_STATE:
+        case ltBIXD_STATE:
             RPC::convert(*to.mutable_ripple_state(), from);
             break;
         case ltSIGNER_LIST:
@@ -1915,4 +1915,4 @@ convert(
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

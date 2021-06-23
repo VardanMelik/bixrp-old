@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PEERS_CLUSTERNODESTATUS_H_INCLUDED
-#define RIPPLE_APP_PEERS_CLUSTERNODESTATUS_H_INCLUDED
+#ifndef BIXD_APP_PEERS_CLUSTERNODESTATUS_H_INCLUDED
+#define BIXD_APP_PEERS_CLUSTERNODESTATUS_H_INCLUDED
 
-#include <ripple/basics/chrono.h>
-#include <ripple/protocol/PublicKey.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/protocol/PublicKey.h>
 #include <cstdint>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 class ClusterNode
 {
@@ -72,6 +72,6 @@ private:
     NetClock::time_point mReportTime = {};
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

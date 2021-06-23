@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2016 Ripple Labs Inc.
+    Copyright 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/ValidatorSite.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/base64.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Sign.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/misc/ValidatorSite.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Sign.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/jss.h>
 #include <boost/algorithm/string/join.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/asio.hpp>
@@ -36,7 +36,7 @@
 #include <test/jtx/TrustedPublisherServer.h>
 #include <test/unit_test/FileDirGuard.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace detail {
 constexpr const char*
@@ -78,13 +78,13 @@ private:
 
         // load should accept valid validator site uris
         std::vector<std::string> cfgSites({
-            "http://ripple.com/", "http://ripple.com/validators",
-                "http://ripple.com:8080/validators",
+            "http://bixd.com/", "http://bixd.com/validators",
+                "http://bixd.com:8080/validators",
                 "http://207.261.33.37/validators",
                 "http://207.261.33.37:8080/validators",
-                "https://ripple.com/validators",
-                "https://ripple.com:443/validators",
-                "file:///etc/opt/ripple/validators.txt",
+                "https://bixd.com/validators",
+                "https://bixd.com:443/validators",
+                "file:///etc/opt/bixd/validators.txt",
                 "file:///C:/Lib/validators.txt"
 #if !_MSC_VER
                 ,
@@ -94,17 +94,17 @@ private:
         BEAST_EXPECT(trustedSites->load(cfgSites));
 
         // load should reject validator site uris with invalid schemes
-        std::vector<std::string> badSites({"ftp://ripple.com/validators"});
+        std::vector<std::string> badSites({"ftp://bixd.com/validators"});
         BEAST_EXPECT(!trustedSites->load(badSites));
 
-        badSites[0] = "wss://ripple.com/validators";
+        badSites[0] = "wss://bixd.com/validators";
         BEAST_EXPECT(!trustedSites->load(badSites));
 
-        badSites[0] = "ripple.com/validators";
+        badSites[0] = "bixd.com/validators";
         BEAST_EXPECT(!trustedSites->load(badSites));
 
         // Host names are not supported for file URLs
-        badSites[0] = "file://ripple.com/vl.txt";
+        badSites[0] = "file://bixd.com/vl.txt";
         BEAST_EXPECT(!trustedSites->load(badSites));
 
         // Even local host names are not supported for file URLs
@@ -658,7 +658,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(ValidatorSite, app, ripple);
+BEAST_DEFINE_TESTSUITE(ValidatorSite, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

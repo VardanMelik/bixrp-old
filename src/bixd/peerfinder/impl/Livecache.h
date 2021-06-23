@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PEERFINDER_LIVECACHE_H_INCLUDED
-#define RIPPLE_PEERFINDER_LIVECACHE_H_INCLUDED
+#ifndef BIXD_PEERFINDER_LIVECACHE_H_INCLUDED
+#define BIXD_PEERFINDER_LIVECACHE_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/container/aged_map.h>
-#include <ripple/beast/utility/maybe_const.h>
-#include <ripple/peerfinder/PeerfinderManager.h>
-#include <ripple/peerfinder/impl/Tuning.h>
-#include <ripple/peerfinder/impl/iosformat.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/container/aged_map.h>
+#include <bixd/beast/utility/maybe_const.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
+#include <bixd/peerfinder/impl/Tuning.h>
+#include <bixd/peerfinder/impl/iosformat.h>
 #include <boost/intrusive/list.hpp>
 #include <boost/iterator/transform_iterator.hpp>
 
 #include <algorithm>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 template <class>
@@ -569,6 +569,6 @@ Livecache<Allocator>::hops_t::remove(Element& e)
 }
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

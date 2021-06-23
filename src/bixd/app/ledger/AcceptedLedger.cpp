@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: https://github.com/bixd/bixd
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -22,7 +22,7 @@
 #include <bixd/basics/Log.h>
 #include <bixd/basics/chrono.h>
 
-namespace ripple {
+namespace bixd {
 
 AcceptedLedger::AcceptedLedger(
     std::shared_ptr<ReadView const> const& ledger,
@@ -65,4 +65,4 @@ AcceptedLedger::getTxn(int i) const
     return it->second;
 }
 
-}  // namespace ripple
+}  // namespace bixd

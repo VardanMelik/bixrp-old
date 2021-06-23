@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
-    This file is part of bixd: https://github.com/ripple/bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    This file is part of bixd: https://github.com/bixd/bixd
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_ACCOUNTSTATESF_H_INCLUDED
-#define RIPPLE_APP_LEDGER_ACCOUNTSTATESF_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_ACCOUNTSTATESF_H_INCLUDED
+#define BIXD_APP_LEDGER_ACCOUNTSTATESF_H_INCLUDED
 
 #include <bixd/app/ledger/AbstractFetchPackContainer.h>
 #include <bixd/nodestore/Database.h>
 #include <bixd/shamap/SHAMapSyncFilter.h>
 
-namespace ripple {
+namespace bixd {
 
 // This class is only needed on add functions
 // sync filter for account state nodes during ledger sync
@@ -52,6 +52,6 @@ private:
     AbstractFetchPackContainer& fp_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

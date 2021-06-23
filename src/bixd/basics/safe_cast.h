@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_SAFE_CAST_H_INCLUDED
-#define RIPPLE_BASICS_SAFE_CAST_H_INCLUDED
+#ifndef BIXD_BASICS_SAFE_CAST_H_INCLUDED
+#define BIXD_BASICS_SAFE_CAST_H_INCLUDED
 
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 // safe_cast adds compile-time checks to a static_cast to ensure that
 // the destination can hold all values of the source.  This is particularly
@@ -100,6 +100,6 @@ inline constexpr std::
     return unsafe_cast<Dest>(static_cast<std::underlying_type_t<Src>>(s));
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/beast/utility/temp_dir.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/ResourceManager.h>
-#include <ripple/resource/impl/Entry.h>
-#include <ripple/resource/impl/Tuning.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/beast/utility/temp_dir.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/ResourceManager.h>
+#include <bixd/resource/impl/Entry.h>
+#include <bixd/resource/impl/Tuning.h>
+#include <bixd/rpc/impl/Tuning.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <test/jtx.h>
 #include <test/jtx/envconfig.h>
 
-namespace ripple {
+namespace bixd {
 
 class NoRippleCheck_test : public beast::unit_test::suite
 {
@@ -269,7 +269,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
             // be better if we could add this functionality to Env somehow
             // or otherwise disable endpoint charging for certain test
             // cases.
-            using namespace ripple::Resource;
+            using namespace bixd::Resource;
             using namespace std::chrono;
             using namespace beast::IP;
             auto c = env.app().getResourceManager().newInboundEndpoint(
@@ -284,7 +284,7 @@ class NoRippleCheckLimits_test : public beast::unit_test::suite
             }
         };
 
-        for (auto i = 0; i < ripple::RPC::Tuning::noRippleCheck.rmax + 5; ++i)
+        for (auto i = 0; i < bixd::RPC::Tuning::noRippleCheck.rmax + 5; ++i)
         {
             if (!admin)
                 checkBalance();
@@ -369,12 +369,12 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(NoRippleCheck, app, ripple);
+BEAST_DEFINE_TESTSUITE(NoRippleCheck, app, bixd);
 
 // These tests that deal with limit amounts are slow because of the
 // offer/account setup, so making them manual -- the additional coverage
 // provided by them is minimal
 
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(NoRippleCheckLimits, app, ripple, 1);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(NoRippleCheckLimits, app, bixd, 1);
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_WORKERS_H_INCLUDED
-#define RIPPLE_CORE_WORKERS_H_INCLUDED
+#ifndef BIXD_CORE_WORKERS_H_INCLUDED
+#define BIXD_CORE_WORKERS_H_INCLUDED
 
-#include <ripple/beast/core/LockFreeStack.h>
-#include <ripple/core/impl/semaphore.h>
+#include <bixd/beast/core/LockFreeStack.h>
+#include <bixd/core/impl/semaphore.h>
 #include <atomic>
 #include <condition_variable>
 #include <mutex>
 #include <string>
 #include <thread>
 
-namespace ripple {
+namespace bixd {
 
 namespace perf {
 class PerfLog;
@@ -192,6 +192,6 @@ private:
         m_paused;  // holds just paused workers
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

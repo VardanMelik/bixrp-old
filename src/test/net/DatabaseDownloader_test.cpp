@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2019 Ripple Labs Inc.
+    Copyright 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,7 +17,7 @@
 */
 //==============================================================================
 
-#include <ripple/net/DatabaseDownloader.h>
+#include <bixd/net/DatabaseDownloader.h>
 #include <boost/filesystem/operations.hpp>
 #include <boost/predef.h>
 #include <condition_variable>
@@ -26,7 +26,7 @@
 #include <test/jtx/TrustedPublisherServer.h>
 #include <test/unit_test/FileDirGuard.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class DatabaseDownloader_test : public beast::unit_test::suite
@@ -113,7 +113,7 @@ class DatabaseDownloader_test : public beast::unit_test::suite
 
         using namespace jtx;
 
-        ripple::test::detail::FileDirGuard cert{
+        bixd::test::detail::FileDirGuard cert{
             *this, "_cert", "ca.pem", TrustedPublisherServer::ca_cert()};
 
         Env env{*this, envconfig([&cert, &verify](std::unique_ptr<Config> cfg) {
@@ -129,7 +129,7 @@ class DatabaseDownloader_test : public beast::unit_test::suite
         // to get a simple text file sent as response.
         auto server = createServer(env);
 
-        ripple::test::detail::FileDirGuard const data{
+        bixd::test::detail::FileDirGuard const data{
             *this, "downloads", "data", "", false, false};
         // initiate the download and wait for the callback
         // to be invoked
@@ -177,7 +177,7 @@ class DatabaseDownloader_test : public beast::unit_test::suite
             if (ec)
             {
                 Downloader dl{env};
-                ripple::test::detail::FileDirGuard const datafile{
+                bixd::test::detail::FileDirGuard const datafile{
                     *this, "downloads", "data", "", false, false};
                 BEAST_EXPECT(dl->download(
                     "badhostname",
@@ -198,7 +198,7 @@ class DatabaseDownloader_test : public beast::unit_test::suite
         {
             // can't connect
             Downloader dl{env};
-            ripple::test::detail::FileDirGuard const datafile{
+            bixd::test::detail::FileDirGuard const datafile{
                 *this, "downloads", "data", "", false, false};
             auto server = createServer(env);
             auto host = server->local_endpoint().address().to_string();
@@ -221,7 +221,7 @@ class DatabaseDownloader_test : public beast::unit_test::suite
         {
             // not ssl (failed handlshake)
             Downloader dl{env};
-            ripple::test::detail::FileDirGuard const datafile{
+            bixd::test::detail::FileDirGuard const datafile{
                 *this, "downloads", "data", "", false, false};
             auto server = createServer(env, false);
             BEAST_EXPECT(dl->download(
@@ -241,7 +241,7 @@ class DatabaseDownloader_test : public beast::unit_test::suite
         {
             // huge file (content length)
             Downloader dl{env};
-            ripple::test::detail::FileDirGuard const datafile{
+            bixd::test::detail::FileDirGuard const datafile{
                 *this, "downloads", "data", "", false, false};
             auto server = createServer(env);
             BEAST_EXPECT(dl->download(
@@ -270,6 +270,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(DatabaseDownloader, net, ripple);
+BEAST_DEFINE_TESTSUITE(DatabaseDownloader, net, bixd);
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_LEDGERFORMATS_H_INCLUDED
-#define RIPPLE_PROTOCOL_LEDGERFORMATS_H_INCLUDED
+#ifndef BIXD_PROTOCOL_LEDGERFORMATS_H_INCLUDED
+#define BIXD_PROTOCOL_LEDGERFORMATS_H_INCLUDED
 
-#include <ripple/protocol/KnownFormats.h>
+#include <bixd/protocol/KnownFormats.h>
 
-namespace ripple {
+namespace bixd {
 
 /** Ledger entry types.
 
@@ -63,7 +63,7 @@ enum LedgerEntryType {
     */
     ltDIR_NODE = 'd',
 
-    ltRIPPLE_STATE = 'r',
+    ltBIXD_STATE = 'r',
 
     ltTICKET = 'T',
 
@@ -107,7 +107,7 @@ enum LedgerSpecificFlags {
         0x00040000,  // True, to require a authorization to hold IOUs.
     lsfDisallowBIXRP = 0x00080000,    // True, to disallow sending BIXRP.
     lsfDisableMaster = 0x00100000,  // True, force regular key
-    lsfNoFreeze = 0x00200000,       // True, cannot freeze ripple states
+    lsfNoFreeze = 0x00200000,       // True, cannot freeze bixd states
     lsfGlobalFreeze = 0x00400000,   // True, all assets frozen
     lsfDefaultRipple =
         0x00800000,               // True, trust lines allow rippling by default
@@ -117,7 +117,7 @@ enum LedgerSpecificFlags {
     lsfPassive = 0x00010000,
     lsfSell = 0x00020000,  // True, offer was placed as a sell.
 
-    // ltRIPPLE_STATE
+    // ltBIXD_STATE
     lsfLowReserve = 0x00010000,  // True, if entry counts toward reserve.
     lsfHighReserve = 0x00020000,
     lsfLowAuth = 0x00040000,
@@ -148,6 +148,6 @@ public:
     getInstance();
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

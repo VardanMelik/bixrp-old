@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STPATHSET_H_INCLUDED
-#define RIPPLE_PROTOCOL_STPATHSET_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STPATHSET_H_INCLUDED
+#define BIXD_PROTOCOL_STPATHSET_H_INCLUDED
 
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/STBase.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/STBase.h>
+#include <bixd/protocol/UintTypes.h>
 #include <boost/optional.hpp>
 #include <cassert>
 #include <cstddef>
 
-namespace ripple {
+namespace bixd {
 
 class STPathElement
 {
@@ -406,6 +406,6 @@ private:
     std::vector<STPath> value;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

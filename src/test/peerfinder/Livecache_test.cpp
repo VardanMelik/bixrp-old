@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/basics/chrono.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/clock/manual_clock.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/peerfinder/impl/Livecache.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/clock/manual_clock.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/peerfinder/impl/Livecache.h>
 #include <boost/algorithm/string.hpp>
 #include <test/beast/IPEndpointCommon.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 bool
@@ -139,7 +139,7 @@ public:
         for (auto i = 0; i < num_eps; ++i)
             add(beast::IP::randomEP(true),
                 c,
-                ripple::rand_int(0, safe_cast<int>(Tuning::maxHops + 1)));
+                bixd::rand_int(0, safe_cast<int>(Tuning::maxHops + 1)));
         auto h = c.hops.histogram();
         if (!BEAST_EXPECT(!h.empty()))
             return;
@@ -163,9 +163,9 @@ public:
         for (auto i = 0; i < 100; ++i)
             add(beast::IP::randomEP(true),
                 c,
-                ripple::rand_int(0, safe_cast<int>(Tuning::maxHops + 1)));
+                bixd::rand_int(0, safe_cast<int>(Tuning::maxHops + 1)));
 
-        using at_hop = std::vector<ripple::PeerFinder::Endpoint>;
+        using at_hop = std::vector<bixd::PeerFinder::Endpoint>;
         using all_hops = std::array<at_hop, 1 + Tuning::maxHops + 1>;
 
         auto cmp_EP = [](Endpoint const& a, Endpoint const& b) {
@@ -237,7 +237,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Livecache, peerfinder, ripple);
+BEAST_DEFINE_TESTSUITE(Livecache, peerfinder, bixd);
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd

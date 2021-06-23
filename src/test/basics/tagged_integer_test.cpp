@@ -18,11 +18,11 @@
 */
 //==============================================================================
 
-#include <ripple/basics/tagged_integer.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/tagged_integer.h>
+#include <bixd/beast/unit_test.h>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class tagged_integer_test : public beast::unit_test::suite
@@ -251,7 +251,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(tagged_integer, ripple_basics, ripple);
+BEAST_DEFINE_TESTSUITE(tagged_integer, ripple_basics, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

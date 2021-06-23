@@ -2,7 +2,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -18,8 +18,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_LOWESTLAYER_H_INCLUDED
-#define RIPPLE_SERVER_LOWESTLAYER_H_INCLUDED
+#ifndef BIXD_SERVER_LOWESTLAYER_H_INCLUDED
+#define BIXD_SERVER_LOWESTLAYER_H_INCLUDED
 
 #if BOOST_VERSION >= 107000
 #include <boost/beast/core/stream_traits.hpp>
@@ -27,7 +27,7 @@
 #include <boost/beast/core/type_traits.hpp>
 #endif
 
-namespace ripple {
+namespace bixd {
 
 // Before boost 1.70, get_lowest_layer required an explicit templat parameter
 template <class T>
@@ -41,6 +41,6 @@ get_lowest_layer(T& t) noexcept
 #endif
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

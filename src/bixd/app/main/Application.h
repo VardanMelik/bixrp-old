@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_MAIN_APPLICATION_H_INCLUDED
-#define RIPPLE_APP_MAIN_APPLICATION_H_INCLUDED
+#ifndef BIXD_APP_MAIN_APPLICATION_H_INCLUDED
+#define BIXD_APP_MAIN_APPLICATION_H_INCLUDED
 
 #include <bixd/basics/TaggedCache.h>
 #include <bixd/beast/utility/PropertyStream.h>
@@ -31,7 +31,7 @@
 #include <memory>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 namespace unl {
 class Manager;
@@ -278,6 +278,6 @@ make_Application(
     std::unique_ptr<Logs> logs,
     std::unique_ptr<TimeKeeper> timeKeeper);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

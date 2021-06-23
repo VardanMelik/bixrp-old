@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012 - 2019 Ripple Labs Inc.
+    Copyright (c) 2012 - 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_TER_H_INCLUDED
-#define RIPPLE_PROTOCOL_TER_H_INCLUDED
+#ifndef BIXD_PROTOCOL_TER_H_INCLUDED
+#define BIXD_PROTOCOL_TER_H_INCLUDED
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/json/json_value.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/json/json_value.h>
 
 #include <boost/optional.hpp>
 #include <ostream>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 // See https://xrpl.org/transaction-results.html
 //
@@ -40,8 +40,8 @@ using TERUnderlyingType = int;
 
 enum TELcodes : TERUnderlyingType {
     // Note: Range is stable.
-    // Exact numbers are used in ripple-binary-codec:
-    //     https://github.com/ripple/ripple-binary-codec/blob/master/src/enums/definitions.json
+    // Exact numbers are used in bixd-binary-codec:
+    //     https://github.com/bixd/bixd-binary-codec/blob/master/src/enums/definitions.json
     // Use tokens.
 
     // -399 .. -300: L Local error (transaction fee inadequate, exceeds local
@@ -67,8 +67,8 @@ enum TELcodes : TERUnderlyingType {
 
 enum TEMcodes : TERUnderlyingType {
     // Note: Range is stable.
-    // Exact numbers are used in ripple-binary-codec:
-    //     https://github.com/ripple/ripple-binary-codec/blob/master/src/enums/definitions.json
+    // Exact numbers are used in bixd-binary-codec:
+    //     https://github.com/bixd/bixd-binary-codec/blob/master/src/enums/definitions.json
     // Use tokens.
 
     // -299 .. -200: M Malformed (bad signature)
@@ -105,7 +105,7 @@ enum TEMcodes : TERUnderlyingType {
     temINVALID,
     temINVALID_FLAG,
     temREDUNDANT,
-    temRIPPLE_EMPTY,
+    temBIXD_EMPTY,
     temDISABLED,
     temBAD_SIGNER,
     temBAD_QUORUM,
@@ -125,8 +125,8 @@ enum TEMcodes : TERUnderlyingType {
 
 enum TEFcodes : TERUnderlyingType {
     // Note: Range is stable.
-    // Exact numbers are used in ripple-binary-codec:
-    //     https://github.com/ripple/ripple-binary-codec/blob/master/src/enums/definitions.json
+    // Exact numbers are used in bixd-binary-codec:
+    //     https://github.com/bixd/bixd-binary-codec/blob/master/src/enums/definitions.json
     // Use tokens.
 
     // -199 .. -100: F
@@ -167,8 +167,8 @@ enum TEFcodes : TERUnderlyingType {
 
 enum TERcodes : TERUnderlyingType {
     // Note: Range is stable.
-    // Exact numbers are used in ripple-binary-codec:
-    //     https://github.com/ripple/ripple-binary-codec/blob/master/src/enums/definitions.json
+    // Exact numbers are used in bixd-binary-codec:
+    //     https://github.com/bixd/bixd-binary-codec/blob/master/src/enums/definitions.json
     // Use tokens.
 
     // -99 .. -1: R Retry
@@ -197,7 +197,7 @@ enum TERcodes : TERUnderlyingType {
     terPRE_SEQ,      // Can't pay fee, no point in forwarding, so don't
                      // burden network.
     terLAST,         // DEPRECATED.
-    terNO_RIPPLE,    // Rippling not allowed
+    terNO_BIXD,    // Rippling not allowed
     terQUEUED,       // Transaction is being held in TxQ until fee drops
     terPRE_TICKET,   // Ticket is not yet in ledger but might be on its way
 };
@@ -224,7 +224,7 @@ enum TECcodes : TERUnderlyingType {
     // value in metadata for historic transactions.
 
     // 100 .. 159 C
-    //   Claim fee only (ripple transaction with no good paths, pay to
+    //   Claim fee only (bixd transaction with no good paths, pay to
     //   non-existent account, no path)
     //
     // Causes:
@@ -601,6 +601,6 @@ transHuman(TER code);
 boost::optional<TER>
 transCode(std::string const& token);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

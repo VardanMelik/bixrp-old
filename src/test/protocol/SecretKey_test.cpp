@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/beast/utility/rngfill.h>
-#include <ripple/crypto/csprng.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Seed.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/beast/utility/rngfill.h>
+#include <bixd/crypto/csprng.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Seed.h>
 #include <algorithm>
 #include <string>
 #include <vector>
 
-#include <ripple/protocol/impl/secp256k1.h>
+#include <bixd/protocol/impl/secp256k1.h>
 
-namespace ripple {
+namespace bixd {
 
 class SecretKey_test : public beast::unit_test::suite
 {
@@ -379,6 +379,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(SecretKey, protocol, ripple);
+BEAST_DEFINE_TESTSUITE(SecretKey, protocol, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

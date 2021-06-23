@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CONDITIONS_ERROR_H
-#define RIPPLE_CONDITIONS_ERROR_H
+#ifndef BIXD_CONDITIONS_ERROR_H
+#define BIXD_CONDITIONS_ERROR_H
 
 #include <string>
 #include <system_error>
 
-namespace ripple {
+namespace bixd {
 namespace cryptoconditions {
 
 enum class error {
@@ -50,12 +50,12 @@ std::error_code
 make_error_code(error ev);
 
 }  // namespace cryptoconditions
-}  // namespace ripple
+}  // namespace bixd
 
 namespace std {
 
 template <>
-struct is_error_code_enum<ripple::cryptoconditions::error>
+struct is_error_code_enum<bixd::cryptoconditions::error>
 {
     explicit is_error_code_enum() = default;
 

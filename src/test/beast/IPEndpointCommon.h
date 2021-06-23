@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#include <ripple/basics/random.h>
-#include <ripple/beast/net/IPEndpoint.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/net/IPEndpoint.h>
 
 namespace beast {
 namespace IP {
@@ -26,7 +26,7 @@ namespace IP {
 inline Endpoint
 randomEP(bool v4 = true)
 {
-    using namespace ripple;
+    using namespace bixd;
     auto dv4 = []() -> AddressV4::bytes_type {
         return {
             {static_cast<std::uint8_t>(rand_int<int>(1, UINT8_MAX)),

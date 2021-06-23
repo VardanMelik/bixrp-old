@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/beast/hash/uhash.h>
-#include <ripple/beast/insight/Group.h>
-#include <ripple/beast/insight/Groups.h>
+#include <bixd/beast/hash/uhash.h>
+#include <bixd/beast/insight/Group.h>
+#include <bixd/beast/insight/Groups.h>
 #include <memory>
 #include <unordered_map>
 

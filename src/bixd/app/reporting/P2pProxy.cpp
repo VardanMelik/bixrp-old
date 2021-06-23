@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/reporting/P2pProxy.h>
-#include <ripple/app/reporting/ReportingETL.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/json/json_writer.h>
+#include <bixd/app/reporting/P2pProxy.h>
+#include <bixd/app/reporting/ReportingETL.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/json_writer.h>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 forwardToP2p(RPC::JsonContext& context)
@@ -80,4 +80,4 @@ shouldForwardToP2p(RPC::JsonContext& context)
     return false;
 }
 
-}  // namespace ripple
+}  // namespace bixd

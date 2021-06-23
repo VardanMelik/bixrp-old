@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2020 Ripple Labs Inc.
+    Copyright (c) 2012, 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_LEDGERDELTAACQUIRE_H_INCLUDED
-#define RIPPLE_APP_LEDGER_LEDGERDELTAACQUIRE_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_LEDGERDELTAACQUIRE_H_INCLUDED
+#define BIXD_APP_LEDGER_LEDGERDELTAACQUIRE_H_INCLUDED
 
 #include <bixd/app/ledger/InboundLedger.h>
 #include <bixd/app/ledger/Ledger.h>
@@ -29,7 +29,7 @@
 #include <list>
 #include <map>
 
-namespace ripple {
+namespace bixd {
 class InboundLedgers;
 class PeerSet;
 namespace test {
@@ -167,6 +167,6 @@ private:
     friend class test::LedgerReplayClient;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/core/TimeKeeper.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/overlay/Cluster.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/core/TimeKeeper.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/overlay/Cluster.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doPeers(RPC::JsonContext& context)
@@ -84,4 +84,4 @@ doPeers(RPC::JsonContext& context)
     return jvResult;
 }
 
-}  // namespace ripple
+}  // namespace bixd

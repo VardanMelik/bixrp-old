@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_RIPPLESTATE_H_INCLUDED
-#define RIPPLE_APP_PATHS_RIPPLESTATE_H_INCLUDED
+#ifndef BIXD_APP_PATHS_BIXDSTATE_H_INCLUDED
+#define BIXD_APP_PATHS_BIXDSTATE_H_INCLUDED
 
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Rate.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STLedgerEntry.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Rate.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STLedgerEntry.h>
 #include <cstdint>
 #include <memory>  // <memory>
 
-namespace ripple {
+namespace bixd {
 
 /** Wraps a trust line SLE for convenience.
     The complication of trust lines is that there is a
@@ -176,6 +176,6 @@ private:
 std::vector<RippleState::pointer>
 getRippleStateItems(AccountID const& accountID, ReadView const& view);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

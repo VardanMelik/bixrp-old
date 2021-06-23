@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/HashRouter.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/app/misc/HashRouter.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/unit_test.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class HashRouter_test : public beast::unit_test::suite
@@ -291,7 +291,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(HashRouter, app, ripple);
+BEAST_DEFINE_TESTSUITE(HashRouter, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

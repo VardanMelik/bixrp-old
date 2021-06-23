@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_VIEW_H_INCLUDED
-#define RIPPLE_LEDGER_VIEW_H_INCLUDED
+#ifndef BIXD_LEDGER_VIEW_H_INCLUDED
+#define BIXD_LEDGER_VIEW_H_INCLUDED
 
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/ApplyView.h>
-#include <ripple/ledger/OpenView.h>
-#include <ripple/ledger/RawView.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/Rate.h>
-#include <ripple/protocol/STLedgerEntry.h>
-#include <ripple/protocol/STObject.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/Serializer.h>
-#include <ripple/protocol/TER.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/ApplyView.h>
+#include <bixd/ledger/OpenView.h>
+#include <bixd/ledger/RawView.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/Rate.h>
+#include <bixd/protocol/STLedgerEntry.h>
+#include <bixd/protocol/STObject.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/Serializer.h>
+#include <bixd/protocol/TER.h>
 #include <boost/optional.hpp>
 #include <functional>
 #include <map>
@@ -41,7 +41,7 @@
 
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 //------------------------------------------------------------------------------
 //
@@ -273,10 +273,10 @@ trustCreate(
     const bool bSrcHigh,
     AccountID const& uSrcAccountID,
     AccountID const& uDstAccountID,
-    uint256 const& uIndex,      // --> ripple state entry
+    uint256 const& uIndex,      // --> bixd state entry
     SLE::ref sleAccount,        // --> the account being set.
     const bool bAuth,           // --> authorize account.
-    const bool bNoRipple,       // --> others cannot ripple through
+    const bool bNoRipple,       // --> others cannot bixd through
     const bool bFreeze,         // --> funds cannot leave
     STAmount const& saBalance,  // --> balance of account being set.
                                 // Issuer should be noAccount()
@@ -356,6 +356,6 @@ transferBIXRP(
     STAmount const& amount,
     beast::Journal j);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

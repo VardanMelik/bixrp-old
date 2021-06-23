@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/ReadView.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/ReadView.h>
 
-namespace ripple {
+namespace bixd {
 
 class LoadFeeTrack_test : public beast::unit_test::suite
 {
@@ -89,6 +89,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(LoadFeeTrack, ripple_core, ripple);
+BEAST_DEFINE_TESTSUITE(LoadFeeTrack, ripple_core, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

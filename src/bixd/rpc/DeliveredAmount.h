@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_DELIVEREDAMOUNT_H_INCLUDED
-#define RIPPLE_RPC_DELIVEREDAMOUNT_H_INCLUDED
+#ifndef BIXD_RPC_DELIVEREDAMOUNT_H_INCLUDED
+#define BIXD_RPC_DELIVEREDAMOUNT_H_INCLUDED
 
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/STAmount.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/STAmount.h>
 #include <org/xrpl/rpc/v1/amount.pb.h>
 
 #include <functional>
@@ -31,7 +31,7 @@ namespace Json {
 class Value;
 }
 
-namespace ripple {
+namespace bixd {
 
 class ReadView;
 class Transaction;
@@ -82,6 +82,6 @@ getDeliveredAmount(
 /** @} */
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

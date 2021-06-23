@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_RANDOM_H_INCLUDED
-#define RIPPLE_BASICS_RANDOM_H_INCLUDED
+#ifndef BIXD_BASICS_RANDOM_H_INCLUDED
+#define BIXD_BASICS_RANDOM_H_INCLUDED
 
-#include <ripple/beast/xor_shift_engine.h>
+#include <bixd/beast/xor_shift_engine.h>
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
@@ -30,18 +30,18 @@
 #include <random>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 #ifndef __INTELLISENSE__
 static_assert(
     std::is_integral<beast::xor_shift_engine::result_type>::value &&
         std::is_unsigned<beast::xor_shift_engine::result_type>::value,
-    "The Ripple default PRNG engine must return an unsigned integral type.");
+    "The bixd default PRNG engine must return an unsigned integral type.");
 
 static_assert(
     std::numeric_limits<beast::xor_shift_engine::result_type>::max() >=
         std::numeric_limits<std::uint64_t>::max(),
-    "The Ripple default PRNG engine return must be at least 64 bits wide.");
+    "The bixd default PRNG engine return must be at least 64 bits wide.");
 #endif
 
 namespace detail {
@@ -205,6 +205,6 @@ rand_bool()
 }
 /** @} */
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_BASICS_RANDOM_H_INCLUDED
+#endif  // BIXD_BASICS_RANDOM_H_INCLUDED

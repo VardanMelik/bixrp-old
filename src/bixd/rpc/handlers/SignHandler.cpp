@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/TransactionSign.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/TransactionSign.h>
 
-namespace ripple {
+namespace bixd {
 
 // {
 //   tx_json: <object>,
@@ -58,4 +58,4 @@ doSign(RPC::JsonContext& context)
     return ret;
 }
 
-}  // namespace ripple
+}  // namespace bixd

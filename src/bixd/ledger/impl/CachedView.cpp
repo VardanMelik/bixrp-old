@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/ledger/CachedView.h>
-#include <ripple/protocol/Serializer.h>
+#include <bixd/basics/contract.h>
+#include <bixd/ledger/CachedView.h>
+#include <bixd/protocol/Serializer.h>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 bool
@@ -66,4 +66,4 @@ CachedViewImpl::read(Keylet const& k) const
 }
 
 }  // namespace detail
-}  // namespace ripple
+}  // namespace bixd

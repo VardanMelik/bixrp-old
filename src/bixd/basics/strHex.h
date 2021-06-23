@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_STRHEX_H_INCLUDED
-#define RIPPLE_BASICS_STRHEX_H_INCLUDED
+#ifndef BIXD_BASICS_STRHEX_H_INCLUDED
+#define BIXD_BASICS_STRHEX_H_INCLUDED
 
 #include <boost/algorithm/hex.hpp>
 #include <boost/endian/conversion.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /** @{ */
 /** Converts a hex digit to the corresponding integer
@@ -62,6 +62,6 @@ strHex(T const& from)
     return strHex(from.begin(), from.end());
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

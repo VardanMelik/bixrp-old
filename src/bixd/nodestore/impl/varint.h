@@ -24,7 +24,7 @@
 #include <nudb/detail/stream.hpp>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 // This is a variant of the base128 varint format from
@@ -136,6 +136,6 @@ write(nudb::detail::ostream& os, std::size_t t)
 }
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

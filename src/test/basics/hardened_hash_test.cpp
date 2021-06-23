@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#include <ripple/basics/hardened_hash.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/hardened_hash.h>
+#include <bixd/beast/unit_test.h>
 #include <boost/functional/hash.hpp>
 #include <array>
 #include <cstdint>
@@ -27,7 +27,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 template <class T>
@@ -71,11 +71,11 @@ public:
 };
 
 }  // namespace detail
-}  // namespace ripple
+}  // namespace bixd
 
 //------------------------------------------------------------------------------
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -168,11 +168,11 @@ using sha256_t = unsigned_integer<256, std::size_t>;
 static_assert(sha256_t::bits == 256, "sha256_t must have 256 bits");
 #endif
 
-}  // namespace ripple
+}  // namespace bixd
 
 //------------------------------------------------------------------------------
 
-namespace ripple {
+namespace bixd {
 
 class hardened_hash_test : public beast::unit_test::suite
 {
@@ -254,6 +254,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(hardened_hash, basics, ripple);
+BEAST_DEFINE_TESTSUITE(hardened_hash, basics, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

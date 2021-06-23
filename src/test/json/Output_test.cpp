@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/json/json_reader.h>
-#include <ripple/json/json_writer.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/json_writer.h>
 #include <test/json/TestOutputSuite.h>
 
 namespace Json {
 
-struct Output_test : ripple::test::TestOutputSuite
+struct Output_test : bixd::test::TestOutputSuite
 {
     void
     runTest(std::string const& name, std::string const& valueDesc)
@@ -60,6 +60,6 @@ struct Output_test : ripple::test::TestOutputSuite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Output, ripple_basics, ripple);
+BEAST_DEFINE_TESTSUITE(Output, ripple_basics, bixd);
 
 }  // namespace Json

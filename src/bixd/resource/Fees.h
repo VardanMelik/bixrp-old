@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RESOURCE_FEES_H_INCLUDED
-#define RIPPLE_RESOURCE_FEES_H_INCLUDED
+#ifndef BIXD_RESOURCE_FEES_H_INCLUDED
+#define BIXD_RESOURCE_FEES_H_INCLUDED
 
-#include <ripple/resource/Charge.h>
+#include <bixd/resource/Charge.h>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 /** Schedule of fees charged for imposing load on the server. */
@@ -64,6 +64,6 @@ extern Charge const feeDrop;     // The cost of being dropped for excess load
 /** @} */
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

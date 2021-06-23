@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/json/to_string.h>
-#include <ripple/ledger/detail/ApplyStateTable.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/st.h>
+#include <bixd/basics/Log.h>
+#include <bixd/json/to_string.h>
+#include <bixd/ledger/detail/ApplyStateTable.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/st.h>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 void
@@ -628,7 +628,7 @@ ApplyStateTable::threadOwners(
             // Nothing to do
             break;
         }
-        case ltRIPPLE_STATE: {
+        case ltBIXD_STATE: {
             threadTx(base, meta, (*sle)[sfLowLimit].getIssuer(), mods, j);
             threadTx(base, meta, (*sle)[sfHighLimit].getIssuer(), mods, j);
             break;
@@ -652,4 +652,4 @@ ApplyStateTable::threadOwners(
 }
 
 }  // namespace detail
-}  // namespace ripple
+}  // namespace bixd

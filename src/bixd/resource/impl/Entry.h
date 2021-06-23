@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RESOURCE_ENTRY_H_INCLUDED
-#define RIPPLE_RESOURCE_ENTRY_H_INCLUDED
+#ifndef BIXD_RESOURCE_ENTRY_H_INCLUDED
+#define BIXD_RESOURCE_ENTRY_H_INCLUDED
 
-#include <ripple/basics/DecayingSample.h>
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/core/List.h>
-#include <ripple/resource/impl/Key.h>
-#include <ripple/resource/impl/Tuning.h>
+#include <bixd/basics/DecayingSample.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/core/List.h>
+#include <bixd/resource/impl/Key.h>
+#include <bixd/resource/impl/Tuning.h>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 using clock_type = beast::abstract_clock<std::chrono::steady_clock>;
@@ -109,6 +109,6 @@ operator<<(std::ostream& os, Entry const& v)
 }
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

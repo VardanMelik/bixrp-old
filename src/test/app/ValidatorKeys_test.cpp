@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2017 Ripple Labs Inc.
+    Copyright 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/Manifest.h>
-#include <ripple/app/misc/ValidatorKeys.h>
-#include <ripple/basics/base64.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/ConfigSections.h>
+#include <bixd/app/misc/Manifest.h>
+#include <bixd/app/misc/ValidatorKeys.h>
+#include <bixd/basics/base64.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/ConfigSections.h>
 #include <string>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class ValidatorKeys_test : public beast::unit_test::suite
@@ -174,7 +174,7 @@ public:
     }
 };  // namespace test
 
-BEAST_DEFINE_TESTSUITE(ValidatorKeys, app, ripple);
+BEAST_DEFINE_TESTSUITE(ValidatorKeys, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/Role.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/Role.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace RPC {
 struct JsonContext;
@@ -59,4 +59,4 @@ doPing(RPC::JsonContext& context)
     return ret;
 }
 
-}  // namespace ripple
+}  // namespace bixd

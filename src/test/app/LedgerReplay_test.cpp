@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/BuildLedger.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/LedgerReplay.h>
-#include <ripple/app/ledger/LedgerReplayTask.h>
-#include <ripple/app/ledger/LedgerReplayer.h>
-#include <ripple/app/ledger/impl/LedgerDeltaAcquire.h>
-#include <ripple/app/ledger/impl/LedgerReplayMsgHandler.h>
-#include <ripple/app/ledger/impl/SkipListAcquire.h>
-#include <ripple/overlay/PeerSet.h>
-#include <ripple/overlay/impl/PeerImp.h>
+#include <bixd/app/ledger/BuildLedger.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/LedgerReplay.h>
+#include <bixd/app/ledger/LedgerReplayTask.h>
+#include <bixd/app/ledger/LedgerReplayer.h>
+#include <bixd/app/ledger/impl/LedgerDeltaAcquire.h>
+#include <bixd/app/ledger/impl/LedgerReplayMsgHandler.h>
+#include <bixd/app/ledger/impl/SkipListAcquire.h>
+#include <bixd/overlay/PeerSet.h>
+#include <bixd/overlay/impl/PeerImp.h>
 #include <test/jtx.h>
 #include <test/jtx/envconfig.h>
 
 #include <chrono>
 #include <thread>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 struct LedgerReplay_test : public beast::unit_test::suite
@@ -1067,7 +1067,7 @@ struct LedgerReplayer_test : public beast::unit_test::suite
     {
         testcase("handshake test");
         auto handshake = [&](bool client, bool server, bool expecting) -> bool {
-            auto request = ripple::makeRequest(true, false, false, client);
+            auto request = bixd::makeRequest(true, false, false, client);
             http_request_type http_request;
             http_request.version(request.version());
             http_request.base() = request.base();
@@ -1080,7 +1080,7 @@ struct LedgerReplayer_test : public beast::unit_test::suite
                 boost::asio::ip::address::from_string("172.1.1.100");
             jtx::Env serverEnv(*this);
             serverEnv.app().config().LEDGER_REPLAY = server;
-            auto http_resp = ripple::makeResponse(
+            auto http_resp = bixd::makeResponse(
                 true,
                 http_request,
                 addr,
@@ -1575,10 +1575,10 @@ struct LedgerReplayerLong_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(LedgerReplay, app, ripple);
-BEAST_DEFINE_TESTSUITE(LedgerReplayer, app, ripple);
-BEAST_DEFINE_TESTSUITE(LedgerReplayerTimeout, app, ripple);
-BEAST_DEFINE_TESTSUITE_MANUAL(LedgerReplayerLong, app, ripple);
+BEAST_DEFINE_TESTSUITE(LedgerReplay, app, bixd);
+BEAST_DEFINE_TESTSUITE(LedgerReplayer, app, bixd);
+BEAST_DEFINE_TESTSUITE(LedgerReplayerTimeout, app, bixd);
+BEAST_DEFINE_TESTSUITE_MANUAL(LedgerReplayerLong, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

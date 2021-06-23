@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_DATABASEBODY_H
-#define RIPPLE_NET_DATABASEBODY_H
+#ifndef BIXD_NET_DATABASEBODY_H
+#define BIXD_NET_DATABASEBODY_H
 
-#include <ripple/core/DatabaseCon.h>
+#include <bixd/core/DatabaseCon.h>
 #include <boost/asio/io_service.hpp>
 #include <boost/asio/spawn.hpp>
 #include <boost/beast/http/message.hpp>
 #include <soci/sqlite3/soci-sqlite3.h>
 
-namespace ripple {
+namespace bixd {
 
 // DatabaseBody needs to meet requirements
 // from asio which is why some conventions
@@ -169,8 +169,8 @@ public:
     finish(boost::system::error_code& ec);
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
-#include <ripple/net/impl/DatabaseBody.ipp>
+#include <bixd/net/impl/DatabaseBody.ipp>
 
-#endif  // RIPPLE_NET_DATABASEBODY_H
+#endif  // BIXD_NET_DATABASEBODY_H

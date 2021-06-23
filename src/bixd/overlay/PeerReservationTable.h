@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_PEER_RESERVATION_TABLE_H_INCLUDED
-#define RIPPLE_OVERLAY_PEER_RESERVATION_TABLE_H_INCLUDED
+#ifndef BIXD_OVERLAY_PEER_RESERVATION_TABLE_H_INCLUDED
+#define BIXD_OVERLAY_PEER_RESERVATION_TABLE_H_INCLUDED
 
-#include <ripple/beast/hash/hash_append.h>
-#include <ripple/beast/hash/uhash.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/json/json_forwards.h>
-#include <ripple/protocol/PublicKey.h>
+#include <bixd/beast/hash/hash_append.h>
+#include <bixd/beast/hash/uhash.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/json/json_forwards.h>
+#include <bixd/protocol/PublicKey.h>
 
 #define SOCI_USE_BOOST
 #include <boost/optional.hpp>
@@ -35,7 +35,7 @@
 #include <unordered_set>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 class DatabaseCon;
 
@@ -121,6 +121,6 @@ private:
     std::unordered_set<PeerReservation, beast::uhash<>, KeyEqual> table_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

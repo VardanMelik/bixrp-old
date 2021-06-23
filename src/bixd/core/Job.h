@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_JOB_H_INCLUDED
-#define RIPPLE_CORE_JOB_H_INCLUDED
+#ifndef BIXD_CORE_JOB_H_INCLUDED
+#define BIXD_CORE_JOB_H_INCLUDED
 
-#include <ripple/core/LoadMonitor.h>
+#include <bixd/core/LoadMonitor.h>
 #include <functional>
 
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 
 // Note that this queue should only be used for CPU-bound jobs
 // It is primarily intended for signature checking
@@ -157,6 +157,6 @@ private:
     clock_type::time_point m_queue_time;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

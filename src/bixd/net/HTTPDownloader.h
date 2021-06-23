@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2018 Ripple Labs Inc.
+    Copyright (c) 2012, 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_HTTPDOWNLOADER_H_INCLUDED
-#define RIPPLE_NET_HTTPDOWNLOADER_H_INCLUDED
+#ifndef BIXD_NET_HTTPDOWNLOADER_H_INCLUDED
+#define BIXD_NET_HTTPDOWNLOADER_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/core/Config.h>
-#include <ripple/net/HTTPStream.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/Config.h>
+#include <bixd/net/HTTPStream.h>
 
 #include <boost/asio/connect.hpp>
 #include <boost/asio/io_service.hpp>
@@ -37,7 +37,7 @@
 
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 /** Provides an asynchronous HTTP[S] file downloader
  */
@@ -119,6 +119,6 @@ private:
     size(std::shared_ptr<parser> p) = 0;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

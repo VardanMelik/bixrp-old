@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_KNOWNFORMATS_H_INCLUDED
-#define RIPPLE_PROTOCOL_KNOWNFORMATS_H_INCLUDED
+#ifndef BIXD_PROTOCOL_KNOWNFORMATS_H_INCLUDED
+#define BIXD_PROTOCOL_KNOWNFORMATS_H_INCLUDED
 
-#include <ripple/basics/contract.h>
-#include <ripple/protocol/SOTemplate.h>
+#include <bixd/basics/contract.h>
+#include <bixd/protocol/SOTemplate.h>
 #include <boost/container/flat_map.hpp>
 #include <algorithm>
 #include <forward_list>
 
-namespace ripple {
+namespace bixd {
 
 /** Manages a list of known formats.
 
@@ -189,6 +189,6 @@ private:
     boost::container::flat_map<KeyType, Item const*> types_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

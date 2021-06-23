@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,24 +17,24 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/shamap/SHAMapAccountStateLeafNode.h>
-#include <ripple/shamap/SHAMapInnerNode.h>
-#include <ripple/shamap/SHAMapLeafNode.h>
-#include <ripple/shamap/SHAMapTreeNode.h>
-#include <ripple/shamap/SHAMapTxLeafNode.h>
-#include <ripple/shamap/SHAMapTxPlusMetaLeafNode.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/shamap/SHAMapAccountStateLeafNode.h>
+#include <bixd/shamap/SHAMapInnerNode.h>
+#include <bixd/shamap/SHAMapLeafNode.h>
+#include <bixd/shamap/SHAMapTreeNode.h>
+#include <bixd/shamap/SHAMapTxLeafNode.h>
+#include <bixd/shamap/SHAMapTxPlusMetaLeafNode.h>
 #include <mutex>
 
 #include <openssl/sha.h>
 
-namespace ripple {
+namespace bixd {
 
 std::shared_ptr<SHAMapTreeNode>
 SHAMapTreeNode::makeTransaction(
@@ -189,4 +189,4 @@ SHAMapTreeNode::getString(const SHAMapNodeID& id) const
     return to_string(id);
 }
 
-}  // namespace ripple
+}  // namespace bixd

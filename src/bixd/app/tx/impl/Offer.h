@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_BOOK_OFFER_H_INCLUDED
-#define RIPPLE_APP_BOOK_OFFER_H_INCLUDED
+#ifndef BIXD_APP_BOOK_OFFER_H_INCLUDED
+#define BIXD_APP_BOOK_OFFER_H_INCLUDED
 
-#include <ripple/basics/contract.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Quality.h>
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/STLedgerEntry.h>
+#include <bixd/basics/contract.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Quality.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/STLedgerEntry.h>
 #include <ostream>
 #include <stdexcept>
 
-namespace ripple {
+namespace bixd {
 
 template <class TIn, class TOut>
 class TOfferBase
@@ -244,6 +244,6 @@ operator<<(std::ostream& os, TOffer<TIn, TOut> const& offer)
     return os << offer.id();
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,24 +17,24 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STEXCHANGE_H_INCLUDED
-#define RIPPLE_PROTOCOL_STEXCHANGE_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STEXCHANGE_H_INCLUDED
+#define BIXD_PROTOCOL_STEXCHANGE_H_INCLUDED
 
-#include <ripple/basics/Blob.h>
-#include <ripple/basics/Buffer.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/contract.h>
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/STBlob.h>
-#include <ripple/protocol/STInteger.h>
-#include <ripple/protocol/STObject.h>
+#include <bixd/basics/Blob.h>
+#include <bixd/basics/Buffer.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/contract.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/STBlob.h>
+#include <bixd/protocol/STInteger.h>
+#include <bixd/protocol/STObject.h>
 #include <boost/optional.hpp>
 #include <memory>
 #include <stdexcept>
 #include <type_traits>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /** Convert between serialized type U and C++ type T. */
 template <class U, class T>
@@ -173,6 +173,6 @@ erase(STObject& st, TypedField<U> const& f)
     st.makeFieldAbsent(f);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

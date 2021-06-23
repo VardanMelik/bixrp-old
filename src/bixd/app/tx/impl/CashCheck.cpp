@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/paths/Flow.h>
-#include <ripple/app/tx/impl/CashCheck.h>
-#include <ripple/basics/Log.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/TER.h>
-#include <ripple/protocol/TxFlags.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/paths/Flow.h>
+#include <bixd/app/tx/impl/CashCheck.h>
+#include <bixd/basics/Log.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/TER.h>
+#include <bixd/protocol/TxFlags.h>
 
 #include <algorithm>
 
-namespace ripple {
+namespace bixd {
 
 NotTEC
 CashCheck::preflight(PreflightContext const& ctx)
@@ -415,4 +415,4 @@ CashCheck::doApply()
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

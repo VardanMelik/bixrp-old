@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_HTTPSTREAM_H_INCLUDED
-#define RIPPLE_NET_HTTPSTREAM_H_INCLUDED
+#ifndef BIXD_NET_HTTPSTREAM_H_INCLUDED
+#define BIXD_NET_HTTPSTREAM_H_INCLUDED
 
-#include <ripple/core/Config.h>
-#include <ripple/net/HTTPClientSSLContext.h>
+#include <bixd/core/Config.h>
+#include <bixd/net/HTTPClientSSLContext.h>
 
 #include <boost/asio/spawn.hpp>
 #include <boost/asio/strand.hpp>
 #include <boost/beast/core.hpp>
 #include <boost/beast/http.hpp>
 
-namespace ripple {
+namespace bixd {
 
 class HTTPStream
 {
@@ -158,6 +158,6 @@ private:
     boost::asio::io_service::strand& strand_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_NET_HTTPSTREAM_H
+#endif  // BIXD_NET_HTTPSTREAM_H

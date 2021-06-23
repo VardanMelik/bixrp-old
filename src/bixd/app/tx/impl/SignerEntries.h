@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TX_IMPL_SIGNER_ENTRIES_H_INCLUDED
-#define RIPPLE_TX_IMPL_SIGNER_ENTRIES_H_INCLUDED
+#ifndef BIXD_TX_IMPL_SIGNER_ENTRIES_H_INCLUDED
+#define BIXD_TX_IMPL_SIGNER_ENTRIES_H_INCLUDED
 
-#include <ripple/app/tx/impl/Transactor.h>  // NotTEC
-#include <ripple/beast/utility/Journal.h>   // beast::Journal
-#include <ripple/protocol/STTx.h>           // STTx::maxMultiSigners
-#include <ripple/protocol/TER.h>            // temMALFORMED
-#include <ripple/protocol/UintTypes.h>      // AccountID
+#include <bixd/app/tx/impl/Transactor.h>  // NotTEC
+#include <bixd/beast/utility/Journal.h>   // beast::Journal
+#include <bixd/protocol/STTx.h>           // STTx::maxMultiSigners
+#include <bixd/protocol/TER.h>            // temMALFORMED
+#include <bixd/protocol/UintTypes.h>      // AccountID
 
-namespace ripple {
+namespace bixd {
 
 // Forward declarations
 class STObject;
@@ -69,6 +69,6 @@ public:
         std::string const& annotation);
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_TX_IMPL_SIGNER_ENTRIES_H_INCLUDED
+#endif  // BIXD_TX_IMPL_SIGNER_ENTRIES_H_INCLUDED

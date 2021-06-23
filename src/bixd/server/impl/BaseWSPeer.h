@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright(c) 2012, 2013 Ripple Labs Inc.
+    Copyright(c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_BASEWSPEER_H_INCLUDED
-#define RIPPLE_SERVER_BASEWSPEER_H_INCLUDED
+#ifndef BIXD_SERVER_BASEWSPEER_H_INCLUDED
+#define BIXD_SERVER_BASEWSPEER_H_INCLUDED
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/utility/rngfill.h>
-#include <ripple/crypto/csprng.h>
-#include <ripple/protocol/BuildInfo.h>
-#include <ripple/server/impl/BasePeer.h>
-#include <ripple/server/impl/LowestLayer.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/utility/rngfill.h>
+#include <bixd/crypto/csprng.h>
+#include <bixd/protocol/BuildInfo.h>
+#include <bixd/server/impl/BasePeer.h>
+#include <bixd/server/impl/LowestLayer.h>
 #include <boost/beast/core/multi_buffer.hpp>
 #include <boost/beast/http/message.hpp>
 #include <boost/beast/websocket.hpp>
 #include <cassert>
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 
 /** Represents an active WebSocket connection. */
 template <class Handler, class Impl>
@@ -507,10 +507,10 @@ BaseWSPeer<Handler, Impl>::fail(error_code ec, String const& what)
     {
         ec_ = ec;
         JLOG(this->j_.trace()) << what << ": " << ec.message();
-        ripple::get_lowest_layer(impl().ws_).socket().close(ec);
+        bixd::get_lowest_layer(impl().ws_).socket().close(ec);
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

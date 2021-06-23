@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_TAGGEDCACHE_H_INCLUDED
-#define RIPPLE_BASICS_TAGGEDCACHE_H_INCLUDED
+#ifndef BIXD_BASICS_TAGGEDCACHE_H_INCLUDED
+#define BIXD_BASICS_TAGGEDCACHE_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/hardened_hash.h>
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/insight/Insight.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/hardened_hash.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/insight/Insight.h>
 #include <functional>
 #include <mutex>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /** Map/cache combination.
     This class implements a cache and a map. The cache keeps objects alive
@@ -624,6 +624,6 @@ private:
     std::uint64_t m_misses;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

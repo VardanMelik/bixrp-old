@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/peerfinder/PeerfinderManager.h>
-#include <ripple/peerfinder/impl/Tuning.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
+#include <bixd/peerfinder/impl/Tuning.h>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 Config::Config()
@@ -76,7 +76,7 @@ Config::onWrite(beast::PropertyStream::Map& map)
 
 Config
 Config::makeConfig(
-    ripple::Config const& cfg,
+    bixd::Config const& cfg,
     std::uint16_t port,
     bool validationPublicKey,
     int ipLimit)
@@ -137,4 +137,4 @@ Config::makeConfig(
 }
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd

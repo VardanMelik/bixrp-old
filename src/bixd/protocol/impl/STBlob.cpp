@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/protocol/STBlob.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/protocol/STBlob.h>
 
-namespace ripple {
+namespace bixd {
 
 STBlob::STBlob(SerialIter& st, SField const& name)
     : STBase(name), value_(st.getVLBuffer())
@@ -40,4 +40,4 @@ STBlob::isEquivalent(const STBase& t) const
     return v && (value_ == v->value_);
 }
 
-}  // namespace ripple
+}  // namespace bixd

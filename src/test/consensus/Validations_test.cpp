@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/tagged_integer.h>
-#include <ripple/beast/clock/manual_clock.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/consensus/Validations.h>
+#include <bixd/basics/tagged_integer.h>
+#include <bixd/beast/clock/manual_clock.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/consensus/Validations.h>
 #include <test/csf/Validation.h>
 
 #include <memory>
@@ -28,7 +28,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace csf {
 class Validations_test : public beast::unit_test::suite
@@ -1109,7 +1109,7 @@ class Validations_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Validations, consensus, ripple);
+BEAST_DEFINE_TESTSUITE(Validations, consensus, bixd);
 }  // namespace csf
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

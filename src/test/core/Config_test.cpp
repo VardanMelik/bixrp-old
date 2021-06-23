@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of Bixd: 
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/server/Port.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/server/Port.h>
 #include <boost/filesystem.hpp>
 #include <boost/format.hpp>
 #include <fstream>
@@ -28,7 +28,7 @@
 #include <test/jtx/TestSuite.h>
 #include <test/unit_test/FileDirGuard.h>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 std::string
 configContents(std::string const& dbPath, std::string const& validatorsFile)
@@ -73,7 +73,7 @@ medium
 # external administrative command to initiate deletion.
 [node_db]
 type=memory
-path=/Users/dummy/ripple/config/db/rocksdb
+path=/Users/dummy/bixd/config/db/rocksdb
 open_files=2000
 filter_bits=12
 cache_mb=256
@@ -87,7 +87,7 @@ file_size_mult=2
 # This needs to be an absolute directory reference, not a relative one.
 # Modify this value as required.
 [debug_logfile]
-/Users/dummy/ripple/config/log/debug.log
+/Users/dummy/bixd/config/log/debug.log
 
 [sntp_servers]
 time.windows.com
@@ -95,10 +95,10 @@ time.apple.com
 time.nist.gov
 pool.ntp.org
 
-# Where to find some other servers speaking the Ripple protocol.
+# Where to find some other servers speaking the bixd protocol.
 #
 [ips]
-r.ripple.com 51235
+r.bixd.com 51235
 
 # Turn down default logging to save disk space in the long run.
 # Valid values here are trace, debug, info, warning, error, and fatal
@@ -124,7 +124,7 @@ backend=sqlite
 /**
    Write a bixd config file and remove when done.
  */
-class BixdCfgGuard : public ripple::test::detail::FileDirGuard
+class BixdCfgGuard : public bixd::test::detail::FileDirGuard
 {
 private:
     path dataDir_;
@@ -338,7 +338,7 @@ port_wss_admin
         {
             // read from file absolute path
             auto const cwd = current_path();
-            ripple::test::detail::DirGuard const g0(*this, "test_db");
+            bixd::test::detail::DirGuard const g0(*this, "test_db");
             path const dataDirRel("test_data_dir");
             path const dataDirAbs(cwd / g0.subdir() / dataDirRel);
             detail::BixdCfgGuard const g(
@@ -835,14 +835,14 @@ trustthesevalidators.gov
 [ips])"
                            "\x20"
                            R"(
-r.ripple.com 51235
+r.bixd.com 51235
 
   [ips_fixed])"
                            "\x20\x20"
                            R"(
     # COMMENT
-    s1.ripple.com 51235
-    s2.ripple.com 51235
+    s1.bixd.com 51235
+    s2.bixd.com 51235
 
 )");
         cfg.loadFromString(toLoad);
@@ -1157,6 +1157,6 @@ r.ripple.com 51235
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Config, core, ripple);
+BEAST_DEFINE_TESTSUITE(Config, core, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

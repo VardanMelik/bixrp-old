@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/crypto/secure_erase.h>
+#include <bixd/crypto/secure_erase.h>
 #include <openssl/crypto.h>
 
-namespace ripple {
+namespace bixd {
 
 void
 secure_erase(void* dest, std::size_t bytes)
@@ -28,4 +28,4 @@ secure_erase(void* dest, std::size_t bytes)
     OPENSSL_cleanse(dest, bytes);
 }
 
-}  // namespace ripple
+}  // namespace bixd

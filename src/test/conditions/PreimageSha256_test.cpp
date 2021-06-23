@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Buffer.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/conditions/Condition.h>
-#include <ripple/conditions/Fulfillment.h>
-#include <ripple/conditions/impl/PreimageSha256.h>
+#include <bixd/basics/Buffer.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/conditions/Condition.h>
+#include <bixd/conditions/Fulfillment.h>
+#include <bixd/conditions/impl/PreimageSha256.h>
 #include <algorithm>
 #include <string>
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace cryptoconditions {
 
 class PreimageSha256_test : public beast::unit_test::suite
@@ -184,8 +184,8 @@ class PreimageSha256_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(PreimageSha256, conditions, ripple);
+BEAST_DEFINE_TESTSUITE(PreimageSha256, conditions, bixd);
 
 }  // namespace cryptoconditions
 
-}  // namespace ripple
+}  // namespace bixd

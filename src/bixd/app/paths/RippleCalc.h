@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_RIPPLECALC_H_INCLUDED
-#define RIPPLE_APP_PATHS_RIPPLECALC_H_INCLUDED
+#ifndef BIXD_APP_PATHS_BIXDCALC_H_INCLUDED
+#define BIXD_APP_PATHS_BIXDCALC_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/TER.h>
+#include <bixd/basics/Log.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/TER.h>
 
 #include <boost/container/flat_set.hpp>
 
-namespace ripple {
+namespace bixd {
 class Config;
 namespace path {
 
@@ -124,6 +124,6 @@ public:
 };
 
 }  // namespace path
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

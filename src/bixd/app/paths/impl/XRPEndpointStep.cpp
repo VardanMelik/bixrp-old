@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/Credit.h>
-#include <ripple/app/paths/impl/AmountSpec.h>
-#include <ripple/app/paths/impl/StepChecks.h>
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Quality.h>
+#include <bixd/app/paths/Credit.h>
+#include <bixd/app/paths/impl/AmountSpec.h>
+#include <bixd/app/paths/impl/StepChecks.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Quality.h>
 
 #include <boost/container/flat_set.hpp>
 
 #include <numeric>
 #include <sstream>
 
-namespace ripple {
+namespace bixd {
 
 template <class TDerived>
 class BIXRPEndpointStep
@@ -125,7 +125,7 @@ protected:
     BIXRPAmount
     bixrpLiquidImpl(ReadView& sb, std::int32_t reserveReduction) const
     {
-        return ripple::bixrpLiquid(sb, acc_, reserveReduction, j_);
+        return bixd::bixrpLiquid(sb, acc_, reserveReduction, j_);
     }
 
     std::string
@@ -419,4 +419,4 @@ make_BIXRPEndpointStep(StrandContext const& ctx, AccountID const& acc)
     return {tesSUCCESS, std::move(r)};
 }
 
-}  // namespace ripple
+}  // namespace bixd

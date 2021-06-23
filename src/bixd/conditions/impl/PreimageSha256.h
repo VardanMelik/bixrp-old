@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CONDITIONS_PREIMAGE_SHA256_H
-#define RIPPLE_CONDITIONS_PREIMAGE_SHA256_H
+#ifndef BIXD_CONDITIONS_PREIMAGE_SHA256_H
+#define BIXD_CONDITIONS_PREIMAGE_SHA256_H
 
-#include <ripple/basics/Buffer.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/conditions/Condition.h>
-#include <ripple/conditions/Fulfillment.h>
-#include <ripple/conditions/impl/error.h>
-#include <ripple/protocol/digest.h>
+#include <bixd/basics/Buffer.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/conditions/Condition.h>
+#include <bixd/conditions/Fulfillment.h>
+#include <bixd/conditions/impl/error.h>
+#include <bixd/protocol/digest.h>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 namespace cryptoconditions {
 
 class PreimageSha256 final : public Fulfillment
@@ -146,6 +146,6 @@ public:
 };
 
 }  // namespace cryptoconditions
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

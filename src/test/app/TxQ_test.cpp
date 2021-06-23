@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/LoadFeeTrack.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/mulDiv.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/LoadFeeTrack.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/mulDiv.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/protocol/st.h>
 #include <boost/optional.hpp>
 #include <test/jtx.h>
 #include <test/jtx/TestSuite.h>
@@ -33,7 +33,7 @@
 #include <test/jtx/envconfig.h>
 #include <test/jtx/ticket.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 
@@ -141,7 +141,7 @@ class TxQ1_test : public beast::unit_test::suite
         // pseudotransactions. The queue treats the fees on these
         // transactions as though they are ordinary transactions.
         auto const flagPerLedger =
-            1 + ripple::detail::supportedAmendments().size();
+            1 + bixd::detail::supportedAmendments().size();
         auto const flagMaxQueue = ledgersInQueue * flagPerLedger;
         checkMetrics(env, 0, flagMaxQueue, 0, flagPerLedger, 256);
 
@@ -995,7 +995,7 @@ public:
 
             env.app().openLedger().modify(
                 [&](OpenView& view, beast::Journal j) {
-                    std::tie(ter, didApply) = ripple::apply(
+                    std::tie(ter, didApply) = bixd::apply(
                         env.app(), view, *jt.stx, tapNONE, env.journal);
                     return didApply;
                 });
@@ -3993,7 +3993,7 @@ public:
             auto const tx =
                 env.jt(noop(alice), seq(aliceSeq), openLedgerFee(env));
             auto const result =
-                ripple::apply(env.app(), view, *tx.stx, tapUNLIMITED, j);
+                bixd::apply(env.app(), view, *tx.stx, tapUNLIMITED, j);
             BEAST_EXPECT(result.first == tesSUCCESS && result.second);
             return result.second;
         });
@@ -4065,7 +4065,7 @@ public:
             auto const tx = env.jt(
                 noop(alice), ticket::use(tktSeq0 + 1), openLedgerFee(env));
             auto const result =
-                ripple::apply(env.app(), view, *tx.stx, tapUNLIMITED, j);
+                bixd::apply(env.app(), view, *tx.stx, tapUNLIMITED, j);
             BEAST_EXPECT(result.first == tesSUCCESS && result.second);
             return result.second;
         });
@@ -4163,7 +4163,7 @@ public:
                 break;
         }
         auto expectedPerLedger =
-            ripple::detail::supportedAmendments().size() + 1;
+            bixd::detail::supportedAmendments().size() + 1;
         checkMetrics(env, 0, 5 * expectedPerLedger, 0, expectedPerLedger, 256);
 
         // Now wait 2 weeks modulo 256 ledgers for the amendments to be
@@ -4683,8 +4683,8 @@ class TxQ2_test : public TxQ1_test
     }
 };
 
-BEAST_DEFINE_TESTSUITE_PRIO(TxQ1, app, ripple, 1);
-BEAST_DEFINE_TESTSUITE_PRIO(TxQ2, app, ripple, 1);
+BEAST_DEFINE_TESTSUITE_PRIO(TxQ1, app, bixd, 1);
+BEAST_DEFINE_TESTSUITE_PRIO(TxQ2, app, bixd, 1);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

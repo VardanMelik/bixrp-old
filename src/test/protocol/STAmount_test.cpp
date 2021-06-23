@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/protocol/STAmount.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/protocol/STAmount.h>
 
-namespace ripple {
+namespace bixd {
 
 class STAmount_test : public beast::unit_test::suite
 {
@@ -687,6 +687,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(STAmount, ripple_data, ripple);
+BEAST_DEFINE_TESTSUITE(STAmount, ripple_data, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

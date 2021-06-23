@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/OrderBookDB.h>
-#include <ripple/app/paths/Flow.h>
-#include <ripple/app/tx/impl/CreateOffer.h>
-#include <ripple/beast/utility/WrappedSink.h>
-#include <ripple/ledger/CashDiff.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Quality.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/ledger/OrderBookDB.h>
+#include <bixd/app/paths/Flow.h>
+#include <bixd/app/tx/impl/CreateOffer.h>
+#include <bixd/beast/utility/WrappedSink.h>
+#include <bixd/ledger/CashDiff.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Quality.h>
+#include <bixd/protocol/st.h>
 
-namespace ripple {
+namespace bixd {
 
 TxConsequences
 CreateOffer::makeTxConsequences(PreflightContext const& ctx)
@@ -322,7 +322,7 @@ CreateOffer::reachedOfferCrossingLimit(Taker const& taker) const
     auto const crossings =
         taker.get_direct_crossings() + (2 * taker.get_bridge_crossings());
 
-    // The crossing limit is part of the Ripple protocol and
+    // The crossing limit is part of the bixd protocol and
     // changing it is a transaction-processing change.
     return crossings >= 850;
 }
@@ -1458,4 +1458,4 @@ CreateOffer::doApply()
     return result.first;
 }
 
-}  // namespace ripple
+}  // namespace bixd

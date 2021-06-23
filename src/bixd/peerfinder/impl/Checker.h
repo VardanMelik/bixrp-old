@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PEERFINDER_CHECKER_H_INCLUDED
-#define RIPPLE_PEERFINDER_CHECKER_H_INCLUDED
+#ifndef BIXD_PEERFINDER_CHECKER_H_INCLUDED
+#define BIXD_PEERFINDER_CHECKER_H_INCLUDED
 
-#include <ripple/beast/net/IPAddressConversion.h>
+#include <bixd/beast/net/IPAddressConversion.h>
 #include <boost/asio/detail/handler_invoke_helpers.hpp>
 #include <boost/asio/io_service.hpp>
 #include <boost/asio/ip/tcp.hpp>
@@ -31,7 +31,7 @@
 #include <mutex>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 /** Tests remote listening sockets to make sure they are connectible. */
@@ -230,6 +230,6 @@ Checker<Protocol>::remove(basic_async_op& op)
 }
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

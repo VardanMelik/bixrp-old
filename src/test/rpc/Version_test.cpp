@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 
 class Version_test : public beast::unit_test::suite
 {
@@ -215,6 +215,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Version, rpc, ripple);
+BEAST_DEFINE_TESTSUITE(Version, rpc, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

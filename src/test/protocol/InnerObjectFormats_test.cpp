@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/json/json_reader.h>     // Json::Reader
-#include <ripple/protocol/ErrorCodes.h>  // RPC::containsError
-#include <ripple/protocol/InnerObjectFormats.h>
-#include <ripple/protocol/STParsedJSON.h>  // STParsedJSONObject
+#include <bixd/basics/contract.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/json/json_reader.h>     // Json::Reader
+#include <bixd/protocol/ErrorCodes.h>  // RPC::containsError
+#include <bixd/protocol/InnerObjectFormats.h>
+#include <bixd/protocol/STParsedJSON.h>  // STParsedJSONObject
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace InnerObjectFormatsUnitTestDetail {
 
@@ -201,6 +201,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(InnerObjectFormatsParsedJSON, ripple_app, ripple);
+BEAST_DEFINE_TESTSUITE(InnerObjectFormatsParsedJSON, ripple_app, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

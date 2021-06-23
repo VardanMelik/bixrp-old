@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/ledger/ReadView.h>
+#include <bixd/ledger/ReadView.h>
 #include <boost/optional.hpp>
 
-namespace ripple {
+namespace bixd {
 
 class Rules::Impl
 {
@@ -168,4 +168,4 @@ ReadView::txs_type::end() const -> iterator
     return iterator(view_, view_->txsEnd());
 }
 
-}  // namespace ripple
+}  // namespace bixd

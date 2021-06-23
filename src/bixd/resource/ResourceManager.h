@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RESOURCE_MANAGER_H_INCLUDED
-#define RIPPLE_RESOURCE_MANAGER_H_INCLUDED
+#ifndef BIXD_RESOURCE_MANAGER_H_INCLUDED
+#define BIXD_RESOURCE_MANAGER_H_INCLUDED
 
-#include <ripple/beast/insight/Collector.h>
-#include <ripple/beast/net/IPEndpoint.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/json/json_value.h>
-#include <ripple/resource/Consumer.h>
-#include <ripple/resource/Gossip.h>
+#include <bixd/beast/insight/Collector.h>
+#include <bixd/beast/net/IPEndpoint.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/json/json_value.h>
+#include <bixd/resource/Consumer.h>
+#include <bixd/resource/Gossip.h>
 #include <boost/utility/string_view.hpp>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 /** Tracks load and resource consumption. */
@@ -84,6 +84,6 @@ make_Manager(
     beast::Journal journal);
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

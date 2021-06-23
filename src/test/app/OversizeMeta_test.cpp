@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
+#include <bixd/beast/unit_test.h>
 #include <algorithm>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 // Make sure "plump" order books don't have problems
@@ -61,7 +61,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(PlumpBook, tx, ripple, 5);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(PlumpBook, tx, bixd, 5);
 
 //------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(ThinBook, tx, ripple);
+BEAST_DEFINE_TESTSUITE(ThinBook, tx, bixd);
 
 //------------------------------------------------------------------------------
 
@@ -119,7 +119,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(OversizeMeta, tx, ripple, 3);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(OversizeMeta, tx, bixd, 3);
 
 //------------------------------------------------------------------------------
 
@@ -185,7 +185,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(FindOversizeCross, tx, ripple, 50);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(FindOversizeCross, tx, bixd, 50);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

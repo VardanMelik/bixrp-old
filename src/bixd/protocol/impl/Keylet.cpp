@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/Keylet.h>
-#include <ripple/protocol/STLedgerEntry.h>
+#include <bixd/protocol/Keylet.h>
+#include <bixd/protocol/STLedgerEntry.h>
 
-namespace ripple {
+namespace bixd {
 
 bool
 Keylet::check(SLE const& sle) const
@@ -37,4 +37,4 @@ Keylet::check(SLE const& sle) const
     return sle.getType() == type;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CONDITIONS_CONDITION_H
-#define RIPPLE_CONDITIONS_CONDITION_H
+#ifndef BIXD_CONDITIONS_CONDITION_H
+#define BIXD_CONDITIONS_CONDITION_H
 
-#include <ripple/basics/Buffer.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/conditions/impl/utils.h>
+#include <bixd/basics/Buffer.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/conditions/impl/utils.h>
 #include <array>
 #include <cstdint>
 #include <set>
@@ -30,7 +30,7 @@
 #include <system_error>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace cryptoconditions {
 
 enum class Type : std::uint8_t {
@@ -115,6 +115,6 @@ operator!=(Condition const& lhs, Condition const& rhs)
 
 }  // namespace cryptoconditions
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

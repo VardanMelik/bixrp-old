@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/core/JobQueue.h>
+#include <bixd/core/JobQueue.h>
 #include <chrono>
 #include <condition_variable>
 #include <mutex>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class Coroutine_test : public beast::unit_test::suite
@@ -168,7 +168,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Coroutine, core, ripple);
+BEAST_DEFINE_TESTSUITE(Coroutine, core, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

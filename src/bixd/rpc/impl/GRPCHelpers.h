@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_GRPCHELPERS_H_INCLUDED
-#define RIPPLE_RPC_GRPCHELPERS_H_INCLUDED
+#ifndef BIXD_RPC_GRPCHELPERS_H_INCLUDED
+#define BIXD_RPC_GRPCHELPERS_H_INCLUDED
 
 #include "org/xrpl/rpc/v1/get_account_info.pb.h"
 #include "org/xrpl/rpc/v1/ledger_objects.pb.h"
 #include "org/xrpl/rpc/v1/meta.pb.h"
 #include "org/xrpl/rpc/v1/transaction.pb.h"
 
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/ledger/TxMeta.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STTx.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/ledger/TxMeta.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STTx.h>
 
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 void
@@ -85,6 +85,6 @@ convert(T& to, STAmount const& from)
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

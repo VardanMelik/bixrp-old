@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/STAccount.h>
+#include <bixd/protocol/STAccount.h>
 
 #include <cstring>
 
-namespace ripple {
+namespace bixd {
 
 STAccount::STAccount() : STBase(), value_(beast::zero), default_(true)
 {
@@ -67,4 +67,4 @@ STAccount::getText() const
     return toBase58(value());
 }
 
-}  // namespace ripple
+}  // namespace bixd

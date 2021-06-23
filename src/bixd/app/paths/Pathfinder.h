@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_PATHFINDER_H_INCLUDED
-#define RIPPLE_APP_PATHS_PATHFINDER_H_INCLUDED
+#ifndef BIXD_APP_PATHS_PATHFINDER_H_INCLUDED
+#define BIXD_APP_PATHS_PATHFINDER_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/paths/RippleLineCache.h>
-#include <ripple/core/LoadEvent.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STPathSet.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/core/LoadEvent.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STPathSet.h>
 
-namespace ripple {
+namespace bixd {
 
 /** Calculates payment paths.
 
@@ -163,11 +163,11 @@ private:
         uint64_t& qualityOut) const;   // OUT: The returned initial quality
 
     // Does this path end on an account-to-account link whose last account has
-    // set the "no ripple" flag on the link?
+    // set the "no bixd" flag on the link?
     bool
     isNoRippleOut(STPath const& currentPath);
 
-    // Is the "no ripple" flag set from one account to another?
+    // Is the "no bixd" flag set from one account to another?
     bool
     isNoRipple(
         AccountID const& fromAccount,
@@ -206,7 +206,7 @@ private:
     Application& app_;
     beast::Journal const j_;
 
-    // Add ripple paths
+    // Add bixd paths
     static std::uint32_t const afADD_ACCOUNTS = 0x001;
 
     // Add order books
@@ -222,6 +222,6 @@ private:
     static std::uint32_t const afAC_LAST = 0x080;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

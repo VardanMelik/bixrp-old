@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/ledger/CashDiff.h>
-#include <ripple/ledger/detail/ApplyStateTable.h>
-#include <ripple/protocol/st.h>
+#include <bixd/ledger/CashDiff.h>
+#include <bixd/ledger/detail/ApplyStateTable.h>
+#include <bixd/protocol/st.h>
 #include <boost/container/static_vector.hpp>
 #include <cassert>
 #include <cstdlib>  // std::abs()
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 // Data structure that summarize cash changes in a single ApplyStateTable.
@@ -174,7 +174,7 @@ getBasicCashFlow(
                     std::make_pair(prev[sfAccount], BIXRPAmount{0}));
                 return true;
 
-            case ltRIPPLE_STATE:
+            case ltBIXD_STATE:
                 result.trustDeletions.push_back(std::make_pair(
                     std::make_tuple(
                         prev[sfLowLimit].getIssuer(),
@@ -213,7 +213,7 @@ getBasicCashFlow(
                         std::make_pair(cur[sfAccount], curBIXrp));
                 return true;
             }
-            case ltRIPPLE_STATE: {
+            case ltBIXD_STATE: {
                 auto const curBalance = cur[sfBalance];
                 if (!before || (*before)[sfBalance] != curBalance)
                     result.trustChanges.push_back(std::make_pair(
@@ -842,4 +842,4 @@ diffIsDust(STAmount const& v1, STAmount const& v2, std::uint8_t e10)
     return ratioExp >= e10;
 };
 
-}  // namespace ripple
+}  // namespace bixd

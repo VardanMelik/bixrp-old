@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_SEMAPHORE_H_INCLUDED
-#define RIPPLE_CORE_SEMAPHORE_H_INCLUDED
+#ifndef BIXD_CORE_SEMAPHORE_H_INCLUDED
+#define BIXD_CORE_SEMAPHORE_H_INCLUDED
 
 #include <condition_variable>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 template <class Mutex, class CondVar>
 class basic_semaphore
@@ -78,6 +78,6 @@ public:
 
 using semaphore = basic_semaphore<std::mutex, std::condition_variable>;
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

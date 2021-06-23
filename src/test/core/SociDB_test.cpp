@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/basics/contract.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/core/SociDB.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/core/SociDB.h>
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <test/jtx/TestSuite.h>
 
-namespace ripple {
+namespace bixd {
 class SociDB_test final : public TestSuite
 {
 private:
@@ -369,6 +369,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(SociDB, core, ripple);
+BEAST_DEFINE_TESTSUITE(SociDB, core, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

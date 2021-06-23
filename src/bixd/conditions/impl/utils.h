@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CONDITIONS_UTILS_H
-#define RIPPLE_CONDITIONS_UTILS_H
+#ifndef BIXD_CONDITIONS_UTILS_H
+#define BIXD_CONDITIONS_UTILS_H
 
-#include <ripple/basics/strHex.h>
-#include <ripple/conditions/impl/error.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/conditions/impl/error.h>
 #include <boost/dynamic_bitset.hpp>
 #include <iomanip>
 #include <limits>
@@ -31,7 +31,7 @@
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace cryptoconditions {
 
 // A collection of functions to decode binary blobs
@@ -229,6 +229,6 @@ parseInteger(Slice& s, std::size_t count, std::error_code& ec)
 
 }  // namespace der
 }  // namespace cryptoconditions
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

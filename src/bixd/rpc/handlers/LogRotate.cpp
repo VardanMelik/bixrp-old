@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/PerfLog.h>
-#include <ripple/rpc/impl/Handler.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/PerfLog.h>
+#include <bixd/rpc/impl/Handler.h>
 
-namespace ripple {
+namespace bixd {
 
 Json::Value
 doLogRotate(RPC::JsonContext& context)
@@ -31,4 +31,4 @@ doLogRotate(RPC::JsonContext& context)
     return RPC::makeObjectValue(context.app.logs().rotate());
 }
 
-}  // namespace ripple
+}  // namespace bixd

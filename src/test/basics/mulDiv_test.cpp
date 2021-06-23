@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2016 Ripple Labs Inc.
+    Copyright (c) 2012-2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/mulDiv.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/mulDiv.h>
+#include <bixd/beast/unit_test.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 struct mulDiv_test : beast::unit_test::suite
@@ -56,7 +56,7 @@ struct mulDiv_test : beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(mulDiv, ripple_basics, ripple);
+BEAST_DEFINE_TESTSUITE(mulDiv, ripple_basics, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

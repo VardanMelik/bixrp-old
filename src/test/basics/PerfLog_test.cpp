@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/PerfLog.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/impl/Handler.h>
+#include <bixd/basics/PerfLog.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/impl/Handler.h>
 #include <atomic>
 #include <chrono>
 #include <random>
@@ -32,7 +32,7 @@
 
 //------------------------------------------------------------------------------
 
-namespace ripple {
+namespace bixd {
 
 class PerfLog_test : public beast::unit_test::suite
 {
@@ -380,7 +380,7 @@ public:
 
         // Get the all the labels we can use for RPC interfaces without
         // causing an assert.
-        std::vector<char const*> labels{ripple::RPC::getHandlerNames()};
+        std::vector<char const*> labels{bixd::RPC::getHandlerNames()};
         std::shuffle(labels.begin(), labels.end(), default_prng());
 
         // Get two IDs to associate with each label.  Errors tend to happen at
@@ -1135,6 +1135,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(PerfLog, basics, ripple);
+BEAST_DEFINE_TESTSUITE(PerfLog, basics, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

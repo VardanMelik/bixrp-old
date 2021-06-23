@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/TimeKeeper.h>
-#include <ripple/overlay/Cluster.h>
-#include <ripple/overlay/ClusterNode.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/protocol/tokens.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/TimeKeeper.h>
+#include <bixd/overlay/Cluster.h>
+#include <bixd/overlay/ClusterNode.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/protocol/tokens.h>
 #include <boost/regex.hpp>
 #include <memory.h>
 
-namespace ripple {
+namespace bixd {
 
 Cluster::Cluster(beast::Journal j) : j_(j)
 {
@@ -133,4 +133,4 @@ Cluster::load(Section const& nodes)
     return true;
 }
 
-}  // namespace ripple
+}  // namespace bixd

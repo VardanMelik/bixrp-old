@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_ALGORITHM_H_INCLUDED
-#define RIPPLE_ALGORITHM_H_INCLUDED
+#ifndef BIXD_ALGORITHM_H_INCLUDED
+#define BIXD_ALGORITHM_H_INCLUDED
 
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 // Requires: [first1, last1) and [first2, last2) are ordered ranges according to
 // comp.
@@ -114,6 +114,6 @@ remove_if_intersect_or_match(
     return first1;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

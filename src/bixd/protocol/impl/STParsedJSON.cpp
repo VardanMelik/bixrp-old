@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,30 +17,30 @@
 */
 //==============================================================================
 
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/LedgerFormats.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STArray.h>
-#include <ripple/protocol/STBitString.h>
-#include <ripple/protocol/STBlob.h>
-#include <ripple/protocol/STInteger.h>
-#include <ripple/protocol/STParsedJSON.h>
-#include <ripple/protocol/STPathSet.h>
-#include <ripple/protocol/STVector256.h>
-#include <ripple/protocol/TER.h>
-#include <ripple/protocol/TxFormats.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/impl/STVar.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/LedgerFormats.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STArray.h>
+#include <bixd/protocol/STBitString.h>
+#include <bixd/protocol/STBlob.h>
+#include <bixd/protocol/STInteger.h>
+#include <bixd/protocol/STParsedJSON.h>
+#include <bixd/protocol/STPathSet.h>
+#include <bixd/protocol/STVector256.h>
+#include <bixd/protocol/TER.h>
+#include <bixd/protocol/TxFormats.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/impl/STVar.h>
 #include <cassert>
 #include <charconv>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 namespace STParsedJSONDetail {
 template <typename U, typename S>
@@ -1001,4 +1001,4 @@ STParsedJSONArray::STParsedJSONArray(
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

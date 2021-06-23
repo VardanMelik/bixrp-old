@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/beast/rfc2616.h>
-#include <ripple/server/Port.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/beast/rfc2616.h>
+#include <bixd/server/Port.h>
 
 #include <boost/algorithm/string/predicate.hpp>
 
-namespace ripple {
+namespace bixd {
 
 bool
 Port::secure() const
@@ -265,4 +265,4 @@ parse_Port(ParsedPort& port, Section const& section, std::ostream& log)
     port.pmd_options.memLevel = section.value_or("memory_level", 4);
 }
 
-}  // namespace ripple
+}  // namespace bixd

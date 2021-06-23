@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_UINTTYPES_H_INCLUDED
-#define RIPPLE_PROTOCOL_UINTTYPES_H_INCLUDED
+#ifndef BIXD_PROTOCOL_UINTTYPES_H_INCLUDED
+#define BIXD_PROTOCOL_UINTTYPES_H_INCLUDED
 
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/beast/utility/Zero.h>
-#include <ripple/protocol/AccountID.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/beast/utility/Zero.h>
+#include <bixd/protocol/AccountID.h>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 class CurrencyTag
@@ -107,24 +107,24 @@ operator<<(std::ostream& os, Currency const& x)
     return os;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 namespace std {
 
 template <>
-struct hash<ripple::Currency> : ripple::Currency::hasher
+struct hash<bixd::Currency> : bixd::Currency::hasher
 {
     explicit hash() = default;
 };
 
 template <>
-struct hash<ripple::NodeID> : ripple::NodeID::hasher
+struct hash<bixd::NodeID> : bixd::NodeID::hasher
 {
     explicit hash() = default;
 };
 
 template <>
-struct hash<ripple::Directory> : ripple::Directory::hasher
+struct hash<bixd::Directory> : bixd::Directory::hasher
 {
     explicit hash() = default;
 };

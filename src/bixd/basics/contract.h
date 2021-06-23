@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_CONTRACT_H_INCLUDED
-#define RIPPLE_BASICS_CONTRACT_H_INCLUDED
+#ifndef BIXD_BASICS_CONTRACT_H_INCLUDED
+#define BIXD_BASICS_CONTRACT_H_INCLUDED
 
-#include <ripple/beast/type_name.h>
+#include <bixd/beast/type_name.h>
 #include <exception>
 #include <string>
 #include <typeinfo>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /*  Programming By Contract
 
@@ -71,6 +71,6 @@ Throw(Args&&... args)
 [[noreturn]] void
 LogicError(std::string const& how) noexcept;
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

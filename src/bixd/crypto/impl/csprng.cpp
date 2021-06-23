@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/basics/ByteUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/crypto/csprng.h>
+#include <bixd/basics/ByteUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/crypto/csprng.h>
 #include <array>
 #include <cassert>
 #include <openssl/rand.h>
 #include <random>
 #include <stdexcept>
 
-namespace ripple {
+namespace bixd {
 
 void
 csprng_engine::mix(void* data, std::size_t size, double bitsPerByte)
@@ -111,4 +111,4 @@ crypto_prng()
     return engine;
 }
 
-}  // namespace ripple
+}  // namespace bixd

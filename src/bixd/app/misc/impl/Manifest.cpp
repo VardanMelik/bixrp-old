@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -32,7 +32,7 @@
 #include <numeric>
 #include <stdexcept>
 
-namespace ripple {
+namespace bixd {
 
 boost::optional<Manifest>
 deserializeManifest(Slice s)
@@ -173,10 +173,10 @@ Manifest::verify() const
 
     // Signing key and signature are not required for
     // master key revocations
-    if (!revoked() && !ripple::verify(st, HashPrefix::manifest, signingKey))
+    if (!revoked() && !bixd::verify(st, HashPrefix::manifest, signingKey))
         return false;
 
-    return ripple::verify(
+    return bixd::verify(
         st, HashPrefix::manifest, masterKey, sfMasterSignature);
 }
 
@@ -557,4 +557,4 @@ ManifestCache::save(
     }
     tr.commit();
 }
-}  // namespace ripple
+}  // namespace bixd

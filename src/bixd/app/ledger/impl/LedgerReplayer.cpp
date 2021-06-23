@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2020 Ripple Labs Inc.
+    Copyright (c) 2012, 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -22,7 +22,7 @@
 #include <bixd/app/ledger/impl/SkipListAcquire.h>
 #include <bixd/core/JobQueue.h>
 
-namespace ripple {
+namespace bixd {
 
 LedgerReplayer::LedgerReplayer(
     Application& app,
@@ -280,4 +280,4 @@ LedgerReplayer::onStop()
     JLOG(j_.info()) << "Stopped";
 }
 
-}  // namespace ripple
+}  // namespace bixd

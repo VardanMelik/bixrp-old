@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/beast/utility/temp_dir.h>
-#include <ripple/nodestore/DummyScheduler.h>
-#include <ripple/nodestore/Manager.h>
-#include <ripple/unity/rocksdb.h>
+#include <bixd/beast/utility/temp_dir.h>
+#include <bixd/nodestore/DummyScheduler.h>
+#include <bixd/nodestore/Manager.h>
+#include <bixd/unity/rocksdb.h>
 #include <algorithm>
 #include <test/nodestore/TestBase.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace NodeStore {
 
@@ -107,17 +107,17 @@ public:
 
         testBackend("nudb", seedValue);
 
-#if RIPPLE_ROCKSDB_AVAILABLE
+#if BIXD_ROCKSDB_AVAILABLE
         testBackend("rocksdb", seedValue);
 #endif
 
-#ifdef RIPPLE_ENABLE_SQLITE_BACKEND_TESTS
+#ifdef BIXD_ENABLE_SQLITE_BACKEND_TESTS
         testBackend("sqlite", seedValue);
 #endif
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Backend, ripple_core, ripple);
+BEAST_DEFINE_TESTSUITE(Backend, ripple_core, bixd);
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

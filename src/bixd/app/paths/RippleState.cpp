@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/paths/RippleState.h>
-#include <ripple/protocol/STAmount.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/paths/RippleState.h>
+#include <bixd/protocol/STAmount.h>
 #include <cstdint>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 RippleState::pointer
 RippleState::makeItem(
@@ -31,7 +31,7 @@ RippleState::makeItem(
     std::shared_ptr<SLE const> sle)
 {
     // VFALCO Does this ever happen in practice?
-    if (!sle || sle->getType() != ltRIPPLE_STATE)
+    if (!sle || sle->getType() != ltBIXD_STATE)
         return {};
     return std::make_shared<RippleState>(std::move(sle), accountID);
 }
@@ -82,4 +82,4 @@ getRippleStateItems(AccountID const& accountID, ReadView const& view)
     return items;
 }
 
-}  // namespace ripple
+}  // namespace bixd

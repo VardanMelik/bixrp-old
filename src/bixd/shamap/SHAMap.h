@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,27 +17,27 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_SHAMAP_H_INCLUDED
-#define RIPPLE_SHAMAP_SHAMAP_H_INCLUDED
+#ifndef BIXD_SHAMAP_SHAMAP_H_INCLUDED
+#define BIXD_SHAMAP_SHAMAP_H_INCLUDED
 
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/nodestore/Database.h>
-#include <ripple/nodestore/NodeObject.h>
-#include <ripple/shamap/Family.h>
-#include <ripple/shamap/FullBelowCache.h>
-#include <ripple/shamap/SHAMapAddNode.h>
-#include <ripple/shamap/SHAMapInnerNode.h>
-#include <ripple/shamap/SHAMapItem.h>
-#include <ripple/shamap/SHAMapLeafNode.h>
-#include <ripple/shamap/SHAMapMissingNode.h>
-#include <ripple/shamap/SHAMapTreeNode.h>
-#include <ripple/shamap/TreeNodeCache.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/nodestore/Database.h>
+#include <bixd/nodestore/NodeObject.h>
+#include <bixd/shamap/Family.h>
+#include <bixd/shamap/FullBelowCache.h>
+#include <bixd/shamap/SHAMapAddNode.h>
+#include <bixd/shamap/SHAMapInnerNode.h>
+#include <bixd/shamap/SHAMapItem.h>
+#include <bixd/shamap/SHAMapLeafNode.h>
+#include <bixd/shamap/SHAMapMissingNode.h>
+#include <bixd/shamap/SHAMapTreeNode.h>
+#include <bixd/shamap/TreeNodeCache.h>
 #include <cassert>
 #include <stack>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 class SHAMapNodeID;
 class SHAMapSyncFilter;
@@ -709,6 +709,6 @@ SHAMap::end() const
     return const_iterator(this, nullptr);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

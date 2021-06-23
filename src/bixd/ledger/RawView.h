@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_RAWVIEW_H_INCLUDED
-#define RIPPLE_LEDGER_RAWVIEW_H_INCLUDED
+#ifndef BIXD_LEDGER_RAWVIEW_H_INCLUDED
+#define BIXD_LEDGER_RAWVIEW_H_INCLUDED
 
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/STLedgerEntry.h>
-#include <ripple/protocol/Serializer.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/STLedgerEntry.h>
+#include <bixd/protocol/Serializer.h>
 #include <boost/optional.hpp>
 #include <cstdint>
 #include <memory>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /** Interface for ledger entry changes.
 
@@ -110,6 +110,6 @@ public:
         std::shared_ptr<Serializer const> const& metaData) = 0;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

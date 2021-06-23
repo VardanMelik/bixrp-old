@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd: link
-    Copyright (c) 2015 Ripple Labs Inc.
+    Copyright (c) 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_MISC_VALIDATORLIST_H_INCLUDED
-#define RIPPLE_APP_MISC_VALIDATORLIST_H_INCLUDED
+#ifndef BIXD_APP_MISC_VALIDATORLIST_H_INCLUDED
+#define BIXD_APP_MISC_VALIDATORLIST_H_INCLUDED
 
 #include <bixd/app/misc/Manifest.h>
 #include <bixd/basics/Log.h>
@@ -40,7 +40,7 @@ class TMValidatorList;
 class TMValidatorListCollection;
 }  // namespace protocol
 
-namespace ripple {
+namespace bixd {
 
 class Overlay;
 class HashRouter;
@@ -141,9 +141,9 @@ struct ValidatorBlobInfo
 
     @li @c "blob": Base64-encoded JSON string containing a @c "sequence", @c
         "validFrom", @c "validUntil", and @c "validators" field. @c "validFrom"
-        contains the Ripple timestamp (seconds since January 1st, 2000 (00:00
+        contains the bixd timestamp (seconds since January 1st, 2000 (00:00
         UTC)) for when the list becomes valid. @c "validUntil" contains the
-        Ripple timestamp for when the list expires. @c "validators" contains
+        bixd timestamp for when the list expires. @c "validators" contains
         an array of objects with a @c "validation_public_key" and optional
         @c "manifest" field. @c "validation_public_key" should be the
         hex-encoded master public key. @c "manifest" should be the
@@ -923,7 +923,7 @@ hash_append(Hasher& h, std::map<std::size_t, ValidatorBlobInfo> const& blobs)
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 namespace protocol {
 
@@ -943,7 +943,7 @@ hash_append(Hasher& h, TMValidatorListCollection const& msg)
     hash_append(
         h,
         msg.manifest(),
-        ripple::ValidatorList::parseBlobs(msg),
+        bixd::ValidatorList::parseBlobs(msg),
         msg.version());
 }
 

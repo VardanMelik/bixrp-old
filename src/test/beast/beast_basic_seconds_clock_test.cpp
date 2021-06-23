@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
+#include <bixd/beast/unit_test.h>
 
-#include <ripple/beast/clock/basic_seconds_clock.h>
+#include <bixd/beast/clock/basic_seconds_clock.h>
 
 namespace beast {
 

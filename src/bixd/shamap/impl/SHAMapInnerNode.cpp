@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/shamap/SHAMapInnerNode.h>
+#include <bixd/shamap/SHAMapInnerNode.h>
 
-#include <ripple/basics/ByteUtilities.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/shamap/SHAMapTreeNode.h>
-#include <ripple/shamap/impl/TaggedPointer.ipp>
+#include <bixd/basics/ByteUtilities.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/shamap/SHAMapTreeNode.h>
+#include <bixd/shamap/impl/TaggedPointer.ipp>
 
 #include <openssl/sha.h>
 
@@ -38,7 +38,7 @@
 #include <mutex>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 std::mutex SHAMapInnerNode::childLock;
 
@@ -429,4 +429,4 @@ SHAMapInnerNode::invariants(bool is_root) const
     assert((count == 0) ? hash_.isZero() : hash_.isNonZero());
 }
 
-}  // namespace ripple
+}  // namespace bixd

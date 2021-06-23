@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/basics/StringUtilities.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/basics/StringUtilities.h>
 #include <boost/regex.hpp>
 #include <algorithm>
 
-namespace ripple {
+namespace bixd {
 
 Section::Section(std::string const& name) : name_(name)
 {
@@ -204,4 +204,4 @@ operator<<(std::ostream& ss, BasicConfig const& c)
     return ss;
 }
 
-}  // namespace ripple
+}  // namespace bixd

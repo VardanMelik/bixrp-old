@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/net/DatabaseDownloader.h>
+#include <bixd/net/DatabaseDownloader.h>
 
-namespace ripple {
+namespace bixd {
 
 std::shared_ptr<DatabaseDownloader>
 make_DatabaseDownloader(
@@ -89,4 +89,4 @@ DatabaseDownloader::size(std::shared_ptr<parser> p)
     return databaseBodyParser->get().body().size();
 }
 
-}  // namespace ripple
+}  // namespace bixd

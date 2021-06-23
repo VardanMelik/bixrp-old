@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/beast/xor_shift_engine.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/shamap/SHAMap.h>
-#include <ripple/shamap/SHAMapSyncFilter.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/beast/xor_shift_engine.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/shamap/SHAMap.h>
+#include <bixd/shamap/SHAMapSyncFilter.h>
 #include <functional>
 #include <stdexcept>
 #include <test/shamap/common.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 namespace tests {
 
 class FetchPack_test : public beast::unit_test::suite
@@ -90,7 +90,7 @@ public:
     {
         Serializer s;
         for (int d = 0; d < 3; ++d)
-            s.add32(ripple::rand_int<std::uint32_t>(r));
+            s.add32(bixd::rand_int<std::uint32_t>(r));
         return std::make_shared<Item>(s.getSHA512Half(), s.peekData());
     }
 
@@ -170,7 +170,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(FetchPack, shamap, ripple);
+BEAST_DEFINE_TESTSUITE(FetchPack, shamap, bixd);
 
 }  // namespace tests
-}  // namespace ripple
+}  // namespace bixd

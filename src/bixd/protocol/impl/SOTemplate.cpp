@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,9 +17,9 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/SOTemplate.h>
+#include <bixd/protocol/SOTemplate.h>
 
-namespace ripple {
+namespace bixd {
 
 SOTemplate::SOTemplate(
     std::initializer_list<SOElement> uniqueFields,
@@ -63,4 +63,4 @@ SOTemplate::getIndex(SField const& sField) const
     return indices_[sField.getNum()];
 }
 
-}  // namespace ripple
+}  // namespace bixd

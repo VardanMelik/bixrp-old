@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/protocol/InnerObjectFormats.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/STArray.h>
-#include <ripple/protocol/STBlob.h>
-#include <ripple/protocol/STObject.h>
+#include <bixd/basics/Log.h>
+#include <bixd/protocol/InnerObjectFormats.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/STArray.h>
+#include <bixd/protocol/STBlob.h>
+#include <bixd/protocol/STObject.h>
 
-namespace ripple {
+namespace bixd {
 
 STObject::STObject(STObject&& other)
     : STBase(other.getFName()), v_(std::move(other.v_)), mType(other.mType)
@@ -800,4 +800,4 @@ STObject::getSortedFields(STObject const& objToSort, WhichFields whichFields)
     return sf;
 }
 
-}  // namespace ripple
+}  // namespace bixd

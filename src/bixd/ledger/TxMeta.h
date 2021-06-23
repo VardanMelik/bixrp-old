@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_TX_TRANSACTIONMETA_H_INCLUDED
-#define RIPPLE_APP_TX_TRANSACTIONMETA_H_INCLUDED
+#ifndef BIXD_APP_TX_TRANSACTIONMETA_H_INCLUDED
+#define BIXD_APP_TX_TRANSACTIONMETA_H_INCLUDED
 
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/protocol/STArray.h>
-#include <ripple/protocol/STLedgerEntry.h>
-#include <ripple/protocol/TER.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/protocol/STArray.h>
+#include <bixd/protocol/STLedgerEntry.h>
+#include <bixd/protocol/TER.h>
 #include <boost/container/flat_set.hpp>
 #include <boost/optional.hpp>
 
-namespace ripple {
+namespace bixd {
 
 class TxMeta
 {
@@ -132,6 +132,6 @@ private:
     STArray mNodes;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

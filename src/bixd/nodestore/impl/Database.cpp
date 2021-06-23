@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/json/json_value.h>
-#include <ripple/nodestore/Database.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/json/json_value.h>
+#include <bixd/nodestore/Database.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/jss.h>
 #include <chrono>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 Database::Database(
@@ -337,4 +337,4 @@ Database::getCountsJson(Json::Value& obj)
 }
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

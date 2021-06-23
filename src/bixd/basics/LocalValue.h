@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_LOCALVALUE_H_INCLUDED
-#define RIPPLE_BASICS_LOCALVALUE_H_INCLUDED
+#ifndef BIXD_BASICS_LOCALVALUE_H_INCLUDED
+#define BIXD_BASICS_LOCALVALUE_H_INCLUDED
 
 #include <boost/thread/tss.hpp>
 #include <memory>
 #include <unordered_map>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -127,6 +127,6 @@ LocalValue<T>::operator*()
             .emplace(this, std::make_unique<detail::LocalValues::Value<T>>(t_))
             .first->second->get());
 }
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

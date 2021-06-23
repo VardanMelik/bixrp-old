@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/SeqProxy.h>
-#include <ripple/protocol/digest.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/SeqProxy.h>
+#include <bixd/protocol/digest.h>
 #include <boost/endian/conversion.hpp>
 #include <algorithm>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 
 /** Type-specific prefix for calculating ledger indices.
 
@@ -211,7 +211,7 @@ line(
     auto const accounts = std::minmax(id0, id1);
 
     return {
-        ltRIPPLE_STATE,
+        ltBIXD_STATE,
         indexHash(
             LedgerNameSpace::TRUST_LINE,
             accounts.first,
@@ -331,4 +331,4 @@ payChan(AccountID const& src, AccountID const& dst, std::uint32_t seq) noexcept
 
 }  // namespace keylet
 
-}  // namespace ripple
+}  // namespace bixd

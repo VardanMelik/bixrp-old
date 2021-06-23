@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_HTTPCLIENT_H_INCLUDED
-#define RIPPLE_NET_HTTPCLIENT_H_INCLUDED
+#ifndef BIXD_NET_HTTPCLIENT_H_INCLUDED
+#define BIXD_NET_HTTPCLIENT_H_INCLUDED
 
-#include <ripple/basics/ByteUtilities.h>
-#include <ripple/core/Config.h>
+#include <bixd/basics/ByteUtilities.h>
+#include <bixd/core/Config.h>
 #include <boost/asio/io_service.hpp>
 #include <boost/asio/streambuf.hpp>
 #include <chrono>
 
-namespace ripple {
+namespace bixd {
 
 /** Provides an asynchronous HTTP client implementation with optional SSL.
  */
@@ -85,6 +85,6 @@ public:
         beast::Journal& j);
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

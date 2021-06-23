@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/json/json_reader.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/server/Port.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/server/Port.h>
 #include <boost/beast/core/multi_buffer.hpp>
 #include <boost/beast/websocket.hpp>
 #include <test/jtx.h>
@@ -32,9 +32,9 @@
 
 #include <iostream>
 
-#include <ripple/beast/unit_test.h>
+#include <bixd/beast/unit_test.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class WSClientImpl : public WSClient
@@ -307,4 +307,4 @@ makeWSClient(
 }
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

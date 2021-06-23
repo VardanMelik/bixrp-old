@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_PLAINHTTPPEER_H_INCLUDED
-#define RIPPLE_SERVER_PLAINHTTPPEER_H_INCLUDED
+#ifndef BIXD_SERVER_PLAINHTTPPEER_H_INCLUDED
+#define BIXD_SERVER_PLAINHTTPPEER_H_INCLUDED
 
-#include <ripple/beast/rfc2616.h>
-#include <ripple/server/impl/BaseHTTPPeer.h>
-#include <ripple/server/impl/PlainWSPeer.h>
+#include <bixd/beast/rfc2616.h>
+#include <bixd/server/impl/BaseHTTPPeer.h>
+#include <bixd/server/impl/PlainWSPeer.h>
 #include <boost/beast/core/tcp_stream.hpp>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 template <class Handler>
 class PlainHTTPPeer
@@ -171,6 +171,6 @@ PlainHTTPPeer<Handler>::do_close()
     socket_.shutdown(socket_type::shutdown_send, ec);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

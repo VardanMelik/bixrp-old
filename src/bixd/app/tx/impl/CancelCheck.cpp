@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/CancelCheck.h>
+#include <bixd/app/tx/impl/CancelCheck.h>
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/basics/Log.h>
-#include <ripple/ledger/ApplyView.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/TER.h>
-#include <ripple/protocol/TxFlags.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/basics/Log.h>
+#include <bixd/ledger/ApplyView.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/TER.h>
+#include <bixd/protocol/TxFlags.h>
 
-namespace ripple {
+namespace bixd {
 
 NotTEC
 CancelCheck::preflight(PreflightContext const& ctx)
@@ -131,4 +131,4 @@ CancelCheck::doApply()
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

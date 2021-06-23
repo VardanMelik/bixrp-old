@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_BOOK_TAKER_H_INCLUDED
-#define RIPPLE_APP_BOOK_TAKER_H_INCLUDED
+#ifndef BIXD_APP_BOOK_TAKER_H_INCLUDED
+#define BIXD_APP_BOOK_TAKER_H_INCLUDED
 
-#include <ripple/app/tx/impl/Offer.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/core/Config.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Quality.h>
-#include <ripple/protocol/Rate.h>
-#include <ripple/protocol/TER.h>
-#include <ripple/protocol/TxFlags.h>
+#include <bixd/app/tx/impl/Offer.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/core/Config.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Quality.h>
+#include <bixd/protocol/Rate.h>
+#include <bixd/protocol/TER.h>
+#include <bixd/protocol/TxFlags.h>
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 
 /** The flavor of an offer crossing */
 enum class CrossType { BIXrpToIou, IouToBIXrp, IouToIou };
@@ -337,6 +337,6 @@ private:
     std::uint32_t bridge_crossings_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

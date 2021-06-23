@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Slice.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STParsedJSON.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/Sign.h>
-#include <ripple/protocol/TxFormats.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/messages.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STParsedJSON.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/Sign.h>
+#include <bixd/protocol/TxFormats.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/messages.h>
 
 #include <memory>
 #include <regex>
 
-namespace ripple {
+namespace bixd {
 
 /**
  * Return true if the string loosely matches the regex.
@@ -1393,7 +1393,7 @@ public:
                 SerialIter tenSit{tenDeep.slice()};
                 try
                 {
-                    auto stx = std::make_shared<ripple::STTx const>(tenSit);
+                    auto stx = std::make_shared<bixd::STTx const>(tenSit);
                     fail("STTx construction should have thrown.");
                 }
                 catch (std::runtime_error const& ex)
@@ -1412,7 +1412,7 @@ public:
             SerialIter tooDeepSit{tooDeep.slice()};
             try
             {
-                auto stx = std::make_shared<ripple::STTx const>(tooDeepSit);
+                auto stx = std::make_shared<bixd::STTx const>(tooDeepSit);
                 fail("STTx construction should have thrown.");
             }
             catch (std::runtime_error const& ex)
@@ -1458,7 +1458,7 @@ public:
                 SerialIter nineSit{nineDeep.slice()};
                 try
                 {
-                    auto stx = std::make_shared<ripple::STTx const>(nineSit);
+                    auto stx = std::make_shared<bixd::STTx const>(nineSit);
                     fail("STTx construction should have thrown.");
                 }
                 catch (std::runtime_error const& ex)
@@ -1478,7 +1478,7 @@ public:
             SerialIter tooDeepSit{tooDeep.slice()};
             try
             {
-                auto stx = std::make_shared<ripple::STTx const>(tooDeepSit);
+                auto stx = std::make_shared<bixd::STTx const>(tooDeepSit);
                 fail("STTx construction should have thrown.");
             }
             catch (std::runtime_error const& ex)
@@ -1507,7 +1507,7 @@ public:
             {
                 // Verify we have a valid transaction.
                 SerialIter sit{serialized.slice()};
-                auto stx = std::make_shared<ripple::STTx const>(sit);
+                auto stx = std::make_shared<bixd::STTx const>(sit);
             }
 
             // Tweak the serialized data to change the ClearFlag to
@@ -1519,7 +1519,7 @@ public:
             SerialIter sit{serialized.slice()};
             try
             {
-                auto stx = std::make_shared<ripple::STTx const>(sit);
+                auto stx = std::make_shared<bixd::STTx const>(sit);
                 fail("An exception should have been thrown");
             }
             catch (std::exception const& ex)
@@ -1546,9 +1546,9 @@ public:
             // vary.
             BEAST_EXPECT(!tx2.ParseFromArray(payload1, sizeof(payload1)));
 
-            ripple::SerialIter sit(ripple::makeSlice(tx2.rawtransaction()));
+            bixd::SerialIter sit(bixd::makeSlice(tx2.rawtransaction()));
 
-            auto stx = std::make_shared<ripple::STTx const>(sit);
+            auto stx = std::make_shared<bixd::STTx const>(sit);
             fail("An exception should have been thrown");
         }
         catch (std::exception const&)
@@ -1558,8 +1558,8 @@ public:
 
         try
         {
-            ripple::SerialIter sit{payload2};
-            auto stx = std::make_shared<ripple::STTx const>(sit);
+            bixd::SerialIter sit{payload2};
+            auto stx = std::make_shared<bixd::STTx const>(sit);
             fail("An exception should have been thrown");
         }
         catch (std::exception const& ex)
@@ -1569,8 +1569,8 @@ public:
 
         try
         {
-            ripple::SerialIter sit{payload3};
-            auto stx = std::make_shared<ripple::STTx const>(sit);
+            bixd::SerialIter sit{payload3};
+            auto stx = std::make_shared<bixd::STTx const>(sit);
             fail("An exception should have been thrown");
         }
         catch (std::exception const& ex)
@@ -1815,7 +1815,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(STTx, ripple_app, ripple);
-BEAST_DEFINE_TESTSUITE(InnerObjectFormatsSerializer, ripple_app, ripple);
+BEAST_DEFINE_TESTSUITE(STTx, ripple_app, bixd);
+BEAST_DEFINE_TESTSUITE(InnerObjectFormatsSerializer, ripple_app, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

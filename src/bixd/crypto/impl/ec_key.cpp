@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -22,11 +22,11 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
-#include <ripple/basics/contract.h>
-#include <ripple/crypto/impl/ec_key.h>
+#include <bixd/basics/contract.h>
+#include <bixd/crypto/impl/ec_key.h>
 #include <openssl/ec.h>
 
-namespace ripple {
+namespace bixd {
 namespace openssl {
 
 static inline EC_KEY*
@@ -62,4 +62,4 @@ ec_key::destroy()
 }
 
 }  // namespace openssl
-}  // namespace ripple
+}  // namespace bixd

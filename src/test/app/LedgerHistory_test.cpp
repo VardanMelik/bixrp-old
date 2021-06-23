@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerHistory.h>
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/tx/apply.h>
-#include <ripple/beast/insight/NullCollector.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/ledger/OpenView.h>
+#include <bixd/app/ledger/LedgerHistory.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/tx/apply.h>
+#include <bixd/beast/insight/NullCollector.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/ledger/OpenView.h>
 #include <chrono>
 #include <memory>
 #include <sstream>
 #include <test/jtx.h>
 #include <test/jtx/CheckMessageLogs.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class LedgerHistory_test : public beast::unit_test::suite
@@ -200,7 +200,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(LedgerHistory, app, ripple);
+BEAST_DEFINE_TESTSUITE(LedgerHistory, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

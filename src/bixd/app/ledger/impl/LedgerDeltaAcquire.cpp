@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2020 Ripple Labs Inc.
+    Copyright (c) 2012, 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -26,7 +26,7 @@
 #include <bixd/core/JobQueue.h>
 #include <bixd/overlay/PeerSet.h>
 
-namespace ripple {
+namespace bixd {
 
 LedgerDeltaAcquire::LedgerDeltaAcquire(
     Application& app,
@@ -276,4 +276,4 @@ LedgerDeltaAcquire::notify(ScopedLockType& sl)
     sl.lock();
 }
 
-}  // namespace ripple
+}  // namespace bixd

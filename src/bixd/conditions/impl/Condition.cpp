@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/conditions/Condition.h>
-#include <ripple/conditions/Fulfillment.h>
-#include <ripple/conditions/impl/PreimageSha256.h>
-#include <ripple/conditions/impl/utils.h>
+#include <bixd/basics/contract.h>
+#include <bixd/conditions/Condition.h>
+#include <bixd/conditions/Fulfillment.h>
+#include <bixd/conditions/impl/PreimageSha256.h>
+#include <bixd/conditions/impl/utils.h>
 #include <boost/optional.hpp>
 #include <boost/regex.hpp>
 #include <iostream>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 namespace cryptoconditions {
 
 namespace detail {
@@ -237,4 +237,4 @@ Condition::deserialize(Slice s, std::error_code& ec)
 }
 
 }  // namespace cryptoconditions
-}  // namespace ripple
+}  // namespace bixd

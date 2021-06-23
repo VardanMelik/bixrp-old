@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_REPORTING_REPORTINGETL_H_INCLUDED
-#define RIPPLE_APP_REPORTING_REPORTINGETL_H_INCLUDED
+#ifndef BIXD_APP_REPORTING_REPORTINGETL_H_INCLUDED
+#define BIXD_APP_REPORTING_REPORTINGETL_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/reporting/ETLHelpers.h>
-#include <ripple/app/reporting/ETLSource.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/net/InfoSub.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/resource/Charge.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/GRPCHandlers.h>
-#include <ripple/rpc/Role.h>
-#include <ripple/rpc/impl/Handler.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/reporting/ETLHelpers.h>
+#include <bixd/app/reporting/ETLSource.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/net/InfoSub.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/resource/Charge.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/GRPCHandlers.h>
+#include <bixd/rpc/Role.h>
+#include <bixd/rpc/impl/Handler.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/impl/Tuning.h>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/beast/core.hpp>
@@ -48,7 +48,7 @@
 #include <queue>
 
 #include <chrono>
-namespace ripple {
+namespace bixd {
 
 struct AccountTransactionsData;
 
@@ -364,5 +364,5 @@ private:
     doWork();
 };
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

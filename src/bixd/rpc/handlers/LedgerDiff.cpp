@@ -1,7 +1,7 @@
-#include <ripple/rpc/GRPCHandlers.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/GRPCHandlers.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 
-namespace ripple {
+namespace bixd {
 std::pair<org::xrpl::rpc::v1::GetLedgerDiffResponse, grpc::Status>
 doLedgerDiffGrpc(
     RPC::GRPCContext<org::xrpl::rpc::v1::GetLedgerDiffRequest>& context)
@@ -84,4 +84,4 @@ doLedgerDiffGrpc(
     return {response, status};
 }
 
-}  // namespace ripple
+}  // namespace bixd

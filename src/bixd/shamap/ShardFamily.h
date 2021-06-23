@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_SHARDFAMILY_H_INCLUDED
-#define RIPPLE_SHAMAP_SHARDFAMILY_H_INCLUDED
+#ifndef BIXD_SHAMAP_SHARDFAMILY_H_INCLUDED
+#define BIXD_SHAMAP_SHARDFAMILY_H_INCLUDED
 
-#include <ripple/app/main/CollectorManager.h>
-#include <ripple/shamap/Family.h>
+#include <bixd/app/main/CollectorManager.h>
+#include <bixd/shamap/Family.h>
 
-namespace ripple {
+namespace bixd {
 
 class Application;
 
@@ -119,6 +119,6 @@ private:
     acquire(uint256 const& hash, std::uint32_t seq);
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

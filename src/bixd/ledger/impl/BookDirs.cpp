@@ -2,7 +2,7 @@
 //------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2015 Ripple Labs Inc.
+    Copyright (c) 2012, 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -18,11 +18,11 @@
 */
 //==============================================================================
 
-#include <ripple/ledger/BookDirs.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Indexes.h>
+#include <bixd/ledger/BookDirs.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Indexes.h>
 
-namespace ripple {
+namespace bixd {
 
 BookDirs::BookDirs(ReadView const& view, Book const& book)
     : view_(&view)
@@ -125,4 +125,4 @@ BookDirs::const_iterator::operator++(int)
     return tmp;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012 - 2019 Ripple Labs Inc.
+    Copyright (c) 2012 - 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/ErrorCodes.h>
+#include <bixd/protocol/ErrorCodes.h>
 #include <cassert>
 #include <stdexcept>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 namespace detail {
@@ -238,4 +238,4 @@ rpcErrorString(Json::Value const& jv)
     return jv[jss::error].asString() + jv[jss::error_message].asString();
 }
 
-}  // namespace ripple
+}  // namespace bixd

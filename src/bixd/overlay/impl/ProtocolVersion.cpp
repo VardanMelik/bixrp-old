@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/beast/rfc2616.h>
-#include <ripple/overlay/impl/ProtocolVersion.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/beast/rfc2616.h>
+#include <bixd/overlay/impl/ProtocolVersion.h>
 #include <boost/function_output_iterator.hpp>
 #include <boost/regex.hpp>
 #include <algorithm>
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 
 /** The list of protocol versions we speak and we prefer to use.
 
@@ -193,4 +193,4 @@ isProtocolSupported(ProtocolVersion const& v)
                v);
 }
 
-}  // namespace ripple
+}  // namespace bixd

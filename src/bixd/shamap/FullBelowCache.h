@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_FULLBELOWCACHE_H_INCLUDED
-#define RIPPLE_SHAMAP_FULLBELOWCACHE_H_INCLUDED
+#ifndef BIXD_SHAMAP_FULLBELOWCACHE_H_INCLUDED
+#define BIXD_SHAMAP_FULLBELOWCACHE_H_INCLUDED
 
-#include <ripple/basics/KeyCache.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/beast/insight/Collector.h>
+#include <bixd/basics/KeyCache.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/beast/insight/Collector.h>
 #include <atomic>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -146,6 +146,6 @@ private:
 
 using FullBelowCache = detail::BasicFullBelowCache<uint256>;
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

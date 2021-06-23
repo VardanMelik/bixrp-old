@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_OVERLAYIMPL_H_INCLUDED
-#define RIPPLE_OVERLAY_OVERLAYIMPL_H_INCLUDED
+#ifndef BIXD_OVERLAY_OVERLAYIMPL_H_INCLUDED
+#define BIXD_OVERLAY_OVERLAYIMPL_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/Resolver.h>
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/core/Job.h>
-#include <ripple/overlay/Message.h>
-#include <ripple/overlay/Overlay.h>
-#include <ripple/overlay/Slot.h>
-#include <ripple/overlay/impl/Handshake.h>
-#include <ripple/overlay/impl/TrafficCount.h>
-#include <ripple/peerfinder/PeerfinderManager.h>
-#include <ripple/resource/ResourceManager.h>
-#include <ripple/rpc/ServerHandler.h>
-#include <ripple/server/Handoff.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/Resolver.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/core/Job.h>
+#include <bixd/overlay/Message.h>
+#include <bixd/overlay/Overlay.h>
+#include <bixd/overlay/Slot.h>
+#include <bixd/overlay/impl/Handshake.h>
+#include <bixd/overlay/impl/TrafficCount.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
+#include <bixd/resource/ResourceManager.h>
+#include <bixd/rpc/ServerHandler.h>
+#include <bixd/server/Handoff.h>
 #include <boost/asio/basic_waitable_timer.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/ssl/context.hpp>
@@ -49,7 +49,7 @@
 #include <mutex>
 #include <unordered_map>
 
-namespace ripple {
+namespace bixd {
 
 class PeerImp;
 class BasicConfig;
@@ -604,6 +604,6 @@ private:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

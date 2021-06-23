@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PEERFINDER_BOOTCACHE_H_INCLUDED
-#define RIPPLE_PEERFINDER_BOOTCACHE_H_INCLUDED
+#ifndef BIXD_PEERFINDER_BOOTCACHE_H_INCLUDED
+#define BIXD_PEERFINDER_BOOTCACHE_H_INCLUDED
 
-#include <ripple/basics/comparators.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/peerfinder/PeerfinderManager.h>
-#include <ripple/peerfinder/impl/Store.h>
+#include <bixd/basics/comparators.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
+#include <bixd/peerfinder/impl/Store.h>
 #include <boost/bimap.hpp>
 #include <boost/bimap/multiset_of.hpp>
 #include <boost/bimap/unordered_set_of.hpp>
 #include <boost/iterator/transform_iterator.hpp>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 /** Stores IP addresses useful for gaining initial connections.
@@ -85,8 +85,8 @@ private:
     using left_t = boost::bimaps::unordered_set_of<
         beast::IP::Endpoint,
         boost::hash<beast::IP::Endpoint>,
-        ripple::equal_to<beast::IP::Endpoint>>;
-    using right_t = boost::bimaps::multiset_of<Entry, ripple::less<Entry>>;
+        bixd::equal_to<beast::IP::Endpoint>>;
+    using right_t = boost::bimaps::multiset_of<Entry, bixd::less<Entry>>;
     using map_type = boost::bimap<left_t, right_t>;
     using value_type = map_type::value_type;
 
@@ -200,6 +200,6 @@ private:
 };
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

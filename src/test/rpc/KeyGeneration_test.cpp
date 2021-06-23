@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2015 Ripple Labs Inc.
+    Copyright (c) 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/json/json_value.h>
-#include <ripple/json/json_writer.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/handlers/WalletPropose.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/json/json_value.h>
+#include <bixd/json/json_writer.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/handlers/WalletPropose.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <test/jtx/TestSuite.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace RPC {
 
@@ -93,7 +93,7 @@ static key_strings const strong_brain_strings = {
     "attacks.",
 };
 
-class WalletPropose_test : public ripple::TestSuite
+class WalletPropose_test : public bixd::TestSuite
 {
 public:
     void
@@ -738,7 +738,7 @@ public:
     void
     testRippleLibEd25519()
     {
-        testcase("ripple-lib encoded Ed25519 keys");
+        testcase("bixd-lib encoded Ed25519 keys");
 
         auto test = [this](char const* seed, char const* addr) {
             {
@@ -869,7 +869,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(WalletPropose, ripple_basics, ripple);
+BEAST_DEFINE_TESTSUITE(WalletPropose, ripple_basics, bixd);
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

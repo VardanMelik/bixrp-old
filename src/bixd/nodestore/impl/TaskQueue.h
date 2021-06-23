@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2019 Ripple Labs Inc.
+    Copyright (c) 2012, 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NODESTORE_TASKQUEUE_H_INCLUDED
-#define RIPPLE_NODESTORE_TASKQUEUE_H_INCLUDED
+#ifndef BIXD_NODESTORE_TASKQUEUE_H_INCLUDED
+#define BIXD_NODESTORE_TASKQUEUE_H_INCLUDED
 
-#include <ripple/core/Stoppable.h>
-#include <ripple/core/impl/Workers.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/core/impl/Workers.h>
 
 #include <functional>
 #include <queue>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 class TaskQueue : public Stoppable, private Workers::Callback
@@ -54,6 +54,6 @@ private:
 };
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_TAGGEDPOINTER_H_INCLUDED
-#define RIPPLE_SHAMAP_TAGGEDPOINTER_H_INCLUDED
+#ifndef BIXD_SHAMAP_TAGGEDPOINTER_H_INCLUDED
+#define BIXD_SHAMAP_TAGGEDPOINTER_H_INCLUDED
 
-#include <ripple/shamap/SHAMapTreeNode.h>
+#include <bixd/shamap/SHAMapTreeNode.h>
 
 #include <cstdint>
 #include <optional>
 
-namespace ripple {
+namespace bixd {
 
 /** TaggedPointer is a combination of a pointer and a mask stored in the
     lowest two bits.
@@ -217,6 +217,6 @@ public:
     getChildIndex(std::uint16_t isBranch, int i) const;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

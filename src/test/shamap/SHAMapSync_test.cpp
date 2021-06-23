@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/beast/xor_shift_engine.h>
-#include <ripple/shamap/SHAMap.h>
-#include <ripple/shamap/SHAMapItem.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/beast/xor_shift_engine.h>
+#include <bixd/shamap/SHAMap.h>
+#include <bixd/shamap/SHAMapItem.h>
 #include <test/shamap/common.h>
 #include <test/unit_test/SuiteJournal.h>
 
-namespace ripple {
+namespace bixd {
 namespace tests {
 
 class SHAMapSync_test : public beast::unit_test::suite
@@ -202,7 +202,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(SHAMapSync, shamap, ripple);
+BEAST_DEFINE_TESTSUITE(SHAMapSync, shamap, bixd);
 
 }  // namespace tests
-}  // namespace ripple
+}  // namespace bixd

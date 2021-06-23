@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/Taker.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/contract.h>
+#include <bixd/app/tx/impl/Taker.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/contract.h>
 
-namespace ripple {
+namespace bixd {
 
 static std::string
 format_amount(STAmount const& amount)
@@ -627,7 +627,7 @@ Taker::transferBIXRP(
     if (amount == beast::zero)
         return tesSUCCESS;
 
-    return ripple::transferBIXRP(view_, from, to, amount, journal_);
+    return bixd::transferBIXRP(view_, from, to, amount, journal_);
 }
 
 TER
@@ -651,7 +651,7 @@ Taker::redeemIOU(
     if (get_funds(account, amount) <= beast::zero)
         Throw<std::logic_error>("redeemIOU has no funds to redeem");
 
-    auto ret = ripple::redeemIOU(view_, account, amount, issue, journal_);
+    auto ret = bixd::redeemIOU(view_, account, amount, issue, journal_);
 
     if (get_funds(account, amount) < beast::zero)
         Throw<std::logic_error>("redeemIOU redeemed more funds than available");
@@ -675,7 +675,7 @@ Taker::issueIOU(
     if (amount == beast::zero)
         return tesSUCCESS;
 
-    return ripple::issueIOU(view_, account, amount, issue, journal_);
+    return bixd::issueIOU(view_, account, amount, issue, journal_);
 }
 
 // Performs funds transfers to fill the given offer and adjusts offer.
@@ -827,4 +827,4 @@ Taker::calculateRate(
                                                 : transferRate(view, issuer);
 }
 
-}  // namespace ripple
+}  // namespace bixd

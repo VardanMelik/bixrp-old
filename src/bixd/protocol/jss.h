@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_JSONFIELDS_H_INCLUDED
-#define RIPPLE_PROTOCOL_JSONFIELDS_H_INCLUDED
+#ifndef BIXD_PROTOCOL_JSONFIELDS_H_INCLUDED
+#define BIXD_PROTOCOL_JSONFIELDS_H_INCLUDED
 
-#include <ripple/json/json_value.h>
+#include <bixd/json/json_value.h>
 
-namespace ripple {
+namespace bixd {
 namespace jss {
 
 // JSON static strings
@@ -466,7 +466,7 @@ JSS(response);              // websocket
 JSS(result);                // RPC
 JSS(ripple_lines);          // out: NetworkOPs
 JSS(ripple_state);          // in: LedgerEntr
-JSS(ripplerpc);             // ripple RPC version
+JSS(ripplerpc);             // bixd RPC version
 JSS(role);                  // out: Ping.cpp
 JSS(rpc);
 JSS(rt_accounts);  // in: Subscribe, Unsubscribe
@@ -600,6 +600,6 @@ JSS(NegativeUNL);  // out: ValidatorList; ledger type
 #undef JSS
 
 }  // namespace jss
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

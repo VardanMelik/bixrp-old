@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_REPORTING_ETLHELPERS_H_INCLUDED
-#define RIPPLE_APP_REPORTING_ETLHELPERS_H_INCLUDED
-#include <ripple/app/main/Application.h>
-#include <ripple/ledger/ReadView.h>
+#ifndef BIXD_APP_REPORTING_ETLHELPERS_H_INCLUDED
+#define BIXD_APP_REPORTING_ETLHELPERS_H_INCLUDED
+#include <bixd/app/main/Application.h>
+#include <bixd/ledger/ReadView.h>
 #include <condition_variable>
 #include <mutex>
 #include <optional>
 #include <queue>
 #include <sstream>
 
-namespace ripple {
+namespace bixd {
 
 /// This datastructure is used to keep track of the sequence of the most recent
 /// ledger validated by the network. There are two methods that will wait until
@@ -181,5 +181,5 @@ getMarkers(size_t numMarkers)
     return markers;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

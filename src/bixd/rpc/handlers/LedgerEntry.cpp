@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/GRPCHandlers.h>
-#include <ripple/rpc/impl/GRPCHelpers.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/GRPCHandlers.h>
+#include <bixd/rpc/impl/GRPCHelpers.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 
-namespace ripple {
+namespace bixd {
 
 // {
 //   ledger_hash : <ledger>
@@ -262,7 +262,7 @@ doLedgerEntry(RPC::JsonContext& context)
     }
     else if (context.params.isMember(jss::ripple_state))
     {
-        expectedType = ltRIPPLE_STATE;
+        expectedType = ltBIXD_STATE;
         Currency uCurrency;
         Json::Value jvRippleState = context.params[jss::ripple_state];
 
@@ -412,4 +412,4 @@ doLedgerEntryGrpc(
         return {response, status};
     }
 }
-}  // namespace ripple
+}  // namespace bixd

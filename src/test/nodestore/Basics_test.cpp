@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/nodestore/DummyScheduler.h>
-#include <ripple/nodestore/Manager.h>
-#include <ripple/nodestore/impl/DecodedBlob.h>
-#include <ripple/nodestore/impl/EncodedBlob.h>
+#include <bixd/nodestore/DummyScheduler.h>
+#include <bixd/nodestore/Manager.h>
+#include <bixd/nodestore/impl/DecodedBlob.h>
+#include <bixd/nodestore/impl/EncodedBlob.h>
 #include <test/nodestore/TestBase.h>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 // Tests predictable batches, and NodeObject blob encoding
@@ -87,7 +87,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(NodeStoreBasic, ripple_core, ripple);
+BEAST_DEFINE_TESTSUITE(NodeStoreBasic, ripple_core, bixd);
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

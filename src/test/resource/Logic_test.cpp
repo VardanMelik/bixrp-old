@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/basics/chrono.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/resource/Consumer.h>
-#include <ripple/resource/impl/Entry.h>
-#include <ripple/resource/impl/Logic.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/resource/Consumer.h>
+#include <bixd/resource/impl/Entry.h>
+#include <bixd/resource/impl/Logic.h>
 #include <test/unit_test/SuiteJournal.h>
 
 #include <boost/utility/base_from_member.hpp>
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 namespace Resource {
 
 class ResourceManager_test : public beast::unit_test::suite
@@ -289,7 +289,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(ResourceManager, resource, ripple);
+BEAST_DEFINE_TESTSUITE(ResourceManager, resource, bixd);
 
 }  // namespace Resource
-}  // namespace ripple
+}  // namespace bixd

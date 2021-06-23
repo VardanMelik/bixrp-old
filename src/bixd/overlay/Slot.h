@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_SLOT_H_INCLUDED
-#define RIPPLE_OVERLAY_SLOT_H_INCLUDED
+#ifndef BIXD_OVERLAY_SLOT_H_INCLUDED
+#define BIXD_OVERLAY_SLOT_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/container/aged_unordered_map.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/overlay/Peer.h>
-#include <ripple/overlay/ReduceRelayCommon.h>
-#include <ripple/overlay/Squelch.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple.pb.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/container/aged_unordered_map.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/overlay/Peer.h>
+#include <bixd/overlay/ReduceRelayCommon.h>
+#include <bixd/overlay/Squelch.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd.pb.h>
 
 #include <algorithm>
 #include <memory>
@@ -38,7 +38,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace ripple {
+namespace bixd {
 
 namespace reduce_relay {
 
@@ -405,7 +405,7 @@ Slot<clock_type>::getSquelchDuration(std::size_t npeers)
         JLOG(journal_.warn())
             << "getSquelchDuration: unexpected squelch duration " << npeers;
     }
-    return seconds{ripple::rand_int(MIN_UNSQUELCH_EXPIRE / 1s, m / 1s)};
+    return seconds{bixd::rand_int(MIN_UNSQUELCH_EXPIRE / 1s, m / 1s)};
 }
 
 template <typename clock_type>
@@ -755,6 +755,6 @@ Slots<clock_type>::deleteIdlePeers()
 
 }  // namespace reduce_relay
 
-}  // namespace ripple
+}  // namespace bixd
 
-#endif  // RIPPLE_OVERLAY_SLOT_H_INCLUDED
+#endif  // BIXD_OVERLAY_SLOT_H_INCLUDED

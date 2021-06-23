@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/Quality.h>
+#include <bixd/protocol/Quality.h>
 #include <cassert>
 #include <limits>
 
-namespace ripple {
+namespace bixd {
 
 Quality::Quality(std::uint64_t value) : m_value(value)
 {
@@ -148,4 +148,4 @@ Quality::round(int digits) const
     return Quality{(exponent << (64 - 8)) | mantissa};
 }
 
-}  // namespace ripple
+}  // namespace bixd

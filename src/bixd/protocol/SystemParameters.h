@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_SYSTEMPARAMETERS_H_INCLUDED
-#define RIPPLE_PROTOCOL_SYSTEMPARAMETERS_H_INCLUDED
+#ifndef BIXD_PROTOCOL_SYSTEMPARAMETERS_H_INCLUDED
+#define BIXD_PROTOCOL_SYSTEMPARAMETERS_H_INCLUDED
 
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/basics/chrono.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/chrono.h>
 #include <cstdint>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 // Various protocol and system specific constant globals.
 
@@ -33,7 +33,7 @@ namespace ripple {
 static inline std::string const&
 systemName()
 {
-    static std::string const name = "ripple";
+    static std::string const name = "bixd";
     return name;
 }
 
@@ -72,7 +72,7 @@ constexpr std::ratio<80, 100> postFixAmendmentMajorityCalcThreshold;
 /** The minimum amount of time an amendment must hold a majority */
 constexpr std::chrono::seconds const defaultAmendmentMajorityTime = weeks{2};
 
-}  // namespace ripple
+}  // namespace bixd
 
 /** Default peer port (IANA registered) */
 inline std::uint16_t constexpr DEFAULT_PEER_PORT{2459};

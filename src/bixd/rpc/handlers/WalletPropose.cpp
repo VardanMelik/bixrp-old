@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#include <ripple/basics/strHex.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/KeyType.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Seed.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/handlers/WalletPropose.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/KeyType.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Seed.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/handlers/WalletPropose.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <boost/optional.hpp>
 #include <cmath>
 #include <ed25519-donna/ed25519.h>
 #include <map>
 
-namespace ripple {
+namespace bixd {
 
 double
 estimate_entropy(std::string const& input)
@@ -90,7 +90,7 @@ walletPropose(Json::Value const& params)
             return rpcError(rpcINVALID_PARAMS);
     }
 
-    // ripple-lib encodes seed used to generate an Ed25519 wallet in a
+    // bixd-lib encodes seed used to generate an Ed25519 wallet in a
     // non-standard way. While we never encode seeds that way, we try
     // to detect such keys to avoid user confusion.
     {
@@ -177,4 +177,4 @@ walletPropose(Json::Value const& params)
     return obj;
 }
 
-}  // namespace ripple
+}  // namespace bixd

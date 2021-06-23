@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc
+    Copyright (c) 2012-2017 bixd Labs Inc
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,17 +16,17 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#ifndef RIPPLE_TEST_CSF_TX_H_INCLUDED
-#define RIPPLE_TEST_CSF_TX_H_INCLUDED
-#include <ripple/beast/hash/hash_append.h>
-#include <ripple/beast/hash/uhash.h>
+#ifndef BIXD_TEST_CSF_TX_H_INCLUDED
+#define BIXD_TEST_CSF_TX_H_INCLUDED
+#include <bixd/beast/hash/hash_append.h>
+#include <bixd/beast/hash/uhash.h>
 #include <boost/container/flat_set.hpp>
 #include <boost/function_output_iterator.hpp>
 #include <map>
 #include <ostream>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace csf {
 
@@ -217,6 +217,6 @@ hash_append(Hasher& h, Tx const& tx)
 
 }  // namespace csf
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

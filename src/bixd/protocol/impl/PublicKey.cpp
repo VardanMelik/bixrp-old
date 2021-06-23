@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/impl/secp256k1.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/impl/secp256k1.h>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <ed25519-donna/ed25519.h>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 std::ostream&
 operator<<(std::ostream& os, PublicKey const& pk)
@@ -106,7 +106,7 @@ sliceToHex(Slice const& slice)
     @param strict_param whether to enforce strictly canonical semantics
 
     @note For more details please see:
-    https://ripple.com/wiki/Transaction_Malleability
+    https://bixd.com/wiki/Transaction_Malleability
     https://bitcointalk.org/index.php?topic=8392.msg127623#msg127623
     https://github.com/sipa/bitcoin/commit/58bc86e37fda1aec270bccb3df6c20fbd2a6591c
 */
@@ -305,4 +305,4 @@ calcNodeID(PublicKey const& pk)
     return NodeID{static_cast<ripesha_hasher::result_type>(h)};
 }
 
-}  // namespace ripple
+}  // namespace bixd

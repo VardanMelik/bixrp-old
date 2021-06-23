@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/json/JsonPropertyStream.h>
-#include <ripple/json/json_value.h>
+#include <bixd/json/JsonPropertyStream.h>
+#include <bixd/json/json_value.h>
 
-namespace ripple {
+namespace bixd {
 
 JsonPropertyStream::JsonPropertyStream() : m_top(Json::objectValue)
 {
@@ -178,4 +178,4 @@ JsonPropertyStream::add(std::string const& v)
     m_stack.back()->append(v);
 }
 
-}  // namespace ripple
+}  // namespace bixd

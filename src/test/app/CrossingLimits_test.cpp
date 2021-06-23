@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
     copyright notice and this permission notice appear in all copies.
@@ -15,11 +15,11 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/protocol/Feature.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class CrossingLimits_test : public beast::unit_test::suite
@@ -581,7 +581,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(CrossingLimits, tx, ripple, 10);
+BEAST_DEFINE_TESTSUITE_MANUAL_PRIO(CrossingLimits, tx, bixd, 10);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

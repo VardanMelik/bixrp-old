@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/protocol/st.h>
+#include <bixd/basics/Log.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/protocol/st.h>
 #include <test/jtx.h>
 
 #include <array>
 #include <memory>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 class STObject_test : public beast::unit_test::suite
 {
@@ -671,7 +671,7 @@ public:
     st[sf3] = std::vector<uint256>{};
     BEAST_EXPECT(cst[sf3].size() == 0);
 }
-}  // namespace ripple
+}  // namespace bixd
 
 void
 testMalformed()
@@ -720,6 +720,6 @@ run() override
 }
 ;
 
-BEAST_DEFINE_TESTSUITE(STObject, protocol, ripple);
+BEAST_DEFINE_TESTSUITE(STObject, protocol, bixd);
 
-}  // ripple
+}  // bixd

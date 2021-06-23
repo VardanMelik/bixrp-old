@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_GRPCSERVER_H_INCLUDED
-#define RIPPLE_CORE_GRPCSERVER_H_INCLUDED
+#ifndef BIXD_CORE_GRPCSERVER_H_INCLUDED
+#define BIXD_CORE_GRPCSERVER_H_INCLUDED
 
 #include <bixd/app/main/Application.h>
 #include <bixd/core/JobQueue.h>
@@ -36,7 +36,7 @@
 #include "org/xrpl/rpc/v1/xrp_ledger.grpc.pb.h"
 #include <grpcpp/grpcpp.h>
 
-namespace ripple {
+namespace bixd {
 
 // Interface that CallData implements
 class Processor
@@ -320,5 +320,5 @@ private:
     std::thread thread_;
     bool running_ = false;
 };
-}  // namespace ripple
+}  // namespace bixd
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PEERFINDER_SLOTIMP_H_INCLUDED
-#define RIPPLE_PEERFINDER_SLOTIMP_H_INCLUDED
+#ifndef BIXD_PEERFINDER_SLOTIMP_H_INCLUDED
+#define BIXD_PEERFINDER_SLOTIMP_H_INCLUDED
 
-#include <ripple/beast/container/aged_container_utility.h>
-#include <ripple/beast/container/aged_unordered_map.h>
-#include <ripple/peerfinder/PeerfinderManager.h>
-#include <ripple/peerfinder/Slot.h>
+#include <bixd/beast/container/aged_container_utility.h>
+#include <bixd/beast/container/aged_unordered_map.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
+#include <bixd/peerfinder/Slot.h>
 #include <boost/optional.hpp>
 #include <atomic>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 class SlotImp : public Slot
@@ -210,6 +210,6 @@ public:
 };
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

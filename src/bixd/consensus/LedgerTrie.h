@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_CONSENSUS_LEDGERS_TRIE_H_INCLUDED
-#define RIPPLE_APP_CONSENSUS_LEDGERS_TRIE_H_INCLUDED
+#ifndef BIXD_APP_CONSENSUS_LEDGERS_TRIE_H_INCLUDED
+#define BIXD_APP_CONSENSUS_LEDGERS_TRIE_H_INCLUDED
 
-#include <ripple/basics/ToString.h>
-#include <ripple/basics/tagged_integer.h>
-#include <ripple/json/json_value.h>
+#include <bixd/basics/ToString.h>
+#include <bixd/basics/tagged_integer.h>
+#include <bixd/json/json_value.h>
 #include <boost/optional.hpp>
 #include <algorithm>
 #include <memory>
@@ -30,7 +30,7 @@
 #include <stack>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /** The tip of a span of ledger ancestry
  */
@@ -842,5 +842,5 @@ public:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

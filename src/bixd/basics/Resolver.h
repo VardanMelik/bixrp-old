@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_RESOLVER_H_INCLUDED
-#define RIPPLE_BASICS_RESOLVER_H_INCLUDED
+#ifndef BIXD_BASICS_RESOLVER_H_INCLUDED
+#define BIXD_BASICS_RESOLVER_H_INCLUDED
 
 #include <functional>
 #include <vector>
 
-#include <ripple/beast/net/IPEndpoint.h>
+#include <bixd/beast/net/IPEndpoint.h>
 
-namespace ripple {
+namespace bixd {
 
 class Resolver
 {
@@ -66,6 +66,6 @@ public:
     /** @} */
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_MISC_NEGATIVEUNLVOTE_H_INCLUDED
-#define RIPPLE_APP_MISC_NEGATIVEUNLVOTE_H_INCLUDED
+#ifndef BIXD_APP_MISC_NEGATIVEUNLVOTE_H_INCLUDED
+#define BIXD_APP_MISC_NEGATIVEUNLVOTE_H_INCLUDED
 
 #include <bixd/app/ledger/Ledger.h>
 #include <bixd/beast/utility/Journal.h>
@@ -28,7 +28,7 @@
 
 #include <optional>
 
-namespace ripple {
+namespace bixd {
 
 template <class Adaptor>
 class Validations;
@@ -212,6 +212,6 @@ private:
     friend class test::NegativeUNLVoteScoreTable_test;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
   This file is part of bixd
-  Copyright (c) 2012-2015 Ripple Labs Inc.
+  Copyright (c) 2012-2015 bixd Labs Inc.
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_TESTS_PATHSET_H_INCLUDED
-#define RIPPLE_LEDGER_TESTS_PATHSET_H_INCLUDED
+#ifndef BIXD_LEDGER_TESTS_PATHSET_H_INCLUDED
+#define BIXD_LEDGER_TESTS_PATHSET_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/protocol/TxFlags.h>
+#include <bixd/basics/Log.h>
+#include <bixd/protocol/TxFlags.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 /** Count offer
@@ -200,6 +200,6 @@ private:
 };
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

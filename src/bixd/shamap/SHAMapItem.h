@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_SHAMAPITEM_H_INCLUDED
-#define RIPPLE_SHAMAP_SHAMAPITEM_H_INCLUDED
+#ifndef BIXD_SHAMAP_SHAMAPITEM_H_INCLUDED
+#define BIXD_SHAMAP_SHAMAPITEM_H_INCLUDED
 
-#include <ripple/basics/Blob.h>
-#include <ripple/basics/CountedObject.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/protocol/Serializer.h>
+#include <bixd/basics/Blob.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/protocol/Serializer.h>
 
 #include <cstddef>
 
-namespace ripple {
+namespace bixd {
 
 // an item stored in a SHAMap
 class SHAMapItem : public CountedObject<SHAMapItem>
@@ -90,6 +90,6 @@ SHAMapItem::peekData() const
     return data_;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2017 Ripple Labs Inc.
+    Copyright (c) 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/Feature.h>
+#include <bixd/protocol/Feature.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 // Helper function that returns the reserve on an account based on
@@ -279,7 +279,7 @@ struct DepositAuth_test : public beast::unit_test::suite
         // It its current incarnation the DepositAuth flag does not change
         // any behaviors regarding rippling and the NoRipple flag.
         // Demonstrate that.
-        testcase("No Ripple");
+        testcase("No bixd");
 
         using namespace jtx;
         Account const gw1("gw1");
@@ -735,8 +735,8 @@ struct DepositPreauth_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(DepositAuth, app, ripple);
-BEAST_DEFINE_TESTSUITE(DepositPreauth, app, ripple);
+BEAST_DEFINE_TESTSUITE(DepositAuth, app, bixd);
+BEAST_DEFINE_TESTSUITE(DepositPreauth, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

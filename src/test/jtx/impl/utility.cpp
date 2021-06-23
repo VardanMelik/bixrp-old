@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/STParsedJSON.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/contract.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/STParsedJSON.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/jss.h>
 #include <cstring>
 #include <test/jtx/utility.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
@@ -47,7 +47,7 @@ sign(Json::Value& jv, Account const& account)
     Serializer ss;
     ss.add32(HashPrefix::txSign);
     parse(jv).addWithoutSigningFields(ss);
-    auto const sig = ripple::sign(account.pk(), account.sk(), ss.slice());
+    auto const sig = bixd::sign(account.pk(), account.sk(), ss.slice());
     jv[jss::TxnSignature] = strHex(Slice{sig.data(), sig.size()});
 }
 
@@ -75,4 +75,4 @@ fill_seq(Json::Value& jv, ReadView const& view)
 
 }  // namespace jtx
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

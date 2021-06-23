@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_HASHPREFIX_H_INCLUDED
-#define RIPPLE_PROTOCOL_HASHPREFIX_H_INCLUDED
+#ifndef BIXD_PROTOCOL_HASHPREFIX_H_INCLUDED
+#define BIXD_PROTOCOL_HASHPREFIX_H_INCLUDED
 
-#include <ripple/beast/hash/hash_append.h>
+#include <bixd/beast/hash/hash_append.h>
 #include <cstdint>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -94,6 +94,6 @@ hash_append(Hasher& h, HashPrefix const& hp) noexcept
     hash_append(h, static_cast<std::uint32_t>(hp));
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

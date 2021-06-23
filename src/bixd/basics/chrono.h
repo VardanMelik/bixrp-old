@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_CHRONO_H_INCLUDED
-#define RIPPLE_BASICS_CHRONO_H_INCLUDED
+#ifndef BIXD_BASICS_CHRONO_H_INCLUDED
+#define BIXD_BASICS_CHRONO_H_INCLUDED
 
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/clock/basic_seconds_clock.h>
-#include <ripple/beast/clock/manual_clock.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/clock/basic_seconds_clock.h>
+#include <bixd/beast/clock/manual_clock.h>
 #include <chrono>
 #include <cstdint>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 // A few handy aliases
 
@@ -38,7 +38,7 @@ using days = std::chrono::duration<
 using weeks = std::chrono::
     duration<int, std::ratio_multiply<days::period, std::ratio<7>>>;
 
-/** Clock for measuring Ripple Network Time.
+/** Clock for measuring bixd Network Time.
 
     The epoch is January 1, 2000
     epoch_offset = days(10957);  // 2000-01-01
@@ -90,6 +90,6 @@ stopwatch()
         beast::basic_seconds_clock<std::chrono::steady_clock>>();
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

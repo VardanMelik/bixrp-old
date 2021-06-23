@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/core/LoadEvent.h>
-#include <ripple/core/LoadMonitor.h>
+#include <bixd/core/LoadEvent.h>
+#include <bixd/core/LoadMonitor.h>
 #include <cassert>
 #include <iomanip>
 
-namespace ripple {
+namespace bixd {
 
 LoadEvent::LoadEvent(
     LoadMonitor& monitor,
@@ -94,4 +94,4 @@ LoadEvent::stop()
     monitor_.addLoadSample(*this);
 }
 
-}  // namespace ripple
+}  // namespace bixd

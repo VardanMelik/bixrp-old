@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/LedgerToJson.h>
-#include <ripple/beast/utility/temp_dir.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/nodestore/DummyScheduler.h>
-#include <ripple/nodestore/impl/DecodedBlob.h>
-#include <ripple/nodestore/impl/Shard.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/LedgerToJson.h>
+#include <bixd/beast/utility/temp_dir.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/nodestore/DummyScheduler.h>
+#include <bixd/nodestore/impl/DecodedBlob.h>
+#include <bixd/nodestore/impl/Shard.h>
 #include <chrono>
 #include <numeric>
 #include <test/jtx.h>
 #include <test/nodestore/TestBase.h>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 // Tests DatabaseShard class
@@ -1345,7 +1345,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_MANUAL(DatabaseShard, NodeStore, ripple);
+BEAST_DEFINE_TESTSUITE_MANUAL(DatabaseShard, NodeStore, bixd);
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd

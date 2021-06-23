@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_BASICCONFIG_H_INCLUDED
-#define RIPPLE_BASICS_BASICCONFIG_H_INCLUDED
+#ifndef BIXD_BASICS_BASICCONFIG_H_INCLUDED
+#define BIXD_BASICS_BASICCONFIG_H_INCLUDED
 
-#include <ripple/basics/contract.h>
+#include <bixd/basics/contract.h>
 #include <boost/beast/core/string.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/optional.hpp>
@@ -31,7 +31,7 @@
 #include <string>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 using IniFileSections = std::map<std::string, std::vector<std::string>>;
 
@@ -360,6 +360,6 @@ get_if_exists<bool>(Section const& section, std::string const& name, bool& v)
     return stat;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

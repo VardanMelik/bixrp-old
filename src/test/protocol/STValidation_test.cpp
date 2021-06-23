@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/beast/xor_shift_engine.h>
-#include <ripple/json/json_reader.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/protocol/st.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/beast/xor_shift_engine.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/protocol/st.h>
 #include <test/jtx.h>
 
 #include <memory>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 class STValidation_test : public beast::unit_test::suite
 {
@@ -210,7 +210,7 @@ public:
         try
         {
             SerialIter sit{payload1};
-            auto val = std::make_shared<ripple::STValidation>(
+            auto val = std::make_shared<bixd::STValidation>(
                 sit, [](PublicKey const& pk) { return calcNodeID(pk); }, false);
             fail("An exception should have been thrown");
         }
@@ -225,7 +225,7 @@ public:
         try
         {
             SerialIter sit{payload2};
-            auto val = std::make_shared<ripple::STValidation>(
+            auto val = std::make_shared<bixd::STValidation>(
                 sit, [](PublicKey const& pk) { return calcNodeID(pk); }, false);
             fail("An exception should have been thrown");
         }
@@ -238,7 +238,7 @@ public:
         try
         {
             SerialIter sit{payload3};
-            auto val = std::make_shared<ripple::STValidation>(
+            auto val = std::make_shared<bixd::STValidation>(
                 sit, [](PublicKey const& pk) { return calcNodeID(pk); }, false);
             fail("An exception should have been thrown");
         }
@@ -251,7 +251,7 @@ public:
         try
         {
             SerialIter sit{payload4};
-            auto val = std::make_shared<ripple::STValidation>(
+            auto val = std::make_shared<bixd::STValidation>(
                 sit, [](PublicKey const& pk) { return calcNodeID(pk); }, false);
             fail("An exception should have been thrown");
         }
@@ -353,6 +353,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(STValidation, protocol, ripple);
+BEAST_DEFINE_TESTSUITE(STValidation, protocol, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

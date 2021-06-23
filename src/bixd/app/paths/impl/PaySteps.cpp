@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/impl/Steps.h>
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/BIXRPAmount.h>
-#include <ripple/basics/contract.h>
-#include <ripple/json/json_writer.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/Feature.h>
+#include <bixd/app/paths/impl/Steps.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/BIXRPAmount.h>
+#include <bixd/basics/contract.h>
+#include <bixd/json/json_writer.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/Feature.h>
 
 #include <algorithm>
 #include <numeric>
 #include <sstream>
 
-namespace ripple {
+namespace bixd {
 
 // Check equal with tolerance
 bool
@@ -525,8 +525,8 @@ toStrands(
     else if (paths.empty())
     {
         JLOG(j.debug()) << "Flow: Invalid transaction: No paths and direct "
-                           "ripple not allowed.";
-        return {temRIPPLE_EMPTY, std::vector<Strand>{}};
+                           "bixd not allowed.";
+        return {temBIXD_EMPTY, std::vector<Strand>{}};
     }
 
     TER lastFailTer = tesSUCCESS;
@@ -627,4 +627,4 @@ isDirectXrpToXrp<IOUAmount, BIXRPAmount>(Strand const& strand);
 template bool
 isDirectXrpToXrp<IOUAmount, IOUAmount>(Strand const& strand);
 
-}  // namespace ripple
+}  // namespace bixd

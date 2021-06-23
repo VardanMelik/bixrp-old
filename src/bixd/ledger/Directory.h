@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2015 Ripple Labs Inc.
+    Copyright (c) 2012, 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_DIR_H_INCLUDED
-#define RIPPLE_LEDGER_DIR_H_INCLUDED
+#ifndef BIXD_LEDGER_DIR_H_INCLUDED
+#define BIXD_LEDGER_DIR_H_INCLUDED
 
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/Indexes.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/Indexes.h>
 
-namespace ripple {
+namespace bixd {
 
 class Dir
 {
@@ -109,6 +109,6 @@ private:
     std::vector<uint256>::const_iterator it_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

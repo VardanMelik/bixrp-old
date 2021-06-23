@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/AccountID.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/tokens.h>
+#include <bixd/protocol/AccountID.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/tokens.h>
 #include <cstring>
 
-namespace ripple {
+namespace bixd {
 
 std::string
 toBase58(AccountID const& v)
@@ -63,7 +63,7 @@ parseBase58(std::string const& s)
 
         The short answer is that we kept Bitcoin's behavior.
         The longer answer was that:
-            1) Using a single hash could leave ripple
+            1) Using a single hash could leave bixd
                vulnerable to length extension attacks.
             2) Only RIPEMD160 is generally considered safe at 160 bits.
 
@@ -148,7 +148,7 @@ AccountIDCache::toBase58(AccountID const& id) const
     }
     else
     {
-        result = ripple::toBase58(id);
+        result = bixd::toBase58(id);
     }
     if (m1_.size() >= capacity_)
     {
@@ -160,4 +160,4 @@ AccountIDCache::toBase58(AccountID const& id) const
     return result;
 }
 
-}  // namespace ripple
+}  // namespace bixd

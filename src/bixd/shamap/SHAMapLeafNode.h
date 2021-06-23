@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SHAMAP_SHAMAPLEAFNODE_H_INCLUDED
-#define RIPPLE_SHAMAP_SHAMAPLEAFNODE_H_INCLUDED
+#ifndef BIXD_SHAMAP_SHAMAPLEAFNODE_H_INCLUDED
+#define BIXD_SHAMAP_SHAMAPLEAFNODE_H_INCLUDED
 
-#include <ripple/shamap/SHAMapItem.h>
-#include <ripple/shamap/SHAMapNodeID.h>
-#include <ripple/shamap/SHAMapTreeNode.h>
+#include <bixd/shamap/SHAMapItem.h>
+#include <bixd/shamap/SHAMapNodeID.h>
+#include <bixd/shamap/SHAMapTreeNode.h>
 
 #include <cstdint>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 class SHAMapLeafNode : public SHAMapTreeNode
 {
@@ -77,6 +77,6 @@ public:
     getString(SHAMapNodeID const&) const final override;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/beast/core/LexicalCast.h>
-#include <ripple/json/impl/json_assert.h>
-#include <ripple/json/json_writer.h>
-#include <ripple/json/to_string.h>
+#include <bixd/basics/contract.h>
+#include <bixd/beast/core/LexicalCast.h>
+#include <bixd/json/impl/json_assert.h>
+#include <bixd/json/json_writer.h>
+#include <bixd/json/to_string.h>
 
 namespace Json {
 

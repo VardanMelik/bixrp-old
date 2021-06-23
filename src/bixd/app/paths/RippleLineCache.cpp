@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/RippleLineCache.h>
-#include <ripple/ledger/OpenView.h>
+#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/ledger/OpenView.h>
 
-namespace ripple {
+namespace bixd {
 
 RippleLineCache::RippleLineCache(std::shared_ptr<ReadView const> const& ledger)
 {
@@ -46,4 +46,4 @@ RippleLineCache::getRippleLines(AccountID const& accountID)
     return it->second;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/ValidatorKeys.h>
-#include <ripple/basics/base64.h>
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/ValidatorKeys.h>
+#include <bixd/basics/base64.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
 
-namespace ripple {
+namespace bixd {
 Json::Value
 doValidatorInfo(RPC::JsonContext& context)
 {
@@ -60,4 +60,4 @@ doValidatorInfo(RPC::JsonContext& context)
 
     return ret;
 }
-}  // namespace ripple
+}  // namespace bixd

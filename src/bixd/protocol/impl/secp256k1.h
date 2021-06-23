@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_SECP256K1_H_INCLUDED
-#define RIPPLE_PROTOCOL_SECP256K1_H_INCLUDED
+#ifndef BIXD_PROTOCOL_SECP256K1_H_INCLUDED
+#define BIXD_PROTOCOL_SECP256K1_H_INCLUDED
 
 #include <secp256k1/include/secp256k1.h>
 
-namespace ripple {
+namespace bixd {
 
 template <class = void>
 secp256k1_context const*
@@ -46,6 +46,6 @@ secp256k1Context()
     return h.impl;
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

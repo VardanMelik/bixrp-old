@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/beast/utility/temp_dir.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/nodestore/DummyScheduler.h>
-#include <ripple/nodestore/Manager.h>
-#include <ripple/nodestore/impl/DecodedBlob.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/ShardArchiveHandler.h>
+#include <bixd/beast/utility/temp_dir.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/nodestore/DummyScheduler.h>
+#include <bixd/nodestore/Manager.h>
+#include <bixd/nodestore/impl/DecodedBlob.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/ShardArchiveHandler.h>
 #include <test/jtx/CaptureLogs.h>
 #include <test/jtx/Env.h>
 #include <test/jtx/TrustedPublisherServer.h>
 #include <test/jtx/envconfig.h>
 #include <test/nodestore/TestBase.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class ShardArchiveHandler_test : public beast::unit_test::suite
@@ -674,7 +674,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(ShardArchiveHandler, app, ripple);
+BEAST_DEFINE_TESTSUITE(ShardArchiveHandler, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

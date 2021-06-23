@@ -20,14 +20,14 @@
 #ifndef BEAST_UTILITY_TAGGED_INTEGER_H_INCLUDED
 #define BEAST_UTILITY_TAGGED_INTEGER_H_INCLUDED
 
-#include <ripple/beast/hash/hash_append.h>
+#include <bixd/beast/hash/hash_append.h>
 #include <boost/operators.hpp>
 #include <functional>
 #include <iostream>
 #include <type_traits>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 /** A type-safe wrap around standard integral types
 
@@ -213,11 +213,11 @@ public:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 namespace beast {
 template <class Int, class Tag, class HashAlgorithm>
-struct is_contiguously_hashable<ripple::tagged_integer<Int, Tag>, HashAlgorithm>
+struct is_contiguously_hashable<bixd::tagged_integer<Int, Tag>, HashAlgorithm>
     : public is_contiguously_hashable<Int, HashAlgorithm>
 {
     explicit is_contiguously_hashable() = default;

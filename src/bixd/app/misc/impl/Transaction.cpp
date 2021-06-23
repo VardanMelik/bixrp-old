@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -32,7 +32,7 @@
 #include <bixd/protocol/jss.h>
 #include <boost/optional.hpp>
 
-namespace ripple {
+namespace bixd {
 
 Transaction::Transaction(
     std::shared_ptr<STTx const> const& stx,
@@ -308,4 +308,4 @@ Transaction::getJson(JsonOptions options, bool binary) const
     return ret;
 }
 
-}  // namespace ripple
+}  // namespace bixd

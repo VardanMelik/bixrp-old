@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OPENSSL_H
-#define RIPPLE_OPENSSL_H
+#ifndef BIXD_OPENSSL_H
+#define BIXD_OPENSSL_H
 
-#include <ripple/basics/base_uint.h>
-#include <ripple/crypto/impl/ec_key.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/crypto/impl/ec_key.h>
 #include <openssl/bn.h>
 #include <openssl/ec.h>
 
-namespace ripple {
+namespace bixd {
 namespace openssl {
 
 class bignum
@@ -231,6 +231,6 @@ void
 serialize_ec_point(ec_point const& point, std::uint8_t* ptr);
 
 }  // namespace openssl
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

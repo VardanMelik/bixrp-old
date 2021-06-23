@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/ledger/ApplyViewImpl.h>
-#include <ripple/ledger/OpenView.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/ledger/Sandbox.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Protocol.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/ledger/ApplyViewImpl.h>
+#include <bixd/ledger/OpenView.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/ledger/Sandbox.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Protocol.h>
 #include <test/jtx.h>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class View_test : public beast::unit_test::suite
@@ -871,8 +871,8 @@ class GetAmendments_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(View, ledger, ripple);
-BEAST_DEFINE_TESTSUITE(GetAmendments, ledger, ripple);
+BEAST_DEFINE_TESTSUITE(View, ledger, bixd);
+BEAST_DEFINE_TESTSUITE(GetAmendments, ledger, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

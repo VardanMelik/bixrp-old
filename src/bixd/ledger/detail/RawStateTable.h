@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_RAWSTATETABLE_H_INCLUDED
-#define RIPPLE_LEDGER_RAWSTATETABLE_H_INCLUDED
+#ifndef BIXD_LEDGER_RAWSTATETABLE_H_INCLUDED
+#define BIXD_LEDGER_RAWSTATETABLE_H_INCLUDED
 
-#include <ripple/ledger/RawView.h>
-#include <ripple/ledger/ReadView.h>
+#include <bixd/ledger/RawView.h>
+#include <bixd/ledger/ReadView.h>
 
 #include <boost/container/pmr/monotonic_buffer_resource.hpp>
 #include <boost/container/pmr/polymorphic_allocator.hpp>
@@ -29,7 +29,7 @@
 #include <map>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 // Helper class that buffers raw modifications
@@ -137,6 +137,6 @@ private:
 };
 
 }  // namespace detail
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

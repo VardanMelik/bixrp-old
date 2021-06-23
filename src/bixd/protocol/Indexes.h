@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_INDEXES_H_INCLUDED
-#define RIPPLE_PROTOCOL_INDEXES_H_INCLUDED
+#ifndef BIXD_PROTOCOL_INDEXES_H_INCLUDED
+#define BIXD_PROTOCOL_INDEXES_H_INCLUDED
 
-#include <ripple/basics/base_uint.h>
-#include <ripple/protocol/Book.h>
-#include <ripple/protocol/Keylet.h>
-#include <ripple/protocol/LedgerFormats.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/Serializer.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/protocol/Book.h>
+#include <bixd/protocol/Keylet.h>
+#include <bixd/protocol/LedgerFormats.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/Serializer.h>
+#include <bixd/protocol/UintTypes.h>
 #include <cstdint>
 
-namespace ripple {
+namespace bixd {
 
 class SeqProxy;
 /** Keylet computation funclets.
@@ -245,6 +245,6 @@ getTicketIndex(AccountID const& account, std::uint32_t uSequence);
 uint256
 getTicketIndex(AccountID const& account, SeqProxy ticketSeq);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

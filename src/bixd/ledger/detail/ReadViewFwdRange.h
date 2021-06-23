@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_READVIEWFWDRANGE_H_INCLUDED
-#define RIPPLE_LEDGER_READVIEWFWDRANGE_H_INCLUDED
+#ifndef BIXD_LEDGER_READVIEWFWDRANGE_H_INCLUDED
+#define BIXD_LEDGER_READVIEWFWDRANGE_H_INCLUDED
 
 #include <boost/optional.hpp>
 #include <cstddef>
 #include <iterator>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 class ReadView;
 
@@ -150,6 +150,6 @@ protected:
 };
 
 }  // namespace detail
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

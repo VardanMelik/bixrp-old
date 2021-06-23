@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -27,7 +27,7 @@
 
 #include <date/date.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace {
 
@@ -297,4 +297,4 @@ getJson(LedgerFill const& fill)
     return json;
 }
 
-}  // namespace ripple
+}  // namespace bixd

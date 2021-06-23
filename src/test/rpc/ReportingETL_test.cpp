@@ -2,7 +2,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -18,17 +18,17 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/reporting/P2pProxy.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/reporting/P2pProxy.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/rpc/impl/Tuning.h>
 
 #include <test/jtx.h>
 #include <test/jtx/Env.h>
 #include <test/jtx/envconfig.h>
 #include <test/rpc/GRPCTestClientBase.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class ReportingETL_test : public beast::unit_test::suite
@@ -1031,7 +1031,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(ReportingETL, app, ripple);
+BEAST_DEFINE_TESTSUITE(ReportingETL, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

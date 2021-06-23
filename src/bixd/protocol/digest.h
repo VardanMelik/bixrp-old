@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_DIGEST_H_INCLUDED
-#define RIPPLE_PROTOCOL_DIGEST_H_INCLUDED
+#ifndef BIXD_PROTOCOL_DIGEST_H_INCLUDED
+#define BIXD_PROTOCOL_DIGEST_H_INCLUDED
 
-#include <ripple/basics/base_uint.h>
-#include <ripple/crypto/secure_erase.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/crypto/secure_erase.h>
 #include <boost/endian/conversion.hpp>
 #include <algorithm>
 #include <array>
 
-namespace ripple {
+namespace bixd {
 
 /** Message digest functions used in the codebase
 
@@ -116,7 +116,7 @@ using sha512_hasher = openssl_sha512_hasher;
 /** Returns the RIPEMD-160 digest of the SHA256 hash of the message.
 
     This operation is used to compute the 160-bit identifier
-    representing a Ripple account, from a message. Typically the
+    representing a bixd account, from a message. Typically the
     message is the public key of the account - which is not
     stored in the account root.
 
@@ -237,6 +237,6 @@ sha512Half_s(Args const&... args)
     return static_cast<typename sha512_half_hasher_s::result_type>(h);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

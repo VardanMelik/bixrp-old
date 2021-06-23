@@ -21,7 +21,7 @@
 */
 //==============================================================================
 
-#include <ripple/beast/core/CurrentThreadName.h>
+#include <bixd/beast/core/CurrentThreadName.h>
 #include <boost/predef.h>
 
 //------------------------------------------------------------------------------

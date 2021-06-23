@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CONSENSUS_CONSENSUS_H_INCLUDED
-#define RIPPLE_CONSENSUS_CONSENSUS_H_INCLUDED
+#ifndef BIXD_CONSENSUS_CONSENSUS_H_INCLUDED
+#define BIXD_CONSENSUS_CONSENSUS_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/consensus/ConsensusParms.h>
-#include <ripple/consensus/ConsensusProposal.h>
-#include <ripple/consensus/ConsensusTypes.h>
-#include <ripple/consensus/DisputedTx.h>
-#include <ripple/consensus/LedgerTiming.h>
-#include <ripple/json/json_writer.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/consensus/ConsensusParms.h>
+#include <bixd/consensus/ConsensusProposal.h>
+#include <bixd/consensus/ConsensusTypes.h>
+#include <bixd/consensus/DisputedTx.h>
+#include <bixd/consensus/LedgerTiming.h>
+#include <bixd/json/json_writer.h>
 #include <boost/logic/tribool.hpp>
 #include <sstream>
 
-namespace ripple {
+namespace bixd {
 
 /** Determines whether the current ledger should close at this time.
 
@@ -1694,6 +1694,6 @@ Consensus<Adaptor>::asCloseTime(NetClock::time_point raw) const
     return roundCloseTime(raw, closeResolution_);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

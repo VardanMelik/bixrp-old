@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_WSSESSION_H_INCLUDED
-#define RIPPLE_SERVER_WSSESSION_H_INCLUDED
+#ifndef BIXD_SERVER_WSSESSION_H_INCLUDED
+#define BIXD_SERVER_WSSESSION_H_INCLUDED
 
-#include <ripple/server/Handoff.h>
-#include <ripple/server/Port.h>
-#include <ripple/server/Writer.h>
+#include <bixd/server/Handoff.h>
+#include <bixd/server/Port.h>
+#include <bixd/server/Writer.h>
 
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/ip/tcp.hpp>
@@ -36,7 +36,7 @@
 #include <utility>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 class WSMsg
 {
@@ -144,6 +144,6 @@ struct WSSession
     complete() = 0;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

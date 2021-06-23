@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,23 +17,23 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_ST_H_INCLUDED
-#define RIPPLE_PROTOCOL_ST_H_INCLUDED
+#ifndef BIXD_PROTOCOL_ST_H_INCLUDED
+#define BIXD_PROTOCOL_ST_H_INCLUDED
 
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STArray.h>
-#include <ripple/protocol/STBase.h>
-#include <ripple/protocol/STBitString.h>
-#include <ripple/protocol/STBlob.h>
-#include <ripple/protocol/STInteger.h>
-#include <ripple/protocol/STLedgerEntry.h>
-#include <ripple/protocol/STObject.h>
-#include <ripple/protocol/STParsedJSON.h>
-#include <ripple/protocol/STPathSet.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/STValidation.h>
-#include <ripple/protocol/STVector256.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STArray.h>
+#include <bixd/protocol/STBase.h>
+#include <bixd/protocol/STBitString.h>
+#include <bixd/protocol/STBlob.h>
+#include <bixd/protocol/STInteger.h>
+#include <bixd/protocol/STLedgerEntry.h>
+#include <bixd/protocol/STObject.h>
+#include <bixd/protocol/STParsedJSON.h>
+#include <bixd/protocol/STPathSet.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/STValidation.h>
+#include <bixd/protocol/STVector256.h>
 
 #endif

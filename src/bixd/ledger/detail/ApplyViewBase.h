@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_LEDGER_APPLYVIEWBASE_H_INCLUDED
-#define RIPPLE_LEDGER_APPLYVIEWBASE_H_INCLUDED
+#ifndef BIXD_LEDGER_APPLYVIEWBASE_H_INCLUDED
+#define BIXD_LEDGER_APPLYVIEWBASE_H_INCLUDED
 
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/ledger/ApplyView.h>
-#include <ripple/ledger/CashDiff.h>
-#include <ripple/ledger/OpenView.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/ledger/detail/ApplyStateTable.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/ledger/ApplyView.h>
+#include <bixd/ledger/CashDiff.h>
+#include <bixd/ledger/OpenView.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/ledger/detail/ApplyStateTable.h>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 class ApplyViewBase : public ApplyView, public RawView
@@ -134,6 +134,6 @@ protected:
 };
 
 }  // namespace detail
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_PATHREQUEST_H_INCLUDED
-#define RIPPLE_APP_PATHS_PATHREQUEST_H_INCLUDED
+#ifndef BIXD_APP_PATHS_PATHREQUEST_H_INCLUDED
+#define BIXD_APP_PATHS_PATHREQUEST_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/app/paths/Pathfinder.h>
-#include <ripple/app/paths/RippleLineCache.h>
-#include <ripple/json/json_value.h>
-#include <ripple/net/InfoSub.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/app/paths/Pathfinder.h>
+#include <bixd/app/paths/RippleLineCache.h>
+#include <bixd/json/json_value.h>
+#include <bixd/net/InfoSub.h>
+#include <bixd/protocol/UintTypes.h>
 #include <boost/optional.hpp>
 #include <map>
 #include <mutex>
 #include <set>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 // A pathfinding request submitted by a client
 // The request issuer must maintain a strong pointer
@@ -165,6 +165,6 @@ private:
     static unsigned int const max_paths_ = 4;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

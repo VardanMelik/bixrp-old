@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/json/json_reader.h>
-#include <ripple/json/json_value.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/json/json_reader.h>
+#include <bixd/json/json_value.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 
 #include <boost/utility/string_ref.hpp>
 
 #include <algorithm>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 static char const* bobs_account_objects[] = {
@@ -587,7 +587,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(AccountObjects, app, ripple);
+BEAST_DEFINE_TESTSUITE(AccountObjects, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/protocol/InnerObjectFormats.h>
-#include <ripple/protocol/LedgerFormats.h>
-#include <ripple/protocol/TxFormats.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/protocol/InnerObjectFormats.h>
+#include <bixd/protocol/LedgerFormats.h>
+#include <bixd/protocol/TxFormats.h>
 
 #include "org/xrpl/rpc/v1/ledger_objects.pb.h"
 #include "org/xrpl/rpc/v1/transaction.pb.h"
@@ -31,7 +31,7 @@
 #include <string>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 
 // This test suite uses the google::protobuf::Descriptor class to do runtime
 // reflection on our gRPC stuff.  At the time of this writing documentation
@@ -957,6 +957,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(KnownFormatToGRPC, protocol, ripple);
+BEAST_DEFINE_TESTSUITE(KnownFormatToGRPC, protocol, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

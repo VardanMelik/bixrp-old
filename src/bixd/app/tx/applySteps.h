@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TX_APPLYSTEPS_H_INCLUDED
-#define RIPPLE_TX_APPLYSTEPS_H_INCLUDED
+#ifndef BIXD_TX_APPLYSTEPS_H_INCLUDED
+#define BIXD_TX_APPLYSTEPS_H_INCLUDED
 
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/ledger/ApplyViewImpl.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/ledger/ApplyViewImpl.h>
 
-namespace ripple {
+namespace bixd {
 
 class Application;
 class STTx;
@@ -336,6 +336,6 @@ calculateDefaultBaseFee(ReadView const& view, STTx const& tx);
 std::pair<TER, bool>
 doApply(PreclaimResult const& preclaimResult, Application& app, OpenView& view);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2016 Ripple Labs Inc.
+    Copyright (c) 2012-2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Blob.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/basics/hardened_hash.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/Blob.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/basics/hardened_hash.h>
+#include <bixd/beast/unit_test.h>
 #include <boost/endian/conversion.hpp>
 #include <complex>
 
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 // a non-hashing Hasher that just copies the bytes.
@@ -198,7 +198,7 @@ struct base_uint_test : beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(base_uint, ripple_basics, ripple);
+BEAST_DEFINE_TESTSUITE(base_uint, ripple_basics, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

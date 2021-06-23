@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_LEDGER_LOCALTXS_H_INCLUDED
-#define RIPPLE_APP_LEDGER_LOCALTXS_H_INCLUDED
+#ifndef BIXD_APP_LEDGER_LOCALTXS_H_INCLUDED
+#define BIXD_APP_LEDGER_LOCALTXS_H_INCLUDED
 
 #include <bixd/app/misc/CanonicalTXSet.h>
 #include <bixd/ledger/ReadView.h>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 // Track transactions issued by local clients
 // Ensure we always apply them to our open ledger
@@ -54,6 +54,6 @@ public:
 std::unique_ptr<LocalTxs>
 make_LocalTxs();
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

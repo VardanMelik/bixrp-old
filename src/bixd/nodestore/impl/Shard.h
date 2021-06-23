@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2017 Ripple Labs Inc.
+    Copyright (c) 2012, 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NODESTORE_SHARD_H_INCLUDED
-#define RIPPLE_NODESTORE_SHARD_H_INCLUDED
+#ifndef BIXD_NODESTORE_SHARD_H_INCLUDED
+#define BIXD_NODESTORE_SHARD_H_INCLUDED
 
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/basics/RangeSet.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/nodestore/NodeObject.h>
-#include <ripple/nodestore/Scheduler.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/basics/RangeSet.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/nodestore/NodeObject.h>
+#include <bixd/nodestore/Scheduler.h>
 
 #include <boost/filesystem.hpp>
 #include <nudb/nudb.hpp>
 
 #include <atomic>
 
-namespace ripple {
+namespace bixd {
 namespace NodeStore {
 
 using PCache = TaggedCache<uint256, NodeObject>;
@@ -340,6 +340,6 @@ private:
 };
 
 }  // namespace NodeStore
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

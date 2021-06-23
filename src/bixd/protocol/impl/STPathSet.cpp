@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/protocol/STPathSet.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/protocol/STPathSet.h>
+#include <bixd/protocol/jss.h>
 #include <cstddef>
 
-namespace ripple {
+namespace bixd {
 
 std::size_t
 STPathElement::get_hash(STPathElement const& element)
@@ -216,4 +216,4 @@ STPathSet::add(Serializer& s) const
     s.add8(STPathElement::typeNone);
 }
 
-}  // namespace ripple
+}  // namespace bixd

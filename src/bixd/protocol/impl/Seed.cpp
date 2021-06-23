@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Buffer.h>
-#include <ripple/basics/contract.h>
-#include <ripple/beast/utility/rngfill.h>
-#include <ripple/crypto/RFC1751.h>
-#include <ripple/crypto/csprng.h>
-#include <ripple/crypto/secure_erase.h>
-#include <ripple/protocol/AccountID.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Seed.h>
-#include <ripple/protocol/digest.h>
+#include <bixd/basics/Buffer.h>
+#include <bixd/basics/contract.h>
+#include <bixd/beast/utility/rngfill.h>
+#include <bixd/crypto/RFC1751.h>
+#include <bixd/crypto/csprng.h>
+#include <bixd/crypto/secure_erase.h>
+#include <bixd/protocol/AccountID.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Seed.h>
+#include <bixd/protocol/digest.h>
 #include <algorithm>
 #include <cstring>
 #include <iterator>
 
-namespace ripple {
+namespace bixd {
 
 Seed::~Seed()
 {
@@ -135,4 +135,4 @@ seedAs1751(Seed const& seed)
     return encodedKey;
 }
 
-}  // namespace ripple
+}  // namespace bixd

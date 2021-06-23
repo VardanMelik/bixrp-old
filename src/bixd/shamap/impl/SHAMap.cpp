@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/shamap/SHAMap.h>
-#include <ripple/shamap/SHAMapAccountStateLeafNode.h>
-#include <ripple/shamap/SHAMapNodeID.h>
-#include <ripple/shamap/SHAMapSyncFilter.h>
-#include <ripple/shamap/SHAMapTxLeafNode.h>
-#include <ripple/shamap/SHAMapTxPlusMetaLeafNode.h>
+#include <bixd/basics/contract.h>
+#include <bixd/shamap/SHAMap.h>
+#include <bixd/shamap/SHAMapAccountStateLeafNode.h>
+#include <bixd/shamap/SHAMapNodeID.h>
+#include <bixd/shamap/SHAMapSyncFilter.h>
+#include <bixd/shamap/SHAMapTxLeafNode.h>
+#include <bixd/shamap/SHAMapTxPlusMetaLeafNode.h>
 
-namespace ripple {
+namespace bixd {
 
 [[nodiscard]] std::shared_ptr<SHAMapLeafNode>
 makeTypedLeaf(
@@ -1129,4 +1129,4 @@ SHAMap::invariants() const
     node->invariants(true);
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_MISC_HASHROUTER_H_INCLUDED
-#define RIPPLE_APP_MISC_HASHROUTER_H_INCLUDED
+#ifndef BIXD_APP_MISC_HASHROUTER_H_INCLUDED
+#define BIXD_APP_MISC_HASHROUTER_H_INCLUDED
 
 #include <bixd/basics/CountedObject.h>
 #include <bixd/basics/UnorderedContainers.h>
@@ -27,7 +27,7 @@
 #include <bixd/beast/container/aged_unordered_map.h>
 #include <boost/optional.hpp>
 
-namespace ripple {
+namespace bixd {
 
 // TODO convert these macros to int constants or an enum
 #define SF_BAD 0x02  // Temporarily bad
@@ -259,6 +259,6 @@ private:
     std::uint32_t const recoverLimit_;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

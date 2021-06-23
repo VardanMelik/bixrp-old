@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2017 Ripple Labs Inc.
+    Copyright 2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#include <ripple/app/consensus/RCLValidations.h>
-#include <ripple/app/ledger/Ledger.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/base_uint.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/ledger/View.h>
+#include <bixd/app/consensus/RCLValidations.h>
+#include <bixd/app/ledger/Ledger.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/ledger/View.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class RCLValidations_test : public beast::unit_test::suite
@@ -37,7 +37,7 @@ class RCLValidations_test : public beast::unit_test::suite
         testcase("Change validation trusted status");
         auto keys = randomKeyPair(KeyType::secp256k1);
         auto v = std::make_shared<STValidation>(
-            ripple::NetClock::time_point{},
+            bixd::NetClock::time_point{},
             keys.first,
             keys.second,
             calcNodeID(keys.first),
@@ -328,7 +328,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(RCLValidations, app, ripple);
+BEAST_DEFINE_TESTSUITE(RCLValidations, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,29 +17,29 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/safe_cast.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/Protocol.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/STArray.h>
-#include <ripple/protocol/STTx.h>
-#include <ripple/protocol/Sign.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/UintTypes.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/Protocol.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/STArray.h>
+#include <bixd/protocol/STTx.h>
+#include <bixd/protocol/Sign.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/UintTypes.h>
+#include <bixd/protocol/jss.h>
 #include <boost/format.hpp>
 #include <array>
 #include <memory>
 #include <type_traits>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 static auto
 getTxFormat(TxType type)
@@ -181,7 +181,7 @@ STTx::sign(PublicKey const& publicKey, SecretKey const& secretKey)
 {
     auto const data = getSigningData(*this);
 
-    auto const sig = ripple::sign(publicKey, secretKey, makeSlice(data));
+    auto const sig = bixd::sign(publicKey, secretKey, makeSlice(data));
 
     setFieldVL(sfTxnSignature, sig);
     tid_ = getHash(HashPrefix::transactionID);
@@ -546,4 +546,4 @@ isPseudoTx(STObject const& tx)
     return tt == ttAMENDMENT || tt == ttFEE || tt == ttUNL_MODIFY;
 }
 
-}  // namespace ripple
+}  // namespace bixd

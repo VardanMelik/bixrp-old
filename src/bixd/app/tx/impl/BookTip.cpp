@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/BookTip.h>
-#include <ripple/basics/Log.h>
+#include <bixd/app/tx/impl/BookTip.h>
+#include <bixd/basics/Log.h>
 
-namespace ripple {
+namespace bixd {
 
 BookTip::BookTip(ApplyView& view, Book const& book)
     : view_(view)
@@ -79,4 +79,4 @@ BookTip::step(beast::Journal j)
     return true;
 }
 
-}  // namespace ripple
+}  // namespace bixd

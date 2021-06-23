@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/basics/base_uint.h>
-#include <ripple/beast/utility/rngfill.h>
-#include <ripple/crypto/csprng.h>
-#include <ripple/json/json_value.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/base_uint.h>
+#include <bixd/beast/utility/rngfill.h>
+#include <bixd/crypto/csprng.h>
+#include <bixd/json/json_value.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/jss.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace RPC {
 struct JsonContext;
@@ -55,4 +55,4 @@ doRandom(RPC::JsonContext& context)
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

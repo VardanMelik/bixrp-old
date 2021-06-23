@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 
 class LedgerData_test : public beast::unit_test::suite
 {
@@ -500,6 +500,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE_PRIO(LedgerData, app, ripple, 1);
+BEAST_DEFINE_TESTSUITE_PRIO(LedgerData, app, bixd, 1);
 
-}  // namespace ripple
+}  // namespace bixd

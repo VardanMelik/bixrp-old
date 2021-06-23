@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#include <ripple/shamap/impl/TaggedPointer.h>
+#include <bixd/shamap/impl/TaggedPointer.h>
 
-#include <ripple/shamap/SHAMapInnerNode.h>
+#include <bixd/shamap/SHAMapInnerNode.h>
 
 #include <array>
 
 #include <boost/pool/pool_alloc.hpp>
 
-namespace ripple {
+namespace bixd {
 
 namespace {
 // Sparse array size boundaries.
@@ -596,4 +596,4 @@ inline TaggedPointer::~TaggedPointer()
     destroyHashesAndChildren();
 }
 
-}  // namespace ripple
+}  // namespace bixd

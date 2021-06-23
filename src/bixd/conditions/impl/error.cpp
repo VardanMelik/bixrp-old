@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/basics/safe_cast.h>
-#include <ripple/conditions/impl/error.h>
+#include <bixd/basics/safe_cast.h>
+#include <bixd/conditions/impl/error.h>
 #include <string>
 #include <system_error>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 namespace cryptoconditions {
 namespace detail {
 
@@ -135,4 +135,4 @@ make_error_code(error ev)
 }
 
 }  // namespace cryptoconditions
-}  // namespace ripple
+}  // namespace bixd

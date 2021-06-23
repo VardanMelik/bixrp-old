@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/contract.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/core/SociDB.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/core/SociDB.h>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/format.hpp>
@@ -28,7 +28,7 @@
 #include <memory>
 #include <unordered_map>
 
-namespace ripple {
+namespace bixd {
 
 class CheckpointersCollection
 {
@@ -252,4 +252,4 @@ DatabaseCon::setupCheckpointing(JobQueue* q, Logs& l)
     checkpointer_ = checkpointers.create(session_, *q, l);
 }
 
-}  // namespace ripple
+}  // namespace bixd

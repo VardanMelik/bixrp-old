@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_OVERLAY_OVERLAY_H_INCLUDED
-#define RIPPLE_OVERLAY_OVERLAY_H_INCLUDED
+#ifndef BIXD_OVERLAY_OVERLAY_H_INCLUDED
+#define BIXD_OVERLAY_OVERLAY_H_INCLUDED
 
-#include <ripple/beast/utility/PropertyStream.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/json/json_value.h>
-#include <ripple/overlay/Peer.h>
-#include <ripple/overlay/PeerSet.h>
-#include <ripple/server/Handoff.h>
+#include <bixd/beast/utility/PropertyStream.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/json/json_value.h>
+#include <bixd/overlay/Peer.h>
+#include <bixd/overlay/PeerSet.h>
+#include <bixd/server/Handoff.h>
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/ssl/context.hpp>
@@ -46,7 +46,7 @@ class context;
 }  // namespace asio
 }  // namespace boost
 
-namespace ripple {
+namespace bixd {
 
 /** Manages the set of connected peers. */
 class Overlay : public Stoppable, public beast::PropertyStream::Source
@@ -219,6 +219,6 @@ public:
     networkID() const = 0;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

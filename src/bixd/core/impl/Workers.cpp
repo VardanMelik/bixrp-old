@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/PerfLog.h>
-#include <ripple/beast/core/CurrentThreadName.h>
-#include <ripple/core/impl/Workers.h>
+#include <bixd/basics/PerfLog.h>
+#include <bixd/beast/core/CurrentThreadName.h>
+#include <bixd/core/impl/Workers.h>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 
 Workers::Workers(
     Callback& callback,
@@ -277,4 +277,4 @@ Workers::Worker::run()
     } while (!shouldExit);
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/app/paths/impl/AmountSpec.h>
-#include <ripple/ledger/PaymentSandbox.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/STAccount.h>
+#include <bixd/app/paths/impl/AmountSpec.h>
+#include <bixd/ledger/PaymentSandbox.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/STAccount.h>
 #include <boost/optional.hpp>
 
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 
 namespace detail {
 
@@ -303,7 +303,7 @@ PaymentSandbox::balanceChanges(ReadView const& view) const
                     oldBalance = (*before)[sfBalance];
                     newBalance = oldBalance.zeroed();
                     break;
-                case ltRIPPLE_STATE:
+                case ltBIXD_STATE:
                     lowID = (*before)[sfLowLimit].getIssuer();
                     highID = (*before)[sfHighLimit].getIssuer();
                     oldBalance = (*before)[sfBalance];
@@ -328,7 +328,7 @@ PaymentSandbox::balanceChanges(ReadView const& view) const
                     newBalance = (*after)[sfBalance];
                     oldBalance = newBalance.zeroed();
                     break;
-                case ltRIPPLE_STATE:
+                case ltBIXD_STATE:
                     lowID = (*after)[sfLowLimit].getIssuer();
                     highID = (*after)[sfHighLimit].getIssuer();
                     newBalance = (*after)[sfBalance];
@@ -354,7 +354,7 @@ PaymentSandbox::balanceChanges(ReadView const& view) const
                     oldBalance = (*before)[sfBalance];
                     newBalance = (*after)[sfBalance];
                     break;
-                case ltRIPPLE_STATE:
+                case ltBIXD_STATE:
                     lowID = (*after)[sfLowLimit].getIssuer();
                     highID = (*after)[sfHighLimit].getIssuer();
                     oldBalance = (*before)[sfBalance];
@@ -394,4 +394,4 @@ PaymentSandbox::bixrpDestroyed() const
     return items_.dropsDestroyed();
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/DeleteAccount.h>
-#include <ripple/app/tx/impl/DepositPreauth.h>
-#include <ripple/app/tx/impl/SetSignerList.h>
-#include <ripple/basics/FeeUnits.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/mulDiv.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/tx/impl/DeleteAccount.h>
+#include <bixd/app/tx/impl/DepositPreauth.h>
+#include <bixd/app/tx/impl/SetSignerList.h>
+#include <bixd/basics/FeeUnits.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/mulDiv.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/st.h>
 
-namespace ripple {
+namespace bixd {
 
 NotTEC
 DeleteAccount::preflight(PreflightContext const& ctx)
@@ -352,4 +352,4 @@ DeleteAccount::doApply()
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

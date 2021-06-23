@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/json/json_reader.h>
+#include <bixd/basics/contract.h>
+#include <bixd/json/json_reader.h>
 #include <algorithm>
 #include <cctype>
 #include <istream>
@@ -957,7 +957,7 @@ operator>>(std::istream& sin, Value& root)
 
     // JSON_ASSERT( ok );
     if (!ok)
-        ripple::Throw<std::runtime_error>(reader.getFormatedErrorMessages());
+        bixd::Throw<std::runtime_error>(reader.getFormatedErrorMessages());
 
     return sin;
 }

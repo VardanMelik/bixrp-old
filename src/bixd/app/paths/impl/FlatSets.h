@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_PATHS_IMPL_FLAT_SETS_H_INCLUDED
-#define RIPPLE_APP_PATHS_IMPL_FLAT_SETS_H_INCLUDED
+#ifndef BIXD_APP_PATHS_IMPL_FLAT_SETS_H_INCLUDED
+#define BIXD_APP_PATHS_IMPL_FLAT_SETS_H_INCLUDED
 
 #include <boost/container/flat_set.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /** Given two flat sets dst and src, compute dst = dst union src
 
@@ -44,6 +44,6 @@ SetUnion(
         boost::container::ordered_unique_range_t{}, src.begin(), src.end());
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

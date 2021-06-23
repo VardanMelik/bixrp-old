@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/main/Tuning.h>
-#include <ripple/shamap/NodeFamily.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/main/Tuning.h>
+#include <bixd/shamap/NodeFamily.h>
 
-namespace ripple {
+namespace bixd {
 
 NodeFamily::NodeFamily(Application& app, CollectorManager& cm)
     : app_(app)
@@ -105,4 +105,4 @@ NodeFamily::acquire(uint256 const& hash, std::uint32_t seq)
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2019 Ripple Labs Inc.
+    Copyright (c) 2019 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/FeeVote.h>
-#include <ripple/basics/BasicConfig.h>
+#include <bixd/app/misc/FeeVote.h>
+#include <bixd/basics/BasicConfig.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class FeeVote_test : public beast::unit_test::suite
@@ -99,7 +99,7 @@ class FeeVote_test : public beast::unit_test::suite
     }
 };
 
-BEAST_DEFINE_TESTSUITE(FeeVote, server, ripple);
+BEAST_DEFINE_TESTSUITE(FeeVote, server, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

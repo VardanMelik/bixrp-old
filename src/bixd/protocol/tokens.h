@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_TOKENS_H_INCLUDED
-#define RIPPLE_PROTOCOL_TOKENS_H_INCLUDED
+#ifndef BIXD_PROTOCOL_TOKENS_H_INCLUDED
+#define BIXD_PROTOCOL_TOKENS_H_INCLUDED
 
 #include <boost/optional.hpp>
 #include <cstdint>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 enum class TokenType : std::uint8_t {
     None = 1,  // unused
@@ -70,6 +70,6 @@ encodeBase58Token(TokenType type, void const* token, std::size_t size);
 std::string
 decodeBase58Token(std::string const& s, TokenType type);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

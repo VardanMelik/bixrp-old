@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_UNITY_ROCKSDB_H_INCLUDED
-#define RIPPLE_UNITY_ROCKSDB_H_INCLUDED
+#ifndef BIXD_UNITY_ROCKSDB_H_INCLUDED
+#define BIXD_UNITY_ROCKSDB_H_INCLUDED
 
-#if RIPPLE_ROCKSDB_AVAILABLE
+#if BIXD_ROCKSDB_AVAILABLE
 //#include <rocksdb2/port/port_posix.h>
 #include <rocksdb/cache.h>
 #include <rocksdb/compaction_filter.h>

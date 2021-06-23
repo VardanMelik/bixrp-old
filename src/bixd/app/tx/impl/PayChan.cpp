@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#include <ripple/app/tx/impl/PayChan.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/ledger/ApplyView.h>
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/PayChan.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/st.h>
+#include <bixd/app/tx/impl/PayChan.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/ledger/ApplyView.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/PayChan.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/st.h>
 
-namespace ripple {
+namespace bixd {
 
 /*
     PaymentChannel
@@ -69,13 +69,13 @@ namespace ripple {
             `CancelAfter` time will close it.
         DestinationTag (optional)
             Destination tags allow the different accounts inside of a Hosted
-            Wallet to be mapped back onto the Ripple ledger. The destination tag
+            Wallet to be mapped back onto the bixd ledger. The destination tag
             tells the server to which account in the Hosted Wallet the funds are
             intended to go to. Required if the destination has lsfRequireDestTag
             set.
         SourceTag (optional)
             Source tags allow the different accounts inside of a Hosted Wallet
-            to be mapped back onto the Ripple ledger. Source tags are similar to
+            to be mapped back onto the bixd ledger. Source tags are similar to
             destination tags but are for the channel owner to identify their own
             transactions.
 
@@ -566,4 +566,4 @@ PayChanClaim::doApply()
     return tesSUCCESS;
 }
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc.
+    Copyright (c) 2012-2017 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#include <ripple/beast/utility/temp_dir.h>
-#include <ripple/crypto/csprng.h>
+#include <bixd/beast/utility/temp_dir.h>
+#include <bixd/crypto/csprng.h>
 #include <boost/filesystem.hpp>
 #include <fstream>
 #include <streambuf>
 #include <test/jtx/Env.h>
 
-namespace ripple {
+namespace bixd {
 
 class CryptoPRNG_test : public beast::unit_test::suite
 {
@@ -57,6 +57,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(CryptoPRNG, core, ripple);
+BEAST_DEFINE_TESTSUITE(CryptoPRNG, core, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

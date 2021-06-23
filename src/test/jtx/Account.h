@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
   This file is part of bixd
-  Copyright (c) 2012-2015 Ripple Labs Inc.
+  Copyright (c) 2012-2015 bixd Labs Inc.
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TEST_JTX_ACCOUNT_H_INCLUDED
-#define RIPPLE_TEST_JTX_ACCOUNT_H_INCLUDED
+#ifndef BIXD_TEST_JTX_ACCOUNT_H_INCLUDED
+#define BIXD_TEST_JTX_ACCOUNT_H_INCLUDED
 
-#include <ripple/beast/hash/uhash.h>
-#include <ripple/protocol/KeyType.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/beast/hash/uhash.h>
+#include <bixd/protocol/KeyType.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/UintTypes.h>
 #include <string>
 #include <unordered_map>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
@@ -162,6 +162,6 @@ operator<(Account const& lhs, Account const& rhs) noexcept
 
 }  // namespace jtx
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

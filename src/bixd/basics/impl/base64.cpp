@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2018 Ripple Labs Inc.
+    Copyright (c) 2012-2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -54,12 +54,12 @@
 
 */
 
-#include <ripple/basics/base64.h>
+#include <bixd/basics/base64.h>
 
 #include <cctype>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 namespace base64 {
 
@@ -251,4 +251,4 @@ base64_decode(std::string const& data)
     return dest;
 }
 
-}  // namespace ripple
+}  // namespace bixd

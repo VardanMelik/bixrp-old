@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
 This file is part of bixd
-Copyright (c) 2018 Ripple Labs Inc.
+Copyright (c) 2018 bixd Labs Inc.
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose  with  or without fee is hereby granted, provided that the above
@@ -20,11 +20,11 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #ifndef TEST_UNIT_TEST_DIRGUARD_H
 #define TEST_UNIT_TEST_DIRGUARD_H
 
-#include <ripple/basics/contract.h>
+#include <bixd/basics/contract.h>
 #include <boost/filesystem.hpp>
 #include <test/jtx/TestSuite.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace detail {
 
@@ -178,6 +178,6 @@ public:
 
 }  // namespace detail
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif  // TEST_UNIT_TEST_DIRGUARD_H

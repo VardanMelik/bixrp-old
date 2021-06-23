@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_SESSION_H_INCLUDED
-#define RIPPLE_SERVER_SESSION_H_INCLUDED
+#ifndef BIXD_SERVER_SESSION_H_INCLUDED
+#define BIXD_SERVER_SESSION_H_INCLUDED
 
-#include <ripple/beast/net/IPEndpoint.h>
-#include <ripple/beast/utility/Journal.h>
-#include <ripple/server/WSSession.h>
-#include <ripple/server/Writer.h>
+#include <bixd/beast/net/IPEndpoint.h>
+#include <bixd/beast/utility/Journal.h>
+#include <bixd/server/WSSession.h>
+#include <bixd/server/Writer.h>
 #include <boost/beast/http/message.hpp>
 #include <functional>
 #include <memory>
 #include <ostream>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 /** Persistent state information for a connection session.
     These values are preserved between calls for efficiency.
@@ -130,6 +130,6 @@ public:
     websocketUpgrade() = 0;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

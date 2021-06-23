@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#include <ripple/basics/KeyCache.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/beast/clock/manual_clock.h>
-#include <ripple/beast/unit_test.h>
+#include <bixd/basics/KeyCache.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/beast/clock/manual_clock.h>
+#include <bixd/beast/unit_test.h>
 
-namespace ripple {
+namespace bixd {
 
 class KeyCache_test : public beast::unit_test::suite
 {
@@ -93,6 +93,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(KeyCache, common, ripple);
+BEAST_DEFINE_TESTSUITE(KeyCache, common, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

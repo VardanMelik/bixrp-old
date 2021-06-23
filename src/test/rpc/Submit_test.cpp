@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#include <ripple/basics/StringUtilities.h>
-#include <ripple/protocol/Feature.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/basics/StringUtilities.h>
+#include <bixd/protocol/Feature.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 #include <test/jtx/WSClient.h>
 
-#include <ripple/resource/Charge.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/GRPCHandlers.h>
+#include <bixd/resource/Charge.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/GRPCHandlers.h>
 #include <test/rpc/GRPCTestClientBase.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class Submit_test : public beast::unit_test::suite
@@ -270,7 +270,7 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Submit, app, ripple);
+BEAST_DEFINE_TESTSUITE(Submit, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

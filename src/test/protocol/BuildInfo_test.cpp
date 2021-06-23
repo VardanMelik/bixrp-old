@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of Bixd: 
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/beast/unit_test.h>
-#include <ripple/protocol/BuildInfo.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/protocol/BuildInfo.h>
 
-namespace ripple {
+namespace bixd {
 
 class BuildInfo_test : public beast::unit_test::suite
 {
@@ -114,5 +114,5 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(BuildInfo, protocol, ripple);
-}  // namespace ripple
+BEAST_DEFINE_TESTSUITE(BuildInfo, protocol, bixd);
+}  // namespace bixd

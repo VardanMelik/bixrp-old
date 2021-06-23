@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2014 Ripple Labs Inc.
+    Copyright (c) 2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_BOOK_BOOKTIP_H_INCLUDED
-#define RIPPLE_APP_BOOK_BOOKTIP_H_INCLUDED
+#ifndef BIXD_APP_BOOK_BOOKTIP_H_INCLUDED
+#define BIXD_APP_BOOK_BOOKTIP_H_INCLUDED
 
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/Quality.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/Quality.h>
 
 #include <functional>
 
-namespace ripple {
+namespace bixd {
 
 class Logs;
 
@@ -82,6 +82,6 @@ public:
     step(beast::Journal j);
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

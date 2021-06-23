@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_BASICS_KEYCACHE_H_INCLUDED
-#define RIPPLE_BASICS_KEYCACHE_H_INCLUDED
+#ifndef BIXD_BASICS_KEYCACHE_H_INCLUDED
+#define BIXD_BASICS_KEYCACHE_H_INCLUDED
 
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/hardened_hash.h>
-#include <ripple/beast/clock/abstract_clock.h>
-#include <ripple/beast/insight/Insight.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/hardened_hash.h>
+#include <bixd/beast/clock/abstract_clock.h>
+#include <bixd/beast/insight/Insight.h>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 /** Maintains a cache of keys with no associated data.
 
@@ -323,6 +323,6 @@ private:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

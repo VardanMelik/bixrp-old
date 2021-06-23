@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
 This file is part of bixd
-Copyright (c) 2012, 2013 Ripple Labs Inc.
+Copyright (c) 2012, 2013 bixd Labs Inc.
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose  with  or without fee is hereby granted, provided that the above
@@ -17,11 +17,11 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
 
-#include <ripple/basics/PerfLog.h>
-#include <ripple/beast/unit_test.h>
-#include <ripple/core/JobTypes.h>
-#include <ripple/core/impl/Workers.h>
-#include <ripple/json/json_value.h>
+#include <bixd/basics/PerfLog.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/core/JobTypes.h>
+#include <bixd/core/impl/Workers.h>
+#include <bixd/json/json_value.h>
 #include <chrono>
 #include <condition_variable>
 #include <cstdint>
@@ -29,7 +29,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #include <mutex>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 /**
  * Dummy class for unit tests.
@@ -174,6 +174,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(Workers, core, ripple);
+BEAST_DEFINE_TESTSUITE(Workers, core, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

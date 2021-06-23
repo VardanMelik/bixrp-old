@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/protocol/STAccount.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STArray.h>
-#include <ripple/protocol/STBase.h>
-#include <ripple/protocol/STBitString.h>
-#include <ripple/protocol/STBlob.h>
-#include <ripple/protocol/STInteger.h>
-#include <ripple/protocol/STObject.h>
-#include <ripple/protocol/STPathSet.h>
-#include <ripple/protocol/STVector256.h>
-#include <ripple/protocol/impl/STVar.h>
+#include <bixd/basics/contract.h>
+#include <bixd/protocol/STAccount.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STArray.h>
+#include <bixd/protocol/STBase.h>
+#include <bixd/protocol/STBitString.h>
+#include <bixd/protocol/STBlob.h>
+#include <bixd/protocol/STInteger.h>
+#include <bixd/protocol/STObject.h>
+#include <bixd/protocol/STPathSet.h>
+#include <bixd/protocol/STVector256.h>
+#include <bixd/protocol/impl/STVar.h>
 
-namespace ripple {
+namespace bixd {
 namespace detail {
 
 defaultObject_t defaultObject;
@@ -229,4 +229,4 @@ STVar::destroy()
 }
 
 }  // namespace detail
-}  // namespace ripple
+}  // namespace bixd

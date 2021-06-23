@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/ResolverAsio.h>
-#include <ripple/beast/net/IPAddressConversion.h>
-#include <ripple/beast/net/IPEndpoint.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/ResolverAsio.h>
+#include <bixd/beast/net/IPAddressConversion.h>
+#include <bixd/beast/net/IPEndpoint.h>
 #include <boost/asio.hpp>
 #include <atomic>
 #include <cassert>
@@ -30,7 +30,7 @@
 #include <memory>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 /** Mix-in to track when all pending I/O is complete.
     Derived classes must be callable with this signature:
@@ -411,4 +411,4 @@ ResolverAsio::New(boost::asio::io_service& io_service, beast::Journal journal)
 
 //-----------------------------------------------------------------------------
 Resolver::~Resolver() = default;
-}  // namespace ripple
+}  // namespace bixd

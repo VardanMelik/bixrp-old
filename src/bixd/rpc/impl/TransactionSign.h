@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_TRANSACTIONSIGN_H_INCLUDED
-#define RIPPLE_RPC_TRANSACTIONSIGN_H_INCLUDED
+#ifndef BIXD_RPC_TRANSACTIONSIGN_H_INCLUDED
+#define BIXD_RPC_TRANSACTIONSIGN_H_INCLUDED
 
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/ledger/ApplyView.h>
-#include <ripple/rpc/Role.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/ledger/ApplyView.h>
+#include <bixd/rpc/Role.h>
 
-namespace ripple {
+namespace bixd {
 
 // Forward declarations
 class Application;
@@ -129,6 +129,6 @@ transactionSubmitMultiSigned(
     ProcessTransactionFn const& processTransaction);
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

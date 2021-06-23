@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
   This file is part of bixd
-  Copyright (c) 2012-2015 Ripple Labs Inc.
+  Copyright (c) 2012-2015 bixd Labs Inc.
 
   Permission to use, copy, modify, and/or distribute this software for any
   purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TEST_JTX_AMOUNT_H_INCLUDED
-#define RIPPLE_TEST_JTX_AMOUNT_H_INCLUDED
+#ifndef BIXD_TEST_JTX_AMOUNT_H_INCLUDED
+#define BIXD_TEST_JTX_AMOUNT_H_INCLUDED
 
-#include <ripple/basics/FeeUnits.h>
-#include <ripple/basics/contract.h>
-#include <ripple/protocol/Issue.h>
-#include <ripple/protocol/STAmount.h>
+#include <bixd/basics/FeeUnits.h>
+#include <bixd/basics/contract.h>
+#include <bixd/protocol/Issue.h>
+#include <bixd/protocol/STAmount.h>
 #include <cstdint>
 #include <ostream>
 #include <string>
@@ -32,7 +32,7 @@
 #include <test/jtx/tags.h>
 #include <type_traits>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
@@ -155,9 +155,9 @@ operator<<(std::ostream& os, PrettyAmount const& amount);
 struct BookSpec
 {
     AccountID account;
-    ripple::Currency currency;
+    bixd::Currency currency;
 
-    BookSpec(AccountID const& account_, ripple::Currency const& currency_)
+    BookSpec(AccountID const& account_, bixd::Currency const& currency_)
         : account(account_), currency(currency_)
     {
     }
@@ -292,9 +292,9 @@ class IOU
 {
 public:
     Account account;
-    ripple::Currency currency;
+    bixd::Currency currency;
 
-    IOU(Account const& account_, ripple::Currency const& currency_)
+    IOU(Account const& account_, bixd::Currency const& currency_)
         : account(account_), currency(currency_)
     {
     }
@@ -400,6 +400,6 @@ extern any_t const any;
 
 }  // namespace jtx
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

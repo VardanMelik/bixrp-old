@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright 2015 Ripple Labs Inc.
+    Copyright 2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,22 +17,22 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/ValidatorList.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/base64.h>
-#include <ripple/basics/strHex.h>
-#include <ripple/overlay/impl/ProtocolMessage.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/PublicKey.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/protocol/Sign.h>
-#include <ripple/protocol/digest.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/protocol/messages.h>
+#include <bixd/app/misc/ValidatorList.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/base64.h>
+#include <bixd/basics/strHex.h>
+#include <bixd/overlay/impl/ProtocolMessage.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/PublicKey.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/protocol/Sign.h>
+#include <bixd/protocol/digest.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/protocol/messages.h>
 #include <boost/beast/core/multi_buffer.hpp>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 
 class ValidatorList_test : public beast::unit_test::suite
@@ -2003,7 +2003,7 @@ private:
     {
         testcase("Sha512 hashing");
         // Tests that ValidatorList hash_append helpers with a single blob
-        // returns the same result as ripple::Sha512Half used by the
+        // returns the same result as bixd::Sha512Half used by the
         // TMValidatorList protocol message handler
         std::string const manifest = "This is not really a manifest";
         std::string const blob = "This is not really a blob";
@@ -2423,7 +2423,7 @@ public:
     }
 };  // namespace test
 
-BEAST_DEFINE_TESTSUITE(ValidatorList, app, ripple);
+BEAST_DEFINE_TESTSUITE(ValidatorList, app, bixd);
 
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

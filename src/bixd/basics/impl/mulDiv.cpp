@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/basics/contract.h>
-#include <ripple/basics/mulDiv.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/mulDiv.h>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <limits>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 std::pair<bool, std::uint64_t>
 mulDiv(std::uint64_t value, std::uint64_t mul, std::uint64_t div)
@@ -43,4 +43,4 @@ mulDiv(std::uint64_t value, std::uint64_t mul, std::uint64_t div)
     return {true, static_cast<std::uint64_t>(result)};
 }
 
-}  // namespace ripple
+}  // namespace bixd

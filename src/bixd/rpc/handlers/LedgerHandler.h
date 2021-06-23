@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,25 +17,25 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_HANDLERS_LEDGER_H_INCLUDED
-#define RIPPLE_RPC_HANDLERS_LEDGER_H_INCLUDED
+#ifndef BIXD_RPC_HANDLERS_LEDGER_H_INCLUDED
+#define BIXD_RPC_HANDLERS_LEDGER_H_INCLUDED
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/ledger/LedgerToJson.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/json/Object.h>
-#include <ripple/ledger/ReadView.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/Role.h>
-#include <ripple/rpc/Status.h>
-#include <ripple/rpc/impl/Handler.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/ledger/LedgerToJson.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/json/Object.h>
+#include <bixd/ledger/ReadView.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/Role.h>
+#include <bixd/rpc/Status.h>
+#include <bixd/rpc/impl/Handler.h>
 
 namespace Json {
 class Object;
 }
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 struct JsonContext;
@@ -114,6 +114,6 @@ LedgerHandler::writeResult(Object& value)
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

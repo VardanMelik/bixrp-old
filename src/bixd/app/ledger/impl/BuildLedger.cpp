@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2018 Ripple Labs Inc.
+    Copyright (c) 2018 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -26,7 +26,7 @@
 #include <bixd/app/tx/apply.h>
 #include <bixd/protocol/Feature.h>
 
-namespace ripple {
+namespace bixd {
 
 /* Generic buildLedgerImpl that dispatches to ApplyTxs invocable with signature
     void(OpenView&, std::shared_ptr<Ledger> const&)
@@ -234,4 +234,4 @@ buildLedger(
         });
 }
 
-}  // namespace ripple
+}  // namespace bixd

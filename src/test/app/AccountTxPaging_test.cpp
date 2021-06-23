@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2016 Ripple Labs Inc.
+    Copyright (c) 2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,17 +16,17 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#include <ripple/beast/unit_test.h>
-#include <ripple/protocol/SField.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/beast/unit_test.h>
+#include <bixd/protocol/SField.h>
+#include <bixd/protocol/jss.h>
 #include <cstdlib>
 #include <test/jtx.h>
 
-#include <ripple/rpc/GRPCHandlers.h>
-#include <ripple/rpc/impl/RPCHelpers.h>
+#include <bixd/rpc/GRPCHandlers.h>
+#include <bixd/rpc/impl/RPCHelpers.h>
 #include <test/rpc/GRPCTestClientBase.h>
 
-namespace ripple {
+namespace bixd {
 
 class AccountTxPaging_test : public beast::unit_test::suite
 {
@@ -1773,7 +1773,7 @@ class AccountTxPaging_test : public beast::unit_test::suite
                                [](auto entry) {
                                    return entry.ledger_entry_type() ==
                                        org::xrpl::rpc::v1::LedgerEntryType::
-                                           LEDGER_ENTRY_TYPE_RIPPLE_STATE;
+                                           LEDGER_ENTRY_TYPE_BIXD_STATE;
                                }) == 1);
             }},
             {[this](auto meta) {
@@ -2172,6 +2172,6 @@ public:
     }
 };
 
-BEAST_DEFINE_TESTSUITE(AccountTxPaging, app, ripple);
+BEAST_DEFINE_TESTSUITE(AccountTxPaging, app, bixd);
 
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_QUALITY_H_INCLUDED
-#define RIPPLE_PROTOCOL_QUALITY_H_INCLUDED
+#ifndef BIXD_PROTOCOL_QUALITY_H_INCLUDED
+#define BIXD_PROTOCOL_QUALITY_H_INCLUDED
 
-#include <ripple/basics/IOUAmount.h>
-#include <ripple/basics/XRPAmount.h>
-#include <ripple/protocol/AmountConversions.h>
-#include <ripple/protocol/STAmount.h>
+#include <bixd/basics/IOUAmount.h>
+#include <bixd/basics/XRPAmount.h>
+#include <bixd/protocol/AmountConversions.h>
+#include <bixd/protocol/STAmount.h>
 
 #include <algorithm>
 #include <cstdint>
 #include <ostream>
 
-namespace ripple {
+namespace bixd {
 
 /** Represents a pair of input and output currencies.
 
@@ -98,7 +98,7 @@ operator!=(TAmounts<In, Out> const& lhs, TAmounts<In, Out> const& rhs) noexcept
 
 //------------------------------------------------------------------------------
 
-// Ripple specific constant used for parsing qualities and other things
+// bixd specific constant used for parsing qualities and other things
 #define QUALITY_ONE 1'000'000'000
 
 /** Represents the logical ratio of output currency to input currency.
@@ -311,6 +311,6 @@ public:
 Quality
 composed_quality(Quality const& lhs, Quality const& rhs);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

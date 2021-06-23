@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STLEDGERENTRY_H_INCLUDED
-#define RIPPLE_PROTOCOL_STLEDGERENTRY_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STLEDGERENTRY_H_INCLUDED
+#define BIXD_PROTOCOL_STLEDGERENTRY_H_INCLUDED
 
-#include <ripple/protocol/Indexes.h>
-#include <ripple/protocol/STObject.h>
+#include <bixd/protocol/Indexes.h>
+#include <bixd/protocol/STObject.h>
 
-namespace ripple {
+namespace bixd {
 
 class Invariants_test;
 
@@ -119,6 +119,6 @@ private:
 
 using SLE = STLedgerEntry;
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

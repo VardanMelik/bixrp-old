@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2016 Ripple Labs Inc.
+    Copyright (c) 2012-2016 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,11 +16,11 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#include <ripple/protocol/TxFlags.h>
-#include <ripple/protocol/jss.h>
+#include <bixd/protocol/TxFlags.h>
+#include <bixd/protocol/jss.h>
 #include <test/jtx.h>
 
-namespace ripple {
+namespace bixd {
 
 namespace test {
 
@@ -265,6 +265,6 @@ public:
         testModifyQualityOfTrustline(true, true);
     }
 };
-BEAST_DEFINE_TESTSUITE(SetTrust, app, ripple);
+BEAST_DEFINE_TESTSUITE(SetTrust, app, bixd);
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_NET_INFOSUB_H_INCLUDED
-#define RIPPLE_NET_INFOSUB_H_INCLUDED
+#ifndef BIXD_NET_INFOSUB_H_INCLUDED
+#define BIXD_NET_INFOSUB_H_INCLUDED
 
-#include <ripple/app/misc/Manifest.h>
-#include <ripple/basics/CountedObject.h>
-#include <ripple/core/Stoppable.h>
-#include <ripple/json/json_value.h>
-#include <ripple/protocol/Book.h>
-#include <ripple/resource/Consumer.h>
+#include <bixd/app/misc/Manifest.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/core/Stoppable.h>
+#include <bixd/json/json_value.h>
+#include <bixd/protocol/Book.h>
+#include <bixd/resource/Consumer.h>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 // Operations that clients may wish to perform against the network
 // Master operational handler, server sequencer, network tracker
@@ -198,6 +198,6 @@ private:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

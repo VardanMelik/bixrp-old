@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,10 +17,10 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_TUNING_H_INCLUDED
-#define RIPPLE_RPC_TUNING_H_INCLUDED
+#ifndef BIXD_RPC_TUNING_H_INCLUDED
+#define BIXD_RPC_TUNING_H_INCLUDED
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 /** Tuned constants. */
@@ -81,6 +81,6 @@ static int constexpr max_auto_src_cur = 88;
 /** @} */
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

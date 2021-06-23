@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2014 Ripple Labs Inc.
+    Copyright (c) 2012-2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/basics/Archive.h>
-#include <ripple/basics/BasicConfig.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/nodestore/DatabaseShard.h>
-#include <ripple/rpc/ShardArchiveHandler.h>
-#include <ripple/rpc/impl/Handler.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/basics/Archive.h>
+#include <bixd/basics/BasicConfig.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/nodestore/DatabaseShard.h>
+#include <bixd/rpc/ShardArchiveHandler.h>
+#include <bixd/rpc/impl/Handler.h>
 
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 using namespace boost::filesystem;
@@ -610,4 +610,4 @@ RecoveryHandler::RecoveryHandler(Application& app, Stoppable& parent)
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

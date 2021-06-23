@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,21 +17,21 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STACCOUNT_H_INCLUDED
-#define RIPPLE_PROTOCOL_STACCOUNT_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STACCOUNT_H_INCLUDED
+#define BIXD_PROTOCOL_STACCOUNT_H_INCLUDED
 
-#include <ripple/protocol/AccountID.h>
-#include <ripple/protocol/STBase.h>
+#include <bixd/protocol/AccountID.h>
+#include <bixd/protocol/STBase.h>
 #include <string>
 
-namespace ripple {
+namespace bixd {
 
 class STAccount final : public STBase
 {
 private:
     // The original implementation of STAccount kept the value in an STBlob.
     // But an STAccount is always 160 bits, so we can store it with less
-    // overhead in a ripple::uint160.  However, so the serialized format of the
+    // overhead in a bixd::uint160.  However, so the serialized format of the
     // STAccount stays unchanged, we serialize and deserialize like an STBlob.
     AccountID value_;
     bool default_;
@@ -113,6 +113,6 @@ public:
     }
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

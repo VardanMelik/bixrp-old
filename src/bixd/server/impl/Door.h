@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_SERVER_DOOR_H_INCLUDED
-#define RIPPLE_SERVER_DOOR_H_INCLUDED
+#ifndef BIXD_SERVER_DOOR_H_INCLUDED
+#define BIXD_SERVER_DOOR_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/contract.h>
-#include <ripple/server/impl/PlainHTTPPeer.h>
-#include <ripple/server/impl/SSLHTTPPeer.h>
-#include <ripple/server/impl/io_list.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/contract.h>
+#include <bixd/server/impl/PlainHTTPPeer.h>
+#include <bixd/server/impl/SSLHTTPPeer.h>
+#include <bixd/server/impl/io_list.h>
 #include <boost/asio/basic_waitable_timer.hpp>
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/io_context.hpp>
@@ -40,7 +40,7 @@
 #include <memory>
 #include <mutex>
 
-namespace ripple {
+namespace bixd {
 
 /** A listening socket. */
 template <class Handler>
@@ -407,6 +407,6 @@ Door<Handler>::do_accept(boost::asio::yield_context do_yield)
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

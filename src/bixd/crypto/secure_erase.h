@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,12 +17,12 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CRYPTO_SECURE_ERASE_H_INCLUDED
-#define RIPPLE_CRYPTO_SECURE_ERASE_H_INCLUDED
+#ifndef BIXD_CRYPTO_SECURE_ERASE_H_INCLUDED
+#define BIXD_CRYPTO_SECURE_ERASE_H_INCLUDED
 
 #include <cstddef>
 
-namespace ripple {
+namespace bixd {
 
 /** Attempts to clear the given blob of memory.
 
@@ -41,6 +41,6 @@ namespace ripple {
 void
 secure_erase(void* dest, std::size_t bytes);
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

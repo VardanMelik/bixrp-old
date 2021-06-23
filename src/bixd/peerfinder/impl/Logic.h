@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,25 +17,25 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PEERFINDER_LOGIC_H_INCLUDED
-#define RIPPLE_PEERFINDER_LOGIC_H_INCLUDED
+#ifndef BIXD_PEERFINDER_LOGIC_H_INCLUDED
+#define BIXD_PEERFINDER_LOGIC_H_INCLUDED
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/contract.h>
-#include <ripple/basics/random.h>
-#include <ripple/beast/container/aged_container_utility.h>
-#include <ripple/beast/net/IPAddressConversion.h>
-#include <ripple/peerfinder/PeerfinderManager.h>
-#include <ripple/peerfinder/impl/Bootcache.h>
-#include <ripple/peerfinder/impl/Counts.h>
-#include <ripple/peerfinder/impl/Fixed.h>
-#include <ripple/peerfinder/impl/Handouts.h>
-#include <ripple/peerfinder/impl/Livecache.h>
-#include <ripple/peerfinder/impl/Reporting.h>
-#include <ripple/peerfinder/impl/SlotImp.h>
-#include <ripple/peerfinder/impl/Source.h>
-#include <ripple/peerfinder/impl/Store.h>
-#include <ripple/peerfinder/impl/iosformat.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/contract.h>
+#include <bixd/basics/random.h>
+#include <bixd/beast/container/aged_container_utility.h>
+#include <bixd/beast/net/IPAddressConversion.h>
+#include <bixd/peerfinder/PeerfinderManager.h>
+#include <bixd/peerfinder/impl/Bootcache.h>
+#include <bixd/peerfinder/impl/Counts.h>
+#include <bixd/peerfinder/impl/Fixed.h>
+#include <bixd/peerfinder/impl/Handouts.h>
+#include <bixd/peerfinder/impl/Livecache.h>
+#include <bixd/peerfinder/impl/Reporting.h>
+#include <bixd/peerfinder/impl/SlotImp.h>
+#include <bixd/peerfinder/impl/Source.h>
+#include <bixd/peerfinder/impl/Store.h>
+#include <bixd/peerfinder/impl/iosformat.h>
 
 #include <algorithm>
 #include <functional>
@@ -43,7 +43,7 @@
 #include <memory>
 #include <set>
 
-namespace ripple {
+namespace bixd {
 namespace PeerFinder {
 
 /** The Logic for maintaining the list of Slot addresses.
@@ -1216,6 +1216,6 @@ Logic<Checker>::onRedirects(
 }
 
 }  // namespace PeerFinder
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -18,10 +18,10 @@
 //==============================================================================
 
 #ifdef BIXD_REPORTING
-#include <ripple/app/reporting/DBHelpers.h>
+#include <bixd/app/reporting/DBHelpers.h>
 #include <memory>
 
-namespace ripple {
+namespace bixd {
 
 static bool
 writeToLedgersDB(LedgerInfo const& info, PgQuery& pgQuery, beast::Journal& j)
@@ -128,5 +128,5 @@ writeToPostgres(
     }
 }
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

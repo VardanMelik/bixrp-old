@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STVECTOR256_H_INCLUDED
-#define RIPPLE_PROTOCOL_STVECTOR256_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STVECTOR256_H_INCLUDED
+#define BIXD_PROTOCOL_STVECTOR256_H_INCLUDED
 
-#include <ripple/protocol/STBase.h>
-#include <ripple/protocol/STBitString.h>
-#include <ripple/protocol/STInteger.h>
+#include <bixd/protocol/STBase.h>
+#include <bixd/protocol/STBitString.h>
+#include <bixd/protocol/STInteger.h>
 
-namespace ripple {
+namespace bixd {
 
 class STVector256 : public STBase
 {
@@ -200,6 +200,6 @@ private:
     std::vector<uint256> mValue;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,17 +17,17 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CORE_JOBTYPES_H_INCLUDED
-#define RIPPLE_CORE_JOBTYPES_H_INCLUDED
+#ifndef BIXD_CORE_JOBTYPES_H_INCLUDED
+#define BIXD_CORE_JOBTYPES_H_INCLUDED
 
-#include <ripple/core/Job.h>
-#include <ripple/core/JobTypeInfo.h>
+#include <bixd/core/Job.h>
+#include <bixd/core/JobTypeInfo.h>
 #include <map>
 #include <string>
 #include <type_traits>
 #include <unordered_map>
 
-namespace ripple {
+namespace bixd {
 
 class JobTypes
 {
@@ -186,6 +186,6 @@ private:
     Map m_map;
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

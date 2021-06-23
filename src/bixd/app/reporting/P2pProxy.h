@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,19 +17,19 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_REPORTING_P2PPROXY_H_INCLUDED
-#define RIPPLE_APP_REPORTING_P2PPROXY_H_INCLUDED
+#ifndef BIXD_APP_REPORTING_P2PPROXY_H_INCLUDED
+#define BIXD_APP_REPORTING_P2PPROXY_H_INCLUDED
 
-#include <ripple/app/main/Application.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/impl/Handler.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/impl/Handler.h>
 
 #include <boost/beast/websocket.hpp>
 
 #include "org/xrpl/rpc/v1/xrp_ledger.grpc.pb.h"
 #include <grpcpp/grpcpp.h>
 
-namespace ripple {
+namespace bixd {
 /// Forward a JSON request to a p2p node and return the response
 /// @param context context of the request
 /// @return response from p2p node
@@ -112,5 +112,5 @@ shouldForwardToP2p(RPC::GRPCContext<Request>& context, RPC::Condition condition)
 std::unique_ptr<org::xrpl::rpc::v1::BIXRPLedgerAPIService::Stub>
 getP2pForwardingStub(RPC::Context& context);
 
-}  // namespace ripple
+}  // namespace bixd
 #endif

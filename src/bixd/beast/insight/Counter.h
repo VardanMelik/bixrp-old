@@ -20,7 +20,7 @@
 #ifndef BEAST_INSIGHT_COUNTER_H_INCLUDED
 #define BEAST_INSIGHT_COUNTER_H_INCLUDED
 
-#include <ripple/beast/insight/CounterImpl.h>
+#include <bixd/beast/insight/CounterImpl.h>
 
 #include <memory>
 

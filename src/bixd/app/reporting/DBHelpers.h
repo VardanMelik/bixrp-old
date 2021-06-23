@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2020 Ripple Labs Inc.
+    Copyright (c) 2020 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,15 +17,15 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_APP_REPORTING_DBHELPERS_H_INCLUDED
-#define RIPPLE_APP_REPORTING_DBHELPERS_H_INCLUDED
+#ifndef BIXD_APP_REPORTING_DBHELPERS_H_INCLUDED
+#define BIXD_APP_REPORTING_DBHELPERS_H_INCLUDED
 
-#include <ripple/app/reporting/ReportingETL.h>
-#include <ripple/basics/Log.h>
-#include <ripple/core/Pg.h>
+#include <bixd/app/reporting/ReportingETL.h>
+#include <bixd/basics/Log.h>
+#include <bixd/core/Pg.h>
 #include <boost/container/flat_set.hpp>
 
-namespace ripple {
+namespace bixd {
 
 /// Struct used to keep track of what to write to transactions and
 /// account_transactions tables in Postgres
@@ -65,5 +65,5 @@ writeToPostgres(
     beast::Journal& j);
 
 #endif
-}  // namespace ripple
+}  // namespace bixd
 #endif

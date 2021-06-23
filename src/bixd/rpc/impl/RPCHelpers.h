@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012=2014 Ripple Labs Inc.
+    Copyright (c) 2012=2014 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,18 +17,18 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_RPCHELPERS_H_INCLUDED
-#define RIPPLE_RPC_RPCHELPERS_H_INCLUDED
+#ifndef BIXD_RPC_RPCHELPERS_H_INCLUDED
+#define BIXD_RPC_RPCHELPERS_H_INCLUDED
 
-#include <ripple/beast/core/SemanticVersion.h>
-#include <ripple/ledger/TxMeta.h>
+#include <bixd/beast/core/SemanticVersion.h>
+#include <bixd/ledger/TxMeta.h>
 
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/misc/TxQ.h>
-#include <ripple/protocol/SecretKey.h>
-#include <ripple/rpc/Context.h>
-#include <ripple/rpc/Status.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/misc/TxQ.h>
+#include <bixd/protocol/SecretKey.h>
+#include <bixd/rpc/Context.h>
+#include <bixd/rpc/Status.h>
+#include <bixd/rpc/impl/Tuning.h>
 #include <boost/optional.hpp>
 #include <org/xrpl/rpc/v1/xrp_ledger.pb.h>
 
@@ -36,7 +36,7 @@ namespace Json {
 class Value;
 }
 
-namespace ripple {
+namespace bixd {
 
 class ReadView;
 class Transaction;
@@ -254,6 +254,6 @@ unsigned int
 getAPIVersionNumber(const Json::Value& value);
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

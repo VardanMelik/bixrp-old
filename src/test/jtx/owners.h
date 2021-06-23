@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,16 +17,16 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_TEST_JTX_OWNERS_H_INCLUDED
-#define RIPPLE_TEST_JTX_OWNERS_H_INCLUDED
+#ifndef BIXD_TEST_JTX_OWNERS_H_INCLUDED
+#define BIXD_TEST_JTX_OWNERS_H_INCLUDED
 
-#include <ripple/ledger/View.h>
-#include <ripple/protocol/LedgerFormats.h>
-#include <ripple/protocol/UintTypes.h>
+#include <bixd/ledger/View.h>
+#include <bixd/protocol/LedgerFormats.h>
+#include <bixd/protocol/UintTypes.h>
 #include <cstdint>
 #include <test/jtx/Env.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace jtx {
 
@@ -83,13 +83,13 @@ public:
 };
 
 /** Match the number of trust lines in the account's owner directory */
-using lines = owner_count<ltRIPPLE_STATE>;
+using lines = owner_count<ltBIXD_STATE>;
 
 /** Match the number of offers in the account's owner directory */
 using offers = owner_count<ltOFFER>;
 
 }  // namespace jtx
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

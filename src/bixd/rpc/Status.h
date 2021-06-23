@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,14 +17,14 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_RPC_STATUS_H_INCLUDED
-#define RIPPLE_RPC_STATUS_H_INCLUDED
+#ifndef BIXD_RPC_STATUS_H_INCLUDED
+#define BIXD_RPC_STATUS_H_INCLUDED
 
-#include <ripple/protocol/ErrorCodes.h>
-#include <ripple/protocol/TER.h>
+#include <bixd/protocol/ErrorCodes.h>
+#include <bixd/protocol/TER.h>
 #include <cassert>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 /** Status represents the results of an operation that might fail.
@@ -155,6 +155,6 @@ private:
 };
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_CRYPTO_RFC1751_H_INCLUDED
-#define RIPPLE_CRYPTO_RFC1751_H_INCLUDED
+#ifndef BIXD_CRYPTO_RFC1751_H_INCLUDED
+#define BIXD_CRYPTO_RFC1751_H_INCLUDED
 
 #include <string>
 #include <vector>
 
-namespace ripple {
+namespace bixd {
 
 class RFC1751
 {
@@ -61,6 +61,6 @@ private:
     static char const* s_dictionary[];
 };
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2015 Ripple Labs Inc.
+    Copyright (c) 2012-2015 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -22,17 +22,17 @@
 #pragma clang diagnostic ignored "-Wdeprecated"
 #endif
 
-#include <ripple/basics/ByteUtilities.h>
-#include <ripple/basics/contract.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/ConfigSections.h>
-#include <ripple/core/DatabaseCon.h>
-#include <ripple/core/SociDB.h>
+#include <bixd/basics/ByteUtilities.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/ConfigSections.h>
+#include <bixd/core/DatabaseCon.h>
+#include <bixd/core/SociDB.h>
 #include <boost/filesystem.hpp>
 #include <memory>
 #include <soci/sqlite3/soci-sqlite3.h>
 
-namespace ripple {
+namespace bixd {
 
 static auto checkpointPageCount = 1000;
 
@@ -224,7 +224,7 @@ public:
     {
         if (auto p = session_.lock())
         {
-            return {ripple::getConnection(*p), p};
+            return {bixd::getConnection(*p), p};
         }
         return {nullptr, std::shared_ptr<soci::session>{}};
     }
@@ -342,7 +342,7 @@ makeCheckpointer(
         id, std::move(session), queue, logs);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #if defined(__clang__)
 #pragma clang diagnostic pop

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,29 +17,29 @@
 */
 //==============================================================================
 
-#include <ripple/app/ledger/LedgerMaster.h>
-#include <ripple/app/main/Application.h>
-#include <ripple/app/misc/NetworkOPs.h>
-#include <ripple/app/reporting/P2pProxy.h>
-#include <ripple/basics/Log.h>
-#include <ripple/basics/PerfLog.h>
-#include <ripple/basics/contract.h>
-#include <ripple/core/Config.h>
-#include <ripple/core/JobQueue.h>
-#include <ripple/json/Object.h>
-#include <ripple/json/to_string.h>
-#include <ripple/net/InfoSub.h>
-#include <ripple/net/RPCErr.h>
-#include <ripple/protocol/jss.h>
-#include <ripple/resource/Fees.h>
-#include <ripple/rpc/RPCHandler.h>
-#include <ripple/rpc/Role.h>
-#include <ripple/rpc/impl/Handler.h>
-#include <ripple/rpc/impl/Tuning.h>
+#include <bixd/app/ledger/LedgerMaster.h>
+#include <bixd/app/main/Application.h>
+#include <bixd/app/misc/NetworkOPs.h>
+#include <bixd/app/reporting/P2pProxy.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/PerfLog.h>
+#include <bixd/basics/contract.h>
+#include <bixd/core/Config.h>
+#include <bixd/core/JobQueue.h>
+#include <bixd/json/Object.h>
+#include <bixd/json/to_string.h>
+#include <bixd/net/InfoSub.h>
+#include <bixd/net/RPCErr.h>
+#include <bixd/protocol/jss.h>
+#include <bixd/resource/Fees.h>
+#include <bixd/rpc/RPCHandler.h>
+#include <bixd/rpc/Role.h>
+#include <bixd/rpc/impl/Handler.h>
+#include <bixd/rpc/impl/Tuning.h>
 #include <atomic>
 #include <chrono>
 
-namespace ripple {
+namespace bixd {
 namespace RPC {
 
 namespace {
@@ -300,4 +300,4 @@ roleRequired(unsigned int version, std::string const& method)
 }
 
 }  // namespace RPC
-}  // namespace ripple
+}  // namespace bixd

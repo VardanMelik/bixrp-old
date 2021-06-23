@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/protocol/SField.h>
+#include <bixd/protocol/SField.h>
 #include <cassert>
 #include <string>
 #include <string_view>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 // Storage for static const members.
 SField::IsSigning const SField::notSigning;
@@ -357,4 +357,4 @@ SField::getField(std::string const& fieldName)
     return sfInvalid;
 }
 
-}  // namespace ripple
+}  // namespace bixd

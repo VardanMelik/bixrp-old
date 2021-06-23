@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,20 +17,20 @@
 */
 //==============================================================================
 
-#ifndef RIPPLE_PROTOCOL_STOBJECT_H_INCLUDED
-#define RIPPLE_PROTOCOL_STOBJECT_H_INCLUDED
+#ifndef BIXD_PROTOCOL_STOBJECT_H_INCLUDED
+#define BIXD_PROTOCOL_STOBJECT_H_INCLUDED
 
-#include <ripple/basics/CountedObject.h>
-#include <ripple/basics/FeeUnits.h>
-#include <ripple/basics/Slice.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/basics/contract.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/SOTemplate.h>
-#include <ripple/protocol/STAmount.h>
-#include <ripple/protocol/STPathSet.h>
-#include <ripple/protocol/STVector256.h>
-#include <ripple/protocol/impl/STVar.h>
+#include <bixd/basics/CountedObject.h>
+#include <bixd/basics/FeeUnits.h>
+#include <bixd/basics/Slice.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/basics/contract.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/SOTemplate.h>
+#include <bixd/protocol/STAmount.h>
+#include <bixd/protocol/STPathSet.h>
+#include <bixd/protocol/STVector256.h>
+#include <bixd/protocol/impl/STVar.h>
 #include <boost/iterator/transform_iterator.hpp>
 #include <boost/optional.hpp>
 #include <cassert>
@@ -38,7 +38,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace ripple {
+namespace bixd {
 
 class STArray;
 
@@ -1063,6 +1063,6 @@ STObject::at(OptionaledField<T> const& of) -> OptionalProxy<T>
     return OptionalProxy<T>(this, of.f);
 }
 
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc
+    Copyright (c) 2012-2017 bixd Labs Inc
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,21 +16,21 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#ifndef RIPPLE_TEST_CSF_LEDGERS_H_INCLUDED
-#define RIPPLE_TEST_CSF_LEDGERS_H_INCLUDED
+#ifndef BIXD_TEST_CSF_LEDGERS_H_INCLUDED
+#define BIXD_TEST_CSF_LEDGERS_H_INCLUDED
 
-#include <ripple/basics/UnorderedContainers.h>
-#include <ripple/basics/chrono.h>
-#include <ripple/basics/comparators.h>
-#include <ripple/basics/tagged_integer.h>
-#include <ripple/consensus/LedgerTiming.h>
-#include <ripple/json/json_value.h>
+#include <bixd/basics/UnorderedContainers.h>
+#include <bixd/basics/chrono.h>
+#include <bixd/basics/comparators.h>
+#include <bixd/basics/tagged_integer.h>
+#include <bixd/consensus/LedgerTiming.h>
+#include <bixd/json/json_value.h>
 #include <boost/bimap/bimap.hpp>
 #include <boost/optional.hpp>
 #include <set>
 #include <test/csf/Tx.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace csf {
 
@@ -244,8 +244,8 @@ private:
 class LedgerOracle
 {
     using InstanceMap = boost::bimaps::bimap<
-        boost::bimaps::set_of<Ledger::Instance, ripple::less<Ledger::Instance>>,
-        boost::bimaps::set_of<Ledger::ID, ripple::less<Ledger::ID>>>;
+        boost::bimaps::set_of<Ledger::Instance, bixd::less<Ledger::Instance>>,
+        boost::bimaps::set_of<Ledger::ID, bixd::less<Ledger::ID>>>;
     using InstanceEntry = InstanceMap::value_type;
 
     // Set of all known ledgers; note this is never pruned
@@ -355,6 +355,6 @@ struct LedgerHistoryHelper
 
 }  // namespace csf
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 
 #endif

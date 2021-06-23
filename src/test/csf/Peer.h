@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012-2017 Ripple Labs Inc
+    Copyright (c) 2012-2017 bixd Labs Inc
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -16,13 +16,13 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 //==============================================================================
-#ifndef RIPPLE_TEST_CSF_PEER_H_INCLUDED
-#define RIPPLE_TEST_CSF_PEER_H_INCLUDED
+#ifndef BIXD_TEST_CSF_PEER_H_INCLUDED
+#define BIXD_TEST_CSF_PEER_H_INCLUDED
 
-#include <ripple/beast/utility/WrappedSink.h>
-#include <ripple/consensus/Consensus.h>
-#include <ripple/consensus/Validations.h>
-#include <ripple/protocol/PublicKey.h>
+#include <bixd/beast/utility/WrappedSink.h>
+#include <bixd/consensus/Consensus.h>
+#include <bixd/consensus/Validations.h>
+#include <bixd/protocol/PublicKey.h>
 #include <boost/container/flat_map.hpp>
 #include <boost/container/flat_set.hpp>
 #include <algorithm>
@@ -34,7 +34,7 @@
 #include <test/csf/events.h>
 #include <test/csf/ledgers.h>
 
-namespace ripple {
+namespace bixd {
 namespace test {
 namespace csf {
 
@@ -977,5 +977,5 @@ struct Peer
 
 }  // namespace csf
 }  // namespace test
-}  // namespace ripple
+}  // namespace bixd
 #endif

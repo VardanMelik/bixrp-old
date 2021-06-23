@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /*
     This file is part of bixd
-    Copyright (c) 2012, 2013 Ripple Labs Inc.
+    Copyright (c) 2012, 2013 bixd Labs Inc.
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose  with  or without fee is hereby granted, provided that the above
@@ -17,13 +17,13 @@
 */
 //==============================================================================
 
-#include <ripple/basics/Log.h>
-#include <ripple/basics/contract.h>
-#include <ripple/json/to_string.h>
-#include <ripple/protocol/HashPrefix.h>
-#include <ripple/protocol/STValidation.h>
+#include <bixd/basics/Log.h>
+#include <bixd/basics/contract.h>
+#include <bixd/json/to_string.h>
+#include <bixd/protocol/HashPrefix.h>
+#include <bixd/protocol/STValidation.h>
 
-namespace ripple {
+namespace bixd {
 
 SOTemplate const&
 STValidation::validationFormat()
@@ -130,4 +130,4 @@ STValidation::getSerialized() const
     return s.peekData();
 }
 
-}  // namespace ripple
+}  // namespace bixd
